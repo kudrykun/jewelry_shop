@@ -12,57 +12,58 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label :title, 'Название' %>
     <%= f.text_field :title %>
   </div>
 
   <div class="field">
-    <%= f.label :artikul %>
+    <%= f.label :artikul, 'Артикул' %>
     <%= f.text_field :artikul %>
   </div>
 
   <div class="field">
-    <%= f.label :price %>
+    <%= f.label :price, 'Цена' %>
     <%= f.text_field :price %>
   </div>
 
   <div class="field">
-    <%= f.label :metal_color_id %>
+    <%= f.label :metal_color_id, 'Цвет металла' %>
     <%= f.collection_select(:metal_color_id, @metal_colors, :id, :title,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
-    <%= f.label :weight %>
+    <%= f.label :weight, 'Вес' %>
     <%= f.text_field :weight %>
   </div>
 
   <div class="field">
-    <%= f.label :product_type_id %>
+    <%= f.label :product_type_id, 'Вид изделия' %>
     <%= f.collection_select(:product_type_id, @product_types, :id, :title,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
-    <%= f.label :sale_size_id %>
+    <%= f.label :sale_size_id, 'Размер скидки' %>
+    <%= f.collection_select(:sale_size_id, @sale_sizes, :id, :sale_percent,{},{class: 'form-control'}) %>
     <%= f.collection_select(:sale_size_id, @sale_sizes, :id, :sale_percent,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
-    <%= f.label :old_price %>
+    <%= f.label :old_price, 'Цена до скидки' %>
     <%= f.text_field :old_price %>
   </div>
 
   <div class="field">
-    <%= f.label :to_main_page %>
-    <%= f.check_box :to_main_page %>
-  </div>
-
-  <div class="field">
-    <%= f.label :manufacturer %>
+    <%= f.label :manufacturer, 'Производитель' %>
     <%= f.text_field :manufacturer %>
   </div>
 
+   <div class="field">
+     <%= f.label :to_main_page, 'На главную' %>
+     <%= f.check_box :to_main_page %>
+   </div>
+
   <div class="field">
-    <%= f.label :priority %>
+    <%= f.label :priority, 'Приоритет' %>
     <%= f.number_field :priority %>
   </div>
 
