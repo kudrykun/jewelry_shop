@@ -43,8 +43,7 @@
 
   <div class="field">
     <%= f.label :sale_size_id, 'Размер скидки' %>
-    <%= f.collection_select(:sale_size_id, @sale_sizes, :id, :sale_percent,{},{class: 'form-control'}) %>
-    <%= f.collection_select(:sale_size_id, @sale_sizes, :id, :sale_percent,{},{class: 'form-control'}) %>
+    <%= f.collection_radio_buttons(:sale_size_id, @sale_sizes, :id, :sale_percent,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
