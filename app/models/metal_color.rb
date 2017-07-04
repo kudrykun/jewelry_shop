@@ -1,0 +1,2 @@
+class MetalColor < ApplicationRecord
+end

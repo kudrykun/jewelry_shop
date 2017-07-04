@@ -1,0 +1,22 @@
+<%= form_for(sale_size) do |f| %>
+  <% if sale_size.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sale_size.errors.count, "error") %> prohibited this sale_size from being saved:</h2>
+
+      <ul>
+      <% sale_size.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sale_percent %>
+    <%= f.text_field :sale_percent %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

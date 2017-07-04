@@ -1,0 +1,2 @@
+module MetalColorsHelper
+end

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Incrustations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incrustations.each do |incrustation| %>
+      <tr>
+        <td><%= incrustation.title %></td>
+        <td><%= link_to 'Show', incrustation %></td>
+        <td><%= link_to 'Edit', edit_incrustation_path(incrustation) %></td>
+        <td><%= link_to 'Destroy', incrustation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Incrustation', new_incrustation_path %>

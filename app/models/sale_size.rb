@@ -1,0 +1,2 @@
+class SaleSize < ApplicationRecord
+end

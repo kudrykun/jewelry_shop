@@ -1,0 +1,72 @@
+<%= form_for(product) do |f| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :artikul %>
+    <%= f.text_field :artikul %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :metal_color_id %>
+    <%= f.text_field :metal_color_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_type_id %>
+    <%= f.text_field :product_type_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sale_size_id %>
+    <%= f.text_field :sale_size_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :old_price %>
+    <%= f.text_field :old_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :to_main_page %>
+    <%= f.check_box :to_main_page %>
+  </div>
+
+  <div class="field">
+    <%= f.label :manufacturer %>
+    <%= f.text_field :manufacturer %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priority %>
+    <%= f.number_field :priority %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
