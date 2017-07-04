@@ -15,10 +15,16 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @metal_colors = MetalColor.all
+    @product_types = ProductType.all
+    @sale_sizes = SaleSize.all
   end
 
   # GET /products/1/edit
   def edit
+    @metal_colors = MetalColor.all
+    @product_types = ProductType.all
+    @sale_sizes = SaleSize.all
   end
 
   # POST /products

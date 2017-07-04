@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= f.label :metal_color_id %>
-    <%= f.text_field :metal_color_id %>
+    <%= f.collection_select(:metal_color_id, @metal_colors, :id, :title,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
@@ -38,12 +38,12 @@
 
   <div class="field">
     <%= f.label :product_type_id %>
-    <%= f.text_field :product_type_id %>
+    <%= f.collection_select(:product_type_id, @product_types, :id, :title,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
     <%= f.label :sale_size_id %>
-    <%= f.text_field :sale_size_id %>
+    <%= f.collection_select(:sale_size_id, @sale_sizes, :id, :sale_percent,{},{class: 'form-control'}) %>
   </div>
 
   <div class="field">
