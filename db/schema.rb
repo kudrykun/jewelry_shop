@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705140940) do
+ActiveRecord::Schema.define(version: 20170706220849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+  end
 
   create_table "incrustations", force: :cascade do |t|
     t.string   "title"
@@ -79,6 +86,8 @@ ActiveRecord::Schema.define(version: 20170705140940) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.decimal  "old_price"
+    t.integer  "collection_id"
+    t.index ["collection_id"], name: "index_products_on_collection_id", using: :btree
     t.index ["metal_color_id"], name: "index_products_on_metal_color_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
     t.index ["sale_size_id"], name: "index_products_on_sale_size_id", using: :btree
@@ -107,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170705140940) do
   add_foreign_key "incrustations_products", "products"
   add_foreign_key "metal_types_products", "metal_types"
   add_foreign_key "metal_types_products", "products"
+  add_foreign_key "products", "collections"
   add_foreign_key "products", "metal_colors"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "sale_sizes"
