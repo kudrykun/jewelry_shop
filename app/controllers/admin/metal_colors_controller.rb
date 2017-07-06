@@ -1,4 +1,4 @@
-class MetalColorsController < ApplicationController
+class Admin::MetalColorsController < AdminController
   before_action :set_metal_color, only: [:show, :edit, :update, :destroy]
 
   # GET /metal_colors
