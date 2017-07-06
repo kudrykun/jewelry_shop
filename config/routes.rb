@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :collections
   root "products#index"
   resources :products
   resources :sale_sizes
