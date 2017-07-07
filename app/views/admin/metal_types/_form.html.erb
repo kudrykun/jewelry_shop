@@ -1,4 +1,4 @@
-<%= form_for(metal_type) do |f| %>
+<%= form_for([:admin, metal_type]) do |f| %>
   <% if metal_type.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(metal_type.errors.count, "error") %> prohibited this metal_type from being saved:</h2>
