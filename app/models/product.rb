@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :metal_color
   belongs_to :product_type
+  belongs_to :category
   belongs_to :sale_size
   belongs_to :collection, optional: true
   has_and_belongs_to_many :metal_types
