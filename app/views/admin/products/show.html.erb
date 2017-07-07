@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Артикул:</strong>
+  <%= @product.artikul %>
+</p>
+
+<p>
+  <strong>Цена:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Цвет металла:</strong>
+  <%= @product.metal_color.title %>
+</p>
+
+<p>
+  <strong>Вес:</strong>
+  <%= @product.weight %>
+</p>
+
+<p>
+  <strong>Вид изделия:</strong>
+  <%= @product.product_type.title %>
+</p>
+
+<p>
+  <strong>Размер скидки:</strong>
+  <%= @product.sale_size.sale_percent %> %
+</p>
+
+<p>
+  <strong>Цена до скидки:</strong>
+  <%= @product.old_price %>
+</p>
+
+<p>
+  <strong>На главную:</strong>
+  <%= @product.to_main_page %>
+</p>
+
+<p>
+  <strong>Производитель:</strong>
+  <%= @product.manufacturer %>
+</p>
+
+<p>
+  <strong>Приоритет:</strong>
+  <%= @product.priority %>
+</p>
+
+<%= link_to 'Редактировать', edit_admin_product_path(@product) %> |
+<%= link_to 'Назад', admin_products_path %>

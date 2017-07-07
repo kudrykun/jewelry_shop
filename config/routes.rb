@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  resources :collections
-  root "products#index"
-  resources :products
-  resources :sale_sizes
-  resources :product_types
-  resources :sizes
-  resources :incrustations
-  resources :metal_colors
-  resources :metal_types
+  root "admin/products#index"
+  namespace :admin do
+    get '/', to: 'dashboard#index', as: 'dashboard'
+    resources :collections
+    resources :products
+    resources :sale_sizes
+    resources :product_types
+    resources :sizes
+    resources :incrustations
+    resources :metal_colors
+    resources :metal_types
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
