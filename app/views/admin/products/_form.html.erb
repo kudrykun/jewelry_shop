@@ -37,14 +37,28 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :sex, 'Пол' %>
+    <% Product.sexes.keys.each do |sex| %>
+        <%= f.label :sex, value: sex, class:'radio-inline' do %>
+            <%= f.radio_button :sex, sex %>
+            <%=sex%>
+        <%end%>
+    <% end %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :product_type_id, 'Вид изделия' %>
     <%= f.collection_select :product_type_id, @product_types, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :sale_size_id, 'Размер скидки' %>
+    <%= f.label :sale_size_id, value: nil, class:'radio-inline' do %>
+        <%= f.radio_button :sale_size_id, nil %>
+        Отсутствует
+    <%end%>
     <%= f.collection_radio_buttons(:sale_size_id, @sale_sizes, :id, :sale_percent) do |b|
-      b.label(:"data-value" => b.value, class:'radio-inline') { b.radio_button + b.text.to_s}
+      b.label(:"data-value" => b.value, class:'radio-inline') { b.radio_button + b.text.to_s + ' %'}
       end %>
   </div>
 

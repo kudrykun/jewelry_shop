@@ -28,6 +28,11 @@
 </p>
 
 <p>
+  <strong>Пол:</strong>
+  <%= @product.sex%>
+</p>
+
+<p>
   <strong>Вид изделия:</strong>
   <% if @product.product_type != nil && @product.product_type.title != '' %>
       <%= @product.product_type.title %>

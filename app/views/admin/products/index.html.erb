@@ -4,9 +4,12 @@
   <h1 class="page-header">Товары</h1>
 </div>
 <%= link_to 'Добавить товар', new_admin_product_path, class: 'btn btn-default' %>
-<%= link_to 'Добавить виды товаров', admin_product_types_path, class: 'btn btn-default' %>
-<%= link_to 'Добавить цвета материалов', admin_metal_colors_path, class: 'btn btn-default' %>
-<%= link_to 'Добавить варианты скидок', admin_sale_sizes_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить виды ', admin_product_types_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить цвета ', admin_metal_colors_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить скидки', admin_sale_sizes_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить вставки', admin_incrustations_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить типы металла', admin_metal_types_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить размеры', admin_sizes_path, class: 'btn btn-default' %>
 <div class="panel panel-default" style="margin-top: 20px;">
 
   <div class="panel-heading">
@@ -25,6 +28,7 @@
           <th>Цена</th>
           <th>Цвет металла</th>
           <th>Вес</th>
+          <th>Пол</th>
           <th>Вид изделия</th>
           <th>Размер скидки</th>
           <th>Цена до скидки</th>
@@ -48,6 +52,7 @@
             <%end%>
             </td>
             <td><%= product.weight %></td>
+            <td><%= product.sex %></td>
             <td>
               <% if product.product_type != nil && product.product_type.title != '' %>
               <%= product.product_type.title %>
