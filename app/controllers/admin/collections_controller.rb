@@ -1,4 +1,4 @@
-class Admin::CollectionsController < AdminController
+class Admin::CollectionsController < Admin::AdminController
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
 
   # GET /collections

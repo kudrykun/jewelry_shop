@@ -1,4 +1,4 @@
-class Admin::SizesController < AdminController
+class Admin::SizesController < Admin::AdminController
   before_action :set_size, only: [:show, :edit, :update, :destroy]
 
   # GET /sizes

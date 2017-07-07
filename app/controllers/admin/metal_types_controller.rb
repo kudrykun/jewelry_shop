@@ -1,4 +1,4 @@
-class Admin::MetalTypesController < AdminController
+class Admin::MetalTypesController < Admin::AdminController
   before_action :set_metal_type, only: [:show, :edit, :update, :destroy]
 
   # GET /metal_types

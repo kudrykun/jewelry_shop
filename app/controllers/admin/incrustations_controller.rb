@@ -1,4 +1,4 @@
-class Admin::IncrustationsController < AdminController
+class Admin::IncrustationsController < Admin::AdminController
   before_action :set_incrustation, only: [:show, :edit, :update, :destroy]
 
   # GET /incrustations

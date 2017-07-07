@@ -1,4 +1,4 @@
-class Admin::SaleSizesController < AdminController
+class Admin::SaleSizesController < Admin::AdminController
   before_action :set_sale_size, only: [:show, :edit, :update, :destroy]
 
   # GET /sale_sizes
