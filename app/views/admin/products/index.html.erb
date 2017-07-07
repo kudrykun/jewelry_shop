@@ -1,47 +1,73 @@
+<!-- Page Content -->
+<div class="row">
 <p id="notice"><%= notice %></p>
+  <h1 class="page-header">Продукты</h1>
+</div>
+<%= link_to 'Добавить товар', new_admin_product_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить виды товаров', admin_product_types_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить цвета материалов', admin_metal_colors_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить варианты скидок', admin_sale_sizes_path, class: 'btn btn-default' %>
+<div class="panel panel-default">
 
-<h1>Продукты</h1>
+  <div class="panel-heading">
+    Таблица товаров
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
 
-<table>
-  <thead>
-    <tr>
-      <th>Название</th>
-      <th>Артикул</th>
-      <th>Цена</th>
-      <th>Цвет металла</th>
-      <th>Вес</th>
-      <th>Вид изделия</th>
-      <th>Размер скидки</th>
-      <th>Цена до скидки</th>
-      <th>На главную</th>
-      <th>Производитель</th>
-      <th>Приоритет</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td><%= product.artikul %></td>
-        <td><%= product.price %></td>
-        <td><%= product.metal_color.title %></td>
-        <td><%= product.weight %></td>
-        <td><%= product.product_type.title %></td>
-        <td><%= product.sale_size.sale_percent %> %</td>
-        <td><%= product.old_price %></td>
-        <td><%= product.to_main_page %></td>
-        <td><%= product.manufacturer %></td>
-        <td><%= product.priority %></td>
-        <td><%= link_to 'Показать', admin_product_path(product) %></td>
-        <td><%= link_to 'Изменить', edit_admin_product_path(product) %></td>
-        <td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
+    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Артикул</th>
+          <th>Цена</th>
+          <th>Цвет металла</th>
+          <th>Вес</th>
+          <th>Вид изделия</th>
+          <th>Размер скидки</th>
+          <th>Цена до скидки</th>
+          <th>На главную</th>
+          <th>Производитель</th>
+          <th>Приоритет</th>
+          <th>Показать</th>
+          <th>Изменить</th>
+          <th>Удалить</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.title %></td>
+            <td><%= product.artikul %></td>
+            <td><%= product.price %></td>
+            <td><%= product.metal_color.title %></td>
+            <td><%= product.weight %></td>
+            <td><%= product.product_type.title %></td>
+            <td><%= product.sale_size.sale_percent %> %</td>
+            <td><%= product.old_price %></td>
+            <td><%= product.to_main_page %></td>
+            <td><%= product.manufacturer %></td>
+            <td><%= product.priority %></td>
+            <td><%= link_to 'Показать', admin_product_path(product) %></td>
+            <td><%= link_to 'Изменить', edit_admin_product_path(product) %></td>
+            <td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <br>
 
-<%= link_to 'Добавить товар', new_admin_product_path %>
+
+<script>
+//    document.addEventListener("turbolinks:load", function() {
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>
