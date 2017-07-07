@@ -28,7 +28,7 @@ class Admin::ProductTypesController < Admin::AdminController
 
     respond_to do |format|
       if @product_type.save
-        format.html { redirect_to @product_type, notice: 'Product type was successfully created.' }
+        format.html { redirect_to admin_product_type_path(@product_type), notice: 'Вид был успешной создан.' }
         format.json { render :show, status: :created, location: @product_type }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::ProductTypesController < Admin::AdminController
   def update
     respond_to do |format|
       if @product_type.update(product_type_params)
-        format.html { redirect_to @product_type, notice: 'Product type was successfully updated.' }
+        format.html { redirect_to admin_product_type_path(@product_type), notice: 'Вид был успешно обновлен.' }
         format.json { render :show, status: :ok, location: @product_type }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::ProductTypesController < Admin::AdminController
   def destroy
     @product_type.destroy
     respond_to do |format|
-      format.html { redirect_to product_types_url, notice: 'Product type was successfully destroyed.' }
+      format.html { redirect_to admin_product_types_url, notice: 'Product type was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
