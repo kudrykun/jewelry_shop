@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Kits</h1>
+<h1>Наборы</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Название</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
     <% @kits.each do |kit| %>
       <tr>
         <td><%= kit.title %></td>
-        <td><%= link_to 'Show', kit %></td>
-        <td><%= link_to 'Edit', edit_kit_path(kit) %></td>
-        <td><%= link_to 'Destroy', kit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', admin_kit_path(kit) %></td>
+        <td><%= link_to 'Изменить', edit_admin_kit_path(kit) %></td>
+        <td><%= link_to 'Удалить', admin_kit_path(kit), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Kit', new_kit_path %>
+<%= link_to 'Добавить набор', new_admin_kit_path %>

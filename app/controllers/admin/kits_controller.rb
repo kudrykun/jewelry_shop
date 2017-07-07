@@ -1,4 +1,4 @@
-class KitsController < ApplicationController
+class Admin::KitsController < Admin::AdminController
   before_action :set_kit, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -18,27 +18,24 @@ class KitsController < ApplicationController
   def create
     @kit = Kit.new(kit_params)
     if @kit.save
-      redirect_to @kit, notice: 'Kit was successfully created.'
+      redirect_to admin_kit_path(@kit), notice: 'Набор был добавлен.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /kits/1
-  # PATCH/PUT /kits/1.json
+
   def update
     if @kit.update(kit_params)
-      redirect_to @kit, notice: 'Kit was successfully updated.'
+      redirect_to admin_kit_path(@kit), notice: 'Набор был обновлен.'
     else
       render :edit
     end
   end
 
-  # DELETE /kits/1
-  # DELETE /kits/1.json
   def destroy
     @kit.destroy
-    redirect_to kits_url, notice: 'Kit was successfully destroyed.'
+    redirect_to admin_kits_url, notice: 'Набор был удален.'
   end
 
   private

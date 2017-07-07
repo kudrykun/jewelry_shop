@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :kits
-  root "admin/products#index"
+  root 'admin/dashboard#index'
+
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
     resources :categories
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :incrustations
     resources :metal_colors
     resources :metal_types
+    resources :kits
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
