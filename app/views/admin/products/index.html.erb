@@ -34,9 +34,9 @@
         <td><%= product.to_main_page %></td>
         <td><%= product.manufacturer %></td>
         <td><%= product.priority %></td>
-        <td><%= link_to 'Show', admin_product_path(product) %></td>
-        <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
-        <td><%= link_to 'Destroy', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', admin_product_path(product) %></td>
+        <td><%= link_to 'Изменить', edit_admin_product_path(product) %></td>
+        <td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -44,4 +44,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_admin_product_path %>
+<%= link_to 'Добавить товар', new_admin_product_path %>
