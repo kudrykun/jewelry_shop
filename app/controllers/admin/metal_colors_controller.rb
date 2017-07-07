@@ -28,7 +28,7 @@ class Admin::MetalColorsController < Admin::AdminController
 
     respond_to do |format|
       if @metal_color.save
-        format.html { redirect_to @metal_color, notice: 'Metal color was successfully created.' }
+        format.html { redirect_to admin_metal_color_path(@metal_color), notice: 'Цвет металла был успешно добавлен.' }
         format.json { render :show, status: :created, location: @metal_color }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::MetalColorsController < Admin::AdminController
   def update
     respond_to do |format|
       if @metal_color.update(metal_color_params)
-        format.html { redirect_to @metal_color, notice: 'Metal color was successfully updated.' }
+        format.html { redirect_to admin_metal_color_path(@metal_color), notice: 'Цвет металла был успешно обновлен.' }
         format.json { render :show, status: :ok, location: @metal_color }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::MetalColorsController < Admin::AdminController
   def destroy
     @metal_color.destroy
     respond_to do |format|
-      format.html { redirect_to metal_colors_url, notice: 'Metal color was successfully destroyed.' }
+      format.html { redirect_to admin_metal_colors_url, notice: 'Цвет металла был успешно удален.' }
       format.json { head :no_content }
     end
   end

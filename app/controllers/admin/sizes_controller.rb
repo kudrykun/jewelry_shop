@@ -28,7 +28,7 @@ class Admin::SizesController < Admin::AdminController
 
     respond_to do |format|
       if @size.save
-        format.html { redirect_to @size, notice: 'Size was successfully created.' }
+        format.html { redirect_to admin_size_path(@size), notice: 'Размер был добавлен.' }
         format.json { render :show, status: :created, location: @size }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::SizesController < Admin::AdminController
   def update
     respond_to do |format|
       if @size.update(size_params)
-        format.html { redirect_to @size, notice: 'Size was successfully updated.' }
+        format.html { redirect_to admin_size_path(@size), notice: 'Размер был обновлен.' }
         format.json { render :show, status: :ok, location: @size }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::SizesController < Admin::AdminController
   def destroy
     @size.destroy
     respond_to do |format|
-      format.html { redirect_to sizes_url, notice: 'Size was successfully destroyed.' }
+      format.html { redirect_to admin_sizes_url, notice: 'Размер был удален.' }
       format.json { head :no_content }
     end
   end

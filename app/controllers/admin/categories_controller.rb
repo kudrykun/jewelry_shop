@@ -19,7 +19,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      redirect_to admin_category_path(@category), notice: 'Категория была успешно создана.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::CategoriesController < Admin::AdminController
   # PATCH/PUT /categories/1.json
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to admin_category_path(@category), notice: 'Категория была успешно обновлена.'
       render :show, status: :ok, location: @category
     else
       render :edit
@@ -41,7 +41,7 @@ class Admin::CategoriesController < Admin::AdminController
   # DELETE /categories/1.json
   def destroy
     @category.destroy
-    redirect_to categories_url, notice: 'Category was successfully destroyed.'
+    redirect_to admin_categories_url, notice: 'Категория была успешно удалена.'
   end
 
   private
