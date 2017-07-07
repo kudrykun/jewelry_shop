@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "admin/products#index"
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
+    resources :categories
     resources :collections
     resources :products
     resources :sale_sizes
