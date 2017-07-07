@@ -13,6 +13,8 @@
  *= require_tree .
  *= require bootstrap.min
  *= require bootstrap-theme.min
- *= require metisMenu.min
+ *= require metisMenu
+ *= require dataTables.bootstrap
+ *= require dataTables.responsive
  *= require_self
  */
