@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <%= f.label :metal_color_id, 'Цвет металла' %>
-    <%= f.collection_select(:metal_color_id, @metal_colors, :id, :title, {:prompt => 'Пусто'}, {class: 'form-control'}) %>
+    <%= f.collection_select :metal_color_id, @metal_colors, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -38,7 +38,7 @@
 
   <div class="form-group">
     <%= f.label :product_type_id, 'Вид изделия' %>
-    <%= f.collection_select :product_type_id, @product_types, :id, :title, {:prompt => 'Пусто'}, {class: 'form-control'} %>
+    <%= f.collection_select :product_type_id, @product_types, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -49,8 +49,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :old_price, 'Цена до скидки' %>
-    <%= f.text_field :old_price,{class: 'form-control'} %>
+    <%= f.label :new_price, 'Цена после скидки' %>
+    <%= f.text_field :new_price,{class: 'form-control'} %>
   </div>
 
   <div class="form-group">
