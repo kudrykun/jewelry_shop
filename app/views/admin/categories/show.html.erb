@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Название:</strong>
   <%= @category.title %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Редактирование', edit_admin_category_path(@category) %> |
+<%= link_to 'Назад', admin_categories_path %>
