@@ -11,10 +11,12 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+
  *= require bootstrap.min
  *= require bootstrap-theme.min
  *= require metisMenu
  *= require dataTables.bootstrap
  *= require dataTables.responsive
+ *= require admin/admin
  *= require_self
  */
