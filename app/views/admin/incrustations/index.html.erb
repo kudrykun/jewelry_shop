@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Incrustations</h1>
+<h1>Вставка</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Название</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
     <% @incrustations.each do |incrustation| %>
       <tr>
         <td><%= incrustation.title %></td>
-        <td><%= link_to 'Show', incrustation %></td>
-        <td><%= link_to 'Edit', edit_incrustation_path(incrustation) %></td>
-        <td><%= link_to 'Destroy', incrustation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', admin_incrustation_path(incrustation) %></td>
+        <td><%= link_to 'Изменить', edit_admin_incrustation_path(incrustation) %></td>
+        <td><%= link_to 'Удалить', admin_incrustation_path(incrustation), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Incrustation', new_incrustation_path %>
+<%= link_to 'Добавить вставку', new_admin_incrustation_path %>

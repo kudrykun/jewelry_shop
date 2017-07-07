@@ -16,7 +16,7 @@
         <td><%= metal_type.title %></td>
         <td><%= link_to 'Показать', admin_metal_type_path(metal_type) %></td>
         <td><%= link_to 'Изменить', edit_admin_metal_type_path(metal_type) %></td>
-        <td><%= link_to 'Удалить', admin_metal_type_path(metal_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Удалить', admin_metal_type_path(metal_type), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'Добавить новый материал', new_admin_metal_type_path %>
+<%= link_to 'Добавить материал', new_admin_metal_type_path %>
