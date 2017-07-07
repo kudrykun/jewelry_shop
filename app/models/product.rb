@@ -12,4 +12,6 @@ class Product < ApplicationRecord
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.
   #TODO Удаляются именно объекты класса Picture. Необходимо явно удалять сами файлы изображений
   has_many :pictures, as: :imageable, dependent: :destroy
+
+  enum sex: {female: 0, male: 1, unisex: 2, genderless: 3}
 end
