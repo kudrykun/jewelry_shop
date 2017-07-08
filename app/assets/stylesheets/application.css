@@ -18,5 +18,6 @@
  *= require dataTables.bootstrap
  *= require dataTables.responsive
  *= require admin/admin
+ *= require font-awesome
  *= require_self
  */

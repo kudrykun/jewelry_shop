@@ -38,7 +38,7 @@ gem 'rails_12factor', group: :production
 
 gem "paperclip", "~> 5.0.0"
 
-# gem 'jquery-turbolinks' #попытка починить турболинки
+gem "font-awesome-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
