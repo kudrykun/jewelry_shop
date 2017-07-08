@@ -70,7 +70,9 @@
 
 <p>
   <strong>Категория:</strong>
-  <%= @product.category.title %>
+  <% if @product.category != nil && @product.category.title != '' %>
+    <%= @product.category.title %>
+  <%end%>
 </p>
 <p>
   <strong>Коллекция:</strong>
