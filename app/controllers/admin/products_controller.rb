@@ -70,8 +70,8 @@ class Admin::ProductsController < Admin::AdminController
     end
 
     def set_selecting_collections
-      @categories = Category.all.order(:update).order(:priority)
-      @collections = Collection.all.order(:update).order(:priority)
+      @categories = Category.all.order(:updated_at).order(:priority)
+      @collections = Collection.all.order(:updated_at).order(:priority)
       @kits = Kit.all
       @incrustations = Incrustation.all
       @metal_types = MetalType.all
@@ -83,6 +83,23 @@ class Admin::ProductsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :artikul, :price, :metal_color_id, :weight, :sex,:product_type_id, :sale_size_id, :new_price, :to_main_page, :manufacturer, :priority)
+      params.require(:product).permit(:title,
+                                      :artikul,
+                                      :price,
+                                      :weight,
+                                      :sex,
+                                      :metal_color_id,
+                                      :product_type_id,
+                                      :sale_size_id,
+                                      :collection_id,
+                                      :category_id,
+                                      :kit_id,
+                                      :new_price,
+                                      :to_main_page,
+                                      :manufacturer,
+                                      :priority,
+                                      :incrustation_ids => [],
+                                      :metal_type_ids => [],
+                                      :size_ids => [])
     end
 end
