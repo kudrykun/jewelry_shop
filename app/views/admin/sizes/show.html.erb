@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Размер:</strong>
+  <%= @size.size %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_size_path(@size) %> |
+<%= link_to 'Назад', admin_sizes_path %>

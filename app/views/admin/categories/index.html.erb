@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Категории</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= link_to 'Показать', admin_category_path(category) %></td>
+        <td><%= link_to 'Изменить', edit_admin_category_path(category) %></td>
+        <td><%= link_to 'Удалить', admin_category_path(category), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить категорию', new_admin_category_path %>

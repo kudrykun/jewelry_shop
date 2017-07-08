@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @product_type.title %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_product_type_path(@product_type) %> |
+<%= link_to 'Назад', admin_product_types_path %>

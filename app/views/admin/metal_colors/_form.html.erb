@@ -1,0 +1,22 @@
+<%= form_for([:admin, metal_color]) do |f| %>
+  <% if metal_color.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(metal_color.errors.count, "error") %> prohibited this metal_color from being saved:</h2>
+
+      <ul>
+      <% metal_color.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, 'Название' %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

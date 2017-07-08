@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Скидка:</strong>
+  <%= @sale_size.sale_percent %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_sale_size_path(@sale_size) %> |
+<%= link_to 'Назад', admin_sale_sizes_path %>

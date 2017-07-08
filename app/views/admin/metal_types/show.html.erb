@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @metal_type.title %>
+</p>
+
+<%= link_to 'Редактировать', edit_admin_metal_type_path(@metal_type) %> |
+<%= link_to 'Назад', admin_metal_types_path %>

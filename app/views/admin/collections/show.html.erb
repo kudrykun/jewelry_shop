@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название:</strong>
+  <%= @collection.title %>
+</p>
+
+<p>
+  <strong>Описание:</strong>
+  <%= @collection.description %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_collection_path(@collection) %> |
+<%= link_to 'Назад', admin_collections_path %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Цвета материалов</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @metal_colors.each do |metal_color| %>
+      <tr>
+        <td><%= metal_color.title %></td>
+        <td><%= link_to 'Показать', admin_metal_color_path(metal_color) %></td>
+        <td><%= link_to 'Изменить', edit_admin_metal_color_path(metal_color) %></td>
+        <td><%= link_to 'Удалить', admin_metal_color_path(metal_color), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить новый цвет', new_admin_metal_color_path %>

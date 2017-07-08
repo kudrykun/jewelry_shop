@@ -1,0 +1,6 @@
+<h1>Изменение вида металла</h1>
+
+<%= render 'form', metal_type: @metal_type %>
+
+<%= link_to 'Показать', admin_metal_type_path(@metal_type) %> |
+<%= link_to 'Назад', admin_metal_types_path %>
