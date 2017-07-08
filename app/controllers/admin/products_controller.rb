@@ -70,6 +70,12 @@ class Admin::ProductsController < Admin::AdminController
     end
 
     def set_selecting_collections
+      @categories = Category.all.order(:update).order(:priority)
+      @collections = Collection.all.order(:update).order(:priority)
+      @kits = Kit.all
+      @incrustations = Incrustation.all
+      @metal_types = MetalType.all
+      @sizes = Size.all
       @metal_colors = MetalColor.all
       @product_types = ProductType.all
       @sale_sizes = SaleSize.all
