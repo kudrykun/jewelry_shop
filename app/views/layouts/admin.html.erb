@@ -9,8 +9,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <script src="https://use.fontawesome.com/2e422c17a1.js"></script>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
 </head>
 
 <body>
@@ -76,7 +76,7 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
           </li>
           <li>
-            <a href=""><i class="fa fa-table fa-fw"></i>Таблицы<span class="fa arrow"></span></a>
+            <a href="#"><i class="fa fa-table fa-fw"></i>Таблицы<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
               <li>
                 <%= link_to 'Все товары', admin_products_path %>
@@ -120,17 +120,7 @@
   </nav>
     <div id="page-wrapper">
 <%= yield %>
-<!-- jQuery -->
-<!--<script src="../vendor/jquery/jquery.min.js"></script>-->
 
-<!--&lt;!&ndash; Bootstrap Core JavaScript &ndash;&gt;-->
-<!--<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>-->
-
-<!--&lt;!&ndash; Metis Menu Plugin JavaScript &ndash;&gt;-->
-<!--<script src="../vendor/metisMenu/metisMenu.min.js"></script>-->
-
-<!--&lt;!&ndash; Custom Theme JavaScript &ndash;&gt;-->
-<!--<script src="../dist/js/sb-admin-2.js"></script>-->
     </div>
   </div>
 

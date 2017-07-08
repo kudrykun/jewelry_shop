@@ -11,8 +11,9 @@
 // about supported directives.
 //
 // require jquery
+
 //= require jquery.min
-//= require jquery.turbolinks
+
 //= require jquery_ujs
 //= require bootstrap.min
 //= require metisMenu
@@ -20,5 +21,5 @@
 //= require dataTables.bootstrap
 //= require dataTables.responsive
 //= require sb-admin-2
-//= require turbolinks
+
 //= require_tree .
