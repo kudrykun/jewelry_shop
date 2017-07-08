@@ -1,2 +1,3 @@
-class StoreController < ApplicationController
+class Store::StoreController < ApplicationController
+  layout 'store'
 end
