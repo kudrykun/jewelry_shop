@@ -68,5 +68,52 @@
   <%= @product.priority %>
 </p>
 
+<p>
+  <strong>Категория:</strong>
+  <%= @product.category.title %>
+</p>
+<p>
+  <strong>Коллекция:</strong>
+  <% if @product.collection != nil && @product.collection.title != '' %>
+      <%= @product.collection.title %>
+  <%end%>
+</p>
+<p>
+  <strong>Наборы:</strong>
+  <% if @product.kit != nil && @product.kit.title != '' %>
+      <%= @product.kit.title %>
+  <%end%>
+</p>
+<p>
+  <strong>Вставки:</strong>
+  <% if @product.incrustations.size%>
+    <ul>
+      <% @product.incrustations.each do |incrustation|%>
+          <li><%=incrustation.title%></li>
+      <%end%>
+    </ul>
+  <%end%>
+</p>
+<p>
+  <strong>Типы металла:</strong>
+  <% if @product.metal_types.size%>
+    <ul>
+      <% @product.metal_types.each do |metal_type|%>
+          <li><%=metal_type.title%></li>
+      <%end%>
+    </ul>
+  <%end%>
+</p>
+<p>
+  <strong>Размеры:</strong>
+  <% if @product.sizes.size%>
+    <ul>
+      <% @product.sizes.each do |size|%>
+          <li><%=size.size%></li>
+      <%end%>
+    </ul>
+  <%end%>
+</p>
+
 <%= link_to 'Редактировать', edit_admin_product_path(@product) %> |
 <%= link_to 'Назад', admin_products_path %>

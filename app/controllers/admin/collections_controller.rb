@@ -69,6 +69,6 @@ class Admin::CollectionsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params.require(:collection).permit(:title, :description)
+      params.require(:collection).permit(:title, :description, :priority)
     end
 end

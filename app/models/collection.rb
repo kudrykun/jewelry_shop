@@ -7,4 +7,5 @@ class Collection < ApplicationRecord
   validates :title, presence: true
   validates :title, length: {in: 1..50}
   validates :description, length: {maximum: 500}
+  validates :priority,numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 end

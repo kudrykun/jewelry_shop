@@ -35,6 +35,12 @@
           <th>На главную</th>
           <th>Производитель</th>
           <th>Приоритет</th>
+          <th>Категория</th>
+          <th>Коллекция</th>
+          <th>Набор</th>
+          <th>Вставка</th>
+          <th>Тип металла</th>
+          <th>Размер</th>
           <th>Показать</th>
           <th>Изменить</th>
           <th>Удалить</th>
@@ -67,6 +73,44 @@
             <td><%= product.to_main_page %></td>
             <td><%= product.manufacturer %></td>
             <td><%= product.priority %></td>
+            <td><%= product.category.title %></td>
+            <td>
+              <% if product.collection != nil && product.collection.title != '' %>
+                  <%= product.collection.title %>
+              <%end%>
+            </td>
+            <td>
+              <% if product.kit != nil && product.kit.title != '' %>
+                  <%= product.kit.title %>
+              <%end%>
+            </td>
+            <td>
+              <% if product.incrustations.size%>
+                  <ul>
+                    <% product.incrustations.each do |incrustation|%>
+                        <li><%=incrustation.title%></li>
+                    <%end%>
+                  </ul>
+              <%end%>
+            </td>
+            <td>
+              <% if product.metal_types.size%>
+                  <ul>
+                    <% product.metal_types.each do |metal_type|%>
+                        <li><%=metal_type.title%></li>
+                    <%end%>
+                  </ul>
+              <%end%>
+            </td>
+            <td>
+              <% if product.sizes.size%>
+                  <ul>
+                    <% product.sizes.each do |size|%>
+                        <li><%=size.size%></li>
+                    <%end%>
+                  </ul>
+              <%end%>
+            </td>
             <td><%= link_to 'Показать', admin_product_path(product) %></td>
             <td><%= link_to 'Изменить', edit_admin_product_path(product) %></td>
             <td><%= link_to 'Удалить', admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
