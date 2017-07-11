@@ -3,10 +3,11 @@ class Admin::CategoriesController < Admin::AdminController
 
   def index
     @categories = Category.all
+    @products = Product.all
   end
 
   def show
-    @product = Product.where(category: @category) #возможно что то не так
+    @products = Product.where(category: @category)
   end
 
   def new

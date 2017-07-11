@@ -5,11 +5,13 @@ class Admin::CollectionsController < Admin::AdminController
   # GET /collections.json
   def index
     @collections = Collection.all
+    @products = Product.all
   end
 
   # GET /collections/1
   # GET /collections/1.json
   def show
+    @products = Product.where(collection: @collection)
   end
 
   # GET /collections/new

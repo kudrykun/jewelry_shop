@@ -1,21 +1,27 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Коллекции</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Название</th>
-      <th>Описание</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <h1 class="panel-heading">Коллекции</h1>
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="panel panel-default">
+  <table  width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Приоритет</th>
+        <th>Товаров</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
   <tbody>
     <% @collections.each do |collection| %>
       <tr>
         <td><%= collection.title %></td>
-        <td><%= collection.description %></td>
+        <td><%= truncate(collection.description, length: 30)  %></td>
+        <td><%= collection.priority %></td>
+        <td><%= @products.where(collection: collection).size %></td>
         <td><%= link_to 'Показать', admin_collection_path(collection) %></td>
         <td><%= link_to 'Изменить', edit_admin_collection_path(collection) %></td>
         <td><%= link_to 'Удалить', admin_collection_path(collection), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
@@ -23,7 +29,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 <%= link_to 'Добавить коллецию', new_admin_collection_path %>
