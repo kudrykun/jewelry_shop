@@ -6,6 +6,7 @@ class Admin::CategoriesController < Admin::AdminController
   end
 
   def show
+    @product = Product.where(category: @category) #возможно что то не так
   end
 
   def new
