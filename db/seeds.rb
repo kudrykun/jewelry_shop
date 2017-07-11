@@ -25,6 +25,7 @@ Size.delete_all
 Incrustation.delete_all
 MetalColor.delete_all
 MetalType.delete_all
+Manufacturer.delete_all
 
 
 category_titles = ["Кольца","Подвески","Цепочки","Браслеты","Колье","Ожерелья","Бусы","Кулоны","Пирсы","Запонки","Иконы","Часы","Столовые приборы","Сувениры"]
@@ -106,7 +107,7 @@ products = []
 products_size.times do |i|
   products << Product.create(title: "Товар #{i}",
                              price: Faker::Number.between(5000,50000),
-                             metal_color: metal_colors.sample,
+                             metal_color: metalColors.sample,
                               artikul: Faker::Code.asin,
                               weight: Faker::Number.between(5,30),
                               product_type: product_types.sample,
