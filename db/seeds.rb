@@ -47,17 +47,12 @@ saleSizes_size = sale_Size_percent.size
 sizes_size = size_titles.size
 metalColors_size = metal_color_titles.size
 metalTypes_size = metal_type_titles.size
+manufacturers_size = 5;
 
-
-metal_colors = MetalColor.create([{title: 'Жёлтый'},
-                                     {title: 'Белый'},
-                                     {title: 'Красный'}])
-
-metal_types = MetalType.create([{title: 'Золото (585)'},
-                                    {title: 'Серебро (925)'}])
-
-product_types = ProductType.create([{title: 'С драгоценностями'},
-                                   {title: 'Полудраг'}])
+manufacturers = []
+manufacturers_size.times do
+  manufacturers << Manufacturer.create(title: Faker::Company.name);
+end
 
 categories = []
 categories_size.times do
@@ -118,7 +113,7 @@ products_size.times do |i|
                               sale_size: Faker::Boolean.boolean(0.2) ? saleSizes.sample : nil,
                               new_price: Faker::Number.between(5000,50000),
                               to_main_page: Faker::Boolean.boolean(0.1),
-                              manufacturer: Faker::Company.name,
+                              manufacturer: manufacturers.sample,
                               priority: Faker::Number.between(1,products_size),
                               sex: Faker::Number.between(0,3),
                               category: categories.sample,

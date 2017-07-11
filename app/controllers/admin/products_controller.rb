@@ -79,6 +79,7 @@ class Admin::ProductsController < Admin::AdminController
       @metal_colors = MetalColor.all
       @product_types = ProductType.all
       @sale_sizes = SaleSize.all
+      @manufacturers = Manufacturer.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -96,7 +97,7 @@ class Admin::ProductsController < Admin::AdminController
                                       :kit_id,
                                       :new_price,
                                       :to_main_page,
-                                      :manufacturer,
+                                      :manufacturer_id,
                                       :priority,
                                       :incrustation_ids => [],
                                       :metal_type_ids => [],

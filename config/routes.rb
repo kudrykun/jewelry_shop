@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :metal_colors
     resources :metal_types
     resources :kits
+    resources :manufacturers
   end
 
 end
