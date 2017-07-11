@@ -1,8 +1,10 @@
-.radio-label{
-    margin-left: 3px;
-    padding-bottom: 5px;
-    font-weight: 400;
-}
-.radio-input{
-    margin-left: 10px;
-}
+/*
+ *= require bootstrap.min
+ *= require bootstrap-theme.min
+ *= require metisMenu
+ *= require dataTables.bootstrap
+ *= require dataTables.responsive
+ *= require font-awesome
+ *= require_self
+ *= require_tree .
+*/

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708003511) do
+ActiveRecord::Schema.define(version: 20170711215543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,12 @@ ActiveRecord::Schema.define(version: 20170708003511) do
   end
 
   create_table "kits", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "manufacturers", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -102,7 +108,6 @@ ActiveRecord::Schema.define(version: 20170708003511) do
     t.integer  "product_type_id"
     t.integer  "sale_size_id"
     t.boolean  "to_main_page"
-    t.string   "manufacturer"
     t.integer  "priority"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
@@ -111,9 +116,11 @@ ActiveRecord::Schema.define(version: 20170708003511) do
     t.integer  "kit_id"
     t.integer  "sex",             default: 3
     t.integer  "category_id"
+    t.integer  "manufacturer_id"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["collection_id"], name: "index_products_on_collection_id", using: :btree
     t.index ["kit_id"], name: "index_products_on_kit_id", using: :btree
+    t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
     t.index ["metal_color_id"], name: "index_products_on_metal_color_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
     t.index ["sale_size_id"], name: "index_products_on_sale_size_id", using: :btree
@@ -147,6 +154,7 @@ ActiveRecord::Schema.define(version: 20170708003511) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "collections"
   add_foreign_key "products", "kits"
+  add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "metal_colors"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "sale_sizes"

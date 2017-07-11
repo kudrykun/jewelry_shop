@@ -1,5 +1,5 @@
-<h1>Новая коллеция</h1>
-
+<div class="row">
+  <h1 class="panel-heading">Новая коллеция</h1>
+</div>
 <%= render 'form', collection: @collection %>
-
-<%= link_to 'Назад', admin_collections_path %>
+<%= link_to 'Назад', admin_collections_path, class: 'btn btn-default' %>
