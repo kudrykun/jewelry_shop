@@ -21,7 +21,7 @@ class Admin::ManufacturersController < Admin::AdminController
     @manufacturer = Manufacturer.new(manufacturer_params)
 
     if @manufacturer.save
-      redirect_to @manufacturer, notice: 'Manufacturer was successfully created.'
+      redirect_to admin_manufacturer_path(@manufacturer), notice: 'Производитель был успешно добавлен.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::ManufacturersController < Admin::AdminController
 
   def update
     if @manufacturer.update(manufacturer_params)
-      redirect_to @manufacturer, notice: 'Manufacturer was successfully updated.'
+      redirect_to admin_manufacturer_path(@manufacturer), notice: 'Производитель был успешно обновлен.'
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class Admin::ManufacturersController < Admin::AdminController
 
   def destroy
     @manufacturer.destroy
-    redirect_to manufacturers_url, notice: 'Manufacturer was successfully destroyed.'
+    redirect_to admin_manufacturers_url, notice: 'Производитель был успешно удален.'
   end
 
   private
