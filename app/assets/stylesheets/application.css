@@ -12,12 +12,5 @@
  *
  *= require_tree .
 
- *= require bootstrap.min
- *= require bootstrap-theme.min
- *= require metisMenu
- *= require dataTables.bootstrap
- *= require dataTables.responsive
- *= require admin/admin
- *= require font-awesome
  *= require_self
  */
