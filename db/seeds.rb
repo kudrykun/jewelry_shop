@@ -88,9 +88,9 @@ metalColors_size.times do
   metalColors << MetalColor.create(title: metal_color_titles.delete(metal_color_titles.sample))
 end
 
-metalType = []
+metalTypes = []
 metalTypes_size.times do
-  metalType << MetalType.create(title: metal_type_titles.delete(metal_type_titles.sample))
+  metalTypes << MetalType.create(title: metal_type_titles.delete(metal_type_titles.sample))
 end
 
 kits = []
@@ -121,7 +121,7 @@ products_size.times do |i|
                               collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil,
                               kit: Faker::Boolean.boolean(0.2) ? kits.sample : nil)
   products.last.incrustations << incrustations.sample(Faker::Number.between(0,3))
-  products.last.metal_types << metal_types.sample(Faker::Number.between(0,2))
+  products.last.metal_types << metalTypes.sample(Faker::Number.between(0,2))
   products.last.sizes << sizes.sample(Faker::Number.between(1,5))
 
 end
