@@ -26,7 +26,7 @@
           <th>Производитель</th>
           <th >Артикул</th>
           <th>Вес</th>
-          <!--<th>Цена грамм</th>-->
+          <th>Цена за грамм</th>
           <th>Цена</th>
           <th>%</th>
           <th>Цена по скидке</th>
@@ -58,6 +58,7 @@
             </td>
             <td><%= product.artikul %></td>
             <td><%= product.weight %></td>
+            <td><%= product.price_per_gramm %></td>
             <td><%= product.price %></td>
             <td>
               <% if product.sale_size != nil && product.sale_size.sale_percent != '' %>

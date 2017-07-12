@@ -38,7 +38,7 @@ metal_color_titles = ["Белый","Желтый","Красный","Розовы
 metal_type_titles = ["Золото(585)","Серебро(825)","Красное золото","Белое золото"]
 product_type_titles = ["Полудраг","С драгоценностями"]
 
-products_size = 1000
+products_size = 200
 categories_size = category_titles.size
 collections_size = collection_titles.size
 incrustations_size = incrustation_titles.size
@@ -107,6 +107,7 @@ products = []
 products_size.times do |i|
   products << Product.create(title: "Товар #{i}",
                              price: Faker::Number.between(5000,50000),
+                             price_per_gramm: Faker::Number.between(5000,50000),
                              metal_color: metalColors.sample,
                               artikul: Faker::Code.asin,
                               weight: Faker::Number.between(5,30),
