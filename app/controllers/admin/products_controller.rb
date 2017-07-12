@@ -99,6 +99,7 @@ class Admin::ProductsController < Admin::AdminController
                                       :to_main_page,
                                       :manufacturer_id,
                                       :priority,
+                                      :price_per_gramm,
                                       :incrustation_ids => [],
                                       :metal_type_ids => [],
                                       :size_ids => [])
