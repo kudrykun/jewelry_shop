@@ -3,13 +3,13 @@
 <p id="notice"><%= notice %></p>
   <h1 class="page-header">Товары</h1>
 </div>
-<%= link_to 'Добавить товар', new_admin_product_path, class: 'btn btn-default' %>
-<%= link_to 'Виды изделий', admin_product_types_path, class: 'btn btn-default' %>
-<%= link_to 'Цвета', admin_metal_colors_path, class: 'btn btn-default' %>
-<%= link_to 'Скидки', admin_sale_sizes_path, class: 'btn btn-default' %>
-<%= link_to 'Вставки', admin_incrustations_path, class: 'btn btn-default' %>
-<%= link_to 'Металлы', admin_metal_types_path, class: 'btn btn-default' %>
-<%= link_to 'Размеры', admin_sizes_path, class: 'btn btn-default' %>
+<%= link_to 'Добавить товар', new_admin_product_path, class: 'btn btn-default mr10 mb10' %>
+<%= link_to 'Виды изделий', admin_product_types_path, class: 'btn btn-default mr10 mb10' %>
+<%= link_to 'Цвета', admin_metal_colors_path, class: 'btn btn-default mr10 mb10' %>
+<%= link_to 'Скидки', admin_sale_sizes_path, class: 'btn btn-default mr10 mb10' %>
+<%= link_to 'Вставки', admin_incrustations_path, class: 'btn btn-default mr10 mb10' %>
+<%= link_to 'Металлы', admin_metal_types_path, class: 'btn btn-default mr10 mb10' %>
+<%= link_to 'Размеры', admin_sizes_path, class: 'btn btn-default mb10' %>
 
 <div class="panel panel-default" style="margin-top: 20px;">
 
@@ -24,11 +24,11 @@
         <tr>
           <th style="min-width: 100px;">Название</th>
           <th>Производитель</th>
-          <th style="min-width: 100px;">Артикул</th>
+          <th >Артикул</th>
           <th>Вес</th>
           <!--<th>Цена грамм</th>-->
           <th>Цена</th>
-          <th>Размер скидки</th>
+          <th>%</th>
           <th>Цена по скидке</th>
           <th>Размер</th>
           <th>На главную</th>
@@ -53,7 +53,7 @@
             <td><%= product.title %></td>
             <td>
               <% if product.manufacturer != nil && product.manufacturer.title != '' %>
-                  <%= product.manufacturer.title %> %
+                  <%= product.manufacturer.title %>
               <%end%>
             </td>
             <td><%= product.artikul %></td>
@@ -133,4 +133,3 @@
     </table>
   </div>
 </div>
-<br>

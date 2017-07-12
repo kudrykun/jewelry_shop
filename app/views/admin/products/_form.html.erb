@@ -9,11 +9,18 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
+
 <div class="row">
-  <div class="actions">
-    <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg' %>
+  <div class="col-lg-12">
+    <%= f.submit 'Применить', class: 'btn btn-success mb20' %>
+    <%= link_to 'Показать', admin_product_path(@product), class: 'btn btn-default mb20' %>
+    <%= link_to 'Назад', admin_products_path, class: 'btn btn-default mb20' %>
   </div>
+</div>
+
+<div class="row">
+
   <div class="col-lg-6">
     <div class="form-group">
       <%= f.label :title, 'Название' %>

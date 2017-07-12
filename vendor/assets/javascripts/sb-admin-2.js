@@ -5,17 +5,26 @@
  */
 
 // Мои кастомные скрипты (ГОСПОДИ, КАКИЕ КАСТЫЛИ)
+// $(function() {
+// //     document.getElementById('weight-input').addEventListener('input', function(e){
+// //         document.getElementById('price-input').value = (this.value * document.getElementById('price-per-gramm-input').value).toFixed(2);
+// // });
+//     document.getElementById('price-per-gramm-input').addEventListener('input', function(e){
+//         document.getElementById('price-input').value = (this.value * document.getElementById('weight-input').value).toFixed(2);
+// });
+// });
+
 $(function() {
-    document.getElementById('weight-input').addEventListener('input', function(e){
-        document.getElementById('price-input').value = (this.value * document.getElementById('price-per-gramm-input').value).toFixed(2);
-});
-    document.getElementById('price-per-gramm-input').addEventListener('input', function(e){
-        document.getElementById('price-input').value = (this.value * document.getElementById('weight-input').value).toFixed(2);;
-});
+    $("#weight-input").on('input', function() {
+        $("#price-input").val ( ($(this).val() * $("#price-per-gramm-input").val()).toFixed(2) );
+    });
+    $("#price-per-gramm-input").on('input', function() {
+        $("#price-input").val ( ($(this).val() * $("#weight-input").val()).toFixed(2) );
+    });
 });
 
 $(function() {
-    $('input[name="product[sale_size_id]"]:radio').click(function() {
+    $('input[name="product[sale_size_id]"]:radio').click(function (){
         var percentage = $(this).parent().attr("data-value");
         var price = $('#price-input').val();
         var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
