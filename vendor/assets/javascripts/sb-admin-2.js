@@ -3,8 +3,76 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+
+// Мои кастомные скрипты (ГОСПОДИ, КАКИЕ КАСТЫЛИ)
+// $(function() {
+// //     document.getElementById('weight-input').addEventListener('input', function(e){
+// //         document.getElementById('price-input').value = (this.value * document.getElementById('price-per-gramm-input').value).toFixed(2);
+// // });
+//     document.getElementById('price-per-gramm-input').addEventListener('input', function(e){
+//         document.getElementById('price-input').value = (this.value * document.getElementById('weight-input').value).toFixed(2);
+// });
+// });
+
+$(function() {
+    $("#weight-input").on('input', function() {
+        $("#price-input").val ( ($(this).val() * $("#price-per-gramm-input").val()).toFixed(2) );
+    });
+    $("#price-per-gramm-input").on('input', function() {
+        $("#price-input").val ( ($(this).val() * $("#weight-input").val()).toFixed(2) );
+    });
+});
+
+$(function() {
+    $('input[name="product[sale_size_id]"]:radio').click(function (){
+        var percentage = $(this).parent().attr("data-value");
+        var price = $('#price-input').val();
+        var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
+        if (sale_price > 0) {
+            $("#new-price-input").val (sale_price)
+        }  else
+        {
+            $("#new-price-input").val('')
+        }
+    });
+});
+
 $(function() {
     $('#side-menu').metisMenu();
+});
+$(document).ready(function() {
+    $('#dataTables-example').DataTable({
+        responsive: true,
+        columnDefs: [
+            { responsivePriority: 1, targets: 0 },
+            { responsivePriority: 1, targets: 1 },
+            { responsivePriority: 3, targets: -3 },
+            { responsivePriority: 2, targets: -2 },
+            { responsivePriority: 1, targets: -1 }
+        ],
+        "language": {
+            "processing": "Подождите...",
+            "search": "Поиск:",
+            "lengthMenu": "Показать _MENU_ записей",
+            "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+            "infoEmpty": "Записи с 0 до 0 из 0 записей",
+            "infoFiltered": "(отфильтровано из _MAX_ записей)",
+            "infoPostFix": "",
+            "loadingRecords": "Загрузка записей...",
+            "zeroRecords": "Записи отсутствуют.",
+            "emptyTable": "В таблице отсутствуют данные",
+            "paginate": {
+                "first": "Первая",
+                "previous": "Предыдущая",
+                "next": "Следующая",
+                "last": "Последняя"
+            },
+            "aria": {
+                "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                "sortDescending": ": активировать для сортировки столбца по убыванию"
+            }
+        }
+    });
 });
 
 //Loads the correct sidebar on window load,
