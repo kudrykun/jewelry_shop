@@ -51,7 +51,11 @@
         <% @products.each do |product| %>
           <tr>
             <td><%= product.title %></td>
-            <td><%= product.manufacturer.title %></td>
+            <td>
+              <% if product.manufacturer != nil && product.manufacturer.title != '' %>
+                  <%= product.manufacturer.title %> %
+              <%end%>
+            </td>
             <td><%= product.artikul %></td>
             <td><%= product.weight %></td>
             <td><%= product.price %></td>
@@ -130,43 +134,3 @@
   </div>
 </div>
 <br>
-
-
-<script>
-//    document.addEventListener("turbolinks:load", function() {
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true,
-            columnDefs: [
-                { responsivePriority: 1, targets: 0 },
-                { responsivePriority: 1, targets: 1 },
-                { responsivePriority: 3, targets: -3 },
-                { responsivePriority: 2, targets: -2 },
-                { responsivePriority: 1, targets: -1 }
-            ],
-            "language": {
-                "processing": "Подождите...",
-                "search": "Поиск:",
-                "lengthMenu": "Показать _MENU_ записей",
-                "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-                "infoEmpty": "Записи с 0 до 0 из 0 записей",
-                "infoFiltered": "(отфильтровано из _MAX_ записей)",
-                "infoPostFix": "",
-                "loadingRecords": "Загрузка записей...",
-                "zeroRecords": "Записи отсутствуют.",
-                "emptyTable": "В таблице отсутствуют данные",
-                "paginate": {
-                    "first": "Первая",
-                    "previous": "Предыдущая",
-                    "next": "Следующая",
-                    "last": "Последняя"
-                },
-                "aria": {
-                    "sortAscending": ": активировать для сортировки столбца по возрастанию",
-                    "sortDescending": ": активировать для сортировки столбца по убыванию"
-                }
-            }
-        });
-    });
-
-</script>

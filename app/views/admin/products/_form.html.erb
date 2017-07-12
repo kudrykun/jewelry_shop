@@ -10,6 +10,10 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+  <div class="actions">
+    <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg' %>
+  </div>
   <div class="col-lg-6">
     <div class="form-group">
       <%= f.label :title, 'Название' %>
@@ -17,76 +21,15 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :manufacturer, 'Производитель' %>
+      <%= f.collection_select :manufacturer_id, @manufacturers, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :artikul, 'Артикул' %>
       <%= f.text_field :artikul,{class: 'form-control'} %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :price, 'Цена' %>
-      <%= f.text_field :price,{class: 'form-control'} %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :metal_color_id, 'Цвет металла' %>
-      <%= f.collection_select :metal_color_id, @metal_colors, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :weight, 'Вес' %>
-      <%= f.text_field :weight,{class: 'form-control'} %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :sex, 'Пол' %>
-      <% Product.sexes.keys.each do |sex| %>
-          <%= f.label :sex, value: sex, class:'radio-inline' do %>
-              <%= f.radio_button :sex, sex %>
-              <%=sex%>
-          <%end%>
-      <% end %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :product_type_id, 'Вид изделия' %>
-      <%= f.collection_select :product_type_id, @product_types, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :sale_size_id, 'Размер скидки' %>
-      <%= f.label :sale_size_id, value: nil, class:'radio-inline' do %>
-          <%= f.radio_button :sale_size_id, nil %>
-          Отсутствует
-      <%end%>
-      <%= f.collection_radio_buttons(:sale_size_id, @sale_sizes, :id, :sale_percent) do |b|
-        b.label(:"data-value" => b.value, class:'radio-inline') { b.radio_button + b.text.to_s + ' %'}
-        end %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :new_price, 'Цена после скидки' %>
-      <%= f.text_field :new_price,{class: 'form-control'} %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :manufacturer, 'Производитель' %>
-      <%= f.text_field :manufacturer,{class: 'form-control'} %>
-    </div>
-
-     <div class="form-group">
-       <%= f.label :to_main_page, 'На главную' %>
-       <%= f.check_box :to_main_page,{class: 'checkbox-inline'} %>
-     </div>
-
-    <div class="form-group">
-      <%= f.label :priority, 'Приоритет' %>
-      <%= f.number_field :priority,{class: 'form-control'} %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit 'Применить', class: 'btn btn-default' %>
-    </div>
-  </div>
-  <div class="col-lg-6">
     <div class="form-group">
       <%= f.label :category_id, 'Категория' %>
       <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
@@ -100,17 +43,85 @@
       <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
     </div>
     <div class="form-group">
+      <%= f.label :product_type_id, 'Вид изделия' %>
+      <%= f.collection_select :product_type_id, @product_types, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :incrustation_ids, 'Вставка' %>
-      <%= f.collection_select :incrustation_ids, @incrustations, :id, :title,{},{multiple: true, class: 'form-control'} %>
+      <%= f.collection_select :incrustation_ids, @incrustations, :id, :title,{},{multiple: true, class: 'form-control', style: 'min-height: 150px'} %>
     </div>
     <div class="form-group">
       <%= f.label :metal_type_ids, 'Тип металла' %>
       <%= f.collection_select :metal_type_ids, @metal_types, :id, :title,{},{multiple: true, class: 'form-control'} %>
     </div>
+
     <div class="form-group">
-      <%= f.label :size_ids, 'Размер' %>
-      <%= f.collection_select :size_ids, @sizes, :id, :size,{},{multiple: true, class: 'form-control'}%>
+      <%= f.label :metal_color_id, 'Цвет металла' %>
+      <%= f.collection_select :metal_color_id, @metal_colors, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :sex, 'Пол' %>
+      <% Product.sexes.keys.each do |sex| %>
+          <%= f.label :sex, value: sex, class:'radio-inline' do %>
+              <%= f.radio_button :sex, sex %>
+              <%=sex%>
+          <%end%>
+      <% end %>
     </div>
   </div>
 
+  <div class="col-lg-6">
+
+    <div class="form-group">
+      <%= f.label :weight, 'Вес' %>
+      <%= f.text_field :weight,{class: 'form-control', id: 'weight-input'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price_per_gramm, 'Цена за грамм' %>
+      <%= f.text_field :price_per_gramm,{class: 'form-control', id: 'price-per-gramm-input'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price, 'Цена' %>
+      <%= f.text_field :price,{class: 'form-control', id: 'price-input'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :sale_size_id, 'Скидка %', style: 'display: block;' %>
+      <%= f.label :sale_size_id, value: nil, class:'radio-inline' do %>
+          <%= f.radio_button :sale_size_id, nil %>
+          Нет
+      <%end%>
+      <%= f.collection_radio_buttons(:sale_size_id, @sale_sizes, :id, :sale_percent) do |b|
+        b.label(:"data-value" => b.text, class:'radio-inline') { b.radio_button + b.text.to_s + ' %'}
+      end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :new_price, 'Цена после скидки' %>
+      <%= f.text_field :new_price,{class: 'form-control',  id: 'new-price-input'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :to_main_page, 'На главной' %>
+      <%= f.check_box :to_main_page,{class: 'checkbox-inline'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :priority, 'Приоритет' %>
+      <%= f.number_field :priority,{class: 'form-control'} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :size_ids, 'Размер' %>
+      <%= f.collection_select :size_ids, @sizes, :id, :size,{},{multiple: true, class: 'form-control', style: 'min-height: 150px'}%>
+    </div>
+  </div>
+</div>
+    <div class="actions">
+      <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg mb-5' %>
+    </div>
 <% end %>
