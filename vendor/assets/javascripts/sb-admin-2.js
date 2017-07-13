@@ -73,6 +73,7 @@ $(document).ready(function() {
             }
         }
     });
+    $('#table').css("visibility", "visible");
 });
 
 //Loads the correct sidebar on window load,
