@@ -1,5 +1,7 @@
-<h1>Новый набор</h1>
+<div class="row">
+  <h1 class="panel-heading">Новый комплект</h1>
+</div>
 
 <%= render 'form', kit: @kit %>
 
-<%= link_to 'Назад', admin_kits_path%>
+<%= link_to 'Назад', admin_kits_path,  class: 'btn btn-default' %>
