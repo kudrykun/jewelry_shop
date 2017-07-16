@@ -3,8 +3,8 @@ class Admin::KitsController < Admin::AdminController
   before_action :set_selecting_products, only: [:new, :create, :edit, :update]
 
   def index
-    @kits = Kit.all
-    @products = Product.all
+    @kits =  Kit.order(products_count: :desc)
+    @max_cols = @kits.first.products_count
   end
 
   def show

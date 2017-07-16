@@ -24,10 +24,13 @@
         <% @kits.each do |kit| %>
           <tr>
             <td><%= kit.title %></td>
-            <td><%= @products.where(kit: kit).size %></td>
-            <% @products.where(kit: kit).each do |product| %>
-                <td><%= product.artikul %></td>
-            <% end %>
+            <%@max_cols.times do |i|%>
+                <%if kit.products[i].nil?%>
+                    <td></td>
+                <%else%>
+                    <td><%= kit.products[i].artikul %></td>
+                <%end%>
+            <%end%>
             <td><%= link_to 'Показать', admin_kit_path(kit) %></td>
             <td><%= link_to 'Изменить', edit_admin_kit_path(kit) %></td>
             <td><%= link_to 'Удалить', admin_kit_path(kit), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
