@@ -1,6 +1,8 @@
-<h1>Редактирование набора</h1>
+<div class="row">
+  <h1 class="panel-heading">Редактирование комплекта</h1>
+</div>
 
 <%= render 'form', kit: @kit %>
 
-<%= link_to 'Показать', admin_kit_path(@kit) %> |
-<%= link_to 'Назад', admin_kits_path %>
+<%= link_to 'Показать', admin_kit_path(@kit), class: 'btn btn-default mr10'  %>
+<%= link_to 'Назад', admin_kits_path, class: 'btn btn-default'  %>

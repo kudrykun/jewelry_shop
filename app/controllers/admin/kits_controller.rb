@@ -3,7 +3,8 @@ class Admin::KitsController < Admin::AdminController
   before_action :set_selecting_products, only: [:new, :create, :edit, :update]
 
   def index
-    @kits = Kit.all
+    @kits =  Kit.order(products_count: :desc)
+    @max_cols = @kits.first.products_count
   end
 
   def show
@@ -19,7 +20,7 @@ class Admin::KitsController < Admin::AdminController
   def create
     @kit = Kit.new(kit_params)
     if @kit.save
-      redirect_to admin_kit_path(@kit), notice: 'Набор был добавлен.'
+      redirect_to admin_kit_path(@kit), notice: 'Комплект был добавлен.'
     else
       render :new
     end
@@ -28,7 +29,7 @@ class Admin::KitsController < Admin::AdminController
 
   def update
     if @kit.update(kit_params)
-      redirect_to admin_kit_path(@kit), notice: 'Набор был обновлен.'
+      redirect_to admin_kit_path(@kit), notice: 'Комплект был обновлен.'
     else
       render :edit
     end
@@ -36,7 +37,7 @@ class Admin::KitsController < Admin::AdminController
 
   def destroy
     @kit.destroy
-    redirect_to admin_kits_url, notice: 'Набор был удален.'
+    redirect_to admin_kits_url, notice: 'Комплект был удален.'
   end
 
   private

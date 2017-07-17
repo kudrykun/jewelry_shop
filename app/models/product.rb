@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :sale_size, optional: true
   belongs_to :collection, optional: true
-  belongs_to :kit, optional: true
+  belongs_to :kit, optional: true, counter_cache: true
   belongs_to :manufacturer, optional: true
   has_and_belongs_to_many :metal_types
   has_and_belongs_to_many :incrustations
