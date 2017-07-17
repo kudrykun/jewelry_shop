@@ -3,6 +3,7 @@
 <p id="notice"><%= notice %></p>
   <h1 class="page-header">Товары</h1>
 </div>
+<div class="row">
 <%= link_to 'Добавить товар', new_admin_product_path, class: 'btn btn-default mr10 mb10' %>
 <%= link_to 'Виды изделий', admin_product_types_path, class: 'btn btn-default mr10 mb10' %>
 <%= link_to 'Цвета', admin_metal_colors_path, class: 'btn btn-default mr10 mb10' %>
@@ -10,19 +11,19 @@
 <%= link_to 'Вставки', admin_incrustations_path, class: 'btn btn-default mr10 mb10' %>
 <%= link_to 'Металлы', admin_metal_types_path, class: 'btn btn-default mr10 mb10' %>
 <%= link_to 'Размеры', admin_sizes_path, class: 'btn btn-default mb10' %>
-
-<div class="panel panel-default" style="margin-top: 20px;">
+</div>
+<div class="row">
+<div class="panel panel-default" style="margin-top: 20px; margin-bottom: 60px; visibility: hidden;" id="table">
 
   <div class="panel-heading">
     Таблица товаров
   </div>
   <!-- /.panel-heading -->
-  <div class="panel-body" style="visibility: hidden;" id="table">
-
+  <div class="panel-body">
     <table  width="100%" class="table table-striped table-bordered table-hover"  id="dataTables-example">
       <thead>
         <tr>
-          <th style="min-width: 100px;">Название</th>
+          <th   >Название</th>
           <th>Производитель</th>
           <th >Артикул</th>
           <th>Вес</th>
@@ -104,8 +105,8 @@
               <%end%>
             </td>
             <td><% if product.metal_color != nil && product.metal_color.title != '' %>
-            <%= product.metal_color.title %>
-            <%end%>
+                  <%= product.metal_color.title %>
+              <%end%>
             </td>
             <td>
               <% if product.incrustations.size%>
@@ -114,23 +115,27 @@
                   <%end%>
               <%end%>
             </td>
-            <td align="center">
-              <%= link_to admin_product_path(product) do%>
-                <i class="fa fa-file" aria-hidden="true"></i>
+            <td align="center" style="padding: 0; padding-top: 4px">
+              <%= link_to admin_product_path(product) do %>
+                  <i class="fa fa-file" style="font-size: 25px" aria-hidden="true"></i>
               <% end %>
             </td>
-            <td align="center">
+            <td align="center" style="padding: 0">
+
               <%= link_to edit_admin_product_path(product) do %>
-                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                  <i class="fa fa-pencil-square" style="font-size: 30px" aria-hidden="true"></i>
+              <% end %>
+
+            </td>
+            <td align="center" style="padding: 0">
+              <%= link_to admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } do %>
+                  <i class="fa fa-trash" style="font-size: 30px" aria-hidden="true"></i>
               <% end %>
             </td>
-            <td align="center">
-              <%= link_to admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } do %>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-              <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+</div>
 </div>
