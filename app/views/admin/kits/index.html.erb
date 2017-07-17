@@ -15,8 +15,12 @@
       <thead>
         <tr>
           <th>Название</th>
-          <th>Товаров</th>
-          <th colspan="10"></th>
+          <% @max_cols.times do %>
+              <th></th>
+          <%end%>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -24,7 +28,7 @@
         <% @kits.each do |kit| %>
           <tr>
             <td><%= kit.title %></td>
-            <%@max_cols.times do |i|%>
+            <% @max_cols.times do |i|%>
                 <%if kit.products[i].nil?%>
                     <td></td>
                 <%else%>
