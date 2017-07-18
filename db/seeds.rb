@@ -96,6 +96,7 @@ end
 kits = []
 kits_size.times do
   kits << Kit.create(title: kit_titles.delete(kit_titles.sample))
+  Kit.reset_counters(kits.last.id, :products)
 end
 
 product_types = []
@@ -120,7 +121,7 @@ products_size.times do |i|
                               sex: Faker::Number.between(0,3),
                               category: categories.sample,
                               collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil,
-                              kit: Faker::Boolean.boolean(0.2) ? kits.sample : nil)
+                              kit: Faker::Boolean.boolean(0.6) ? kits.sample : nil)
   products.last.incrustations << incrustations.sample(Faker::Number.between(0,3))
   products.last.metal_types << metalTypes.sample(Faker::Number.between(0,2))
   products.last.sizes << sizes.sample(Faker::Number.between(1,5))
