@@ -170,9 +170,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <%= form_for([:admin, Picture.new], html: {multipart: true, class: "dropzone"}) do |f|  %>
+        <%= form_for ([:admin, @picture]), :html => {multipart: true, class: "dropzone"} do |f|  %>
             <div class="fallback">
-              <%= f.file_field :picture %><br>
+              <%= f.file_field :image %><br>
               <%= f.submit "Upload" %>
             </div>
         <% end %>
