@@ -24,9 +24,8 @@ $(document).ready(function() {
         $('.bs-searchbox input').val('');
     }));
 });*/
-
 $(function() {
-    $("#weight-input").on('input', function() {
+    $("#weight-input").on('input', function () {
         $("#price-input").val ( ($(this).val() * $("#price-per-gramm-input").val()).toFixed(2) );
     });
     $("#price-per-gramm-input").on('input', function() {
@@ -48,9 +47,12 @@ $(function() {
     });
 });
 
+
 $(function() {
     $('#side-menu').metisMenu();
 });
+
+
 $(document).ready(function() {
     $('#dataTables-example').DataTable({
         responsive: true,
@@ -87,28 +89,32 @@ $(document).ready(function() {
     $('#table').css("visibility", "visible");
 });
 
+
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
+
+
+$(window).bind("resize load", function() {
+    var topOffset = 50;
+    var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+    if (width < 768) {
+        $('div.navbar-collapse').addClass('collapse');
+        topOffset = 100; // 2-row-menu
+    } else {
+        $('div.navbar-collapse').removeClass('collapse');
+    }
+    var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+    height = height - topOffset;
+    console.log(height);
+    if (height < 1) height = 1;
+    if (height > topOffset) {
+        $("#page-wrapper").css("min-height", (height) + "px");
+    }
+
+});
+
 $(function() {
-    $(window).bind("load resize", function() {
-        var topOffset = 50;
-        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse');
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse');
-        }
-
-        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    });
-
     var url = window.location;
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
@@ -125,3 +131,5 @@ $(function() {
         }
     }
 });
+
+
