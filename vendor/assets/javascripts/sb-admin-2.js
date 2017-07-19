@@ -14,27 +14,60 @@
 // });
 // });
 
-/*
 //Пытался сделать очистку поля
+/*
 $(document).ready(function() {
     $(".bs-searchbox").addClass("input-group");
-    $(".bs-searchbox").append('<span class="input-group-btn"><button class="btn btn-default searchbox-clear" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>');
+    $(".bs-searchbox").append('<span class="input-group-btn"><input class="btn btn-default" type="button"><i class="glyphicon glyphicon-remove-circle"></i></input></span>');
     var clearBtn = $(".searchbox-clear");
-    clearBtn.on('click', (function(event){
+    clearBtn.on('click', (function(){
         $('.bs-searchbox input').val('');
     }));
-});*/
-$(function() {
-    $("#weight-input").on('input', function () {
-        $("#price-input").val ( ($(this).val() * $("#price-per-gramm-input").val()).toFixed(2) );
-    });
-    $("#price-per-gramm-input").on('input', function() {
-        $("#price-input").val ( ($(this).val() * $("#weight-input").val()).toFixed(2) );
-    });
+});
+*/
+
+$(function () {
+
 });
 
 $(function() {
-    $('input[name="product[sale_size_id]"]:radio').click(function (){
+    //считает новую цену, в зависимости от скидки
+    function new_price () {
+        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
+        var price = $('#price-input').val();
+        var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
+        if (sale_price > 0) {
+            $("#new-price-input").val (sale_price)
+        }  else {
+            $("#new-price-input").val('')
+        }
+    }
+
+    // Считает старую цену
+    function old_price() {
+        $("#price-input").val( ($("#weight-input").val() * $("#price-per-gramm-input").val() ).toFixed(2));
+        new_price();
+    }
+    old_price();
+
+    // Подсчет цены по кнопке
+    $(".calculate").click(function () {
+        old_price();
+    });
+
+    $("#price-input").on("input",function(){
+        new_price();
+    });
+
+    $("#weight-input").on('input', function () {
+        old_price();
+    });
+    $("#price-per-gramm-input").on('input', function() {
+        old_price();
+    });
+
+
+    $('input[name="product[sale_size_id]"]').click(function sale(){
         var percentage = $(this).parent().attr("data-value");
         var price = $('#price-input').val();
         var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
@@ -46,11 +79,15 @@ $(function() {
         }
     });
 });
-
+//
+// $(document).ready(function() {
+//     sale();
+// });
 
 $(function() {
     $('#side-menu').metisMenu();
 });
+
 
 
 $(document).ready(function() {
@@ -106,7 +143,6 @@ $(window).bind("resize load", function() {
     }
     var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
     height = height - topOffset;
-    console.log(height);
     if (height < 1) height = 1;
     if (height > topOffset) {
         $("#page-wrapper").css("min-height", (height) + "px");
