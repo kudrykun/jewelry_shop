@@ -14,6 +14,17 @@
 // });
 // });
 
+/*
+//Пытался сделать очистку поля
+$(document).ready(function() {
+    $(".bs-searchbox").addClass("input-group");
+    $(".bs-searchbox").append('<span class="input-group-btn"><button class="btn btn-default searchbox-clear" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>');
+    var clearBtn = $(".searchbox-clear");
+    clearBtn.on('click', (function(event){
+        $('.bs-searchbox input').val('');
+    }));
+});*/
+
 $(function() {
     $("#weight-input").on('input', function() {
         $("#price-input").val ( ($(this).val() * $("#price-per-gramm-input").val()).toFixed(2) );

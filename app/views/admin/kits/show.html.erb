@@ -7,5 +7,15 @@
   <%= @kit.title %>
 </p>
 
+<% @kit.products.each do |product| %>
+    <p>
+      <strong>Артикул:</strong>
+      <%= link_to admin_product_path(product) do %>
+      <%= product.artikul %>
+      (<%= product.category.title %>)
+      <% end %>
+    </p>
+<% end %>
+
 <%= link_to 'Изменить', edit_admin_kit_path(@kit),  class: 'btn btn-default mr10' %>
 <%= link_to 'Назад', admin_kits_path,  class: 'btn btn-default' %>
