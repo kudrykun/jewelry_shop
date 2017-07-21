@@ -79,10 +79,6 @@ $(function() {
         }
     });
 });
-//
-// $(document).ready(function() {
-//     sale();
-// });
 
 $(function() {
     $('#side-menu').metisMenu();
@@ -152,11 +148,16 @@ $(window).bind("resize load", function() {
 
 $(function() {
     var url = window.location;
+    // console.log(url);
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
     var element = $('ul.nav a').filter(function() {
+        // alert(url);
+        // alert(this.href);
+        // return (("url").indexOf("this.href")+1) ;
         return this.href == url;
+        // return (this.href.indexOf(url) !== -1);
     }).addClass('active').parent();
 
     while (true) {
