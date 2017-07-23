@@ -6,12 +6,8 @@ class Admin::PicturesController < Admin::AdminController
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
-      if @picture.save!
-        format.html { redirect_to admin_picture_path(@picture), notice: 'Товар был успешно создан.' }
-        format.json { render :show, status: :created, location: @picture }
-      else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+      if @picture.save
+        format.json { render json: { id: @picture.id, url: @picture.image(:thumb)} }
       end
     end
   end
