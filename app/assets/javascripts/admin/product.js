@@ -12,7 +12,23 @@ $(document).ready(function(){
         addRemoveLinks: true,
 
         success: function(file, response) {
-            $(document).find('.entity-images-container').find('.row').first('.col-md-2').after("<div class=\"col-md-2 entity-image\"> <img src=\" " + response.url + "\" class=\"img-responsive\"></div>");
+            $(document).find('.entity-images-container').find('.row').first('.col-md-2').after("<div class=\"col-md-2 entity-image\" data-picture-id='" + response.id + "'> <img src=\" " + response.url + "\" class=\"img-responsive\"></div>");
+            $(file.previewTemplate).find('.dz-remove').attr('id',response.id);
+            $(file.previewTemplate).addClass('dz-success');
+        },
+
+        removedfile: function(file){
+            var id = $(file.previewTemplate).find('.dz-remove').attr('id');
+
+            $.ajax({
+               type: 'DELETE',
+               url: '/admin/pictures/' + id,
+               success: function(data){
+                   console.log(data.message);
+                   file.previewElement.remove();
+                   $(document).find('*[data-picture-id=' + id + ']').remove();
+               }
+            });
         }
     });
 });

@@ -4,12 +4,11 @@ class Admin::PicturesController < Admin::AdminController
   end
   def create
     @picture = Picture.new(picture_params)
-
-    respond_to do |format|
       if @picture.save
-        format.json { render json: { id: @picture.id, url: @picture.image(:thumb)} }
+        render json: { message: "success", id: @picture.id, url: @picture.image(:thumb)}, :status => 200
+      else
+        render json: @picture.errors, :status => 400
       end
-    end
   end
 
   # PATCH/PUT /products/1
@@ -29,10 +28,11 @@ class Admin::PicturesController < Admin::AdminController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_products_url, notice: 'Товар был успешно удален.' }
-      format.json { head :no_content }
+    @picture = Picture.find(params[:id])
+    if @picture.destroy
+      render json: {message: 'Файл удален с сервера'}
+    else
+      render json: @picture.errors
     end
   end
 
