@@ -103,6 +103,7 @@ class Admin::ProductsController < Admin::AdminController
                                       :price_per_gramm,
                                       :incrustation_ids => [],
                                       :metal_type_ids => [],
-                                      :size_ids => [])
+                                      :size_ids => [],
+                                      :picture_ids => [])
     end
 end
