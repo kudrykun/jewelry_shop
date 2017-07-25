@@ -3,29 +3,20 @@ class Admin::ProductsController < Admin::AdminController
   #загружает цвета металлов, типы продуктов, размеры скидок для создания и сохранения
   before_action :set_selecting_collections, only: [:new, :create, :edit, :update]
 
-  # GET /products
-  # GET /products.json
   def index
     @products = Product.all
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
   end
 
-  # GET /products/new
   def new
     @product = Product.new
-    @picture = Picture.new
   end
 
-  # GET /products/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
     respond_to do |format|
@@ -40,11 +31,10 @@ class Admin::ProductsController < Admin::AdminController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
+        params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
         format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @product}
       else
@@ -54,9 +44,8 @@ class Admin::ProductsController < Admin::AdminController
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
+    @product.pictures.destroy_all
     @product.destroy
     respond_to do |format|
       format.html {redirect_to admin_products_url, notice: 'Товар был успешно удален.'}

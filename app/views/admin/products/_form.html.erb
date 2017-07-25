@@ -136,9 +136,11 @@
               <i class="fa fa-plus"></i>
             </div>
           </div>
-          <div class="col-md-2 entity-image">
-            <img src="http://lorempixel.com/150/150" class="img-responsive">
-          </div>
+          <%product.pictures.each do |picture|%>
+              <div class="col-md-2 entity-image">
+                <%=image_tag picture.image(:thumb), class: 'img-responsive'%>
+              </div>
+          <%end%>
         </div>
       </div>
     </div>
