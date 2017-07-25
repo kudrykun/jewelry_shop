@@ -37,9 +37,11 @@ $(function() {
         var price = $('#price-input').val();
         var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
         if (sale_price > 0) {
+            $("#new-price-input").removeAttr("disabled");
             $("#new-price-input").val (sale_price)
         }  else {
-            $("#new-price-input").val('')
+            $("#new-price-input").val('');
+            $("#new-price-input").attr("disabled", "disabled");
         }
     }
 
@@ -72,10 +74,12 @@ $(function() {
         var price = $('#price-input').val();
         var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
         if (sale_price > 0) {
+            $("#new-price-input").removeAttr("disabled");
             $("#new-price-input").val (sale_price)
         }  else
         {
-            $("#new-price-input").val('')
+            $("#new-price-input").val('');
+            $("#new-price-input").attr("disabled", "disabled");
         }
     });
 });
