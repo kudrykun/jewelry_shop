@@ -21,7 +21,9 @@ class Admin::ProductsController < Admin::AdminController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
+        if params[:picture_ids]
+          params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
+        end
         format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно создан.'}
         format.json {render :show, status: :created, location: @product}
       else
@@ -34,7 +36,9 @@ class Admin::ProductsController < Admin::AdminController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
+        if params[:picture_ids]
+          params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
+        end
         format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @product}
       else
@@ -46,6 +50,7 @@ class Admin::ProductsController < Admin::AdminController
 
   def destroy
     @product.pictures.destroy_all
+    @product.preview.destroy
     @product.destroy
     respond_to do |format|
       format.html {redirect_to admin_products_url, notice: 'Товар был успешно удален.'}
@@ -90,6 +95,7 @@ class Admin::ProductsController < Admin::AdminController
                                     :manufacturer_id,
                                     :priority,
                                     :price_per_gramm,
+                                    :preview_id,
                                     :incrustation_ids => [],
                                     :metal_type_ids => [],
                                     :size_ids => [],

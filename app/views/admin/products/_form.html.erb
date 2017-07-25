@@ -137,8 +137,17 @@
             </div>
           </div>
           <%product.pictures.each do |picture|%>
-              <div class="col-md-2 entity-image">
+              <div class="col-md-2 entity-image" data-picture-id="<%=picture.id%>">
+                <%= link_to admin_picture_path(picture), method: :delete, :remote => true, :class => 'btn btn-danger delete-picture' do %>
+                    Удалить
+                <% end %>
                 <%=image_tag picture.image(:thumb), class: 'img-responsive'%>
+                <%if product.preview_id == picture.id%>
+                    <div class="btn btn-primary set-preview" style="display:none">Сделать обложкой</div>
+                    <span>Обложка</span>
+                <%else%>
+                  <div class="btn btn-primary set-preview">Сделать обложкой</div>
+                <%end%>
               </div>
           <%end%>
         </div>
@@ -147,6 +156,7 @@
   </div>
 </div>
     <div id="hidden-tags">
+      <%=f.hidden_field :preview_id, :value => product.preview_id%>
     </div>
     <div class="actions">
       <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg mb-5' %>
