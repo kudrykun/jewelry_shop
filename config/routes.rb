@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :collections
     resources :products
+    resources :pictures
     resources :sale_sizes
     resources :product_types
     resources :sizes
