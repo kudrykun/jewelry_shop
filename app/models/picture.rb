@@ -4,7 +4,7 @@ class Picture < ApplicationRecord
   Применяется как для использования в других сущностях(например в товарах), так и, например, в слайдерах.
 =end
   belongs_to :imageable, polymorphic: true, optional: true
-  has_one :product
+  has_one :product_preview, foreign_key: "preview_id", class_name: 'Product'
 
   has_attached_file :image, styles: { medium: "400x400#", thumb: "150x150#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
