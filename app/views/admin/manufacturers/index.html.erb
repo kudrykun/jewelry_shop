@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Manufacturers</h1>
+<h1>Производители</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Название</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
     <% @manufacturers.each do |manufacturer| %>
       <tr>
         <td><%= manufacturer.title %></td>
-        <td><%= link_to 'Show', admin_manufacturer_path(manufacturer) %></td>
-        <td><%= link_to 'Edit', edit_admin_manufacturer_path(manufacturer) %></td>
-        <td><%= link_to 'Destroy', admin_manufacturer_path(manufacturer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Показать', admin_manufacturer_path(manufacturer) %></td>
+        <td><%= link_to 'Изменить', edit_admin_manufacturer_path(manufacturer) %></td>
+        <td><%= link_to 'Удалить', admin_manufacturer_path(manufacturer), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Manufacturer', new_admin_manufacturer_path %>
+<%= link_to 'Добавить', new_admin_manufacturer_path %>
