@@ -26,69 +26,73 @@ $(document).ready(function() {
 });
 */
 
-$(function () {
-
-});
+// $(function () {
+//
+// });
 
 $(function() {
-    //считает новую цену, в зависимости от скидки
-    function new_price () {
-        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
-        var price = $('#price-input').val();
-        var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
-        if (sale_price > 0) {
+
+    $(function () {
+        if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null){
             $("#new-price-input").removeAttr("disabled");
-            $("#new-price-input").val (sale_price)
-        }  else {
+        }
+    });
+
+    // Считает новую цену
+    function calc_new_price() {
+        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
+        if  (percentage != null) /*& ($("#price-input").val() != '' ) )*/ {
+            $("#new-price-input").removeAttr("disabled");
+            var price = $("#price-input").val();
+            if (price != ''){
+                $("#new-price-input").val ((price - ( price * percentage / 100 )).toFixed(2));
+            }
+            else {
+                $("#new-price-input").val('');
+            }
+        }
+        else {
             $("#new-price-input").val('');
             $("#new-price-input").attr("disabled", "disabled");
         }
     }
 
+
     // Считает старую цену
     function old_price() {
         $("#price-input").val( ($("#weight-input").val() * $("#price-per-gramm-input").val() ).toFixed(2));
-        new_price();
+        calc_new_price();
     }
-    old_price();
+
+    $('input[name="product[sale_size_id]"]').click(function sale(){
+        calc_new_price();
+    });
+
+    // раскоментить если надо сделать расчет сразу после загрузки страницы
+    // old_price();
 
     // Подсчет цены по кнопке
     $(".calculate").click(function () {
         old_price();
     });
 
-    $("#price-input").on("input",function(){
-        new_price();
-    });
-
     $("#weight-input").on('input', function () {
         old_price();
     });
+
     $("#price-per-gramm-input").on('input', function() {
         old_price();
     });
 
-
-    $('input[name="product[sale_size_id]"]').click(function sale(){
-        var percentage = $(this).parent().attr("data-value");
-        var price = $('#price-input').val();
-        var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
-        if (sale_price > 0) {
-            $("#new-price-input").removeAttr("disabled");
-            $("#new-price-input").val (sale_price)
-        }  else
-        {
-            $("#new-price-input").val('');
-            $("#new-price-input").attr("disabled", "disabled");
-        }
+    $("#price-input").on("input",function(){
+        calc_new_price()
     });
+
 });
 
 $(function() {
     $('#side-menu').metisMenu();
 });
-
-
 
 $(document).ready(function() {
     $('#dataTables-example').DataTable({

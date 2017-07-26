@@ -97,7 +97,7 @@
       <div class="input-group">
       <%= f.text_field :weight,{class: 'form-control', id: 'weight-input'} %>
         <span class="input-group-addon">
-          гр.
+          г.
         </span>
       </div>
     </div>
@@ -146,7 +146,9 @@
         <span class="input-group-addon">
           <i class="fa fa-rub" aria-hidden="true"></i>
         </span>
-        <%= f.text_field :new_price,{class: 'form-control',  id: 'new-price-input'} %>
+        <%= f.text_field :new_price,{class: 'form-control',
+                                     id: 'new-price-input',
+                                     :disabled => ''} %>
         <span class="input-group-addon">
            <i class="fa fa-percent" aria-hidden="true"></i>
         </span>
