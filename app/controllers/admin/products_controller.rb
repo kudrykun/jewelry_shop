@@ -50,7 +50,9 @@ class Admin::ProductsController < Admin::AdminController
 
   def destroy
     @product.pictures.destroy_all
-    @product.preview.destroy
+    if !@product.preview.nil?
+      @product.preview.destroy
+    end
     @product.destroy
     respond_to do |format|
       format.html {redirect_to admin_products_url, notice: 'Товар был успешно удален.'}
