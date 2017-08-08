@@ -138,13 +138,11 @@
           </div>
           <%product.pictures.each do |picture|%>
               <div class="col-md-2 entity-image" data-picture-id="<%=picture.id%>">
-                <%= link_to admin_picture_path(picture), method: :delete, :remote => true, :class => 'btn btn-danger delete-picture' do %>
-                    Удалить
-                <% end %>
+                <div class="btn btn-danger delete-picture">Удалить</div>
                 <%=image_tag picture.image(:thumb), class: 'img-responsive'%>
                 <%if product.preview_id == picture.id%>
                     <div class="btn btn-primary set-preview" style="display:none">Сделать обложкой</div>
-                    <span>Обложка</span>
+                    <span id="preview-tag">Обложка</span>
                 <%else%>
                   <div class="btn btn-primary set-preview">Сделать обложкой</div>
                 <%end%>

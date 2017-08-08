@@ -1,4 +1,10 @@
 class Admin::PicturesController < Admin::AdminController
+  def show
+    @picture = Picture.find(params[:id])
+    respond_to do |format|
+      format.json { render json: {message: 'success', url: @picture.image(:thumb), picture_id: @picture.id}, :status => 200 }
+    end
+  end
   def new
     @picture = Picture.new
   end
@@ -29,11 +35,9 @@ class Admin::PicturesController < Admin::AdminController
   # DELETE /products/1.json
   def destroy
     @picture = Picture.find(params[:id])
-    if @picture.destroy
-      render json: {message: 'Файл удален с сервера'}
-    else
-      render json: @picture.errors
-    end
+    picture_id = @picture.id
+    @picture.destroy
+    render json: {message: 'Файл удален с сервера', id: picture_id}
   end
 
   private
