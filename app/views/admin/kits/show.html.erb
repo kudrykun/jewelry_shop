@@ -1,9 +1,21 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Комлект</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
   <strong>Название:</strong>
   <%= @kit.title %>
 </p>
 
-<%= link_to 'Изменить', edit_admin_kit_path(@kit) %> |
-<%= link_to 'Назад', admin_kits_path %>
+<% @kit.products.each do |product| %>
+    <p>
+      <strong>Артикул:</strong>
+      <%= link_to admin_product_path(product) do %>
+      <%= product.artikul %>
+      (<%= product.category.title %>)
+      <% end %>
+    </p>
+<% end %>
+
+<%= link_to 'Изменить', edit_admin_kit_path(@kit),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_kits_path,  class: 'btn btn-default' %>
