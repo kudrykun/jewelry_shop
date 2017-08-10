@@ -164,7 +164,14 @@ $(function() {
         // alert(url);
         // alert(this.href);
         // return (("url").indexOf("this.href")+1) ;
-        return this.href == url;
+        // console.log(url.pathname);
+        // console.log(this.href);
+        // console.log(!!this.href.match(new RegExp(url.pathname, 'g')));
+        //  console.log(this.href.match( new RegExp (url.href, \/admin\/.*\/));
+        //  return (this.href.match( new RegExp( ) ));
+        var link = url.href.match(/^(.*?)admin\/([^/]*)/);
+        console.log(link[0]);
+        return this.href == link[0];
         // return (this.href.indexOf(url) !== -1);
     }).addClass('active').parent();
 
