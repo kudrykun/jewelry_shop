@@ -180,6 +180,7 @@
             <!--Это нужно будет подредактировать-->
             <div class="incrustations-area" style="background-color: rgba(2,255,0,0.3); border-radius: 5px">
               Вставки:
+              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default'%>
               <ul>
                 <%=f.fields_for :incrustation_items do |item|%>
                     <li>

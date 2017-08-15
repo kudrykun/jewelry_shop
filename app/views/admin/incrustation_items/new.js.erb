@@ -1,0 +1,50 @@
+var date = new Date();
+$('.incrustations-area > ul').append(
+    '<li>'+
+        '<input name="product[incrustation_items_attributes][' + date.getTime() + '][_destroy]" type="hidden" value="0"><input type="checkbox" value="1" name="product[incrustation_items_attributes][' + date.getTime() + '][_destroy]" id="product_incrustation_items_attributes_' + date.getTime() + '__destroy">' +
+
+        '<label for="product_incrustation_items_attributes_' + date.getTime() + '_quantity">Quantity</label>' +
+        '<input type="text" name="product[incrustation_items_attributes][' + date.getTime() + '][quantity]" id="product_incrustation_items_attributes_' + date.getTime() + '_quantity">' +
+
+        '<label for="product_incrustation_items_attributes_' + date.getTime() + '_purity">Purity</label>' +
+        '<input type="text" name="product[incrustation_items_attributes][' + date.getTime() + '][purity]" id="product_incrustation_items_attributes_' + date.getTime() + '_purity">' +
+
+        '<label for="product_incrustation_items_attributes_' + date.getTime() + '_weight">Weight</label>' +
+        '<input type="text" name="product[incrustation_items_attributes][' + date.getTime() + '][weight]" id="product_incrustation_items_attributes_' + date.getTime() + '_weight">' +
+
+        '<label for="product_incrustation_items_attributes_' + date.getTime() + '_incrustation_id">Материал</label>' +
+        '<div class="btn-group bootstrap-select form-control">' +
+          '<button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" data-id="product_incrustation_items_attributes_' + date.getTime() + '_incrustation_id" title="Выберете вставки...">' +
+            '<span class="filter-option pull-left">Выберете вставки...</span>&nbsp;' +
+            '<span class="bs-caret">' +
+              '<span class="caret"></span>' +
+            '</span>' +
+          '</button>' +
+          '<div class="dropdown-menu open" role="combobox">' +
+            '<div class="bs-searchbox">' +
+              '<input type="text" class="form-control" autocomplete="off" placeholder="Введите вставку" role="textbox" aria-label="Search">' +
+            '</div>' +
+            '<ul class="dropdown-menu inner" role="listbox" aria-expanded="false">' +
+              <%@incrustations.each_with_index do |obj,index|%>
+              '<li data-original-index="<%=index + 1%>">' +
+                '<a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">' +
+                  '<span class="text"><%=obj.title%></span>' +
+                  '<span class="glyphicon glyphicon-ok check-mark"></span>' +
+                '</a>' +
+              '</li>' +
+              <%end%>
+            '</ul>' +
+          '</div>' +
+          '<select class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Введите вставку" title="Выберете вставки..." name="product[incrustation_items_attributes][' + date.getTime() + '][incrustation_id]" id="product_incrustation_items_attributes_' + date.getTime() + '_incrustation_id" tabindex="-98">' +
+            '<option class="bs-title-option" value="">' +
+              'Выберете вставки...' +
+            '</option>' +
+            <%@incrustations.each do |obj|%>
+            '<option value="<%=obj.id%>">' +
+              '<%=obj.title%>' +
+            '</option>' +
+            <%end%>
+          '</select>' +
+        '</div>' +
+    '</li>'
+);

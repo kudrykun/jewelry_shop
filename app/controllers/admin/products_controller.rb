@@ -12,11 +12,9 @@ class Admin::ProductsController < Admin::AdminController
 
   def new
     @product = Product.new
-    @product.incrustation_items.build
   end
 
   def edit
-    @product.incrustation_items.build
   end
 
   def create

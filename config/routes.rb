@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :product_types
     resources :sizes
     resources :incrustations
+    resources :incrustation_items
     resources :metal_colors
     resources :metal_types
     resources :kits
