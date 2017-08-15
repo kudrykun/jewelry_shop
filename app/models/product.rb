@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :metal_types
   has_and_belongs_to_many :sizes
   has_many :incrustation_items
+  accepts_nested_attributes_for :incrustation_items, allow_destroy: true
   has_many :incrustations, :through => :incrustation_items
 
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.

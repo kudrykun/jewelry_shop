@@ -12,9 +12,11 @@ class Admin::ProductsController < Admin::AdminController
 
   def new
     @product = Product.new
+    @product.incrustation_items.build
   end
 
   def edit
+    @product.incrustation_items.build
   end
 
   def create
@@ -98,7 +100,12 @@ class Admin::ProductsController < Admin::AdminController
                                     :priority,
                                     :price_per_gramm,
                                     :preview_id,
-                                    :incrustation_ids => [],
+                                    :incrustation_items_attributes => [:id,
+                                                                       :quantity,
+                                                                       :purity,
+                                                                       :weight,
+                                                                       :incrustation_id,
+                                                                       :_destroy],
                                     :metal_type_ids => [],
                                     :size_ids => [],
                                     :picture_ids => [])
