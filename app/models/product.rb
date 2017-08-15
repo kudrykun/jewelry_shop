@@ -7,7 +7,6 @@ class Product < ApplicationRecord
   belongs_to :kit, optional: true, counter_cache: true
   belongs_to :manufacturer, optional: true
   has_and_belongs_to_many :metal_types
-  has_and_belongs_to_many :incrustations
   has_and_belongs_to_many :sizes
 
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.

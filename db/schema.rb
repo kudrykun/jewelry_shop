@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718110752) do
+ActiveRecord::Schema.define(version: 20170815121044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +41,6 @@ ActiveRecord::Schema.define(version: 20170718110752) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "incrustations_products", force: :cascade do |t|
-    t.integer "incrustation_id"
-    t.integer "product_id"
-    t.index ["incrustation_id"], name: "index_incrustations_products_on_incrustation_id", using: :btree
-    t.index ["product_id"], name: "index_incrustations_products_on_product_id", using: :btree
   end
 
   create_table "kits", force: :cascade do |t|
@@ -151,8 +144,6 @@ ActiveRecord::Schema.define(version: 20170718110752) do
 
   add_foreign_key "categories_product_types", "categories"
   add_foreign_key "categories_product_types", "product_types"
-  add_foreign_key "incrustations_products", "incrustations"
-  add_foreign_key "incrustations_products", "products"
   add_foreign_key "metal_types_products", "metal_types"
   add_foreign_key "metal_types_products", "products"
   add_foreign_key "products", "categories"
