@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
-  has_and_belongs_to_many :product_types
-  has_many :products
+  has_many :product_types
+  has_many :product_types
+  has_many :products, :through => :product_types
   #связан полиморфной связью с картинкой. Связанная картинка удаляется при удалении товара.
   #TODO Удаляются именно объекты класса Picture. Необходимо явно удалять сами файлы изображений
   has_one :picture, as: :imageable, dependent: :destroy
