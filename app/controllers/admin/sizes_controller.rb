@@ -4,7 +4,7 @@ class Admin::SizesController < Admin::AdminController
   # GET /sizes
   # GET /sizes.json
   def index
-    @sizes = Size.all
+    @sizes = Size.all.order(:size)
   end
 
   # GET /sizes/1

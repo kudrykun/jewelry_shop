@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Размер</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
   <strong>Размер:</strong>
   <%= @size.size %>
 </p>
 
-<%= link_to 'Изменить', edit_admin_size_path(@size) %> |
-<%= link_to 'Назад', admin_sizes_path %>
+<%= link_to 'Изменить', edit_admin_size_path(@size),  class: 'btn btn-default mr10'  %>
+<%= link_to 'Назад', admin_sizes_path,  class: 'btn btn-default'  %>
