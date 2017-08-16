@@ -183,8 +183,8 @@
               <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default'%>
               <ul>
                 <%=f.fields_for :incrustation_items do |item|%>
-                    <li>
-                      <%= item.check_box :_destroy %>
+                    <li style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">
+                      <%= item.check_box :_destroy, class: 'destroy-incrustation' %>
 
                       <%= item.label :quantity %>
                       <%= item.text_field :quantity %>
