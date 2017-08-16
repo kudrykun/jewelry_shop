@@ -1,247 +1,258 @@
 <%= form_for([:admin, product]) do |f| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <!--Контейнер для ошибок-->
+    <% if product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+          <ul>
+            <% product.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
     <% end %>
+    <!--Управляющие кнопки-->
+    <div class="row">
+      <div class="col-lg-12">
+        <%= f.submit 'Применить', class: 'btn btn-success' %>
+        <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
+      </div>
+    </div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <%= f.submit 'Применить', class: 'btn btn-success' %>
-    <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
-  </div>
-</div>
+    <div class="row">
+      <div class="panel-body">
+        <!--Вкладки формы-->
+        <ul class="nav nav-pills">
+          <li class="active"><a href="#main" data-toggle="tab" aria-expanded="true">Главная</a></li>
+          <li><a href="#extra" data-toggle="tab" aria-expanded="true">Дополнительно</a></li>
+          <li><a href="#pictures" data-toggle="tab" aria-expanded="true">Изображения</a></li>
+        </ul>
+        <div class="tab-content mt10">
+          <!--Вкладка "Главная"-->
+          <div class="tab-pane fade active in" id="main">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <%= f.label :title, 'Название' %>
+                <%= f.text_field :title, {class: 'form-control'} %>
+              </div>
 
-<div class="row">
+              <div class="form-group">
+                <%= f.label :artikul, 'Артикул' %>
+                <%= f.text_field :artikul, {class: 'form-control'} %>
+              </div>
 
-  <div class="panel-body">
-    <ul class="nav nav-pills">
-      <li class="active"> <a  href="#main" data-toggle="tab" aria-expanded="true">Главная</a></li>
-      <li><a href="#extra" data-toggle="tab" aria-expanded="true">Дополнительно</a></li>
-      <li><a href="#pictures" data-toggle="tab" aria-expanded="true">Изображения</a></li>
-    </ul>
-    <div class="tab-content mt10">
-        <div class="tab-pane fade active in" id="main">
+              <div class="form-group">
+                <%= f.label :to_main_page, 'На главной' %>
+                <%= f.check_box :to_main_page, {class: 'checkbox-inline'} %>
+              </div>
 
-          <div class="col-lg-4">
-            <div class="form-group">
-              <%= f.label :title, 'Название' %>
-              <%= f.text_field :title,{class: 'form-control'} %>
+              <div class="form-group">
+                <%= f.label :priority, 'Приоритет' %>
+                <%= f.number_field :priority, {class: 'form-control'} %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :size_ids, 'Размер' %>
+                <%= f.collection_select :size_ids, @sizes, :id, :size, {},
+                                        {multiple: true,
+                                         class: 'form-control selectpicker',
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите размер',
+                                         :"title" => 'Выберете размеры...'} %>
+              </div>
             </div>
 
-            <div class="form-group">
-              <%= f.label :artikul, 'Артикул' %>
-              <%= f.text_field :artikul,{class: 'form-control'} %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :to_main_page, 'На главной' %>
-              <%= f.check_box :to_main_page,{class: 'checkbox-inline'} %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :priority, 'Приоритет' %>
-              <%= f.number_field :priority,{class: 'form-control'} %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :size_ids, 'Размер' %>
-              <%= f.collection_select :size_ids, @sizes, :id, :size,{},
-                                      {multiple: true,
-                                       class: 'form-control selectpicker',
-                                       :"data-live-search" => 'true',
-                                       :"data-live-Search-Placeholder" => 'Введите размер',
-                                       :"title" => 'Выберете размеры...'} %>
-            </div>
-
-          </div>
-
-          <div class="col-lg-4">
-
-            <div class="form-group">
-              <%= f.label :weight, 'Вес' %>
-              <div class="input-group">
-
-                <%= f.text_field :weight,{class: 'form-control', id: 'weight-input'} %>
-                <span class="input-group-addon">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <%= f.label :weight, 'Вес' %>
+                <div class="input-group">
+                  <%= f.text_field :weight, {class: 'form-control', id: 'weight-input'} %>
+                  <span class="input-group-addon">
                   <i class="fa fa-balance-scale" aria-hidden="true"></i>
                 </span>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <%= f.label :price_per_gramm, 'Цена за грамм' %>
-              <div class="input-group">
-
-                <%= f.text_field :price_per_gramm,{class: 'form-control', id: 'price-per-gramm-input'} %>
-                <span class="input-group-addon">
+              <div class="form-group">
+                <%= f.label :price_per_gramm, 'Цена за грамм' %>
+                <div class="input-group">
+                  <%= f.text_field :price_per_gramm, {class: 'form-control', id: 'price-per-gramm-input'} %>
+                  <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
                 </span>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <%= f.label :price, 'Цена' %>
-              <div class="input-group">
+              <div class="form-group">
+                <%= f.label :price, 'Цена' %>
+                <div class="input-group">
                 <span class="input-group-btn">
                   <button class="btn btn-default calculate" type="button">
                     <i class="fa fa-calculator" aria-hidden="true"></i>
                   </button>
                 </span>
-
-                <%= f.text_field :price,{class: 'form-control ', id: 'price-input'} %>
-                <span class="input-group-addon">
+                  <%= f.text_field :price, {class: 'form-control ', id: 'price-input'} %>
+                  <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
                 </span>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <%= f.label :sale_size_id, 'Скидка %' %>
-              <div class="input-group">
-                <%= f.label :sale_size_id, value: nil, class:'radio-inline mr10' do %>
-                    <%= f.radio_button :sale_size_id, nil %>
-                    Нет
-                <%end%>
-                <%= f.collection_radio_buttons(:sale_size_id, @sale_sizes, :id, :sale_percent) do |b|
-                  b.label(:"data-value" => b.text, class:'radio-inline') { b.radio_button + b.text.to_s + ' %'}
-                end %>
+              <div class="form-group">
+                <%= f.label :sale_size_id, 'Скидка %' %>
+                <div class="input-group">
+                  <%= f.label :sale_size_id, value: nil, class: 'radio-inline mr10' do %>
+                      <%= f.radio_button :sale_size_id, nil %>
+                      Нет
+                  <% end %>
+                  <%= f.collection_radio_buttons(:sale_size_id, @sale_sizes, :id, :sale_percent) do |b|
+                    b.label(:"data-value" => b.text, class: 'radio-inline') {b.radio_button + b.text.to_s + ' %'}
+                  end %>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <%= f.label :new_price, 'Цена после скидки' %>
-              <div class="input-group">
+              <div class="form-group">
+                <%= f.label :new_price, 'Цена после скидки' %>
+                <div class="input-group">
                 <span class="input-group-addon">
                    <i class="fa fa-percent" aria-hidden="true"></i>
                 </span>
-                <%= f.text_field :new_price,{class: 'form-control',
-                                             id: 'new-price-input',
-                                             :disabled => ''} %>
-                <span class="input-group-addon">
+                  <%= f.text_field :new_price, {class: 'form-control',
+                                                id: 'new-price-input',
+                                                :disabled => ''} %>
+                  <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
                 </span>
-
+                </div>
               </div>
             </div>
 
-
-          </div>
-
-          <div class="col-lg-4">
-            <div class="form-group">
-              <%= f.label :manufacturer, 'Производитель' %>
-              <%= f.collection_select :manufacturer_id, @manufacturers, :id, :title,
-                                      {include_blank: 'Пусто'},
-                                      class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :category_id, 'Категория' %>
-              <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :collection_id, 'Коллекция' %>
-              <%= f.collection_select :collection_id, @collections, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :kit_id, 'Комплект' %>
-              <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <%= f.label :manufacturer, 'Производитель' %>
+                <%= f.collection_select :manufacturer_id, @manufacturers, :id, :title,
+                                        {include_blank: 'Пусто'},
+                                        class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :category_id, 'Категория' %>
+                <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :collection_id, 'Коллекция' %>
+                <%= f.collection_select :collection_id, @collections, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :kit_id, 'Комплект' %>
+                <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+              </div>
             </div>
           </div>
 
-        </div>
-        <div class="tab-pane fade" id="extra">
-          <div class="form-group">
-            <%= f.label :product_type_id, 'Вид изделия' %>
-            <%= f.collection_select :product_type_id, @product_types, :id, :title,
-                                    {include_blank: 'Пусто'}, class: 'form-control' %>
-          </div>
+          <!--Вкладка "Дополнительно"-->
+          <div class="tab-pane fade" id="extra">
+            <div class="form-group">
+              <%= f.label :product_type_id, 'Вид изделия' %>
+              <%= f.collection_select :product_type_id, @product_types, :id, :title,
+                                      {include_blank: 'Пусто'}, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :metal_type_ids, 'Тип металла' %>
+              <%= f.collection_select :metal_type_ids, @metal_types, :id, :title, {},
+                                      {multiple: true,
+                                       class: 'form-control selectpicker',
+                                       :"title" => 'Выберете металл...'} %>
+            </div>
+            <div class="form-group">
+              <%= f.label :metal_color_id, 'Цвет металла' %>
+              <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
+                                      {include_blank: 'Пусто'}, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :sex, 'Пол' %>
+              <% Product.sexes.keys.each do |sex| %>
+                  <%= f.label :sex, value: sex, class: 'radio-inline' do %>
+                      <%= f.radio_button :sex, sex %>
+                      <%= sex %>
+                  <% end %>
+              <% end %>
+            </div>
+            <!--Это нужно будет подредактировать-->
+            <div class="incrustations-area" style="background-color: rgba(2,255,0,0.3); border-radius: 5px">
+              Вставки:
+              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default'%>
+              <ul>
+                <%=f.fields_for :incrustation_items do |item|%>
+                    <li style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">
+                      <%= item.check_box :_destroy, class: 'destroy-incrustation' %>
 
-          <div class="form-group">
-            <%= f.label :incrustation_ids, 'Вставка' %>
-            <%= f.collection_select :incrustation_ids, @incrustations, :id, :title,{},
-                                    {multiple: true,
-                                     class: 'form-control selectpicker',
-                                     :"data-live-search" => 'true',
-                                     :"data-live-Search-Placeholder" => 'Введите вставку',
-                                     :"title" => 'Выберете вставки...'} %>
-          </div>
-          <div class="form-group">
-            <%= f.label :metal_type_ids, 'Тип металла' %>
-            <%= f.collection_select :metal_type_ids, @metal_types, :id, :title,{},
-                                    {multiple: true,
-                                     class: 'form-control selectpicker',
-                                     :"title" => 'Выберете металл...'} %>
-          </div>
+                      <%= item.label :quantity %>
+                      <%= item.text_field :quantity %>
 
-          <div class="form-group">
-            <%= f.label :metal_color_id, 'Цвет металла' %>
-            <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
-                                    {include_blank: 'Пусто'}, class: 'form-control' %>
-          </div>
+                      <%= item.label :purity %>
+                      <%= item.text_field :purity %>
 
-          <div class="form-group">
-            <%= f.label :sex, 'Пол' %>
-            <% Product.sexes.keys.each do |sex| %>
-                <%= f.label :sex, value: sex, class:'radio-inline' do %>
-                    <%= f.radio_button :sex, sex %>
-                    <%=sex%>
+                      <%= item.label :weight %>
+                      <%= item.text_field :weight %>
+
+                      <%= item.label :incrustation_id, 'Материал' %>
+                      <%= item.collection_select :incrustation_id, @incrustations, :id, :title, {},
+                                                {class: 'form-control selectpicker',
+                                                 :"data-live-search" => 'true',
+                                                 :"data-live-Search-Placeholder" => 'Введите вставку',
+                                                 :"title" => 'Выберете вставки...'} %>
+                    </li>
                 <%end%>
-            <% end %>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div class="tab-pane fade" id="pictures">
-          <div class="col-lg-12">
-            <div class="form-group">
-              <%= f.label :size_ids, 'Изображения' %>
-              <div class="entity-images-container">
-                <div class="row">
-                  <div class="col-md-2">
+          <!--Вкладка "Изображения"-->
+          <div class="tab-pane fade" id="pictures">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <%= f.label :size_ids, 'Изображения' %>
+                <div class="entity-images-container">
+                  <div class="row">
+                    <div class="col-md-2">
 
-                    <button type="button" class="add-image btn btn-default btn-circle" data-toggle="modal" data-target="#dropzoneModal">
-                      <i class="fa fa-plus"></i>
-                    </button>
+                      <button type="button" class="add-image btn btn-default btn-circle" data-toggle="modal" data-target="#dropzoneModal">
+                        <i class="fa fa-plus"></i>
+                      </button>
 
-                    <!--<div class="add-image" data-toggle="modal" data-target="#dropzoneModal">-->
+                      <!--<div class="add-image" data-toggle="modal" data-target="#dropzoneModal">-->
                       <!--<i class="fa fa-plus"></i>-->
-                    <!--</div>-->
+                      <!--</div>-->
+                    </div>
+                    <% product.pictures.each do |picture| %>
+                        <div class="col-md-2 entity-image" data-picture-id="<%= picture.id %>">
+                          <div class="btn btn-danger delete-picture">Удалить</div>
+                          <%= image_tag picture.image(:thumb), class: 'img-responsive' %>
+                          <% if product.preview_id == picture.id %>
+                              <div class="btn btn-primary set-preview" style="display:none">Сделать обложкой</div>
+                              <span id="preview-tag">Обложка</span>
+                          <% else %>
+                              <div class="btn btn-primary set-preview">Сделать обложкой</div>
+                          <% end %>
+                        </div>
+                    <% end %>
                   </div>
-                  <%product.pictures.each do |picture|%>
-                      <div class="col-md-2 entity-image" data-picture-id="<%=picture.id%>">
-                        <div class="btn btn-danger delete-picture">Удалить</div>
-                        <%=image_tag picture.image(:thumb), class: 'img-responsive'%>
-                        <%if product.preview_id == picture.id%>
-                            <div class="btn btn-primary set-preview" style="display:none">Сделать обложкой</div>
-                            <span id="preview-tag">Обложка</span>
-                        <%else%>
-                            <div class="btn btn-primary set-preview">Сделать обложкой</div>
-                        <%end%>
-                      </div>
-                  <%end%>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
-  </div>
-</div>
+    </div>
 
 
 
     <div id="hidden-tags">
-      <%=f.hidden_field :preview_id, :value => product.preview_id%>
-      <%product.pictures.each do |picture|%>
-          <input type="hidden" name="picture_ids[]" id="picture_ids_<%=picture.id%>" value="<%=picture.id%>">
-      <%end%>
+      <%= f.hidden_field :preview_id, :value => product.preview_id %>
+      <% product.pictures.each do |picture| %>
+          <input type="hidden" name="picture_ids[]" id="picture_ids_<%= picture.id %>" value="<%= picture.id %>">
+      <% end %>
     </div>
     <div class="actions mb150">
       <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg mb-30' %>
@@ -254,10 +265,11 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <%= form_for ([:admin, Picture.new]), :html => {multipart: true, class: "dropzone"} do |f|  %>
+        <%= form_for ([:admin, Picture.new]), :html => {multipart: true, class: "dropzone"} do |f| %>
             <div class="fallback">
               <%= f.file_field :image %><br>
               <%= f.submit "Upload" %>

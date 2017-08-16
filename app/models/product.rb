@@ -7,8 +7,10 @@ class Product < ApplicationRecord
   belongs_to :kit, optional: true, counter_cache: true
   belongs_to :manufacturer, optional: true
   has_and_belongs_to_many :metal_types
-  has_and_belongs_to_many :incrustations
   has_and_belongs_to_many :sizes
+  has_many :incrustation_items, inverse_of: :product
+  accepts_nested_attributes_for :incrustation_items, allow_destroy: true
+  has_many :incrustations, :through => :incrustation_items
 
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.
   #TODO Удаляются именно объекты класса Picture. Необходимо явно удалять сами файлы изображений

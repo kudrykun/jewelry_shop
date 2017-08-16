@@ -1,0 +1,32 @@
+var date = new Date();
+date = date.getTime();
+$('.incrustations-area > ul').on().append(
+        '<li class="dynamically-added" style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">' +
+          '<input name="product[incrustation_items_attributes][' + date + '][_destroy]" type="hidden" value="0">' +
+          '<input class="destroy-incrustation" type="checkbox" value="1" name="product[incrustation_items_attributes][' + date + '][_destroy]" id="product_incrustation_items_attributes_' + date + '__destroy">' +
+
+          '<label for="product_incrustation_items_attributes_' + date + '_quantity">Quantity</label>' +
+          '<input type="text" name="product[incrustation_items_attributes][' + date + '][quantity]" id="product_incrustation_items_attributes_' + date + '_quantity">' +
+
+          '<label for="product_incrustation_items_attributes_' + date + '_purity">Purity</label>' +
+          '<input type="text" name="product[incrustation_items_attributes][' + date + '][purity]" id="product_incrustation_items_attributes_' + date + '_purity">' +
+
+          '<label for="product_incrustation_items_attributes_' + date + '_weight">Weight</label>' +
+          '<input type="text" name="product[incrustation_items_attributes][' + date + '][weight]" id="product_incrustation_items_attributes_' + date + '_weight">' +
+
+          '<label for="product_incrustation_items_attributes_' + date + '_incrustation_id">Материал</label>' +
+
+          '<select class="form-control selectpicker" data-live-search="true" data-width="auto" name="product[incrustation_items_attributes][' + date + '][incrustation_id]" id="product_incrustation_items_attributes_' + date + '_incrustation_id" tabindex="-98">' +
+            '<option class="bs-title-option" value="">' +
+              'Выберете вставки...' +
+            '</option>' +
+            <%@incrustations.each do |obj|%>
+            '<option value="<%=obj.id%>">' +
+              '<%=obj.title%>' +
+            '</option>' +
+            <%end%>
+          '</select>' +
+        '</li>'
+
+);
+$('.selectpicker').selectpicker('refresh');

@@ -1,3 +1,4 @@
 class Incrustation < ApplicationRecord
-  has_and_belongs_to_many :products
+  has_many :incrustation_items
+  has_many :products, :through => :incrustation_items
 end
