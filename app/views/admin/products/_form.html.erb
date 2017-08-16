@@ -154,8 +154,15 @@
             <div class="form-group">
               <%= f.label :product_type_id, 'Вид изделия' %>
               <%= f.collection_select :product_type_id, @product_types, :id, :title,
-                                      {include_blank: 'Пусто'}, class: 'form-control' %>
+                                      {include_blank: 'Пусто'}, class: 'form-control selectpicker' %>
             </div>
+            <select class="selectpicker">
+              <optgroup label="Категория name">
+                <option>Обручальные</option>
+                <option>Драгоценныe</option>
+                <option>Еще какие то</option>
+              </optgroup>
+            </select>
             <div class="form-group">
               <%= f.label :metal_type_ids, 'Тип металла' %>
               <%= f.collection_select :metal_type_ids, @metal_types, :id, :title, {},
@@ -200,7 +207,7 @@
                                                 {class: 'form-control selectpicker',
                                                  :"data-live-search" => 'true',
                                                  :"data-live-Search-Placeholder" => 'Введите вставку',
-                                                 :"title" => 'Выберете вставки...'} %>
+                                                 :"title" => 'Выберете вставку...'} %>
                     </li>
                 <%end%>
               </ul>
