@@ -1,6 +1,8 @@
-<h1>Редактирование вставки</h1>
-
+<div class="row">
+  <h1 class="panel-heading">Редактирование вставки</h1>
+</div>
+<div class="mb15">
+  <%= link_to 'Показать', admin_incrustations_path(@incrustation), class: 'btn btn-default mr10'  %>
+  <%= link_to 'Назад', admin_incrustations_path, class: 'btn btn-default'  %>
+</div>
 <%= render 'form', incrustation: @incrustation %>
-
-<%= link_to 'Показать', admin_incrustations_path(@incrustation) %> |
-<%= link_to 'Назад', admin_incrustations_path %>
