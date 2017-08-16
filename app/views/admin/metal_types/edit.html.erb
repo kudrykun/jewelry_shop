@@ -1,6 +1,8 @@
-<h1>Изменение вида металла</h1>
-
+<div class="row">
+  <h1 class="panel-heading">Редактирование типа металла</h1>
+</div>
+<div class="mb15">
+  <%= link_to 'Показать', admin_metal_type_path(@metal_type), class: 'btn btn-default mr10'  %>
+  <%= link_to 'Назад', admin_metal_types_path, class: 'btn btn-default'  %>
+</div>
 <%= render 'form', metal_type: @metal_type %>
-
-<%= link_to 'Показать', admin_metal_type_path(@metal_type) %> |
-<%= link_to 'Назад', admin_metal_types_path %>

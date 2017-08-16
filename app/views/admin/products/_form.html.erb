@@ -255,15 +255,17 @@
 
 
 
+
     <div id="hidden-tags">
       <%= f.hidden_field :preview_id, :value => product.preview_id %>
       <% product.pictures.each do |picture| %>
           <input type="hidden" name="picture_ids[]" id="picture_ids_<%= picture.id %>" value="<%= picture.id %>">
       <% end %>
     </div>
-    <div class="actions mb150">
+    <div class="actions pb30">
       <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg mb-30' %>
     </div>
+    <!--<div class="well"></div>-->
 <% end %>
 
 

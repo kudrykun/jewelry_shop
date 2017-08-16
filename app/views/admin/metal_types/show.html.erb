@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Металл</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
   <strong>Название:</strong>
   <%= @metal_type.title %>
 </p>
 
-<%= link_to 'Редактировать', edit_admin_metal_type_path(@metal_type) %> |
-<%= link_to 'Назад', admin_metal_types_path %>
+<%= link_to 'Изменить', edit_admin_metal_type_path(@metal_type),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_metal_types_path,  class: 'btn btn-default' %>
