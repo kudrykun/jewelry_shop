@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Вид изделия</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
   <strong>Название:</strong>
   <%= @product_type.title %>
 </p>
 
-<%= link_to 'Изменить', edit_admin_product_type_path(@product_type) %> |
-<%= link_to 'Назад', admin_product_types_path %>
+<%= link_to 'Изменить', edit_admin_product_type_path(@product_type),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_product_types_path,  class: 'btn btn-default' %>
