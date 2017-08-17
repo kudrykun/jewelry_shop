@@ -25,6 +25,11 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :product_type_ids, 'Виды изделий' %>
+          <%= f.collection_select :product_type_ids, @product_types, :id, :title, {}, {multiple: true, include_blank: 'Пусто', class: 'form-control'} %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :product_ids, 'Товары' %>
           <%= f.collection_select :product_ids, @products, :id, :title, {}, {multiple: true, include_blank: 'Пусто', class: 'form-control'} %>
         </div>
