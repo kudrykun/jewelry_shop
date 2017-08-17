@@ -50,7 +50,6 @@ class Admin::CategoriesController < Admin::AdminController
   # используется в форме категории
   def set_selecting_products
     @products = Product.all.order(:title)
-    @product_types = ProductType.all
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -62,7 +61,6 @@ class Admin::CategoriesController < Admin::AdminController
   def category_params
     params.require(:category).permit(:title,
                                      :priority,
-                                     :product_ids => [],
-                                     :product_type_ids => [])
+                                     :product_ids => [])
   end
 end

@@ -1,5 +1,6 @@
 class Admin::ProductTypesController < Admin::AdminController
   before_action :set_product_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_selecting_collections, only: [:new, :create, :edit, :update]
 
   # GET /product_types
   # GET /product_types.json
@@ -63,12 +64,16 @@ class Admin::ProductTypesController < Admin::AdminController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_selecting_collections
+      @categories = Category.all.order(:updated_at).order(:priority)
+    end
     def set_product_type
       @product_type = ProductType.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_type_params
-      params.require(:product_type).permit(:title)
+      params.require(:product_type).permit(:title,
+                                           :category_id)
     end
 end
