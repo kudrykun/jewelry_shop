@@ -15,17 +15,19 @@ Product.all.each do |product|
   product.metal_types = []
   product.delete
 end
+ProductType.delete_all
 Category.delete_all
 Collection.delete_all
 Kit.delete_all
 Incrustation.delete_all
-ProductType.delete_all
+IncrustationItem.delete_all
 SaleSize.delete_all
 Size.delete_all
 Incrustation.delete_all
 MetalColor.delete_all
 MetalType.delete_all
 Manufacturer.delete_all
+Picture.delete_all
 
 
 category_titles = ["Кольца","Подвески","Цепочки","Браслеты","Колье","Ожерелья","Бусы","Кулоны","Пирсы","Запонки","Иконы","Часы","Столовые приборы","Сувениры"]
@@ -36,14 +38,12 @@ size_titles = ["15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20"]
 sale_Size_percent = [10,20,30]
 metal_color_titles = ["Белый","Желтый","Красный","Розовый"]
 metal_type_titles = ["Золото(585)","Серебро(825)","Красное золото","Белое золото"]
-product_type_titles = ["Полудраг","С драгоценностями"]
 
-products_size = 200
+products_size = 100
 categories_size = category_titles.size
 collections_size = collection_titles.size
 incrustations_size = incrustation_titles.size
 kits_size = kit_titles.size
-productTypes_size = product_type_titles.size
 saleSizes_size = sale_Size_percent.size
 sizes_size = size_titles.size
 metalColors_size = metal_color_titles.size
@@ -59,6 +59,10 @@ categories = []
 categories_size.times do
   categories << Category.create(title: category_titles.delete(category_titles.sample),
                                 priority: Faker::Number.between(1,categories_size))
+  temp = categories.last
+  rand(6).times do |i|
+    temp.product_types.create(title: "#{temp.title}#Вид изделия #{i}")
+  end
 end
 
 collections = []
@@ -99,30 +103,29 @@ kits_size.times do
   Kit.reset_counters(kits.last.id, :products)
 end
 
-product_types = []
-productTypes_size.times do
-  product_types << ProductType.create(title: product_type_titles.delete(product_type_titles.sample))
-end
-
 products = []
 products_size.times do |i|
+  temp = categories.sample
   products << Product.create(title: "Товар #{i}",
-                             price: Faker::Number.between(5000,50000),
-                             price_per_gramm: Faker::Number.between(5000,50000),
+                             price: 5000 + rand(45001),
+                             price_per_gramm: 5000 + rand(45001),
                              metal_color: metalColors.sample,
                               artikul: Faker::Code.asin,
-                              weight: Faker::Number.between(5,30),
-                              product_type: product_types.sample,
+                              weight: 5 + rand(26),
+                              product_type: temp.product_types.sample,
                               sale_size: Faker::Boolean.boolean(0.2) ? saleSizes.sample : nil,
-                              new_price: Faker::Number.between(5000,50000),
+                              new_price:  5000 + rand(45001),
                               to_main_page: Faker::Boolean.boolean(0.1),
                               manufacturer: manufacturers.sample,
                               priority: Faker::Number.between(1,products_size),
                               sex: Faker::Number.between(0,3),
-                              category: categories.sample,
+                              category: temp,
                               collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil,
                               kit: Faker::Boolean.boolean(0.6) ? kits.sample : nil)
-  products.last.incrustations << incrustations.sample(Faker::Number.between(0,3))
+  temp = products.last
+  rand(6).times do
+    temp.incrustation_items.create(quantity: 1 + rand(100), weight: 0.5 + rand(4), purity: Faker::Boolean.boolean(0.5) ? 1 + rand(10) : nil, incrustation: incrustations.sample)
+  end
   products.last.metal_types << metalTypes.sample(Faker::Number.between(0,2))
   products.last.sizes << sizes.sample(Faker::Number.between(1,5))
 
