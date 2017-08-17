@@ -144,73 +144,97 @@
               </div>
               <div class="form-group">
                 <%= f.label :kit_id, 'Комплект' %>
-                <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+                <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'},
+                                        {class: 'form-control selectpicker',
+
+                                        } %>
               </div>
             </div>
           </div>
 
           <!--Вкладка "Дополнительно"-->
           <div class="tab-pane fade" id="extra">
-            <div class="form-group">
-              <%= f.label :product_type_id, 'Вид изделия' %>
-              <%= f.collection_select :product_type_id, @product_types, :id, :title,
-                                      {include_blank: 'Пусто'}, class: 'form-control selectpicker' %>
-            </div>
-            <select class="selectpicker">
-              <optgroup label="Категория name">
-                <option>Обручальные</option>
-                <option>Драгоценныe</option>
-                <option>Еще какие то</option>
-              </optgroup>
-            </select>
-            <div class="form-group">
-              <%= f.label :metal_type_ids, 'Тип металла' %>
-              <%= f.collection_select :metal_type_ids, @metal_types, :id, :title, {},
-                                      {multiple: true,
-                                       class: 'form-control selectpicker',
-                                       :"title" => 'Выберете металл...'} %>
-            </div>
-            <div class="form-group">
-              <%= f.label :metal_color_id, 'Цвет металла' %>
-              <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
-                                      {include_blank: 'Пусто'}, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :sex, 'Пол' %>
-              <% Product.sexes.keys.each do |sex| %>
-                  <%= f.label :sex, value: sex, class: 'radio-inline' do %>
-                      <%= f.radio_button :sex, sex %>
-                      <%= sex %>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <%= f.label :product_type_id, 'Вид изделия' %>
+                  <%= f.collection_select :product_type_id, @product_types, :id, :title,
+                                          {include_blank: 'Пусто'},{
+                                           class: 'form-control selectpicker',
+                                          :"data-live-search" => 'true',
+                                          :"data-live-Search-Placeholder" => 'Введите вставку',
+                                          :"title" => 'Выберете вставку...'} %>
+                </div>
+
+                <!--<select class="selectpicker">-->
+                  <!--<optgroup label="Категория name">-->
+                    <!--<option>Обручальные</option>-->
+                    <!--<option>Драгоценныe</option>-->
+                    <!--<option>Еще какие то</option>-->
+                  <!--</optgroup>-->
+                <!--</select>-->
+
+                <div class="form-group">
+                  <%= f.label :metal_type_ids, 'Тип металла' %>
+                  <%= f.collection_select :metal_type_ids, @metal_types, :id, :title, {},
+                                          {multiple: true,
+                                           class: 'form-control selectpicker',
+                                           :"title" => 'Выберете металл...'} %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :metal_color_id, 'Цвет металла' %>
+                  <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
+                                          {include_blank: 'Пусто'}, class: 'form-control selectpicker' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :sex, 'Пол' %>
+                  <% Product.sexes.keys.each do |sex| %>
+                      <%= f.label :sex, value: sex, class: 'radio-inline' do %>
+                          <%= f.radio_button :sex, sex %>
+                          <%= sex %>
+                      <% end %>
                   <% end %>
-              <% end %>
+                </div>
+              </div>
             </div>
             <!--Это нужно будет подредактировать-->
-            <div class="incrustations-area" style="background-color: rgba(2,255,0,0.3); border-radius: 5px">
-              Вставки:
-              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default'%>
-              <ul>
+            <div class="incrustations-area" >
+              <b>Вставки:</b>
+              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default btn-circle'%>
+              <!--<ul>-->
+              <div class="insertions mt10">
                 <%=f.fields_for :incrustation_items do |item|%>
-                    <li style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">
-                      <%= item.check_box :_destroy, class: 'destroy-incrustation' %>
+                  <div class="row mb15">
+                  <!--<li style="padding: 5px; margin-bottom: 5px; border-radius: 5px; list-style: none">-->
+                    <div class="col-lg-3">
 
-                      <%= item.label :quantity %>
-                      <%= item.text_field :quantity %>
-
-                      <%= item.label :purity %>
-                      <%= item.text_field :purity %>
-
-                      <%= item.label :weight %>
-                      <%= item.text_field :weight %>
+                      <%= item.check_box :_destroy, class: 'destroy-incrustation',style: 'margin:0' %>
 
                       <%= item.label :incrustation_id, 'Материал' %>
                       <%= item.collection_select :incrustation_id, @incrustations, :id, :title, {},
-                                                {class: 'form-control selectpicker',
-                                                 :"data-live-search" => 'true',
-                                                 :"data-live-Search-Placeholder" => 'Введите вставку',
-                                                 :"title" => 'Выберете вставку...'} %>
-                    </li>
+                                                 {class: 'form-control selectpicker',
+                                                  :"data-live-search" => 'true',
+                                                  :"data-live-Search-Placeholder" => 'Введите вставку',
+                                                  :"title" => 'Выберете вставку...'} %>
+                    </div>
+                    <div class="col-lg-3">
+                      <%= item.label :quantity, 'Количество' %>
+                      <%= item.text_field :quantity, class: 'form-control' %>
+
+                    </div>
+                    <div class="col-lg-3">
+                      <%= item.label :weight, 'Каратность' %>
+                      <%= item.text_field :weight, class: 'form-control' %>
+                    </div>
+                    <div class="col-lg-3">
+                      <%= item.label :purity, 'Чистота' %>
+                      <%= item.text_field :purity, class: 'form-control' %>
+                    </div>
+                  <!--</li>-->
+                  </div>
                 <%end%>
-              </ul>
+              <!--</ul>-->
+              </div>
             </div>
           </div>
 

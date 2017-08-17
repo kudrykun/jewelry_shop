@@ -1,32 +1,38 @@
 var date = new Date();
 date = date.getTime();
-$('.incrustations-area > ul').on().append(
-        '<li class="dynamically-added" style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">' +
+$('.incrustations-area > .insertions').on().append(
+//        '<li class="dynamically-added" style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">' +
+          '<div class="row dynamically-added mb15">'+
+          '<div class="col-lg-3">' +
           '<input name="product[incrustation_items_attributes][' + date + '][_destroy]" type="hidden" value="0">' +
-          '<input class="destroy-incrustation" type="checkbox" value="1" name="product[incrustation_items_attributes][' + date + '][_destroy]" id="product_incrustation_items_attributes_' + date + '__destroy">' +
-
-          '<label for="product_incrustation_items_attributes_' + date + '_quantity">Кол-во</label>' +
-          '<input type="text" name="product[incrustation_items_attributes][' + date + '][quantity]" id="product_incrustation_items_attributes_' + date + '_quantity">' +
-
-          '<label for="product_incrustation_items_attributes_' + date + '_purity">Чистота</label>' +
-          '<input type="text" name="product[incrustation_items_attributes][' + date + '][purity]" id="product_incrustation_items_attributes_' + date + '_purity">' +
-
-          '<label for="product_incrustation_items_attributes_' + date + '_weight">Каратность</label>' +
-          '<input type="text" name="product[incrustation_items_attributes][' + date + '][weight]" id="product_incrustation_items_attributes_' + date + '_weight">' +
+          '<input class="destroy-incrustation" style="margin:0" type="checkbox" value="1" name="product[incrustation_items_attributes][' + date + '][_destroy]" id="product_incrustation_items_attributes_' + date + '__destroy">' +
 
           '<label for="product_incrustation_items_attributes_' + date + '_incrustation_id">Материал</label>' +
-
-          '<select class="form-control selectpicker" data-live-search="true" data-width="auto" name="product[incrustation_items_attributes][' + date + '][incrustation_id]" id="product_incrustation_items_attributes_' + date + '_incrustation_id" tabindex="-98">' +
-            '<option class="bs-title-option" value="">' +
-              'Выберете вставку...' +
-            '</option>' +
-            <%@incrustations.each do |obj|%>
-            '<option value="<%=obj.id%>">' +
-              '<%=obj.title%>' +
-            '</option>' +
-            <%end%>
+          '<select class="form-control selectpicker" title="Выберете вставку..." data-live-search="true" data-live-Search-Placeholder="Введите вставку" name="product[incrustation_items_attributes][' + date + '][incrustation_id]" id="product_incrustation_items_attributes_' + date + '_incrustation_id" tabindex="-98">' +
+          <%@incrustations.each do |obj|%>
+          '<option value="<%=obj.id%>">' +
+          '<%=obj.title%>' +
+          '</option>' +
+          <%end%>
           '</select>' +
-        '</li>'
+          '</div>' +
+
+          '<div class="col-lg-3">' +
+          '<label for="product_incrustation_items_attributes_' + date + '_quantity">Кол-во</label>' +
+          '<input class="form-control" type="text" name="product[incrustation_items_attributes][' + date + '][quantity]" id="product_incrustation_items_attributes_' + date + '_quantity">' +
+          '</div>' +
+
+          '<div class="col-lg-3">' +
+          '<label for="product_incrustation_items_attributes_' + date + '_weight">Каратность</label>' +
+          '<input class="form-control" type="text" name="product[incrustation_items_attributes][' + date + '][weight]" id="product_incrustation_items_attributes_' + date + '_weight">' +
+          '</div>' +
+
+          '<div class="col-lg-3">' +
+          '<label for="product_incrustation_items_attributes_' + date + '_purity">Чистота</label>' +
+          '<input class="form-control" type="text" name="product[incrustation_items_attributes][' + date + '][purity]" id="product_incrustation_items_attributes_' + date + '_purity">' +
+          '</div>' +
+//        '</li>'
+        '</div>'
 
 );
 $('.selectpicker').selectpicker('refresh');
