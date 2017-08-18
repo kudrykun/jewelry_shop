@@ -12,17 +12,11 @@ Faker::Config.locale = 'ru'
 Product.all.each do |product|
   product.incrustations = []
   product.metal_types = []
-  product.shops = []
   product.delete
 end
-Shop.all.each do |shop|
-  shop.sizes = []
-  shop.delete
-end
-Size.all.each do |size|
-  size.shops = []
-  size.delete
-end
+SizeItem.delete_all
+Shop.delete_all
+Size.delete_all
 ProductType.delete_all
 Category.delete_all
 Collection.delete_all
@@ -47,7 +41,7 @@ metal_color_titles = ["Белый","Желтый","Красный","Розовы
 metal_type_titles = ["Золото(585)","Серебро(825)","Красное золото","Белое золото"]
 shop_titles = ["Магазин I","Магазин II"]
 
-products_size = 200
+products_size = 10
 categories_size = category_titles.size
 collections_size = collection_titles.size
 incrustations_size = incrustation_titles.size
@@ -141,12 +135,10 @@ products_size.times do |i|
     temp.incrustation_items.create(quantity: 1 + rand(100), weight: 0.5 + rand(4), purity: Faker::Boolean.boolean(0.5) ? 1 + rand(10) : nil, incrustation: incrustations.sample)
   end
   temp.metal_types << metalTypes.sample(rand(2))
-  temp.shops << shops
-  temp.shops.each do |shop|
-    rand(5).times do
-      shop.sizes << sizes.sample
+  shops.each do |shop|
+    rand(4).times do
+      temp.size_items.create(shop: shop, size: sizes.sample)
     end
   end
-
 end
 

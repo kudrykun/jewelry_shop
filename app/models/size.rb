@@ -1,3 +1,4 @@
 class Size < ApplicationRecord
-  has_and_belongs_to_many :shops
+  has_many :size_items
+  has_many :products, -> { distinct }, :through => :size_items
 end
