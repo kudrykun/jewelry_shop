@@ -12,6 +12,8 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :incrustation_items, allow_destroy: true
   has_many :incrustations, :through => :incrustation_items
 
+  has_and_belongs_to_many :shops
+
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.
   #TODO Удаляются именно объекты класса Picture. Необходимо явно удалять сами файлы изображений
   has_many :pictures, as: :imageable, dependent: :destroy
