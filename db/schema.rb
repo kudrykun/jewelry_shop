@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817215454) do
+ActiveRecord::Schema.define(version: 20170818170906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,13 +130,6 @@ ActiveRecord::Schema.define(version: 20170817215454) do
     t.index ["sale_size_id"], name: "index_products_on_sale_size_id", using: :btree
   end
 
-  create_table "products_shops", id: false, force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "shop_id",    null: false
-    t.index ["product_id", "shop_id"], name: "index_products_shops_on_product_id_and_shop_id", using: :btree
-    t.index ["shop_id", "product_id"], name: "index_products_shops_on_shop_id_and_product_id", using: :btree
-  end
-
   create_table "sale_sizes", force: :cascade do |t|
     t.integer  "sale_percent"
     t.datetime "created_at",   null: false
@@ -147,13 +140,6 @@ ActiveRecord::Schema.define(version: 20170817215454) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "shops_sizes", id: false, force: :cascade do |t|
-    t.integer "shop_id", null: false
-    t.integer "size_id", null: false
-    t.index ["shop_id", "size_id"], name: "index_shops_sizes_on_shop_id_and_size_id", using: :btree
-    t.index ["size_id", "shop_id"], name: "index_shops_sizes_on_size_id_and_shop_id", using: :btree
   end
 
   create_table "sizes", force: :cascade do |t|
