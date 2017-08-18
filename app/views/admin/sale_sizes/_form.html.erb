@@ -10,13 +10,17 @@
       </ul>
     </div>
   <% end %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= f.label :sale_percent, 'Размер скидки' %>
+          <%= f.text_field :sale_percent, :placeholder => 'Введите скидку  ', class: 'form-control' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :sale_percent, 'Размер скидки' %>
-    <%= f.text_field :sale_percent %>
-  </div>
+        <div class="actions">
+          <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
+        </div>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

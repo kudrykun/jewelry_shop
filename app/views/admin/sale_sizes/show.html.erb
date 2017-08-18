@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Скидка</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
-  <strong>Скидка:</strong>
+  <strong>Размер скидки:</strong>
   <%= @sale_size.sale_percent %>
 </p>
 
-<%= link_to 'Изменить', edit_admin_sale_size_path(@sale_size) %> |
-<%= link_to 'Назад', admin_sale_sizes_path %>
+<%= link_to 'Изменить', edit_admin_sale_size_path(@sale_size),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_sale_sizes_path,  class: 'btn btn-default' %>

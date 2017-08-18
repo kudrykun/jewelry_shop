@@ -1,5 +1,7 @@
-<h1>Новый размер</h1>
+<div class="row">
+  <h1 class="panel-heading">Новый размер</h1>
+</div>
+
+<%= link_to 'Назад', admin_sizes_path,  class: 'btn btn-default mb10' %>
 
 <%= render 'form', size: @size %>
-
-<%= link_to 'Назад', admin_sizes_path %>

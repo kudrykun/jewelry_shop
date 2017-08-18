@@ -1,15 +1,15 @@
 <%= form_for([:admin, kit]) do |f| %>
-    <% if kit.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(kit.errors.count, "ошибка", "ошибки") %>: не удалось сохранить:</h2>
+  <% if kit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(kit.errors.count, "ошибка", "ошибки") %>: не удалось сохранить:</h2>
 
-          <ul>
-            <% kit.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+      <ul>
+        <% kit.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <div class="row">
   <div class="col-lg-6">

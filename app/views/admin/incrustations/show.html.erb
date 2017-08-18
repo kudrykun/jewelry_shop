@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Вставка</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
   <strong>Название:</strong>
   <%= @incrustation.title %>
 </p>
 
-<%= link_to 'Изменить', edit_admin_incrustation_path(@incrustation) %> |
-<%= link_to 'Назад', admin_incrustations_path %>
+<%= link_to 'Изменить', edit_admin_incrustation_path(@incrustation),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_incrustations_path,  class: 'btn btn-default' %>

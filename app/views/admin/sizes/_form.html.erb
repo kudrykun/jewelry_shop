@@ -11,12 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :size, 'Размер' %>
-    <%= f.text_field :size %>
-  </div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label :size, 'Размер' %>
+      <%= f.text_field :size, :placeholder => 'Введите размер  ', class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
+    <div class="actions">
+      <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
+    </div>
   </div>
+</div>
+
 <% end %>

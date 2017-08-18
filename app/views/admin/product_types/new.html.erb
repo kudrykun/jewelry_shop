@@ -1,5 +1,6 @@
-<h1>Новый видизделия</h1>
+<div class="row">
+  <h1 class="panel-heading">Добавление вида изделия</h1>
+</div>
+<%= link_to 'Назад', admin_product_types_path,  class: 'btn btn-default mb10' %>
 
 <%= render 'form', product_type: @product_type %>
-
-<%= link_to 'Назад', admin_product_types_path %>
