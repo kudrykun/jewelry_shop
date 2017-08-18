@@ -162,8 +162,8 @@
                                           {include_blank: 'Пусто'},{
                                            class: 'form-control selectpicker',
                                           :"data-live-search" => 'true',
-                                          :"data-live-Search-Placeholder" => 'Введите вставку',
-                                          :"title" => 'Выберете вставку...'} %>
+                                          :"data-live-Search-Placeholder" => 'Введите вид изделия',
+                                          :"title" => 'Выберете вид...'} %>
                 </div>
 
                 <!--<select class="selectpicker">-->
@@ -204,15 +204,17 @@
               <!--<ul>-->
               <div class="insertions mt10">
                 <%=f.fields_for :incrustation_items do |item|%>
-                  <div class="row mb15">
+                  <div class="row mb15 ml20">
                   <!--<li style="padding: 5px; margin-bottom: 5px; border-radius: 5px; list-style: none">-->
                     <div class="col-lg-3">
-
-                      <%= item.check_box :_destroy, class: 'destroy-incrustation',style: 'margin:0' %>
+                      <!--<i class="fa fa-times fa-2x" aria-hidden="true"></i>-->
+                      <i class="fa fa-times fa-2x delete-insert" aria-hidden="true"></i>
+                      <%= item.check_box :_destroy, class: 'destroy-incrustation',style: 'margin:0; visibility: hidden;' %>
 
                       <%= item.label :incrustation_id, 'Материал' %>
                       <%= item.collection_select :incrustation_id, @incrustations, :id, :title, {},
                                                  {class: 'form-control selectpicker',
+                                                  id: 'insert-title',
                                                   :"data-live-search" => 'true',
                                                   :"data-live-Search-Placeholder" => 'Введите вставку',
                                                   :"title" => 'Выберете вставку...'} %>

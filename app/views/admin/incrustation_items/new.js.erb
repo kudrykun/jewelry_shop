@@ -1,14 +1,16 @@
 var date = new Date();
 date = date.getTime();
+
 $('.incrustations-area > .insertions').on().append(
 //        '<li class="dynamically-added" style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">' +
-          '<div class="row dynamically-added mb15">'+
+          '<div class="row dynamically-added mb15 ml20">'+
           '<div class="col-lg-3">' +
+          '<i class="fa fa-times fa-2x delete-insert" aria-hidden="true" ></i>' +
           '<input name="product[incrustation_items_attributes][' + date + '][_destroy]" type="hidden" value="0">' +
-          '<input class="destroy-incrustation" style="margin:0" type="checkbox" value="1" name="product[incrustation_items_attributes][' + date + '][_destroy]" id="product_incrustation_items_attributes_' + date + '__destroy">' +
+          '<input class="destroy-incrustation" style="margin:0; visibility: hidden;" type="checkbox" value="1" name="product[incrustation_items_attributes][' + date + '][_destroy]" id="product_incrustation_items_attributes_' + date + '__destroy">' +
 
           '<label for="product_incrustation_items_attributes_' + date + '_incrustation_id">Материал</label>' +
-          '<select class="form-control selectpicker" title="Выберете вставку..." data-live-search="true" data-live-Search-Placeholder="Введите вставку" name="product[incrustation_items_attributes][' + date + '][incrustation_id]" id="product_incrustation_items_attributes_' + date + '_incrustation_id" tabindex="-98">' +
+          '<select class="form-control selectpicker" id= "insert-title" title="Выберете вставку..." data-live-search="true" data-live-Search-Placeholder="Введите вставку" name="product[incrustation_items_attributes][' + date + '][incrustation_id]" id="product_incrustation_items_attributes_' + date + '_incrustation_id" tabindex="-98">' +
           <%@incrustations.each do |obj|%>
           '<option value="<%=obj.id%>">' +
           '<%=obj.title%>' +

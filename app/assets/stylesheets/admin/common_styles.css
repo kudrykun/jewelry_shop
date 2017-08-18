@@ -7,3 +7,9 @@
 .radio-input{
     margin-left: 10px;
 }
+.delete-insert{
+    position: absolute;
+    left: -25px;
+    bottom: 4px;
+    cursor: pointer;
+}
