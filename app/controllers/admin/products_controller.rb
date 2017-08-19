@@ -73,6 +73,7 @@ class Admin::ProductsController < Admin::AdminController
     @incrustations = Incrustation.all.order(:title)
     @metal_types = MetalType.all.order(:title)
     @sizes = Size.all.order(:size)
+    @shops = Shop.all.order(:updated_at)
     @metal_colors = MetalColor.all
     @product_types = ProductType.all
     @sale_sizes = SaleSize.all.order(:sale_percent)
@@ -104,6 +105,10 @@ class Admin::ProductsController < Admin::AdminController
                                                                        :weight,
                                                                        :incrustation_id,
                                                                        :_destroy],
+                                    :size_items_attributes => [:id,
+                                                               :shop_id,
+                                                               :size_id,
+                                                               :_destroy],
                                     :metal_type_ids => [],
                                     :size_ids => [],
                                     :picture_ids => [])

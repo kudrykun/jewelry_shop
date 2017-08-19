@@ -68,9 +68,16 @@
             </td>
             <td><%= product.new_price %></td>
             <td>
-              <% if product.sizes.size%>
-                  <% product.sizes.each do |size|%>
-                      <%=size.size%>
+              <% if product.shops.size %>
+                  <% product.shops.each do |shop|%>
+                      <% if product.get_shop_sizes(shop).size%>
+                          <%=shop.title%>
+                          <ul>
+                            <%product.get_shop_sizes(shop).each do |size|%>
+                            <li><%=size.size%></li>
+                            <%end%>
+                          </ul>
+                      <%end%>
                   <%end%>
               <%end%>
             </td>
