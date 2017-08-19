@@ -201,15 +201,84 @@
 
 <%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
 
+  <script type="text/javascript">
+      jQuery(function($){
+          $("#phone").mask("+7 (999) 999-9999");
+      });
+  </script>
+
+  <script>
+      // Change size
+      $(function () {
+          var $btn = $('#add-to-cart');
+          var $btn2 = $('#add-to-cart-one-click');
+          $(document).on('change', 'input[name=size].btn_set_size', function () {
+              var size = String($(this).val());
+              $btn.attr('data-size', size);
+              $btn.removeAttr('disabled');
+              $btn2.removeAttr('disabled');
+              if (typeof appOneShop !== 'undefined') {
+                  appOneShop.size_filter = size;
+              }
+              if (typeof appOneOrder !== 'undefined') {
+                  appOneOrder.size = size;
+              }
+          });
+      });
+  </script>
+
+  <script>
+      $('#product_like-slider-1').owlCarousel({
+          loop: false,
+          margin: 10,
+          dots:false,
+          responsiveClass: true,
+          responsive: {
+              0: {
+                  items: 2,
+                  nav: true
+              },
+              600: {
+                  items: 3,
+                  nav: true,
+                  loop: false
+              },
+              800: {
+                  items: 4,
+                  nav: true,
+                  loop: false
+              },
+              1280: {
+                  items: 5,
+                  nav: true,
+                  loop: false,
+                  margin: 20
+              }
+          }
+      });
+  </script>
+
 <script>
     $(document).ready(function() {
 
-        $('.button-collapse').sideNav({
-            menuWidth: 600,
-            edge: 'right',
-            closeOnClick: true,
-            draggable: true
-        });
+
+        $(document).ready(function() {
+            $('#product-slider').owlCarousel({
+                loop:false,
+                dots:true,
+                margin:0,
+                items:1,
+                responsive: {
+                    0: {
+                        nav: false
+                    },
+                    600: {
+                        nav: true
+                    }
+                }
+            });
+        })
+
 
         $('#main-slider').owlCarousel({
             items:1,

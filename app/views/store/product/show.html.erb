@@ -11,7 +11,7 @@
           <a href="index.html" class="breadcrumb">Главная</a>
           <a href="catalog.html" class="breadcrumb">Каталог</a>
           <a href="list_of_products.html" class="breadcrumb">Кольца</a>
-          <a href="#" class="breadcrumb">Кольцо с сапфирами и бриллиантами</a>
+          <%= link_to @product.title, product_path(@product), class: 'breadcrumb' %>
         </div>
       </div>
     </nav>
@@ -23,9 +23,9 @@
     <div class="col l8 m7 sm12 s12">
       <div class="row">
         <div class="col s12 heading hide-on-sm-and-up">
-          <h1 class="flow-text">Кольцо с сапфирами и бриллиантами из розового золота VALTERA</h1>
+          <h1 class="flow-text"><%= @product.title %></h1>
           <div class="rating">
-            <span class="left">Артикул: 94041</span>
+            <span class="left">Артикул: <%= @product.artikul %></span>
           </div>
         </div>
         <div class="col s12 images-box">
@@ -34,15 +34,13 @@
           </div>
           <div class="col l10 offset-l1 m12 sm8 offset-sm2 s10 offset-s1">
             <div id="product-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
-              <div class="item">
-                <img src="images/ring2.jpg">
-              </div>
-              <div class="item">
-                <img src="images/ring2(2).jpg">
-              </div>
-              <div class="item">
-                <img src="images/ring2(3).jpg">
-              </div>
+
+              <% @product.pictures.each do |picture| %>
+                  <div class="item">
+                    <%= image_tag(picture.image) %>
+                  </div>
+              <% end %>
+
             </div><!-- product-slider -->
           </div>
         </div>
@@ -52,10 +50,10 @@
     <div class="col l4 m5 sm12 s12">
       <div class="row">
         <div class="col s12 heading hide-on-sm-and-down">
-          <h1 class="flow-text">Кольцо с сапфирами и бриллиантами </h1>
+          <h1 class="flow-text"><%= @product.title %></h1>
         </div>
         <div class="col s12 rating hide-on-sm-and-down">
-          <span class="left">Артикул: 94041</span>
+          <span class="left">Артикул: <%= @product.artikul %></span>
           <span class="right">
 
               </span>
@@ -67,8 +65,12 @@
         </div>
 
         <div class="col l12 m12 s7 pull-s5 prices">
-          <span class="new-price left">13 990 ₽</span>
-          <span class="old-price"><s>19 985 ₽</s><br>СТАРАЯ ЦЕНА</span>
+          <% if @product.new_price != nil  %>
+              <span class="new-price left"><%= @product.new_price %> ₽</span>
+              <span class="old-price"><s><%= @product.price %> ₽</s><br>СТАРАЯ ЦЕНА</span>
+          <% else %>
+              <span class="new-price"><%= @product.price %> ₽</span>
+          <% end %>
         </div>
 
 
@@ -128,7 +130,9 @@
   </div><!-- row -->
 
   <div class="line hide-on-sm-and-down"></div>
+  <% if @product.kit != nil  %>
   <!--    Комплекты-->
+
   <div class="row">
     <div class="add-set-to-cart-container">
       <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item" data-set-art="94041" data-set-size="17,5" data-set-price="13990">
@@ -225,6 +229,7 @@
 
   </div><!-- row -->
   <!--    /Комплекты-->
+  <% end %>
 </div><!-- container -->
 
 
@@ -257,21 +262,44 @@
           </div>
 
           <div class="col l6 m6 s12">
-            <h6><b>Общие параметры металла</b></h6>
+            <h6><b>Общие параметры изделия</b></h6>
             <ul class="collection">
-              <li class="collection-item">Тип металла<span class="secondary-content">розовое золото</span></li>
-              <li class="collection-item">Проба<span class="secondary-content">585</span></li>
-              <li class="collection-item">Минимальный вес<span class="secondary-content">2,45 г.</span></li>
+              <% if @product.metal_types.size%>
+                  <li class="collection-item">Тип металла<span class="secondary-content">
+                    <% @product.metal_types.each do |metal_type|%>
+                        <%=metal_type.title%>,
+                    <%end%>
+                  </span></li>
+              <%end%>
+
+              <li class="collection-item">Минимальный вес<span class="secondary-content"><%= @product.weight %> г.</span></li>
             </ul>
           </div>
 
           <div class="col l6 m6 s12">
             <h6><b>Камни</b></h6>
-            <ul class="collection">
-              <li class="collection-item">Тип<span class="secondary-content">наносапфир</span></li>
-              <li class="collection-item">Количество<span class="secondary-content">2</span></li>
-              <li class="collection-item">Каратность<span class="secondary-content">0,03000 карата</span></li>
-            </ul>
+
+            <% if @product.incrustation_items.size%>
+
+                  <% @product.incrustation_items.each do |incrustation_item|%>
+                      <!--ТАКИ ВОТ ТАК ВОТ МОЖНО РАБОТАТЬ СО ВСТАВКАМИ, СЧИТАЮ СВОЮ РАБОТУ ОКОНЧЕННОЙ-->
+                    <ul class="collection">
+                      <li class="collection-item">Тип<span class="secondary-content"><%=incrustation_item.incrustation.title%></span></li>
+                      <li class="collection-item">Количество<span class="secondary-content"><%=incrustation_item.quantity%> шт.</span></li>
+                      <li class="collection-item">Каратность<span class="secondary-content"><%=incrustation_item.weight%> крт.
+                        <%if !incrustation_item.purity.blank? %>
+                          <li class="collection-item">Чистота<span class="secondary-content"><%=incrustation_item.purity%></span></li>
+                        <%end%>
+                    </ul>
+                  <%end%>
+
+            <%end%>
+
+            <!--<ul class="collection">-->
+              <!--<li class="collection-item">Тип<span class="secondary-content">наносапфир</span></li>-->
+              <!--<li class="collection-item">Количество<span class="secondary-content">2</span></li>-->
+              <!--<li class="collection-item">Каратность<span class="secondary-content">0,03000 карата</span></li>-->
+            <!--</ul>-->
           </div>
         </div>
       </div>
@@ -295,275 +323,54 @@
   <div id="you-will-like"><h5 class="line-h"><span>Вам понравятся</span></h5>
     <div id="product_like-slider-1" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-      <div class="item">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <div class="sell-out_card red">-30%</div>
+      <% @products.where(to_main_page: true).each do |product| %>
+          <div class="item">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
 
-            <figure class="hover-effect">
-              <a href="product-card.html">
-                <img src="images/4.jpg">
-              </a>
-            </figure>
-          </div>
+                <% if product.sale_size != nil && product.sale_size.sale_percent != '' %>
+                    <div class="sell-out_card red z-depth-3">
+                      -<%= product.sale_size.sale_percent %>%
+                    </div>
+                <%end%>
 
-          <div class="card-content">
-            <div class="prices-card truncate">
-              <span class="new-price">18 990 ₽</span>
-              <span class="old-price"><s>27 128  ₽</s></span>
+                <figure class="hover-effect">
+
+                  <%= link_to product_path(product) do %>
+                      <% if product.preview != nil  %>
+                          <%=image_tag product.preview.image  %>
+                      <% else %>
+                          <%=image_tag('ring2.jpg') %>
+                      <%end%>
+                  <% end %>
+
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="prices-card truncate">
+                  <% if product.new_price != nil  %>
+                    <span class="new-price"><%= product.new_price %> ₽</span>
+                    <span class="old-price"><s><%= product.price %>  ₽</s></span>
+                  <% else %>
+                      <span class="new-price"><%= product.price %> ₽</span>
+                  <% end %>
+                </div>
+                <a href="product-card.html">
+                  <h6 class="card-title">
+                    <%= product.title %>
+                  </h6>
+                </a>
+                <div class="add-discount">
+
+                </div>
+              </div>
             </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Серьги с сапфирами и бриллиантами
-              </h6>
-            </a>
-            <div class="add-discount">
-
-            </div>
-
           </div>
-        </div>
-      </div>
-      <div class="item">
+      <% end %>
 
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
 
-
-            <div class="sell-out_card red">-80%</div>
-
-
-            <figure class="hover-effect">
-              <a href="product-card.html">
-
-                <img src="images/4.jpg" alt="">
-
-              </a>
-
-            </figure>
-
-          </div>
-
-          <div class="card-content">
-
-            <div class="prices-card truncate">
-              <span class="new-price">18 990 ₽</span>
-
-              <span class="old-price"><s>94 950  ₽</s></span>
-
-            </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Серьги с сапфирами и бриллиантами
-              </h6>
-            </a>
-
-            <div class="add-discount">
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="item">
-
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-
-
-            <div class="sell-out_card red">-30%</div>
-
-
-            <figure class="hover-effect">
-              <a href="product-card.html">
-
-                <img src="images/5.jpg" alt="">
-
-              </a>
-
-            </figure>
-
-          </div>
-
-          <div class="card-content">
-
-            <div class="prices-card truncate">
-              <span class="new-price">18 990 ₽</span>
-
-              <span class="old-price"><s>27 128  ₽</s></span>
-
-            </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Серьги с сапфирами и бриллиантами
-              </h6>
-            </a>
-
-            <div class="add-discount">
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="item">
-
-
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <div class="sell-out_card red">-30%</div>
-            <figure class="hover-effect">
-              <a href="product-card.html">
-
-                <img src="images/6.jpg" alt="">
-
-              </a>
-            </figure>
-          </div>
-
-          <div class="card-content">
-            <div class="prices-card truncate">
-              <span class="new-price">10 990 ₽</span>
-
-              <span class="old-price"><s>15 700  ₽</s></span>
-
-            </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Кольцо с сапфирами и бриллиантами
-              </h6>
-            </a>
-
-            <div class="add-discount">
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="item">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-
-
-            <div class="sell-out_card red">-80%</div>
-
-
-            <figure class="hover-effect">
-              <a href="product-card.html">
-
-                <img src="images/7.jpg" alt="">
-
-              </a>
-            </figure>
-
-          </div>
-          <div class="card-content">
-            <div class="prices-card truncate">
-              <span class="new-price">18 290 ₽</span>
-
-              <span class="old-price"><s>91 450  ₽</s></span>
-            </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Серьги с сапфирами и бриллиантами
-              </h6>
-            </a>
-
-            <div class="add-discount">
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="item">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-
-            <div class="sell-out_card red">-30%</div>
-
-            <figure class="hover-effect">
-              <a href="product-card.html">
-                <img src="images/8.jpg" alt="">
-              </a>
-            </figure>
-
-          </div>
-
-          <div class="card-content">
-            <div class="prices-card truncate">
-              <span class="new-price">14 990 ₽</span>
-
-              <span class="old-price"><s>21 414  ₽</s></span>
-
-            </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Кольцо с изумрудами и бриллиантами
-              </h6>
-            </a>
-
-            <div class="add-discount">
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="item">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-
-
-            <div class="sell-out_card red">-80%</div>
-
-
-            <figure class="hover-effect">
-              <a href="product-card.html">
-
-                <img src="images/3.jpg" alt="">
-
-              </a>
-            </figure>
-
-          </div>
-
-          <div class="card-content">
-
-            <div class="prices-card truncate">
-              <span class="new-price">18 990 ₽</span>
-
-              <span class="old-price"><s>94 950  ₽</s></span>
-
-            </div>
-
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Кольцо с изумрудами и бриллиантами
-              </h6>
-            </a>
-
-            <div class="add-discount">
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
 
     </div><!-- owl -->
   </div>
 </div><!-- container -->
+

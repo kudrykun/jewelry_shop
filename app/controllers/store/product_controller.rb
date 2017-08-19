@@ -6,6 +6,7 @@ class Store::ProductController < Store::StoreController
   end
 
   def show
+    @products = Product.where(to_main_page: true)
   end
 
   private
