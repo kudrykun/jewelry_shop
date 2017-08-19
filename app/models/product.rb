@@ -11,6 +11,7 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :incrustation_items, allow_destroy: true
   has_many :incrustations, :through => :incrustation_items
   has_many :size_items, inverse_of: :product
+  accepts_nested_attributes_for :size_items, allow_destroy: true
   has_many :sizes, -> { distinct }, :through => :size_items
   has_many :shops, -> { distinct }, :through => :size_items
 

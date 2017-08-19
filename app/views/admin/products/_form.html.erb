@@ -60,7 +60,37 @@
                                          :"data-live-Search-Placeholder" => 'Введите размер',
                                          :"title" => 'Выберете размеры...'} %>
               </div>
-            </div>
+
+              <div class="form-group">
+                Размеры в магазинах:
+                <ul>
+                  <% @shops.each do |shop|%>
+                    <%=shop.title%>:
+                    <li id="shop_<%=shop.id%>_sizes">
+                      <div class="hidden-fields">
+                        <%= f.fields_for :size_items, f.object.size_items.where(shop: shop) do |item| %>
+                            <div id="shop_<%=item.object.shop.id%>_size_<%=item.object.size.id%>">
+                              <%=item.hidden_field :shop_id%>
+                              <%=item.hidden_field :size_id%>
+                              <%=item.check_box :_destroy, hidden: true%>
+                            </div>
+                        <% end %>
+                      </div>
+                      <!--Класс shop-sizes испольщуется для поиска в shops_sizes.js-->
+                      <select multiple="multiple" class="form-control selectpicker shop-sizes" data-shop-id="<%=shop.id%>" data-live-search="true" data-live-search-placeholder="Введите размер" title="Выберете размеры...">
+                        <% @sizes.each do |size| %>
+                            <%if f.object.size_items.where(shop: shop, size: size).empty?%>
+                                <option value="<%=size.id%>"><%=size.size%></option>
+                            <%else%>
+                                <option selected="selected" value="<%=size.id%>"><%=size.size%></option>
+                            <%end%>
+                        <% end %>
+                      </select>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>p
 
             <div class="col-lg-4">
               <div class="form-group">
@@ -153,7 +183,7 @@
           <div class="tab-pane fade" id="extra">
             <div class="form-group">
               <%= f.label :product_type_id, 'Вид изделия' %>
-              <%= f.grouped_collection_select :product_type_id, @categories, :product_types, :title, :id, :title,{include_blank: 'Пусто'}, class: 'selectpicker'%>
+              <%= f.grouped_collection_select :product_type_id, @categories, :product_types, :title, :id, :title, {include_blank: 'Пусто'}, class: 'selectpicker' %>
             </div>
             <div class="form-group">
               <%= f.label :metal_type_ids, 'Тип металла' %>
@@ -179,9 +209,9 @@
             <!--Это нужно будет подредактировать-->
             <div class="incrustations-area" style="background-color: rgba(2,255,0,0.3); border-radius: 5px">
               Вставки:
-              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default'%>
+              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default' %>
               <ul>
-                <%=f.fields_for :incrustation_items do |item|%>
+                <%= f.fields_for :incrustation_items do |item| %>
                     <li style="padding: 5px; margin-bottom: 5px; background-color: rgba(2,255,0,0.5); border-radius: 5px">
                       <%= item.check_box :_destroy, class: 'destroy-incrustation' %>
 
@@ -196,12 +226,12 @@
 
                       <%= item.label :incrustation_id, 'Материал' %>
                       <%= item.collection_select :incrustation_id, @incrustations, :id, :title, {},
-                                                {class: 'form-control selectpicker',
-                                                 :"data-live-search" => 'true',
-                                                 :"data-live-Search-Placeholder" => 'Введите вставку',
-                                                 :"title" => 'Выберете вставку...'} %>
+                                                 {class: 'form-control selectpicker',
+                                                  :"data-live-search" => 'true',
+                                                  :"data-live-Search-Placeholder" => 'Введите вставку',
+                                                  :"title" => 'Выберете вставку...'} %>
                     </li>
-                <%end%>
+                <% end %>
               </ul>
             </div>
           </div>
