@@ -1,14 +1,368 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Store</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <%= favicon_link_tag 'elit-logo-2.png', type: 'image/png' %>
+  <%= favicon_link_tag 'elit-logo-2.png', rel: 'apple-touch-icon', type: 'image/png' %>
+  <meta name="theme-color" content="#c62828">
+  <title>Элит Ювелир - Главная</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'store/store', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
+
 </head>
 
-<body>
+<body class="nav-on-left">
+<header class="cd-main-header">
+  <nav role="navigation" class="hide-on-small-only">
+    <div class="nav-wrapper container">
+      <ul class="left">
+        <li><!--  <i class="material-icons">location_on</i>-->
+          <a href="#">Железногорск,<b> Курская область</b></a>
+        </li>
+      </ul>
+      <ul class="right">
+        <li><a href="#">Обмен</a></li>
+        <li><a href="#">Скупка</a></li>
+        <li><a href="#">Магазины</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-box z-depth-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l1 m1 sm1 s4 hide-on-large-only">
+          <a class="cd-nav-trigger left" href="#cd-primary-nav">
+            <span></span></a>
+          <a class="cd-search-trigger left hide-on-small-and-up" href="/#cd-search"><span></span></a>
+        </div>
+        <div class="col push-l3 l6 m4 sm4 s4 logo-box center-on-small-only">
+          <!--                  <a href="index.html" class="logo-center flow-text">Элит</a>-->
+
+          <%= link_to root_path, class: 'logo' do %>
+              <%= image_tag('elit-logo.svg', class: 'hide-on-small-and-up') %>
+              <%= image_tag('elit-main.svg', class: 'hide-on-small-only') %>
+          <% end %>
+
+
+        </div>
+        <div class="col pull-l6 l3 m4 sm4 hide-on-small-only phone-center">
+          <span class="phone flow-text">8 919 173 2000</span>
+        </div>
+        <div id="notification-bar" class="col l3 m3 sm3 s4">
+          <a href="#cd-search" class="cd-search-trigger right hide-on-small-only"><span></span></a>
+          <a href="#" data-activates="slide-out" class="right button-collapse basket_button">
+            <span class="amount">1</span>
+
+            <%= image_tag('menu/shopping-bag.svg', height: '100%' ) %>
+          </a>
+          <a href="tel:+79191732000" class="right basket_button hide-on-small-and-up">
+            <%= image_tag('menu/phone.png', width: '24' ) %>
+          </a>
+        </div>
+      </div><!-- row -->
+    </div><!-- container -->
+  </div>
+
+  <!-- Мобильный навигатор -->
+  <div class="cd-nav hide-on-large-only">
+    <ul id="cd-primary-nav" class="cd-primary-nav">
+      <li class="has-children">
+        <a href="#"><i class="material-icons">dehaze</i> КАТАЛОГ</a>
+        <ul class="cd-secondary-nav is-hidden">
+
+          <!-- Начало каталога -->
+
+          <li class="go-back"><a href="#">Назад</a></li>
+          <li class="see-all grey lighten-4"><a href=catalog.html>Весь каталог</a></li>
+
+          <%= render 'store/main_page/links-navbar' %>
+
+          <!-- Название категории (Первый уровень)-->
+          <li class="has-children">
+            <a href="#">Кольца</a>
+
+            <!-- Второй уровень -->
+            <ul class="cd-secondary-nav is-hidden">
+              <li class="go-back">
+                <a href="#">Каталог</a>    <!--Ко всем категориям навигации-->
+              </li>
+
+              <li class="see-all grey lighten-4">
+                <a href="#">Все кольца</a>  <!-- В категорию -->
+              </li>
+
+              <!-- Виды, размеры  (если есть) -->
+              <li class="has-children">
+                <a href="/#">Вид украшения</a> <!-- Название фильтра (Вид, вставка, цена) -->
+
+                <!-- Третий уровень -->
+                <ul class="is-hidden">
+                  <li class="go-back"><a href="#">Кольца</a></li>  <!-- В категорию навигации (Имя категории)-->
+                  <li class="see-all grey lighten-4">
+                    <a href="#">Все кольца</a> <!-- В категорию -->
+                  </li>
+                  <li><a href="#">Обручальные кольца</a></li> <!-- Cсылка в каталог с этим фильтром -->
+                  <li><a href="#">Помолвочные кольца</a></li>
+                  <li><a href="#">Кольца с фианитами</a></li>
+                  <li><a href="#">Кольца с эмалью</a></li>
+                  <li><a href="#">Кольца из керамики</a></li>
+                </ul>
+                <!-- /Третий уровень -->
+              </li>
+              <!-- /Виды, размеры  (если есть) -->
+
+
+              <li class="has-children">
+                <a href="/#">Материал</a>
+                <ul class="is-hidden">
+                  <li class="go-back"><a href="#">Кольца</a></li>
+                  <li class="see-all grey lighten-4"><a href="/catalogue/rings.html">Все кольца</a></li>
+                  <li><a data-text="Белое золото" href="/catalogue/rings/beloe-zoloto.html"><span>Кольца из белого золота</span></a></li><li><a data-text="Желтое золото" href="/catalogue/rings/jeltoe-zoloto.html"><span>Кольца из желтого золота</span></a></li><li><a data-text="Розовое золото" href="/catalogue/rings/rozovoe-zoloto.html"><span>Кольца из розового золота</span></a></li>
+                  <li><a data-text="Серебро" href="/catalogue/rings/serebro.html"><span>Серебряные кольца</span></a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="/#">Вставка</a>
+                <ul class="is-hidden">
+                  <li class="go-back"><a href="#">Кольца</a></li>
+                  <li class="see-all grey lighten-4"><a href="/catalogue/rings.html">Все кольца</a></li>
+                  <li><a data-text="Аметист" href="/catalogue/rings/ametist.html"><span>Кольца с аметистом </span></a></li>
+                  <li><a data-text="Бриллиант" href="#"><span>Золотые кольца с бриллиантами</span></a></li>
+                  <li><a data-text="Изумруд" href="#"><span>Кольца с изумрудом </span></a></li>
+                  <li><a data-text="Кварц" href="#"><span>Кольца с кварцем </span></a></li>
+                  <li><a data-text="Сапфир" href="#"><span>Кольца с сапфиром </span></a></li>
+                  <li><a data-text="Топаз" href="#"><span>Кольца с топазом</span></a></li>
+                  <li><a data-text="Топаз London Blue" href="#"><span>Кольца с топазом London Blue </span></a></li>
+                  <li><a data-text="Жемчуг" href="#"><span>Кольца с жемчугом </span></a></li>
+                  <li><a data-text="Фианит" href="#"><span>Кольца  с фианитами</span></a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="#">Цена</a>
+                <ul class="is-hidden">
+                  <li class="go-back"><a href="#">Кольца</a></li>
+                  <li class="see-all grey lighten-4"><a href="/catalogue/rings.html">Все кольца</a></li>
+                  <li><a data-text="до 5000 руб." href="/catalogue/search/?type=rings&amp;price_from=0&amp;price_to=5000.0"><span>до 5000 руб.</span></a></li><li><a data-text="5000-10000 руб." href="/catalogue/search/?type=rings&amp;price_from=5000.0&amp;price_to=10000.0"><span>5000-10000 руб.</span></a></li><li><a data-text="10000-20000 руб." href="/catalogue/search/?type=rings&amp;price_from=10000.0&amp;price_to=20000.0"><span>10000-20000 руб.</span></a></li><li><a data-text="20000-30000 руб." href="/catalogue/search/?type=rings&amp;price_from=20000.0&amp;price_to=30000.0"><span>20000-30000 руб.</span></a></li><li><a data-text="от 30000 руб." href="/catalogue/search/?type=rings&amp;price_from=30000.0&amp;price_to=10000000.0"><span>от 30000 руб.</span></a></li>
+                </ul>
+              </li>
+
+            </ul>
+            <!-- /Второй уровень -->
+          </li>
+          <!-- /Первый уровень -->
+
+          <li><a href="#">Броши</a></li>
+
+          <li><a class="red-text" href="#">Коллекции</a></li>
+          <li><a class="red-text" href="#">Бренды</a></li>
+
+        </ul>
+      </li><!-- catalog -->
+
+      <li><a class="red-text text-darken-2" href="#">Акции</a></li>
+      <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка</a></li>
+      <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Обмен</a></li>
+
+      <li class="hide-on-small-and-up"><a class="grey-text text-darken-2" href="shops.html">Магазины</a></li>
+
+
+    </ul>
+    <!-- primary-nav -->
+  </div>
+
+  <!-- Декстоп навигатор -->
+  <div class="cd-nav hide-on-med-and-down">
+    <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" style="border-bottom: 0;">
+      <li><a href="catalog.html" class="red-text  "><b>Весь каталог</b></a></li>
+      <li><a href="#" class="red-text ">АКЦИИ</a></li>
+
+
+      <%= render 'store/main_page/links-navbar' %>
+
+      <li><a href="#">БРЕНДЫ</a></li>
+      <li><a href="/collections/">КОЛЛЕКЦИИ</a></li>
+
+
+
+    </ul> <!-- primary-nav -->
+  </div>
+
+  <ul class="cd-header-buttons"></ul>
+
+  <div id="cd-search" class="cd-search">
+    <form method="get" action="/catalogue/search/">
+      <input type="search" placeholder="Поиск по артикулу" name="search_string">
+    </form>
+  </div><!-- cd-search -->
+</header>
+
+<main class="cd-main-content" style="padding:0;">
+
+
 <%= yield %>
+
+</main>
+
+<div class="cd-overlay"></div>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row ">
+
+      <div class="col l3 m4 sm6 s12  elit-reveal">
+        <a class="logo" href="index.html"><%= image_tag'elit-logo-white' %></a>
+        <ul class="collection contacts">
+          <li class="collection-item"><i class="material-icons">call</i> <a href="tel:89191732000">8 919 173 2000</a></li>
+          <li class="collection-item"><i class="material-icons">chat</i> <a href="#">Обратная связь</a></li>
+        </ul>
+        <div class="social">
+          <a href="#"><%= image_tag('s-facebook.svg', height: '100%') %></a>
+          <a href="#"><%= image_tag('s-vk.svg', height: '100%') %></a>
+          <a href="#"><%= image_tag('s-instagram.svg', height: '100%') %></a>
+        </div>
+        <div class="about-company hide-on-large-only">
+          <h6>О Элит Ювелир</h6>
+          <ul>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Политика Конфиденциальности</a></li>
+            <li><a href="#">Карьера</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col l3 hide-on-med-and-down  elit-reveal" style="padding-top: 10px;">
+        <h6>О Элит Ювелир</h6>
+        <ul>
+          <li><a href="#">Контакты</a></li>
+          <li><a href="#">Политика Конфиденциальности</a></li>
+          <li><a href="#">Карьера</a></li>
+        </ul>
+      </div>
+
+
+      <div class="col l3 m4 sm6 s12 elit-reveal" style="padding-top: 10px;">
+        <h6>ИНФОРМАЦИЯ ПОКУПАТЕЛЮ</h6>
+
+        <ul>
+          <li><a href="#">Возврат и обмен</a></li>
+          <li><a href="#">Адреса магазинов</a></li>
+          <li><a href="#">Подарочный сертификат</a>
+        </ul>
+
+      </div>
+
+      <div class="col l3 m4 sm6 s12 elit-reveal" style="padding-top: 10px;">
+        <h6>ПОДПИСАТЬСЯ НА РАССЫЛКУ</h6>
+        <form id="email-subscribe">
+          <div class="input-field">
+            <input id="subscription-email" type="email" name="email" class="validate" required="">
+            <label data-error="Ошибка" for="subscription-email">Email</label>
+          </div>
+
+          <div>
+            <input type="checkbox" id="agree-with-terms" checked="checked" class="validate" required="">
+            <label for="agree-with-terms" class="grey-text text-lighten-1">Я согласен с условиями</label>
+          </div>
+
+          <div class="input-field center">
+            <button type="submit" class="waves-effect waves-light btn border-btn_grey">ОТПРАВИТЬ</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <span>© ООО "Элит Ювелир" 2017. Developed by iliyaking.</span>
+  </div>
+</footer>
+
+<%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
+
+<script>
+    $(document).ready(function() {
+
+        $('#main-slider').owlCarousel({
+            items:1,
+            loop:true,
+            nav:true,
+            margin:0,
+            URLhashListener:true,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            startPosition: 'URLHash'
+        });
+        $('#sale_slider-1').owlCarousel({
+            loop:true,
+            nav:true,
+            margin:0,
+            responsiveClass: true,
+            responsive: {
+                0: { items:2 },
+                600: { items:3 },
+                800: { items:3 },
+                1280: { items:4 }
+            }
+        });
+        $('#sale_slider-2').owlCarousel({
+            loop:true,
+            nav:true,
+            margin:0,
+            responsiveClass: true,
+            responsive: {
+                0: { items:2 },
+                600: { items:3 },
+                800: { items:3 },
+                1280: { items:4 }
+            }
+        });
+        $('#sale_slider-3').owlCarousel({
+            loop:true,
+            nav:true,
+            margin:0,
+            responsiveClass: true,
+            responsive: {
+                0: { items:2 },
+                600: { items:3 },
+                800: { items:3 },
+                1280: { items:4 }
+            }
+        });
+
+        $('#logo-slider').owlCarousel({
+            autoplay: true,
+            autoplayTimeout: 2000,
+            loop:true,
+            nav:false,
+            dots: false,
+            margin:0,
+            responsiveClass: true,
+            responsive: {
+                0: { items:2 },
+                700: { items:3 },
+                800: { items:3 },
+                1200: { items:4 }
+            }
+        });
+    });
+</script>
+
+<script>
+    window.sr = ScrollReveal({
+        duration: 3000,
+        viewFactor: 0.3,
+        origin: 'bottom',
+        reset: false
+    });
+    sr.reveal('.elit-reveal', {
+        duration: 1000,
+        reset: false
+    });
+
+</script>
+
 </body>
 </html>
