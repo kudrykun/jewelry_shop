@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816171840) do
+ActiveRecord::Schema.define(version: 20170818172258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,17 +130,27 @@ ActiveRecord::Schema.define(version: 20170816171840) do
     t.index ["sale_size_id"], name: "index_products_on_sale_size_id", using: :btree
   end
 
-  create_table "products_sizes", force: :cascade do |t|
-    t.integer "size_id"
-    t.integer "product_id"
-    t.index ["product_id"], name: "index_products_sizes_on_product_id", using: :btree
-    t.index ["size_id"], name: "index_products_sizes_on_size_id", using: :btree
-  end
-
   create_table "sale_sizes", force: :cascade do |t|
     t.integer  "sale_percent"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "size_items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "shop_id"
+    t.integer  "size_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_size_items_on_product_id", using: :btree
+    t.index ["shop_id"], name: "index_size_items_on_shop_id", using: :btree
+    t.index ["size_id"], name: "index_size_items_on_size_id", using: :btree
   end
 
   create_table "sizes", force: :cascade do |t|
@@ -161,6 +171,7 @@ ActiveRecord::Schema.define(version: 20170816171840) do
   add_foreign_key "products", "metal_colors"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "sale_sizes"
-  add_foreign_key "products_sizes", "products"
-  add_foreign_key "products_sizes", "sizes"
+  add_foreign_key "size_items", "products"
+  add_foreign_key "size_items", "shops"
+  add_foreign_key "size_items", "sizes"
 end
