@@ -1,25 +1,27 @@
 <div class="main-slider center-align elit-reveal">
   <div id="main-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
-    <div class="item" style="background: image-url('/banner-img/2550x560.jpg');">
+
+    <div class="item" style="background-image: url(<%= image_path('banner-img/night-sale.gif') %>);">
       <a href="#"></a>
     </div>
-    <div class="item" style="background-image: url(images/banner-img/2560x600_sT3ANHB.jpg);">
+    <div class="item" style="background-image: url(<%= image_path('banner-img/2560x600_sT3ANHB.jpg') %>) ;">
       <a href="#"></a>
     </div>
-    <div class="item" style="background-image: url(images/banner-img/bannerhd-02.jpg);">
+    <div class="item" style="background-image: url(<%= image_path('banner-img/bannerhd-02.jpg') %>);">
       <a href="#"></a>
     </div>
-    <div class="item" style="background-image: url(images/banner-img/2550x560.jpg);">
+    <div class="item" style="background-image: url(<%= image_path('banner-img/2550x560.jpg') %>);">
       <a href="#"></a>
     </div>
   </div><!-- #main-slider -->
-</div><!-- main-slider -->
-
-<div class="categories-banner elit-reveal">
-  <div>
-    <a class="waves-effect waves-red button-to-category flow-text " href="product-card.html">Перейти в каталог</a>
-  </div>
 </div>
+<!-- main-slider -->
+
+<!--<div class="categories-banner elit-reveal">-->
+  <!--<div>-->
+    <!--<a class="waves-effect waves-red button-to-category flow-text " href="product-card.html">Перейти в каталог</a>-->
+  <!--</div>-->
+<!--</div>-->
 
 <div class="container sale_sliders elit-reveal">
   <div class="row tabs-box">
@@ -42,327 +44,88 @@
     </div>
   </div><!-- row -->
   <div class="row" style="margin: 0;">
-
     <div id="price-1" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-1" class="owl-carousel owl-theme owl-loaded owl-drag">
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-30%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое
-                </h6>
-              </a>
-              <div class="add-discount">
 
+        <% @products.where(to_main_page: true).each do |product| %>
+          <div class="item">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+
+                  <% if product.sale_size != nil && product.sale_size.sale_percent != '' %>
+                    <div class="sell-out_card red z-depth-3">
+                      -<%= product.sale_size.sale_percent %>%
+                    </div>
+                  <%end%>
+
+                <figure class="hover-effect">
+                  <a href="#">
+                    <% if product.pictures != nil && product.pictures != '' %>
+                        <%=image_tag product.pictures.first.image %>
+                    <% else %>
+                    <%= image_tag('ring2.jpg') %>
+                    <%end%>
+                  </a>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="prices-card truncate">
+                  <span class="new-price"><%= product.new_price %> ₽</span>
+                  <span class="old-price"><s><%= product.price %>  ₽</s></span>
+                </div>
+                <a href="#">
+                  <h6 class="card-title">
+                    <%= product.title %>
+                  </h6>
+                </a>
+                <div class="add-discount">
+
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-30%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-30%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-30%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-30%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-30%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
+        <% end %>
 
       </div><!-- owl -->
     </div><!-- price -->
     <div id="sale15" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-2" class="owl-carousel owl-theme owl-loaded owl-drag">
-        <div class="item">
 
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-15%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="pr  ices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое со скидкой
-                </h6>
-              </a>
-              <div class="add-discount">
+        <% @products.where(to_main_page: true) do |product| %>
+            <div class="item">
+              <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-15%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое со скидкой
-                </h6>
-              </a>
-              <div class="add-discount">
+                  <% if product.sale_size != nil && product.sale_size.sale_percent != '' %>
+                      <div class="sell-out_card red z-depth-3">
+                        -<%= product.sale_size.sale_percent %>%
+                      </div>
+                  <%end%>
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-15%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое со скидкой
-                </h6>
-              </a>
-              <div class="add-discount">
+                  <figure class="hover-effect">
+                    <a href="product-card.html">
+                      <%= image_tag('ring2.jpg') %>
+                    </a>
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="prices-card truncate">
+                    <span class="new-price"><%= product.new_price %> ₽</span>
+                    <span class="old-price"><s><%= product.price %>  ₽</s></span>
+                  </div>
+                  <a href="product-card.html">
+                    <h6 class="card-title">
+                      <%= product.title %>
+                    </h6>
+                  </a>
+                  <div class="add-discount">
 
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-15%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое со скидкой
-                </h6>
-              </a>
-              <div class="add-discount">
+        <% end %>
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-15%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое со скидкой
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-              <div class="sell-out_card red">-15%</div>
-              <figure class="hover-effect">
-                <a href="product-card.html">
-                  <img src="images/ring2.jpg">
-                </a>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="prices-card truncate">
-                <span class="new-price">2 990 ₽</span>
-                <span class="old-price"><s>5 980  ₽</s></span>
-              </div>
-              <a href="product-card.html">
-                <h6 class="card-title">
-                  Кольцо красивое со скидкой
-                </h6>
-              </a>
-              <div class="add-discount">
-
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div><!-- row -->
@@ -375,34 +138,31 @@
         <div id="logo-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
           <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-1.png"></a>
+            <a href="#"><%= image_tag('logo/logo-1.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-2.png"></a>
+            <a href="#"><%= image_tag('logo/logo-2.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-3.png"></a>
+            <a href="#"><%= image_tag('logo/logo-3.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-4.png"></a>
-          </div>
-
-          <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-5.png"></a>
-          </div>
-
-          <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-6.png"></a>
-          </div>
-
-          <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-7.png"></a>
+            <a href="#"><%= image_tag('logo/logo-4.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-8.png"></a>
+            <a href="#"><%= image_tag('logo/logo-5.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><img class="responsive-img" src="images/logo/logo-9.png"></a>
+            <a href="#"><%= image_tag('logo/logo-6.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-7.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-8.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-9.png', class: 'responsive-img') %></a>
           </div>
         </div>
       </div>
@@ -415,7 +175,7 @@
     <div></div>
     <div class="col sm4 s6 card  waves-effect">
       <figure class="effect-steve elit-reveal">
-        <img src="images/content-img/image-1.jpg" alt="...">
+        <%= image_tag('content-img/image-1.jpg') %>
         <figcaption>
           <a href="#"></a>
         </figcaption>
@@ -425,7 +185,7 @@
 
     <div class="col sm4 s6 card elit-reveal">
       <figure class="effect-steve">
-        <img src="images/content-img/image-2.jpg" alt="...">
+        <%= image_tag('content-img/image-2.jpg') %>
         <figcaption>
           <a href="#"></a>
         </figcaption>
@@ -435,7 +195,7 @@
 
     <div class="col sm4 s12 card elit-reveal">
       <figure class="effect-steve">
-        <img src="images/content-img/image-3.jpg" alt="...">
+        <%= image_tag('content-img/image-3.jpg') %>
         <figcaption>
           <a href="#"></a>
         </figcaption>
@@ -446,7 +206,7 @@
 
     <div class="col sm6 s12 card elit-reveal">
       <figure class="effect-steve">
-        <img src="images/content-img/image-5.jpg" alt="...">
+        <%= image_tag('content-img/image-5.jpg') %>
         <figcaption>
           <a href="#"></a>
         </figcaption>
@@ -456,7 +216,7 @@
 
     <div class="col sm6 s12 card elit-reveal">
       <figure class="effect-steve">
-        <img src="images/content-img/image-6.jpg" alt="...">
+        <%= image_tag('content-img/image-6.jpg') %>
         <figcaption>
           <a href="#"></a>
         </figcaption>
