@@ -59,13 +59,15 @@
                   <%end%>
 
                 <figure class="hover-effect">
-                  <a href="#">
+
+                  <%= link_to product_path(product) do %>
                     <% if product.preview != nil  %>
                         <%=image_tag product.preview.image  %>
                     <% else %>
                         <%=image_tag('ring2.jpg') %>
                     <%end%>
-                  </a>
+                  <% end %>
+
                 </figure>
               </div>
               <div class="card-content">
@@ -73,11 +75,11 @@
                   <span class="new-price"><%= product.new_price %> ₽</span>
                   <span class="old-price"><s><%= product.price %>  ₽</s></span>
                 </div>
-                <a href="#">
+                <%= link_to product_path(product) do %>
                   <h6 class="card-title">
                     <%= product.title %>
                   </h6>
-                </a>
+                <% end %>
                 <div class="add-discount">
 
                 </div>
