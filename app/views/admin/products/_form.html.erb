@@ -31,7 +31,7 @@
           <!--Вкладка "Главная"-->
           <div class="tab-pane fade active in" id="main">
             <div class="col-lg-4">
-              <div class="form-group">
+              <div class="form-group has-error">
                 <%= f.label :title, 'Название' %>
                 <%= f.text_field :title, {class: 'form-control'} %>
               </div>
@@ -156,7 +156,7 @@
                                         {include_blank: 'Пусто'},
                                         class: 'form-control' %>
               </div>
-              <div class="form-group">
+              <div class="form-group has-error">
                 <%= f.label :category_id, 'Категория' %>
                 <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
               </div>
@@ -213,7 +213,10 @@
             <!--Это нужно будет подредактировать-->
             <div class="incrustations-area">
               <b>Вставки:</b>
-              <%= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default btn-circle' %>
+              <%= link_to new_admin_incrustation_item_path, remote: true, class: 'btn btn-default' do %>
+                   Добавить <i class="fa fa-plus" aria-hidden="true"></i>
+              <% end %>
+              <!--< %= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default btn-circle'%>-->
               <!--<ul>-->
               <div class="insertions mt10">
                 <%= f.fields_for :incrustation_items do |item| %>
@@ -261,8 +264,8 @@
                   <div class="row">
                     <div class="col-md-2">
 
-                      <button type="button" class="add-image btn btn-default btn-circle" data-toggle="modal" data-target="#dropzoneModal">
-                        <i class="fa fa-plus"></i>
+                      <button type="button" class="add-image btn btn-default" data-toggle="modal" data-target="#dropzoneModal">
+                        Добавить <i class="fa fa-plus"></i>
                       </button>
 
                       <!--<div class="add-image" data-toggle="modal" data-target="#dropzoneModal">-->
