@@ -124,6 +124,8 @@
 
 <div class="cd-overlay"></div>
 
+  <%= render 'store/main_page/basket' %>
+
 <footer class="page-footer">
   <div class="container">
     <div class="row ">
@@ -201,6 +203,13 @@
 
 <script>
     $(document).ready(function() {
+
+        $('.button-collapse').sideNav({
+            menuWidth: 600,
+            edge: 'right',
+            closeOnClick: true,
+            draggable: true
+        });
 
         $('#main-slider').owlCarousel({
             items:1,

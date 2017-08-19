@@ -60,10 +60,10 @@
 
                 <figure class="hover-effect">
                   <a href="#">
-                    <% if product.pictures != nil && product.pictures != '' %>
-                        <%=image_tag product.pictures.first.image %>
+                    <% if product.preview != nil  %>
+                        <%=image_tag product.preview.image  %>
                     <% else %>
-                    <%= image_tag('ring2.jpg') %>
+                        <%=image_tag('ring2.jpg') %>
                     <%end%>
                   </a>
                 </figure>
@@ -91,7 +91,7 @@
     <div id="sale15" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-2" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-        <% @products.where(to_main_page: true) do |product| %>
+        <% @products.where(to_main_page: true).each do |product| %>
             <div class="item">
               <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
@@ -130,6 +130,14 @@
     </div>
   </div><!-- row -->
 </div><!-- container -->
+
+
+<!--< % @products.pictures.each do |picture| %>-->
+    <!--< %= picture.image %>-->
+<!--< % end%>-->
+
+
+
 
 <div class="logo-slider ">
   <div class="container">
