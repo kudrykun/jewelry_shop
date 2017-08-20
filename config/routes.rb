@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :metal_types
     resources :kits
     resources :manufacturers
+    resources :shops
   end
 
 end
