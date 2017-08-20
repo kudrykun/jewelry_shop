@@ -156,8 +156,15 @@
               Цена за комплект</h6>
           </div>
           <div class="col s12 prices">
-            <span class="new-price">33 880 ₽</span><br>
-            <span class="old-price"><s>48 399 ₽</s><br>СТАРАЯ ЦЕНА</span>
+
+            <% if @product.kit.getKitNewPrice != nil  %>
+                <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
+                <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
+            <% else %>
+                <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
+            <% end %>
+
+            
           </div>
           <div class="col s12">
             <a class="waves-effect waves-light btn border-btn" onclick="appBasket.addSetToCart(this)">ПОКАЗАТЬ КОМПЛЕКТ</a>
