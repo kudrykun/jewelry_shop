@@ -94,21 +94,27 @@
         <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
           <p><b>Выберите размер:</b></p>
 
-          <label class="btn border-btn">
-            <input type="radio" name="size" value="16,5" class="btn_set_size" id="size_">
-            16,5</label>
 
-          <label class="btn border-btn">
-            <input type="radio" name="size" value="17" class="btn_set_size" id="size_">
-            17</label>
+          <% if @product.shops.size %>
+              <% @product.shops.each do |shop|%>
+                  <% if @product.get_shop_sizes(shop).size%>
+                      <%=shop.title%>
+                      <ul>
+                        <% @product.get_shop_sizes(shop).each do |size|%>
+                            <label class="btn border-btn">
+                              <input type="radio" name="size" class="btn_set_size" id="size_"><%=size.size%>
+                            </label>
+                        <%end%>
+                      </ul>
+                  <%end%>
+              <%end%>
+          <%end%>
 
-          <label class="btn border-btn">
-            <input type="radio" name="size" value="17,5" class="btn_set_size" id="size_">
-            17,5</label>
+          <!--<label class="btn border-btn">-->
+            <!--<input type="radio" name="size" value="16,5" class="btn_set_size" id="size_">-->
+            <!--16,5</label>-->
 
-          <label class="btn border-btn">
-            <input type="radio" name="size" value="18" class="btn_set_size" id="size_">
-            18</label>
+
 
         </div>
         <div class="col l12 m12 sm12 s12 btn_basket-group">
