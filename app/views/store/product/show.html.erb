@@ -142,33 +142,12 @@
 
   <div class="row">
     <div class="add-set-to-cart-container">
-      <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item" data-set-art="94041" data-set-size="17,5" data-set-price="13990">
 
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <div class="sell-out_card red">-30%</div>
-            <figure class="hover-effect">
-              <a href="product-card.html">
-                <img src="images/ring3.jpg">
-              </a>
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="prices-card truncate">
-              <span class="new-price">13 990 ₽</span>
-              <span class="old-price"><s>19 985  ₽</s></span>
-            </div>
-            <a href="product-card.html">
-              <h6 class="card-title">
-                Кольцо с сапфирами и бриллиантами
-              </h6>
-            </a>
-            <div class="add-discount">
-
-            </div>
-          </div>
+      <% @product.kit.products.each do |product| %>
+        <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item">
+          <%= render '/store/main_page/product-card', product: product %>
         </div>
-      </div>
+      <% end %>
 
       <div class="col l3 m3 hide-on-sm-and-down price_set">
         <div class="row center-align">
@@ -342,46 +321,7 @@
 
       <% @products.where(to_main_page: true).each do |product| %>
           <div class="item">
-            <div class="card">
-              <div class="card-image waves-effect waves-block waves-light">
-
-                <% if product.sale_size != nil && product.sale_size.sale_percent != '' %>
-                    <div class="sell-out_card red z-depth-3">
-                      -<%= product.sale_size.sale_percent %>%
-                    </div>
-                <%end%>
-
-                <figure class="hover-effect">
-
-                  <%= link_to product_path(product) do %>
-                      <% if product.preview != nil  %>
-                          <%=image_tag product.preview.image  %>
-                      <% else %>
-                          <%=image_tag('ring2.jpg') %>
-                      <%end%>
-                  <% end %>
-
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="prices-card truncate">
-                  <% if product.new_price != nil  %>
-                    <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span>
-                    <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
-                  <% else %>
-                      <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
-                  <% end %>
-                </div>
-                <%= link_to product_path(product) do %>
-                    <h6 class="card-title">
-                      <%= product.title %>
-                    </h6>
-                <% end %>
-                <div class="add-discount">
-
-                </div>
-              </div>
-            </div>
+            <%= render '/store/main_page/product-card', product: product %>
           </div>
       <% end %>
 
