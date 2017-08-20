@@ -1300,7 +1300,7 @@ figure.effect-steve h6 {
     z-index: 2;
     border-radius: 50%;
     top: 0;
-    right: 1px;
+    right: 6px;
     opacity: 0.75;
 }
 
@@ -1374,7 +1374,7 @@ nav .nav-wrapper .col {
 }
 .catalog-back i {
     height: 30px !important;
-    line-height: 30px !important;
+    line-height: 28px !important;
     margin-right: 10px !important;
 }
 .catalog-banner_in .catalog-back i {
@@ -2850,7 +2850,7 @@ footer.page-footer [type="checkbox"]:checked + label:before {
 }
 
 footer.page-footer .s12 {
-    padding-bottom: 2rem;
+    /*padding-bottom: 2rem;*/
 }
 footer.page-footer ul li {
     line-height: 1rem;

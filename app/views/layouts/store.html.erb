@@ -35,7 +35,7 @@
           <div class="col l1 m1 sm1 s4 hide-on-large-only">
             <a class="cd-nav-trigger left" href="#cd-primary-nav">
               <span></span></a>
-            <a class="cd-search-trigger left hide-on-small-and-up" href="/#cd-search"><span></span></a>
+            <a class="cd-search-trigger left hide-on-small-and-up" href="#cd-search"><span></span></a>
           </div>
           <div class="col push-l3 l6 m4 sm4 s4 logo-box center-on-small-only">
 
@@ -93,13 +93,12 @@
 
     <!-- Декстоп навигатор -->
     <div class="cd-nav hide-on-med-and-down">
-      <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" style="border-bottom: 0;">
-        <li><a href="catalog.html" class="red-text  "><b>Весь каталог</b></a></li>
+      <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
+
         <li><a href="#" class="red-text ">АКЦИИ</a></li>
 
-
         <%= render 'store/main_page/links-navbar' %>
-
+        <li><a href="#" class="">Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i></a></li>
         <!--<li><a href="#">БРЕНДЫ</a></li>-->
         <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
 
@@ -109,7 +108,7 @@
     <ul class="cd-header-buttons"></ul>
 
     <div id="cd-search" class="cd-search">
-      <form method="get" action="/catalogue/search/">
+      <form method="get" action="#">
         <input type="search" placeholder="Поиск по артикулу" name="search_string">
       </form>
     </div><!-- cd-search -->
@@ -132,7 +131,7 @@
 
       <div class="col l3 m4 sm6 s12  elit-reveal">
         <%= link_to root_path, class: 'logo' do %>
-            <%= image_tag'elit-logo-white' %>
+            <%= image_tag'elit-logo-white.svg' %>
         <% end %>
         <ul class="collection contacts">
           <li class="collection-item"><i class="material-icons">call</i> <a href="tel:89191732000">8 919 173 2000</a></li>
@@ -143,7 +142,17 @@
           <a href="#"><%= image_tag('s-vk.svg', height: '100%') %></a>
           <a href="#"><%= image_tag('s-instagram.svg', height: '100%') %></a>
         </div>
-        <div class="about-company hide-on-large-only">
+        <!--<div class="about-company hide-on-large-only">
+          <h6>О Элит Ювелир</h6>
+          <ul>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Политика Конфиденциальности</a></li>
+            <li><a href="#">Карьера</a></li>
+          </ul>
+        </div>-->
+      </div>
+      <div class="col l6 m4 sm6 s12" style="padding: 0">
+        <div class="col l6  s12 elit-reveal" style="padding-top: 10px;">
           <h6>О Элит Ювелир</h6>
           <ul>
             <li><a href="#">Контакты</a></li>
@@ -151,28 +160,19 @@
             <li><a href="#">Карьера</a></li>
           </ul>
         </div>
+
+
+        <div class="col l6  s12 elit-reveal" style="padding-top: 10px;">
+          <h6>ИНФОРМАЦИЯ ПОКУПАТЕЛЮ</h6>
+
+          <ul>
+            <li><a href="#">Возврат и обмен</a></li>
+            <li><a href="#">Адреса магазинов</a></li>
+            <li><a href="#">Подарочный сертификат</a>
+          </ul>
+
+        </div>
       </div>
-      <div class="col l3 hide-on-med-and-down  elit-reveal" style="padding-top: 10px;">
-        <h6>О Элит Ювелир</h6>
-        <ul>
-          <li><a href="#">Контакты</a></li>
-          <li><a href="#">Политика Конфиденциальности</a></li>
-          <li><a href="#">Карьера</a></li>
-        </ul>
-      </div>
-
-
-      <div class="col l3 m4 sm6 s12 elit-reveal" style="padding-top: 10px;">
-        <h6>ИНФОРМАЦИЯ ПОКУПАТЕЛЮ</h6>
-
-        <ul>
-          <li><a href="#">Возврат и обмен</a></li>
-          <li><a href="#">Адреса магазинов</a></li>
-          <li><a href="#">Подарочный сертификат</a>
-        </ul>
-
-      </div>
-
       <div class="col l3 m4 sm6 s12 elit-reveal" style="padding-top: 10px;">
         <h6>ПОДПИСАТЬСЯ НА РАССЫЛКУ</h6>
         <form id="email-subscribe">
@@ -349,11 +349,12 @@
 <script>
     window.sr = ScrollReveal({
         duration: 3000,
-        viewFactor: 0.3,
+
         origin: 'bottom',
         reset: false
     });
     sr.reveal('.elit-reveal', {
+        viewFactor: 0.1,
         duration: 1000,
         reset: false
     });

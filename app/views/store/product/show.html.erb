@@ -4,13 +4,17 @@
       <div class="nav-wrapper">
         <!-- Mobile nav -->
         <div class="col s12 hide-on-sm-and-up">
-          <a href="catalog.html" class="catalog-back"><i class="material-icons left">keyboard_backspace</i>Кольца из розового золота</a>
+          <%= link_to root_path, class: 'catalog-back' do %>
+              <i class="material-icons left">keyboard_backspace</i>На главную
+          <% end %>
+
         </div>
         <!-- Dekstop nav-->
         <div class="col s12 hide-on-sm-and-down">
-          <a href="index.html" class="breadcrumb">Главная</a>
-          <a href="catalog.html" class="breadcrumb">Каталог</a>
-          <a href="list_of_products.html" class="breadcrumb">Кольца</a>
+
+          <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
+          <%= link_to 'Каталог', root_path, class: 'breadcrumb' %>
+          <%= link_to 'Название категории', root_path, class: 'breadcrumb' %>
           <%= link_to @product.title, product_path(@product), class: 'breadcrumb' %>
         </div>
       </div>
@@ -39,11 +43,18 @@
           <div class="col l10 offset-l1 m12 sm8 offset-sm2 s10 offset-s1">
             <div id="product-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-              <% @product.pictures.each do |picture| %>
+              <% if @product.pictures.size > 0 %>
+                <% @product.pictures.each do |picture| %>
+                    <div class="item">
+                      <%= image_tag(picture.image) %>
+                    </div>
+                <% end %>
+              <% else %>
                   <div class="item">
-                    <%= image_tag(picture.image) %>
+                  <%= image_tag 'no-image.png' %>
                   </div>
               <% end %>
+
 
             </div><!-- product-slider -->
           </div>
@@ -137,7 +148,7 @@
   </div><!-- row -->
 
   <div class="line hide-on-sm-and-down"></div>
-  <% if @product.kit != nil  %>
+  <% if @product.kit != nil && @product.kit.products.size > 1 %>
   <!--    Комплекты-->
 
   <div class="row">
@@ -164,7 +175,6 @@
                 <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
             <% end %>
 
-            
           </div>
           <div class="col s12">
             <a class="waves-effect waves-light btn border-btn" onclick="appBasket.addSetToCart(this)">ПОКАЗАТЬ КОМПЛЕКТ</a>
@@ -178,30 +188,41 @@
     <div class="col s12 hide-on-sm-and-up add-set-to-cart-container">
       <ul class="collection with-header basket">
         <li class="collection-header"><h5 class="flow-text">КОМПЛЕКТ</h5></li>
-        <li class="collection-item add-set-to-cart-item" data-set-art="94041" data-set-size="17,5" data-set-price="13990">
+
+
+        <% @product.kit.products.each do |product| %>
+        <li class="collection-item add-set-to-cart-item" >
           <div class="row">
-
             <div class="card-image col l2 m2 sm2 s3">
-              <a href="https://www.valtera.ru/catalogue/94041/">
 
-                <img src="images/ring3.jpg" width="100%">
+              <%= link_to product_path(product) do %>
+                  <% if product.preview != nil  %>
+                      <%=image_tag product.preview.image,  width:'100%'  %>
+                  <% else %>
+                      <%=image_tag 'ring2.jpg',  width:'100%' %>
+                  <%end%>
+              <% end %>
 
-              </a>
             </div>
 
             <div class="card-content col sm7 s5">
-              <a href="product-card.html">
-                <h6 class="card-title">Кольцо с сапфирами и бриллиантами</h6>
-              </a>
+              <%= link_to product_path(product) do %>
+                  <h6 class="card-title"> <%= product.title %> </h6>
+              <% end %>
             </div>
 
             <div class="prices-card col sm3 s4 right-align">
-              <span class="new-price">13 990 ₽</span><br>
-              <span class="old-price"><s>48 399 ₽</s></span>
+                <% if product.new_price != nil  %>
+                    <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span><br>
+                    <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
+                <% else %>
+                    <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
+                <% end %>
             </div>
 
           </div>
         </li>
+        <% end %>
 
         <li class="collection-item">
           <div class="row">
@@ -209,11 +230,15 @@
               <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">Цена за комплект:</h6>
             </div>
             <div class="prices-card col sm3 s4 right-align" style="margin: 0;">
-              <span class="new-price">33 880 ₽</span><br>
-              <span class="old-price"><s>48 399 ₽</s><br>СТАРАЯ ЦЕНА</span>
+              <% if @product.kit.getKitNewPrice != nil  %>
+                  <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
+                  <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
+              <% else %>
+                  <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
+              <% end %>
             </div>
             <div class="col s12 center" style="margin: 1.5rem 0 0 0;">
-              <a class="waves-effect waves-light btn border-btn" onclick="appBasket.addSetToCart(this)">ПОКАЗАТЬ КОМПЛЕКТ</a>
+              <a class="waves-effect waves-light btn border-btn" >ПОКАЗАТЬ КОМПЛЕКТ</a>
             </div>
           </div>
         </li>
@@ -287,7 +312,7 @@
           <div class="col l6 m6 s12">
             <h6><b>Камни</b></h6>
 
-            <% if @product.incrustation_items.size%>
+            <% if @product.incrustation_items.size > 0 %>
 
                   <% @product.incrustation_items.each do |incrustation_item|%>
                       <!--ТАКИ ВОТ ТАК ВОТ МОЖНО РАБОТАТЬ СО ВСТАВКАМИ, СЧИТАЮ СВОЮ РАБОТУ ОКОНЧЕННОЙ-->
