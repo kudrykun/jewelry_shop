@@ -8,13 +8,12 @@
 
 Faker::Config.locale = 'ru'
 
-
+SizeItem.delete_all
 Product.all.each do |product|
   product.incrustations = []
   product.metal_types = []
   product.delete
 end
-SizeItem.delete_all
 Shop.delete_all
 Size.delete_all
 ProductType.delete_all
@@ -41,7 +40,7 @@ metal_color_titles = ["Белый","Желтый","Красный","Розовы
 metal_type_titles = ["Золото(585)","Серебро(825)","Красное золото","Белое золото"]
 shop_titles = ["Магазин I","Магазин II"]
 
-products_size = 10
+products_size = 100
 categories_size = category_titles.size
 collections_size = collection_titles.size
 incrustations_size = incrustation_titles.size
@@ -122,7 +121,6 @@ products_size.times do |i|
                              weight: 5 + rand(26),
                              product_type: temp.product_types.sample,
                              sale_size: Faker::Boolean.boolean(0.2) ? saleSizes.sample : nil,
-                             new_price:  5000 + rand(45001),
                              to_main_page: Faker::Boolean.boolean(0.1),
                              manufacturer: manufacturers.sample,
                              priority: Faker::Number.between(1,products_size),
@@ -130,7 +128,12 @@ products_size.times do |i|
                              category: temp,
                              collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil,
                              kit: Faker::Boolean.boolean(0.6) ? kits.sample : nil)
+
   temp = products.last
+
+  if temp.sale_size != nil
+    temp.new_price = (temp.price - temp.price / 100 * temp.sale_size.sale_percent.to_f).to_i
+  end
   rand(6).times do
     temp.incrustation_items.create(quantity: 1 + rand(100), weight: 0.5 + rand(4), purity: Faker::Boolean.boolean(0.5) ? 1 + rand(10) : nil, incrustation: incrustations.sample)
   end
@@ -140,5 +143,7 @@ products_size.times do |i|
       temp.size_items.create(shop: shop, size: sizes.sample)
     end
   end
+
+  temp.save
 end
 
