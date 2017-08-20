@@ -53,7 +53,9 @@ $(function() {
         }
         else {
             $("#new-price-input").val('');
-            $("#new-price-input").attr("disabled", "disabled");
+            // я хз как заставить это работать
+            // проблема в том, что если поле блокируется, то не передается то, что в нем есть (т.е. ничего)!
+            // $("#new-price-input").prop("disabled", "true");
         }
     }
 

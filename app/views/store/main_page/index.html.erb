@@ -1,1 +1,182 @@
-Главная страницаgit 
+<div class="main-slider center-align elit-reveal">
+  <div id="main-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+    <div class="item" style="background-image: url(<%= image_path('banner-img/night-sale.gif') %>);">
+      <a href="#"></a>
+    </div>
+    <div class="item" style="background-image: url(<%= image_path('banner-img/2560x600_sT3ANHB.jpg') %>) ;">
+      <a href="#"></a>
+    </div>
+    <div class="item" style="background-image: url(<%= image_path('banner-img/bannerhd-02.jpg') %>);">
+      <a href="#"></a>
+    </div>
+    <div class="item" style="background-image: url(<%= image_path('banner-img/2550x560.jpg') %>);">
+      <a href="#"></a>
+    </div>
+  </div><!-- #main-slider -->
+</div>
+<!-- main-slider -->
+
+<!--<div class="categories-banner elit-reveal">-->
+  <!--<div>-->
+    <!--<a class="waves-effect waves-red button-to-category flow-text " href="product-card.html">Перейти в каталог</a>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="container sale_sliders elit-reveal">
+  <div class="row tabs-box">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6">
+          <a href="#price-1" class="active">Хиты <span class="hide-on-small-only">продаж</span> </a>
+        </li>
+        <li class="tab col s6">
+          <a href="#sale15" class=""><span class="hide-on-small-only">Скидка</span> 15%</a>
+        </li>
+        <!--
+                   <li class="tab col s4">
+                    <a href="https://www.valtera.ru/#sale30" class=""><span class="hide-on-small-only">Скидка</span> 30%</a>
+                  </li>
+        -->
+
+        <div class="indicator" ></div>
+      </ul>
+    </div>
+  </div><!-- row -->
+  <div class="row" style="margin: 0;">
+    <div id="price-1" class="tab-content col s10 offset-s1 active" >
+      <div id="sale_slider-1" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+        <% @products.where(to_main_page: true).each do |product| %>
+          <div class="item">
+            <%= render '/store/main_page/product-card', product: product %>
+          </div>
+        <% end %>
+
+      </div><!-- owl -->
+    </div><!-- price -->
+    <div id="sale15" class="tab-content col s10 offset-s1 active" >
+      <div id="sale_slider-2" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+        <% @products.where(to_main_page: true).each do |product| %>
+            <div class="item">
+              <%= render '/store/main_page/product-card', product: product %>
+            </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div><!-- row -->
+</div><!-- container -->
+
+
+<!--< % @products.pictures.each do |picture| %>-->
+    <!--< %= picture.image %>-->
+<!--< % end%>-->
+
+
+
+
+<div class="logo-slider ">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 elit-reveal">
+        <div id="logo-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-1.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-2.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-3.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-4.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-5.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-6.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-7.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-8.png', class: 'responsive-img') %></a>
+          </div>
+          <div class="item">
+            <a href="#"><%= image_tag('logo/logo-9.png', class: 'responsive-img') %></a>
+          </div>
+        </div>
+      </div>
+    </div><!-- row -->
+  </div><!-- container -->
+</div><!-- 100% -->
+
+<div class="container">
+  <div class="row">
+    <div></div>
+    <div class="col sm4 s6 card  waves-effect">
+      <figure class="effect-steve elit-reveal">
+        <%= image_tag('content-img/image-1.jpg') %>
+        <figcaption>
+          <a href="#"></a>
+        </figcaption>
+        <h5 class="center-align">Украшения из золота с бриллиантами</h5>
+      </figure>
+    </div>
+
+    <div class="col sm4 s6 card elit-reveal">
+      <figure class="effect-steve">
+        <%= image_tag('content-img/image-2.jpg') %>
+        <figcaption>
+          <a href="#"></a>
+        </figcaption>
+        <h5 class="center-align">Украшения с драгоценными камнями</h5>
+      </figure>
+    </div>
+
+    <div class="col sm4 s12 card elit-reveal">
+      <figure class="effect-steve">
+        <%= image_tag('content-img/image-3.jpg') %>
+        <figcaption>
+          <a href="#"></a>
+        </figcaption>
+        <h5 class="center-align">Обручальные и помолвочные кольца</h5>
+      </figure>
+    </div>
+
+
+    <div class="col sm6 s12 card elit-reveal">
+      <figure class="effect-steve">
+        <%= image_tag('content-img/image-5.jpg') %>
+        <figcaption>
+          <a href="#"></a>
+        </figcaption>
+        <h5 class="center-align">Танцующий бриллиант</h5>
+      </figure>
+    </div>
+
+    <div class="col sm6 s12 card elit-reveal">
+      <figure class="effect-steve">
+        <%= image_tag('content-img/image-6.jpg') %>
+        <figcaption>
+          <a href="#"></a>
+        </figcaption>
+        <h5 class="center-align">Гид по часам</h5>
+      </figure>
+    </div>
+
+    <!--
+          <div class="col s12 center-align">
+            <br><br>
+          </div>
+    -->
+
+
+  </div><!-- row -->
+</div><!-- container -->
+

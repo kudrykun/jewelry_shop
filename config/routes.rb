@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'admin/dashboard#index'
+  root 'store/main_page#index'
+  get 'product/:id', to: 'store/product#show', as: 'product'
+
 
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
