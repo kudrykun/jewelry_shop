@@ -1,0 +1,30 @@
+<div class="row">
+  <h1 class="panel-heading">Магазины</h1>
+  <p id="notice"><%= notice %></p>
+</div>
+
+<%= link_to 'Добавить магазин', new_admin_shop_path, class: 'btn btn-default' %><br><br>
+
+<div class="panel panel-default">
+  <table  width="100%" class="table table-striped table-bordered table-hover" >
+    <thead>
+    <tr>
+      <th>Название</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @shops.each do |shop| %>
+        <tr>
+          <td><%= shop.title %></td>
+          <td><%= link_to 'Показать', admin_shop_path(shop) %></td>
+          <td><%= link_to 'Изменить', edit_admin_shop_path(shop) %></td>
+          <td><%= link_to 'Удалить', admin_shop_path(shop), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+

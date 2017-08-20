@@ -19,7 +19,7 @@ class Admin::ShopsController < Admin::AdminController
     @shop = Shop.new(shop_params)
     respond_to do |format|
       if @shop.save
-        format.html {redirect_to admin_shop_path(@shop), notice: 'Товар был успешно создан.'}
+        format.html {redirect_to admin_shop_path(@shop), notice: 'Магазин был успешно создан.'}
         format.json {render :show, status: :created, location: @shop}
       else
         format.html {render :new}
@@ -31,7 +31,7 @@ class Admin::ShopsController < Admin::AdminController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html {redirect_to admin_product_path(@shop), notice: 'Товар был успешно обновлен.'}
+        format.html {redirect_to admin_shop_path(@shop), notice: 'Магазин был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @shop}
       else
         format.html {render :edit}
@@ -51,11 +51,11 @@ class Admin::ShopsController < Admin::AdminController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_shop
-    @shop = shop.find(params[:id])
+    @shop = Shop.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def product_params
-    params.require(:product).permit(:title)
+  def shop_params
+    params.require(:shop).permit(:title)
   end
 end
