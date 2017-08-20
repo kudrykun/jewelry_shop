@@ -4,7 +4,7 @@ class Admin::SaleSizesController < Admin::AdminController
   # GET /sale_sizes
   # GET /sale_sizes.json
   def index
-    @sale_sizes = SaleSize.all
+    @sale_sizes = SaleSize.all.order(:sale_percent)
   end
 
   # GET /sale_sizes/1
@@ -28,7 +28,7 @@ class Admin::SaleSizesController < Admin::AdminController
 
     respond_to do |format|
       if @sale_size.save
-        format.html { redirect_to admin_sale_size_path(@sale_size), notice: 'Размер скидки был создан.' }
+        format.html { redirect_to admin_sale_size_path(@sale_size), notice: 'Скидка была создана.' }
         format.json { render :show, status: :created, location: @sale_size }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::SaleSizesController < Admin::AdminController
   def update
     respond_to do |format|
       if @sale_size.update(sale_size_params)
-        format.html { redirect_to admin_sale_size_path(@sale_size), notice: 'Размер скидки был обновлен.' }
+        format.html { redirect_to admin_sale_size_path(@sale_size), notice: 'Скидка была обновлена.' }
         format.json { render :show, status: :ok, location: @sale_size }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::SaleSizesController < Admin::AdminController
   def destroy
     @sale_size.destroy
     respond_to do |format|
-      format.html { redirect_to admin_sale_sizes_url, notice: 'Размер скидки был удален.' }
+      format.html { redirect_to admin_sale_sizes_url, notice: 'Скидка была удалена.' }
       format.json { head :no_content }
     end
   end

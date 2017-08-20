@@ -95,10 +95,18 @@
   </div>
   <div class="col-lg-6">
       <strong>Вставки:</strong>
-      <% if @product.incrustations.size%>
+      <% if @product.incrustation_items.size%>
         <ul>
-          <% @product.incrustations.each do |incrustation|%>
-              <li><%=incrustation.title%></li>
+          <% @product.incrustation_items.each do |incrustation_item|%>
+              <!--ТАКИ ВОТ ТАК ВОТ МОЖНО РАБОТАТЬ СО ВСТАВКАМИ, СЧИТАЮ СВОЮ РАБОТУ ОКОНЧЕННОЙ-->
+              <li>
+                <%=incrustation_item.incrustation.title%>,
+                <%=incrustation_item.quantity%> шт.,
+                <%=incrustation_item.weight%> крт.
+                <%if !incrustation_item.purity.blank?%>
+                    , <%=incrustation_item.purity%>
+                <%end%>
+              </li>
           <%end%>
         </ul>
       <%end%>

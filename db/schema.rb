@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712104237) do
+ActiveRecord::Schema.define(version: 20170818172258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,6 @@ ActiveRecord::Schema.define(version: 20170712104237) do
     t.integer  "priority"
   end
 
-  create_table "categories_product_types", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "product_type_id"
-    t.index ["category_id"], name: "index_categories_product_types_on_category_id", using: :btree
-    t.index ["product_type_id"], name: "index_categories_product_types_on_product_type_id", using: :btree
-  end
-
   create_table "collections", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at",  null: false
@@ -37,23 +30,29 @@ ActiveRecord::Schema.define(version: 20170712104237) do
     t.integer  "priority"
   end
 
+  create_table "incrustation_items", force: :cascade do |t|
+    t.integer  "quantity"
+    t.decimal  "weight"
+    t.string   "purity"
+    t.integer  "incrustation_id"
+    t.integer  "product_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["incrustation_id"], name: "index_incrustation_items_on_incrustation_id", using: :btree
+    t.index ["product_id"], name: "index_incrustation_items_on_product_id", using: :btree
+  end
+
   create_table "incrustations", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "incrustations_products", force: :cascade do |t|
-    t.integer "incrustation_id"
-    t.integer "product_id"
-    t.index ["incrustation_id"], name: "index_incrustations_products_on_incrustation_id", using: :btree
-    t.index ["product_id"], name: "index_incrustations_products_on_product_id", using: :btree
-  end
-
   create_table "kits", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "products_count"
   end
 
   create_table "manufacturers", force: :cascade do |t|
@@ -95,8 +94,10 @@ ActiveRecord::Schema.define(version: 20170712104237) do
 
   create_table "product_types", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_product_types_on_category_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -118,20 +119,15 @@ ActiveRecord::Schema.define(version: 20170712104237) do
     t.integer  "category_id"
     t.integer  "manufacturer_id"
     t.decimal  "price_per_gramm"
+    t.integer  "preview_id"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["collection_id"], name: "index_products_on_collection_id", using: :btree
     t.index ["kit_id"], name: "index_products_on_kit_id", using: :btree
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
     t.index ["metal_color_id"], name: "index_products_on_metal_color_id", using: :btree
+    t.index ["preview_id"], name: "index_products_on_preview_id", using: :btree
     t.index ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
     t.index ["sale_size_id"], name: "index_products_on_sale_size_id", using: :btree
-  end
-
-  create_table "products_sizes", force: :cascade do |t|
-    t.integer "size_id"
-    t.integer "product_id"
-    t.index ["product_id"], name: "index_products_sizes_on_product_id", using: :btree
-    t.index ["size_id"], name: "index_products_sizes_on_size_id", using: :btree
   end
 
   create_table "sale_sizes", force: :cascade do |t|
@@ -140,18 +136,34 @@ ActiveRecord::Schema.define(version: 20170712104237) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "shops", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "size_items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "shop_id"
+    t.integer  "size_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_size_items_on_product_id", using: :btree
+    t.index ["shop_id"], name: "index_size_items_on_shop_id", using: :btree
+    t.index ["size_id"], name: "index_size_items_on_size_id", using: :btree
+  end
+
   create_table "sizes", force: :cascade do |t|
     t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "categories_product_types", "categories"
-  add_foreign_key "categories_product_types", "product_types"
-  add_foreign_key "incrustations_products", "incrustations"
-  add_foreign_key "incrustations_products", "products"
+  add_foreign_key "incrustation_items", "incrustations"
+  add_foreign_key "incrustation_items", "products"
   add_foreign_key "metal_types_products", "metal_types"
   add_foreign_key "metal_types_products", "products"
+  add_foreign_key "product_types", "categories"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "collections"
   add_foreign_key "products", "kits"
@@ -159,6 +171,7 @@ ActiveRecord::Schema.define(version: 20170712104237) do
   add_foreign_key "products", "metal_colors"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "sale_sizes"
-  add_foreign_key "products_sizes", "products"
-  add_foreign_key "products_sizes", "sizes"
+  add_foreign_key "size_items", "products"
+  add_foreign_key "size_items", "shops"
+  add_foreign_key "size_items", "sizes"
 end

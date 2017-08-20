@@ -1,27 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <h1 class="panel-heading">Комплекты</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 
-<h1>Наборы</h1>
+<%= link_to 'Добавить комплект', new_admin_kit_path, class: 'btn btn-success' %><br><br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Название</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Таблица комплектов
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <% @max_cols.times do %>
+              <th></th>
+          <%end%>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @kits.each do |kit| %>
-      <tr>
-        <td><%= kit.title %></td>
-        <td><%= link_to 'Показать', admin_kit_path(kit) %></td>
-        <td><%= link_to 'Изменить', edit_admin_kit_path(kit) %></td>
-        <td><%= link_to 'Удалить', admin_kit_path(kit), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+      <tbody>
+        <% @kits.each do |kit| %>
+          <tr>
+            <td><%= kit.title %></td>
+            <% @max_cols.times do |i|%>
+                <%if kit.products[i].nil?%>
+                    <td></td>
+                <%else%>
+                    <td><%= kit.products[i].artikul %></td>
+                <%end%>
+            <%end%>
+            <td><%= link_to 'Показать', admin_kit_path(kit) %></td>
+            <td><%= link_to 'Изменить', edit_admin_kit_path(kit) %></td>
+            <td><%= link_to 'Удалить', admin_kit_path(kit), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <br>
 
-<%= link_to 'Добавить набор', new_admin_kit_path %>
+

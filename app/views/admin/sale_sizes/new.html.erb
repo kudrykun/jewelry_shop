@@ -1,5 +1,7 @@
-<h1>Новая скидка</h1>
+<div class="row">
+  <h1 class="panel-heading">Новая скидка</h1>
+</div>
+
+<%= link_to 'Назад', admin_sale_sizes_path,  class: 'btn btn-default mb10' %>
 
 <%= render 'form', sale_size: @sale_size %>
-
-<%= link_to 'Назад', admin_sale_sizes_path %>

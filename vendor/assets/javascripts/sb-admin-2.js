@@ -14,32 +14,88 @@
 // });
 // });
 
-$(function() {
-    $("#weight-input").on('input', function() {
-        $("#price-input").val ( ($(this).val() * $("#price-per-gramm-input").val()).toFixed(2) );
-    });
-    $("#price-per-gramm-input").on('input', function() {
-        $("#price-input").val ( ($(this).val() * $("#weight-input").val()).toFixed(2) );
-    });
+//Пытался сделать очистку поля
+/*
+$(document).ready(function() {
+    $(".bs-searchbox").addClass("input-group");
+    $(".bs-searchbox").append('<span class="input-group-btn"><input class="btn btn-default" type="button"><i class="glyphicon glyphicon-remove-circle"></i></input></span>');
+    var clearBtn = $(".searchbox-clear");
+    clearBtn.on('click', (function(){
+        $('.bs-searchbox input').val('');
+    }));
 });
+*/
+
+// $(function () {
+//
+// });
 
 $(function() {
-    $('input[name="product[sale_size_id]"]:radio').click(function (){
-        var percentage = $(this).parent().attr("data-value");
-        var price = $('#price-input').val();
-        var sale_price = (price - ( price * percentage / 100 )).toFixed(2);
-        if (sale_price > 0) {
-            $("#new-price-input").val (sale_price)
-        }  else
-        {
-            $("#new-price-input").val('')
+
+    $(function () {
+        if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null){
+            $("#new-price-input").removeAttr("disabled");
         }
     });
+
+    // Считает новую цену
+    function calc_new_price() {
+        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
+        if  (percentage != null) /*& ($("#price-input").val() != '' ) )*/ {
+            $("#new-price-input").removeAttr("disabled");
+            var price = $("#price-input").val();
+            if (price != ''){
+                $("#new-price-input").val ((price - ( price * percentage / 100 )).toFixed(2));
+            }
+            else {
+                $("#new-price-input").val('');
+            }
+        }
+        else {
+            $("#new-price-input").val('');
+            // я хз как заставить это работать
+            // проблема в том, что если поле блокируется, то не передается то, что в нем есть (т.е. ничего)!
+            // $("#new-price-input").prop("disabled", "true");
+        }
+    }
+
+
+    // Считает старую цену
+    function old_price() {
+        $("#price-input").val( ($("#weight-input").val() * $("#price-per-gramm-input").val() ).toFixed(2));
+        calc_new_price();
+    }
+
+    $('input[name="product[sale_size_id]"]').click(function sale(){
+        calc_new_price();
+    });
+
+    // раскоментить если надо сделать расчет сразу после загрузки страницы
+    // old_price();
+
+    // Подсчет цены по кнопке
+    $(".calculate").click(function () {
+        old_price();
+    });
+
+    $("#weight-input").on('input', function () {
+        old_price();
+    });
+
+    $("#price-per-gramm-input").on('input', function() {
+        old_price();
+    });
+
+    $("#price-input").on("input",function(){
+        calc_new_price()
+    });
+
 });
 
 $(function() {
     $('#side-menu').metisMenu();
 });
+
 $(document).ready(function() {
     $('#dataTables-example').DataTable({
         responsive: true,
@@ -73,36 +129,52 @@ $(document).ready(function() {
             }
         }
     });
+    $('#table').css("visibility", "visible");
 });
+
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
+
+
+$(window).bind("resize load", function() {
+    var topOffset = 50;
+    var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+    if (width < 768) {
+        $('div.navbar-collapse').addClass('collapse');
+        topOffset = 100; // 2-row-menu
+    } else {
+        $('div.navbar-collapse').removeClass('collapse');
+    }
+    var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+    height = height - topOffset;
+    if (height < 1) height = 1;
+    if (height > topOffset) {
+        $("#page-wrapper").css("min-height", (height) + "px");
+    }
+
+});
+
 $(function() {
-    $(window).bind("load resize", function() {
-        var topOffset = 50;
-        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse');
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse');
-        }
-
-        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    });
-
     var url = window.location;
+    // console.log(url);
     // var element = $('ul.nav a').filter(function() {
     //     return this.href == url;
     // }).addClass('active').parent().parent().addClass('in').parent();
     var element = $('ul.nav a').filter(function() {
-        return this.href == url;
+        // alert(url);
+        // alert(this.href);
+        // return (("url").indexOf("this.href")+1) ;
+        // console.log(url.pathname);
+        // console.log(this.href);
+        // console.log(!!this.href.match(new RegExp(url.pathname, 'g')));
+        //  console.log(this.href.match( new RegExp (url.href, \/admin\/.*\/));
+        //  return (this.href.match( new RegExp( ) ));
+        var link = url.href.match(/^(.*?)admin\/([^/]*)/);
+        console.log(link[0]);
+        return this.href == link[0];
+        // return (this.href.indexOf(url) !== -1);
     }).addClass('active').parent();
 
     while (true) {
@@ -113,3 +185,5 @@ $(function() {
         }
     }
 });
+
+

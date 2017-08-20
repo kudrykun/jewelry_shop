@@ -1,6 +1,8 @@
-<h1>Editing Manufacturer</h1>
-
+<div class="row">
+  <h1 class="panel-heading">Редактирование производителя</h1>
+</div>
+<div class="mb15">
+  <%= link_to 'Показать', edit_admin_manufacturer_path(@manufacturer), class: 'btn btn-default mr10'  %>
+  <%= link_to 'Назад', admin_manufacturers_path, class: 'btn btn-default'  %>
+</div>
 <%= render 'form', manufacturer: @manufacturer %>
-
-<%= link_to 'Show', @manufacturer %> |
-<%= link_to 'Back', manufacturers_path %>

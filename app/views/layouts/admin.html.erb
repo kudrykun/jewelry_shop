@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JewelryShop</title>
+  <title>Администратор</title>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'admin-logo.png', type: 'image/png' %>
+  <%= favicon_link_tag 'admin-logo.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +89,7 @@
                 <%= link_to 'Коллекции', admin_collections_path %>
               </li>
               <li>
-                <%= link_to 'Наборы', admin_kits_path %>
+                <%= link_to 'Комплекты', admin_kits_path %>
               </li>
               <li>
               <%= link_to 'Скидки', admin_sale_sizes_path %>
@@ -97,6 +99,12 @@
                 <ul class="nav nav-third-level">
                   <li>
                     <%= link_to 'Размеры', admin_sizes_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'Производители', admin_manufacturers_path %>
+                  </li>
+                  <li>
+                    <%= link_to 'Магазины', admin_shops_path %>
                   </li>
                   <li>
                     <%= link_to 'Виды изделий', admin_product_types_path %>

@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <h1 class="panel-heading">Производитель</h1>
+  <p id="notice"><%= notice %></p>
+</div>
 <p>
-  <strong>Title:</strong>
+  <strong>Название:</strong>
   <%= @manufacturer.title %>
 </p>
 
-<%= link_to 'Edit', edit_manufacturer_path(@manufacturer) %> |
-<%= link_to 'Back', manufacturers_path %>
+<%= link_to 'Изменить', edit_admin_manufacturer_path(@manufacturer),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_manufacturers_path,  class: 'btn btn-default' %>

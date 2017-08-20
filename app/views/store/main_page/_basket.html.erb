@@ -1,0 +1,100 @@
+<!--<div id="slide-out" class="side-nav right-aligned">
+  <div id="basket" class="row">
+    <div class="col s12">
+      <ul class="collection with-header basket">
+        <li class="collection-header">
+          <a href="#" class="close right"><i class="material-icons">close</i>
+          </a>
+          <h6 class="flow-text"> Корзина</h6>
+        </li>
+        &lt;!&ndash;&ndash;&gt; &lt;!&ndash;&ndash;&gt;
+      </ul>
+      <div class="col s12 center"><br><br> <p>КОРЗИНА ПУСТА</p></div>
+    </div>
+  </div>&lt;!&ndash; row &ndash;&gt;
+</div>-->
+
+<div id="slide-out" class="side-nav right-aligned" p>
+    <div id="basket" class="row">
+        <div class="col s12">
+            <ul class="collection with-header basket">
+                <li class="collection-header">
+                    <a href="#" class="close right"><i class="material-icons">close</i></a>
+                    <h6 class="flow-text">Корзина</h6>
+                </li>
+                <li data-key="3" class="collection-item">
+
+                    <div class="row">
+                        <div class="card-image col l2 m2 sm2 s2">
+                            <a href="">
+                                <!--<img src="" width="100%">-->
+                              <%= image_tag('ring2.jpg', width: '100%') %>
+                            </a>
+                        </div>
+                        <div class="card-content col l8 m8 sm8 s7">
+                            <div class="row">
+                                <div class="col sm8 s12">
+                                    <a href="#">
+                                        <h6 class="card-title">Кольцо с бриллиантами</h6>
+                                    </a>
+                                </div>
+                                <div class="size input-field col sm4 s12">
+                                    <div class="select-wrapper">
+
+                                        <select onchange="appBasket.changeSize(this);" class="initialized">
+                                        <option value="18">18</option>
+                                        </select>
+                                    </div>
+                                    <p>Размер</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prices-card col l2 m2 sm2 s3 right-align">
+                        <span class="new-price grey-text text-darken-4">71590 ₽</span><br><br> <a href="javascript:void(null);" data-key="3" class="basket-delete">Удалить</a></div>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="row">
+                        <div class="col sm9 s8">
+                            <h6 class="grey-text text-darken-1">Стоимость товаров</h6>
+                        </div>
+                        <div class="prices-card col sm3 s4 right-align">
+                            <span class="new-price grey-text text-darken-1">71590 ₽</span>
+                        </div>
+                        <div class="col sm9 s8">
+                            <h6 class="grey-text text-darken-1">Ваша выгода</h6>
+                        </div>
+                        <div class="prices-card col sm3 s4 right-align">
+                            <span class="new-price grey-text text-darken-1">14318 ₽</span>
+                        </div>
+                        <div class="col sm9 s8 total_price">
+                            <h6><b>ИТОГО</b><span>(Без учета доставки)</span></h6>
+                        </div>
+                         <div class="prices-card col sm3 s4 right-align">
+                             <span class="new-price"><b>57272 ₽</b></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="collection-item">
+                   <div class="row">
+                       <div class="col sm7 s6">
+                           <div class="input-field ">
+                            <a href="#" class="white">
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                            <input id="promocode" type="text" class="validate">
+                            <label for="promocode" data-error="Неверный код" data-success="Код правильный">
+                                     Введите промокод
+                            </label>
+                            </div>
+                        </div>
+                        <div class="col sm5 s12 right-align center-on-small-only">
+                            <a href="#" class="waves-effect waves-light btn border-btn">ОФОРМИТЬ ЗАКАЗ</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--  slide-out full basket -->
