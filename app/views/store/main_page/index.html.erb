@@ -72,8 +72,12 @@
               </div>
               <div class="card-content">
                 <div class="prices-card truncate">
-                  <span class="new-price"><%= product.new_price %> ₽</span>
-                  <span class="old-price"><s><%= product.price %>  ₽</s></span>
+                  <% if product.new_price != nil  %>
+                      <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span>
+                      <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
+                  <% else %>
+                      <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
+                  <% end %>
                 </div>
                 <%= link_to product_path(product) do %>
                   <h6 class="card-title">

@@ -30,7 +30,11 @@
         </div>
         <div class="col s12 images-box">
           <div class="sell-out ">
-            <span class="red z-depth-3">-30%</span>
+
+            <% if @product.sale_size != nil && @product.sale_size.sale_percent != '' %>
+                <span class="red z-depth-3">-<%= @product.sale_size.sale_percent %>%</span>
+            <%end%>
+
           </div>
           <div class="col l10 offset-l1 m12 sm8 offset-sm2 s10 offset-s1">
             <div id="product-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
@@ -66,11 +70,13 @@
 
         <div class="col l12 m12 s7 pull-s5 prices">
           <% if @product.new_price != nil  %>
-              <span class="new-price left"><%= @product.new_price %> ₽</span>
-              <span class="old-price"><s><%= @product.price %> ₽</s><br>СТАРАЯ ЦЕНА</span>
+              <span class="new-price left"><%= number_to_currency(@product.new_price, locale: :ru) %></span>
+              <span class="old-price"><s><%= number_to_currency(@product.price, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
           <% else %>
-              <span class="new-price"><%= @product.price %> ₽</span>
+              <span class="new-price"><%= number_to_currency(@product.price, locale: :ru) %></span>
           <% end %>
+
+
         </div>
 
 
@@ -95,7 +101,7 @@
 
         </div>
         <div class="col l12 m12 sm12 s12 btn_basket-group">
-          <!--              <a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
+          <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
 
 
           <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store" data-art="94041" disabled="">ЗАБРАТЬ В МАГАЗИНЕ</a>
@@ -106,7 +112,8 @@
               <a id="buy-in-one-click" href="https://www.valtera.ru/catalogue/94041/#">
                 <i class="material-icons">phone_forwarded</i></a>
               <input id="phone" type="tel" class="validate" placeholder="+7 (___) ___-____" value="">
-              <label for="phone" class="active"><b class="grey-text text-darken-1">Купить в один клик</b> <span>( укажите свой телефон )</span></label>
+              <label for="phone" class="active"><b class="grey-text text-darken-1">Заказать звонок
+              </b> <span>( укажите свой телефон )</span></label>
             </div>
           </div>
         </div>
@@ -136,6 +143,7 @@
   <div class="row">
     <div class="add-set-to-cart-container">
       <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item" data-set-art="94041" data-set-size="17,5" data-set-price="13990">
+
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <div class="sell-out_card red">-30%</div>
@@ -230,6 +238,7 @@
   </div><!-- row -->
   <!--    /Комплекты-->
   <% end %>
+
 </div><!-- container -->
 
 
@@ -242,7 +251,7 @@
         <li class="tab col l2 m4 s4"><a href="#tab-desc" class="active">ОПИСАНИЕ</a></li>
         <li class="tab col l2 m4 s4"><a href="#tab-coll">О БРЕНДЕ</a></li>
 
-        <div class="indicator" style="right: 0px; left: 0px;"></div>
+        <!--<div class="indicator" style="right: 0px; left: 0px;"></div>-->
       </ul>
     </div>
   </div>
@@ -253,18 +262,21 @@
     <div class="row">
       <div id="tab-desc" class="tab-content active">
         <div class="row">
+          <% if @product.collection != nil && @product.collection.title != '' %>
           <div class="col s12">
             <b>Коллекция:
               <a href="#">
-                Танцующие бриллианты</a>
+                <%= @product.collection.title %>
+              </a>
             </b>
             <br><br>
+          <% end %>
           </div>
 
           <div class="col l6 m6 s12">
             <h6><b>Общие параметры изделия</b></h6>
             <ul class="collection">
-              <% if @product.metal_types.size%>
+              <% if @product.metal_types.size > 0 %>
                   <li class="collection-item">Тип металла<span class="secondary-content">
                     <% @product.metal_types.each do |metal_type|%>
                         <%=metal_type.title%>,
@@ -272,7 +284,17 @@
                   </span></li>
               <%end%>
 
-              <li class="collection-item">Минимальный вес<span class="secondary-content"><%= @product.weight %> г.</span></li>
+              <% if @product.metal_color != nil && @product.metal_color.title != '' %>
+              <li class="collection-item">Цвет металла<span class="secondary-content"><%= @product.metal_color.title %>
+              </span></li>
+              <%end%>
+
+              <% if @product.weight != nil %>
+                  <li class="collection-item">Минимальный вес<span class="secondary-content"><%= @product.weight %> г.</span></li>
+              <%end%>
+
+
+
             </ul>
           </div>
 
@@ -295,11 +317,6 @@
 
             <%end%>
 
-            <!--<ul class="collection">-->
-              <!--<li class="collection-item">Тип<span class="secondary-content">наносапфир</span></li>-->
-              <!--<li class="collection-item">Количество<span class="secondary-content">2</span></li>-->
-              <!--<li class="collection-item">Каратность<span class="secondary-content">0,03000 карата</span></li>-->
-            <!--</ul>-->
           </div>
         </div>
       </div>
@@ -349,17 +366,17 @@
               <div class="card-content">
                 <div class="prices-card truncate">
                   <% if product.new_price != nil  %>
-                    <span class="new-price"><%= product.new_price %> ₽</span>
-                    <span class="old-price"><s><%= product.price %>  ₽</s></span>
+                    <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span>
+                    <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
                   <% else %>
-                      <span class="new-price"><%= product.price %> ₽</span>
+                      <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
                   <% end %>
                 </div>
-                <a href="product-card.html">
-                  <h6 class="card-title">
-                    <%= product.title %>
-                  </h6>
-                </a>
+                <%= link_to product_path(product) do %>
+                    <h6 class="card-title">
+                      <%= product.title %>
+                    </h6>
+                <% end %>
                 <div class="add-discount">
 
                 </div>
