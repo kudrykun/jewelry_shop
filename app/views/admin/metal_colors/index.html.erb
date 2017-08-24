@@ -2,8 +2,12 @@
   <h1 class="panel-heading">Цвета металлов</h1>
   <p id="notice"><%= notice %></p>
 </div>
-
-<%= link_to 'Добавить новый цвет', new_admin_metal_color_path, class: 'btn btn-success' %><br><br>
+<%= link_to 'В товары', admin_products_path, class: 'btn btn-default' %>
+<%= link_to new_admin_metal_color_path, class: 'btn btn-success'  do %>
+    Добавить цвет
+    <i class="fa fa-plus"></i>
+<% end %>
+<br><br>
 <div class="panel panel-default">
   <table class="table table-striped table-bordered table-hover">
     <thead>

@@ -53,6 +53,12 @@ class Admin::ProductsController < Admin::AdminController
     if !@product.preview.nil?
       @product.preview.destroy
     end
+    @product.incrustation_items.each {|item| item.delete}
+    Shop.all.each do |shop|
+      @product.size_items.where(shop: shop).each do |item|
+        item.delete
+      end
+    end
     @product.destroy
     respond_to do |format|
       format.html {redirect_to admin_products_url, notice: 'Товар был успешно удален.'}
@@ -99,6 +105,9 @@ class Admin::ProductsController < Admin::AdminController
                                     :priority,
                                     :price_per_gramm,
                                     :preview_id,
+                                    :visible,
+                                    :recommendation,
+                                    :hit,
                                     :incrustation_items_attributes => [:id,
                                                                        :quantity,
                                                                        :purity,

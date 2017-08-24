@@ -2,8 +2,12 @@
   <h1 class="panel-heading">Производители</h1>
   <p id="notice"><%= notice %></p>
 </div>
-
-<%= link_to 'Добавить', new_admin_manufacturer_path, class: 'btn btn-success' %><br><br>
+<%= link_to 'В товары', admin_products_path, class: 'btn btn-default' %>
+<%= link_to new_admin_manufacturer_path, class: 'btn btn-success'  do %>
+    Добавить производителя
+    <i class="fa fa-plus"></i>
+<% end %>
+<br><br>
 <div class="panel panel-default">
   <table class="table table-striped table-bordered table-hover">
     <thead>

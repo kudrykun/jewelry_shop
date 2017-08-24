@@ -36,6 +36,10 @@ class Admin::KitsController < Admin::AdminController
   end
 
   def destroy
+    @kit.products.each do |product|
+      product.kit = nil
+      product.save
+    end
     @kit.destroy
     redirect_to admin_kits_url, notice: 'Комплект был удален.'
   end

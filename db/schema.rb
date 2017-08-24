@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818172258) do
+ActiveRecord::Schema.define(version: 20170824181355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(version: 20170818172258) do
     t.integer  "sale_size_id"
     t.boolean  "to_main_page"
     t.integer  "priority"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.decimal  "new_price"
     t.integer  "collection_id"
     t.integer  "kit_id"
@@ -120,6 +120,9 @@ ActiveRecord::Schema.define(version: 20170818172258) do
     t.integer  "manufacturer_id"
     t.decimal  "price_per_gramm"
     t.integer  "preview_id"
+    t.boolean  "visible",         default: true
+    t.boolean  "recommendation",  default: false
+    t.boolean  "hit",             default: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["collection_id"], name: "index_products_on_collection_id", using: :btree
     t.index ["kit_id"], name: "index_products_on_kit_id", using: :btree

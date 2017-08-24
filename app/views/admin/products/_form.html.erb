@@ -12,13 +12,7 @@
         </div>
     <% end %>
     <!--Управляющие кнопки-->
-    <div class="row">
-      <div class="col-lg-12">
-        <%= f.submit 'Применить', class: 'btn btn-success' %>
-        <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
-      </div>
-    </div>
-
+    <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
     <div class="row">
       <div class="panel-body">
         <!--Вкладки формы-->
@@ -41,11 +35,44 @@
                 <%= f.text_field :artikul, {class: 'form-control'} %>
               </div>
 
+              <!--<div class="material-switch pull-right">
+                <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
+                <label for="someSwitchOptionDefault" class="label-default"></label>
+              </div>-->
+
               <div class="form-group">
-                <%= f.label :to_main_page, 'На главной' %>
-                <%= f.check_box :to_main_page, {class: 'checkbox-inline'} %>
+                <%= f.label :to_main_page, 'На главную' %>
+                <div class="material-switch pull-right">
+                  <%= f.check_box :to_main_page  %>
+                  <%= f.label :to_main_page, class: 'label-primary' do %>
+                  <% end %>
+                </div>
               </div>
 
+              <div class="form-group">
+                <%= f.label :recommendation, 'Рекомендовать' %>
+                <div class="material-switch ml10 pull-right">
+                  <%= f.check_box :recommendation  %>
+                  <%= f.label :recommendation, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :hit, 'Хит' %>
+                <div class="material-switch ml10 pull-right">
+                  <%= f.check_box :hit  %>
+                  <%= f.label :hit, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :visible, 'Видимость' %>
+                <div class="material-switch ml10 pull-right">
+                  <%= f.check_box :visible  %>
+                  <%= f.label :visible, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
               <div class="form-group">
                 <%= f.label :priority, 'Приоритет' %>
                 <%= f.number_field :priority, {class: 'form-control'} %>
@@ -53,8 +80,8 @@
 
               <!--Размеры в разных магазинах-->
               <div class="form-group">
-                Размеры в магазинах:
-                <ul>
+                <b>Размеры в магазинах:</b>
+                <ul class="list-unstyled">
                   <% @shops.each do |shop| %>
                       <%= shop.title %>:
                       <li id="shop_<%= shop.id %>_sizes">
@@ -82,7 +109,6 @@
                 </ul>
               </div>
             </div>
-            p
 
             <div class="col-lg-4">
               <div class="form-group">
@@ -168,9 +194,11 @@
                 <%= f.label :kit_id, 'Комплект' %>
                 <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'},
                                         {class: 'form-control selectpicker',
-
-                                        } %>
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите комплект или артикул',
+                                         :"title" => 'Выберете комплект...'} %>
               </div>
+
             </div>
           </div>
 
@@ -197,7 +225,11 @@
                 <div class="form-group">
                   <%= f.label :metal_color_id, 'Цвет металла' %>
                   <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
-                                          {include_blank: 'Пусто'}, class: 'form-control selectpicker' %>
+                                          {include_blank: 'Пусто'},
+                                          {class: 'form-control selectpicker',
+                                          :"data-live-search" => 'true',
+                                          :"data-live-Search-Placeholder" => 'Введите цвет',
+                                          :"title" => 'Выберете цвет...'} %>
                 </div>
                 <div class="form-group">
                   <%= f.label :sex, 'Пол' %>
