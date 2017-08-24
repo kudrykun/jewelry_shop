@@ -23,7 +23,7 @@ class Product < ApplicationRecord
   enum sex: {female: 0, male: 1, unisex: 2, genderless: 3}
 
   validates :priority,numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-
+  validates :artikul, :title, :title_light, presence: true
 
   def get_shop_sizes(shop)
     a = []

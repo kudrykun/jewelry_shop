@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824145417) do
+ActiveRecord::Schema.define(version: 20170824173353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,10 @@ ActiveRecord::Schema.define(version: 20170824145417) do
     t.integer  "manufacturer_id"
     t.decimal  "price_per_gramm"
     t.integer  "preview_id"
+    t.boolean  "visible"
+    t.boolean  "recommendation"
+    t.boolean  "hit"
+    t.string   "title_light"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["collection_id"], name: "index_products_on_collection_id", using: :btree
     t.index ["kit_id"], name: "index_products_on_kit_id", using: :btree
@@ -154,9 +158,9 @@ ActiveRecord::Schema.define(version: 20170824145417) do
   end
 
   create_table "sizes", force: :cascade do |t|
-    t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "size"
   end
 
   add_foreign_key "incrustation_items", "incrustations"
