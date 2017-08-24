@@ -149,6 +149,7 @@ $(document).ready(function() {
         }
     });
     $('#table').css("visibility", "visible");
+    $('i.fa-refresh').remove();
 });
 
 
