@@ -24,7 +24,7 @@ class Admin::ProductsController < Admin::AdminController
         if params[:picture_ids]
           params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
         end
-        format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно создан.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно создан.'}
         format.json {render :show, status: :created, location: @product}
       else
         format.html {render :new}
@@ -39,7 +39,7 @@ class Admin::ProductsController < Admin::AdminController
         if params[:picture_ids]
           params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
         end
-        format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @product}
       else
         format.html {render :edit}

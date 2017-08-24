@@ -23,6 +23,19 @@ a.disabled{
     padding: 7px 16px;
 }
 
+
+.opacity-tr{
+    opacity: 0.5;
+}
+
+.alert{
+    position: absolute;
+    top: -60px;
+    left: 5px;
+    right: 5px;
+}
+
+/* Красивые радио buttons*/
 .material-switch{
     display: inline-block;
 }

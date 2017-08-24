@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" style="position: relative">
+  <div id="notice" class="alert alert-success"><%= notice %></div>
   <h1 class="panel-heading">Редактирование товара</h1>
-
 </div>
 
 <%= link_to 'Показать', admin_product_path(@product), class: 'btn btn-default pull-left mr10' %>
@@ -8,6 +8,3 @@
     Удалить изделие <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Удалить товар"></i>
 <% end %>
 <%= render 'form', product: @product %>
-
-
-
