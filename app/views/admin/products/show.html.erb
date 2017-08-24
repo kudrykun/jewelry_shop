@@ -2,9 +2,11 @@
   <h1 class="panel-heading"><%= @product.title %></h1>
   <p id="notice"><%= notice %></p>
 </div>
+<%= link_to 'Редактировать', edit_admin_product_path(@product), class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
+<div class="row mt10">
 
-<div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-3">
     <p>
       <strong>Артикул:</strong>
       <%= @product.artikul %>
@@ -91,9 +93,7 @@
           <%= @product.kit.title %>
       <%end%>
     </p>
-    <p>
-  </div>
-  <div class="col-lg-6">
+
       <strong>Вставки:</strong>
       <% if @product.incrustation_items.size%>
         <ul>
@@ -109,9 +109,9 @@
               </li>
           <%end%>
         </ul>
-      <%end%>
-    </p>
-    <p>
+    <%end%>
+
+
       <strong>Типы металла:</strong>
       <% if @product.metal_types.size%>
         <ul>
@@ -119,9 +119,8 @@
               <li><%=metal_type.title%></li>
           <%end%>
         </ul>
-      <%end%>
-    </p>
-    <p>
+    <%end%>
+
       <strong>Размеры:</strong>
       <% if @product.shops.size %>
           <% @product.shops.each do |shop|%>
@@ -136,8 +135,18 @@
             <%end%>
         <%end%>
     <%end%>
-    </p>
+
+  </div>
+  <div class="col-lg-9">
+    <% if @product.pictures.size > 0 %>
+        <% @product.pictures.each do |picture| %>
+            <div class="col-lg-4">
+              <%= image_tag(picture.image, width: '100%') %>
+            </div>
+        <% end %>
+    <% else %>
+        Фото не обнаружено
+    <% end %>
   </div>
 </div>
-<%= link_to 'Редактировать', edit_admin_product_path(@product) %> |
-<%= link_to 'Назад', admin_products_path %>
+
