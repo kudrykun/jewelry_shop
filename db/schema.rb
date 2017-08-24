@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824181355) do
+ActiveRecord::Schema.define(version: 20170824214406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20170824181355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "priority"
+  end
+
+  create_table "chain_types", force: :cascade do |t|
+    t.string "title"
   end
 
   create_table "collections", force: :cascade do |t|
@@ -123,7 +127,9 @@ ActiveRecord::Schema.define(version: 20170824181355) do
     t.boolean  "visible",         default: true
     t.boolean  "recommendation",  default: false
     t.boolean  "hit",             default: false
+    t.integer  "chain_type_id"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["chain_type_id"], name: "index_products_on_chain_type_id", using: :btree
     t.index ["collection_id"], name: "index_products_on_collection_id", using: :btree
     t.index ["kit_id"], name: "index_products_on_kit_id", using: :btree
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
@@ -157,9 +163,9 @@ ActiveRecord::Schema.define(version: 20170824181355) do
   end
 
   create_table "sizes", force: :cascade do |t|
-    t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "size"
   end
 
   add_foreign_key "incrustation_items", "incrustations"
@@ -168,6 +174,7 @@ ActiveRecord::Schema.define(version: 20170824181355) do
   add_foreign_key "metal_types_products", "products"
   add_foreign_key "product_types", "categories"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "chain_types"
   add_foreign_key "products", "collections"
   add_foreign_key "products", "kits"
   add_foreign_key "products", "manufacturers"

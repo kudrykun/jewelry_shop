@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :kits
     resources :manufacturers
     resources :shops
+    resources :chain_types
   end
 
 end

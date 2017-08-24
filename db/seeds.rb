@@ -19,6 +19,7 @@ Size.delete_all
 ProductType.delete_all
 Category.delete_all
 Collection.delete_all
+ChainType.delete_all
 Kit.delete_all
 Incrustation.delete_all
 IncrustationItem.delete_all
@@ -39,6 +40,7 @@ sale_Size_percent = [10,20,30]
 metal_color_titles = ["Белый","Желтый","Красный","Розовый"]
 metal_type_titles = ["Золото(585)","Серебро(925)"]
 shop_titles = ["Универмаг","Линия"]
+chain_type_titles = ["Якорное","Двойной якорь","Ролло","Шопард","Гарибальди","Аврора","Гавайка","Панцирная","Ромб","Нонна","Фигаро","Картье","Лав","Улитка","Скрепка","Роза","Снейк","Корда","Сингапур","Бисмарк","Питон",""]
 
 # количество генерируемых товаров
 products_size = 50
@@ -54,6 +56,7 @@ metalColors_size = metal_color_titles.size
 metalTypes_size = metal_type_titles.size
 manufacturers_size = 5;
 shops_size = shop_titles.size
+chain_types_size = chain_type_titles.size
 
 # создание сущностей
 manufacturers = []
@@ -91,6 +94,11 @@ end
 shops = []
 shops_size.times do
   shops << Shop.create(title: shop_titles.delete(shop_titles.sample))
+end
+
+chain_types = []
+chain_types_size.times do
+  chain_types << ChainType.create(title: chain_type_titles.delete(chain_types_titles.sample))
 end
 
 saleSizes = []
