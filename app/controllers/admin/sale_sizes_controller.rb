@@ -54,6 +54,11 @@ class Admin::SaleSizesController < Admin::AdminController
   # DELETE /sale_sizes/1
   # DELETE /sale_sizes/1.json
   def destroy
+    @sale_size.products.each do |product|
+      product.sale_size = nil
+      product.new_price = nil
+      product.save
+    end
     @sale_size.destroy
     respond_to do |format|
       format.html { redirect_to admin_sale_sizes_url, notice: 'Скидка была удалена.' }

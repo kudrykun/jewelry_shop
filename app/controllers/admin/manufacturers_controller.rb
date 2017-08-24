@@ -36,6 +36,10 @@ class Admin::ManufacturersController < Admin::AdminController
   end
 
   def destroy
+    @manufacturer.products.each do |product|
+      product.manufacturer = nil
+      product.save
+    end
     @manufacturer.destroy
     redirect_to admin_manufacturers_url, notice: 'Производитель был успешно удален.'
   end
