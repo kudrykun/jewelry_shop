@@ -54,6 +54,10 @@ class Admin::MetalColorsController < Admin::AdminController
   # DELETE /metal_colors/1
   # DELETE /metal_colors/1.json
   def destroy
+    @metal_color.products.each do |product|
+      product.metal_color = nil
+      product.save
+    end
     @metal_color.destroy
     respond_to do |format|
       format.html { redirect_to admin_metal_colors_url, notice: 'Цвет металла был успешно удален.' }

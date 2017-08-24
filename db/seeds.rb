@@ -29,18 +29,21 @@ MetalType.delete_all
 Manufacturer.delete_all
 Picture.delete_all
 
-
+# база названий для основных таблиц
 category_titles = ["Кольца","Подвески","Цепочки","Браслеты","Колье","Ожерелья","Бусы","Кулоны","Пирсы","Запонки","Иконы","Часы","Столовые приборы","Сувениры"]
 collection_titles = ["Геометрия","Золото и бриллианты","Вальс тюльпанов","Цветочный рай","Природные мотивы","Золото и бриллианты","Цветной водопад","Солнечное царство","Antique","Эволюция"]
-incrustation_titles = ["Алмаз"," Рубин"," Сапфир"," Аквамарин"," Изумруд"," Александрит"," Гранаты"," Аметист"," Опал благородный"," Опал огненный"," Топаз"," Жемчуг"," Янтарь"," Коралл"]
+incrustation_titles = ["Алмаз","Рубин","Сапфир","Аквамарин","Изумруд","Александрит","Гранаты","Аметист","Опал благородный","Опал огненный","Топаз","Жемчуг","Янтарь","Коралл"]
 kit_titles = ["Альфа","Бета","Гамма","Дельта","Эпсилон","Дзета","Эта","Тета","Йота","Каппа","Лямбда","Омикрон"]
-size_titles = ["15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20"]
+size_titles = ["14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20","20.5","21","21.5","22","22.5","23","23.5","24","24.5","25","40","45","50","55","60","65","70","75"]
 sale_Size_percent = [10,20,30]
 metal_color_titles = ["Белый","Желтый","Красный","Розовый"]
-metal_type_titles = ["Золото(585)","Серебро(825)","Красное золото","Белое золото"]
-shop_titles = ["Магазин I","Магазин II"]
+metal_type_titles = ["Золото(585)","Серебро(925)"]
+shop_titles = ["Универмаг","Линия"]
 
-products_size = 100
+# количество генерируемых товаров
+products_size = 50
+
+# количество остальных сущностей
 categories_size = category_titles.size
 collections_size = collection_titles.size
 incrustations_size = incrustation_titles.size
@@ -52,6 +55,7 @@ metalTypes_size = metal_type_titles.size
 manufacturers_size = 5;
 shops_size = shop_titles.size
 
+# создание сущностей
 manufacturers = []
 manufacturers_size.times do
   manufacturers << Manufacturer.create(title: Faker::Company.name);
@@ -110,12 +114,12 @@ kits_size.times do
   Kit.reset_counters(kits.last.id, :products)
 end
 
+# создание товаров
 products = []
 products_size.times do |i|
   temp = categories.sample
   products << Product.create(title: "Товар #{i}",
                              price: 5000 + rand(45001),
-                             price_per_gramm: 5000 + rand(45001),
                              metal_color: metalColors.sample,
                              artikul: Faker::Code.asin,
                              weight: 5 + rand(26),
@@ -126,24 +130,41 @@ products_size.times do |i|
                              priority: Faker::Number.between(1,products_size),
                              sex: Faker::Number.between(0,3),
                              category: temp,
-                             collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil,
-                             kit: Faker::Boolean.boolean(0.6) ? kits.sample : nil)
-
+                             collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil)
+  # переменная под созданный продукт
   temp = products.last
 
+  # делаем цену за грамм, исходя из цены и веса
+  temp.price_per_gramm = (temp.price / temp.weight).to_i
+
+  # ставим новую цену в соответствии со скидкой
   if temp.sale_size != nil
     temp.new_price = (temp.price - temp.price / 100 * temp.sale_size.sale_percent.to_f).to_i
   end
+
+  # делаем от 0 до 5 вставок
   rand(6).times do
     temp.incrustation_items.create(quantity: 1 + rand(100), weight: 0.5 + rand(4), purity: Faker::Boolean.boolean(0.5) ? 1 + rand(10) : nil, incrustation: incrustations.sample)
   end
+
+  # выбираем рандомный металл
   temp.metal_types << metalTypes.sample(rand(2))
+
+  # для каждого магазина делаем от 0 до 4 уникальных(в рамках магазина) размеров
   shops.each do |shop|
     rand(4).times do
-      temp.size_items.create(shop: shop, size: sizes.sample)
+      temp.size_items.create(shop: shop, size: sizes.delete(sizes.sample))
     end
+
   end
 
+  # сохраняем изменения
   temp.save
 end
 
+# Делаем каждому комплекту по 2-3 товара
+kits.each do |kit|
+  (2 + rand(2)).times do
+    kit.products << products.delete(products.sample)
+  end
+end

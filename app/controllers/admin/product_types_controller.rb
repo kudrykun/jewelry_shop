@@ -55,6 +55,10 @@ class Admin::ProductTypesController < Admin::AdminController
   # DELETE /product_types/1
   # DELETE /product_types/1.json
   def destroy
+    @product_type.products.each do |product|
+      product.product_type = nil
+      product.save
+    end
     @product_type.destroy
     respond_to do |format|
       format.html { redirect_to admin_product_types_url, notice: 'Вид изделия был успешно удален.' }
