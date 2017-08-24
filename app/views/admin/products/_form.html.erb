@@ -54,7 +54,7 @@
               <!--Размеры в разных магазинах-->
               <div class="form-group">
                 Размеры в магазинах:
-                <ul>
+                <ul class="list-group">
                   <% @shops.each do |shop| %>
                       <%= shop.title %>:
                       <li id="shop_<%= shop.id %>_sizes">
@@ -82,7 +82,6 @@
                 </ul>
               </div>
             </div>
-            p
 
             <div class="col-lg-4">
               <div class="form-group">
@@ -168,8 +167,9 @@
                 <%= f.label :kit_id, 'Комплект' %>
                 <%= f.collection_select :kit_id, @kits, :id, :title, {include_blank: 'Пусто'},
                                         {class: 'form-control selectpicker',
-
-                                        } %>
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите комплект или артикул',
+                                         :"title" => 'Выберете комплект...'} %>
               </div>
             </div>
           </div>
@@ -197,7 +197,11 @@
                 <div class="form-group">
                   <%= f.label :metal_color_id, 'Цвет металла' %>
                   <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
-                                          {include_blank: 'Пусто'}, class: 'form-control selectpicker' %>
+                                          {include_blank: 'Пусто'},
+                                          {class: 'form-control selectpicker',
+                                          :"data-live-search" => 'true',
+                                          :"data-live-Search-Placeholder" => 'Введите цвет',
+                                          :"title" => 'Выберете цвет...'} %>
                 </div>
                 <div class="form-group">
                   <%= f.label :sex, 'Пол' %>
