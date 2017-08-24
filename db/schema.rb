@@ -157,9 +157,9 @@ ActiveRecord::Schema.define(version: 20170824181355) do
   end
 
   create_table "sizes", force: :cascade do |t|
+    t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "size"
   end
 
   add_foreign_key "incrustation_items", "incrustations"
