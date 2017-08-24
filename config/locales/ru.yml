@@ -1,5 +1,12 @@
 ru:
   activerecord:
+    attributes:
+      product:
+        sex:
+          male: 'Для него'
+          female: 'Для неё'
+          unisex: 'Унисекс'
+          genderless: 'Не указан'
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'

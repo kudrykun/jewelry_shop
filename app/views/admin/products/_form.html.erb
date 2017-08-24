@@ -244,7 +244,7 @@
                   <% Product.sexes.keys.each do |sex| %>
                       <%= f.label :sex, value: sex, class: 'radio-inline' do %>
                           <%= f.radio_button :sex, sex %>
-                          <%= sex %>
+                          <%= sex_i18n(sex) %>
                       <% end %>
                   <% end %>
                 </div>
