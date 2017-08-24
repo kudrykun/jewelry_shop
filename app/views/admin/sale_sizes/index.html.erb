@@ -1,9 +1,13 @@
 <div class="row">
-  <h1 class="panel-heading">Скидка</h1>
+  <h1 class="panel-heading">Скидки</h1>
   <p id="notice"><%= notice %></p>
 </div>
 
-<%= link_to 'Добавить скидку', new_admin_sale_size_path, class: 'btn btn-success' %><br><br>
+<%= link_to new_admin_sale_size_path, class: 'btn btn-success'  do %>
+    Добавить скидку
+    <i class="fa fa-plus"></i>
+<% end %>
+<br><br>
 
 <div class="panel panel-default">
   <table class="table table-striped table-bordered table-hover">

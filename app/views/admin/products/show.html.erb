@@ -45,7 +45,7 @@
     <p>
       <strong>Размер скидки:</strong>
       <% if @product.sale_size != nil && @product.sale_size.sale_percent != '' %>
-      <%= @product.sale_size.sale_percent %>
+      <%= @product.sale_size.sale_percent %> %
       <%else%>
       Пусто
       <%end%>
@@ -64,7 +64,7 @@
     <p>
       <strong>Производитель:</strong>
       <% if @product.manufacturer != nil && @product.manufacturer.title != '' %>
-          <%= @product.manufacturer.title %> %
+          <%= @product.manufacturer.title %>
       <%end%>
     </p>
 
@@ -123,13 +123,19 @@
     </p>
     <p>
       <strong>Размеры:</strong>
-      <% if @product.sizes.size%>
-        <ul>
-          <% @product.sizes.each do |size|%>
-              <li><%=size.size%></li>
-          <%end%>
-        </ul>
-      <%end%>
+      <% if @product.shops.size %>
+          <% @product.shops.each do |shop|%>
+              <% if @product.get_shop_sizes(shop).size%>
+
+                <ul>
+                  <%=shop.title%>
+                  <% @product.get_shop_sizes(shop).each do |size|%>
+                      <li><%=size.size%></li>
+                  <%end%>
+                </ul>
+            <%end%>
+        <%end%>
+    <%end%>
     </p>
   </div>
 </div>

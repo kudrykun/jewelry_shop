@@ -3,7 +3,10 @@
 
 </div>
 
-<%= link_to 'Показать', admin_product_path(@product), class: 'btn btn-default mb20' %>
+<%= link_to 'Показать', admin_product_path(@product), class: 'btn btn-default pull-left mr10' %>
+<%= link_to admin_product_path(@product), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger pull-right' do %>
+    Удалить изделие <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Удалить товар"></i>
+<% end %>
 <%= render 'form', product: @product %>
 
 

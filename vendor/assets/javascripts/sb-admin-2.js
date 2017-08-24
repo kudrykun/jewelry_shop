@@ -102,6 +102,7 @@ $(document).ready(function() {
         columnDefs: [
             { responsivePriority: 1, targets: 0 },
             { responsivePriority: 1, targets: 1 },
+            { responsivePriority: 4, targets: -4 },
             { responsivePriority: 3, targets: -3 },
             { responsivePriority: 2, targets: -2 },
             { responsivePriority: 1, targets: -1 }
@@ -151,7 +152,7 @@ $(window).bind("resize load", function() {
     height = height - topOffset;
     if (height < 1) height = 1;
     if (height > topOffset) {
-        $("#page-wrapper").css("min-height", (height) + "px");
+        $("#page-wrapper").css("min-height", (height+1) + "px");
     }
 
 });
