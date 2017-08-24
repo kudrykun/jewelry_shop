@@ -3,15 +3,29 @@
 <p id="notice"><%= notice %></p>
   <h1 class="page-header">Товары</h1>
 </div>
-<div class="row">
-<%= link_to 'Добавить товар', new_admin_product_path, class: 'btn btn-default mr10 mb10' %>
-<%= link_to 'Виды изделий', admin_product_types_path, class: 'btn btn-default mr10 mb10' %>
-<%= link_to 'Цвета', admin_metal_colors_path, class: 'btn btn-default mr10 mb10' %>
-<%= link_to 'Скидки', admin_sale_sizes_path, class: 'btn btn-default mr10 mb10' %>
-<%= link_to 'Вставки', admin_incrustations_path, class: 'btn btn-default mr10 mb10' %>
-<%= link_to 'Металлы', admin_metal_types_path, class: 'btn btn-default mr10 mb10' %>
-<%= link_to 'Размеры', admin_sizes_path, class: 'btn btn-default mb10' %>
-</div>
+<ul class="list-inline">
+  <li><%= link_to  new_admin_product_path, class: 'btn btn-success' do %>
+        Добавить товар
+    <i class="fa fa-plus"></i>
+    <% end %>
+  </li>
+
+  <li class="dropdown">
+    <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" aria-expanded="true">
+      Дополнительно <i class="fa fa-plus"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user">
+      <li><%= link_to 'Размеры', new_admin_size_path %></li>
+      <li><%= link_to 'Виды изделий', new_admin_product_type_path %></li>
+      <li><%= link_to 'Вставки', new_admin_incrustation_path %></li>
+      <li><%= link_to 'Цвета', new_admin_metal_color_path %></li>
+      <li><%= link_to 'Металлы', new_admin_metal_type_path %></li>
+      <li><%= link_to 'Скидки', new_admin_sale_size_path %></li>
+    </ul>
+  </li>
+
+</ul>
+
 <div class="row">
 <div class="panel panel-default" style="margin-top: 20px; margin-bottom: 60px; visibility: hidden;" id="table">
 

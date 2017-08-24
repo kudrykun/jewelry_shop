@@ -3,7 +3,11 @@
   <p id="notice"><%= notice %></p>
 </div>
 
-<%= link_to 'Добавить категорию', new_admin_category_path, class: 'btn btn-default' %><br><br>
+<%= link_to new_admin_category_path, class: 'btn btn-success'  do %>
+    Добавить категорию
+    <i class="fa fa-plus"></i>
+<% end %>
+<br><br>
 
 <div class="panel panel-default">
 <table  width="100%" class="table table-striped table-bordered table-hover" >

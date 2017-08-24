@@ -3,7 +3,11 @@
   <p id="notice"><%= notice %></p>
 </div>
 
-<%= link_to 'Добавить комплект', new_admin_kit_path, class: 'btn btn-success' %><br><br>
+<%= link_to new_admin_kit_path, class: 'btn btn-success'  do %>
+    Добавить комплект
+    <i class="fa fa-plus"></i>
+<% end %>
+<br><br>
 
 <div class="panel panel-default">
   <div class="panel-heading">
