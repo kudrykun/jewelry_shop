@@ -212,15 +212,23 @@
                       class: 'form-control selectpicker',
                       :"data-live-search" => 'true',
                       :"data-live-Search-Placeholder" => 'Введите вид изделия',
-                      :"title" => 'Выберете вид...'} %>
+                      :"title" => 'Выберите вид...'} %>
                 </div>
-
+                <div class="form-group">
+                  <%= f.label :chain_type_id, 'Вид плетения' %>
+                  <%= f.collection_select :chain_type_id, @chain_types, :id, :title,
+                                          {include_blank: 'Пусто'},
+                                          {class: 'form-control selectpicker',
+                                           :"data-live-search" => 'true',
+                                           :"data-live-Search-Placeholder" => 'Введите вид плетения',
+                                           :"title" => 'Выберите вид плетения...'} %>
+                </div>
                 <div class="form-group">
                   <%= f.label :metal_type_ids, 'Тип металла' %>
                   <%= f.collection_select :metal_type_ids, @metal_types, :id, :title, {},
                                           {multiple: true,
                                            class: 'form-control selectpicker',
-                                           :"title" => 'Выберете металл...'} %>
+                                           :"title" => 'Выберите металл...'} %>
                 </div>
                 <div class="form-group">
                   <%= f.label :metal_color_id, 'Цвет металла' %>
@@ -229,7 +237,7 @@
                                           {class: 'form-control selectpicker',
                                           :"data-live-search" => 'true',
                                           :"data-live-Search-Placeholder" => 'Введите цвет',
-                                          :"title" => 'Выберете цвет...'} %>
+                                          :"title" => 'Выберите цвет...'} %>
                 </div>
                 <div class="form-group">
                   <%= f.label :sex, 'Пол' %>

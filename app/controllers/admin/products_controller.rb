@@ -84,6 +84,7 @@ class Admin::ProductsController < Admin::AdminController
     @product_types = ProductType.all
     @sale_sizes = SaleSize.all.order(:sale_percent)
     @manufacturers = Manufacturer.all
+    @chain_types = ChainType.all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -99,6 +100,7 @@ class Admin::ProductsController < Admin::AdminController
                                     :collection_id,
                                     :category_id,
                                     :kit_id,
+                                    :chain_type_id,
                                     :new_price,
                                     :to_main_page,
                                     :manufacturer_id,
