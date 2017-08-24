@@ -12,13 +12,7 @@
         </div>
     <% end %>
     <!--Управляющие кнопки-->
-    <div class="row">
-      <div class="col-lg-12">
-        <%= f.submit 'Применить', class: 'btn btn-success' %>
-        <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
-      </div>
-    </div>
-
+    <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
     <div class="row">
       <div class="panel-body">
         <!--Вкладки формы-->
@@ -41,11 +35,19 @@
                 <%= f.text_field :artikul, {class: 'form-control'} %>
               </div>
 
-              <div class="form-group">
-                <%= f.label :to_main_page, 'На главной' %>
-                <%= f.check_box :to_main_page, {class: 'checkbox-inline'} %>
-              </div>
+              <!--<div class="material-switch pull-right">
+                <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
+                <label for="someSwitchOptionDefault" class="label-default"></label>
+              </div>-->
 
+              <div class="form-group">
+                <%= f.label :to_main_page, 'На главную' %>
+                <div class="material-switch ml10">
+                  <%= f.check_box :to_main_page  %>
+                  <%= f.label :to_main_page, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
               <div class="form-group">
                 <%= f.label :priority, 'Приоритет' %>
                 <%= f.number_field :priority, {class: 'form-control'} %>
@@ -53,8 +55,8 @@
 
               <!--Размеры в разных магазинах-->
               <div class="form-group">
-                Размеры в магазинах:
-                <ul class="list-group">
+                <b>Размеры в магазинах:</b>
+                <ul class="list-unstyled">
                   <% @shops.each do |shop| %>
                       <%= shop.title %>:
                       <li id="shop_<%= shop.id %>_sizes">

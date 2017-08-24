@@ -28,11 +28,31 @@
         <td><%= @products.where(category: category).size %></td>
         <td><%= link_to 'Показать', admin_category_path(category) %></td>
         <td><%= link_to 'Изменить', edit_admin_category_path(category) %></td>
-        <td><%= link_to 'Удалить', admin_category_path(category), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <td>
+          <div
+            <% if category.products.size > 0 %>
+            data-toggle="tooltip"
+            data-placement="left"
+            data-original-title="Невозможно удалить категорию в которой есть товары или виды изделий"
+            >
+            <a href="#" class="disabled">Удалить</a>
+          <% else %>
+          >
+          <%= link_to 'Удалить', admin_category_path(category), method: :delete, data: { confirm: 'Вы уверены?'}, class: '' %>
+          <% end %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+
 
 
