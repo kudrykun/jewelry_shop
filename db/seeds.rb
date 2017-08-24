@@ -98,7 +98,7 @@ end
 
 chain_types = []
 chain_types_size.times do
-  chain_types << ChainType.create(title: chain_type_titles.delete(chain_types_titles.sample))
+  chain_types << ChainType.create(title: chain_type_titles.delete(chain_type_titles.sample))
 end
 
 saleSizes = []
@@ -138,7 +138,8 @@ products_size.times do |i|
                              priority: Faker::Number.between(1,products_size),
                              sex: Faker::Number.between(0,3),
                              category: temp,
-                             collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil)
+                             chain_type: Faker::Boolean.boolean(0.1) ? chain_types.sample : nil,
+                             collection: Faker::Boolean.boolean(0.4) ? collections.sample : nil,)
   # переменная под созданный продукт
   temp = products.last
 

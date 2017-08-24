@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to :collection, optional: true
   belongs_to :kit, optional: true, counter_cache: true
   belongs_to :manufacturer, optional: true
+  belongs_to :chain_type, optional: true
   has_and_belongs_to_many :metal_types
   has_many :incrustation_items, inverse_of: :product
   accepts_nested_attributes_for :incrustation_items, allow_destroy: true

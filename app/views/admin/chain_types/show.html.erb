@@ -1,0 +1,11 @@
+<div class="row">
+  <h1 class="panel-heading">Вид плетения</h1>
+  <p id="notice"><%= notice %></p>
+</div>
+<p>
+  <strong>Название:</strong>
+  <%= @chain_type.title %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_chain_type_path(@chain_type),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_chain_types_path,  class: 'btn btn-default' %>

@@ -35,6 +35,10 @@ class Admin::ChainTypesController < Admin::AdminController
   end
 
   def destroy
+    @chain_type.products.each do |product|
+      product.chain_type = nil
+      product.save
+    end
     @chain_type.destroy
     redirect_to admin_chain_types_url, notice: 'Вид плетения был успешно удален.'
   end

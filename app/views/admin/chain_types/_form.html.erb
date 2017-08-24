@@ -1,0 +1,28 @@
+<%= form_for([:admin, chain_type]) do |f| %>
+  <% if chain_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chain_type.errors.count, "error") %> prohibited this chain_type from being saved:</h2>
+
+      <ul>
+      <% chain_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label :title, 'Название' %>
+      <%= f.text_field :title, :placeholder => 'Введите название  ', class: 'form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
+    </div>
+  </div>
+</div>
+
+
+<% end %>
