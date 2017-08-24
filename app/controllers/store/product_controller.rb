@@ -1,12 +1,12 @@
 class Store::ProductController < Store::StoreController
   before_action :set_product, only: [:show]
   def index
-    @products = Product.all
+    @products = Product.where(visible: true)
     #TODO Сделать загрузку данных для главной страницы
   end
 
   def show
-    @products = Product.where(to_main_page: true)
+    @products = Product.where(to_main_page: true).where(visible: true)
   end
 
   private
