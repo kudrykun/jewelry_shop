@@ -22,7 +22,9 @@ a.disabled{
 .nav-pills>li>a{
     padding: 7px 16px;
 }
-
+.row{
+    position: relative;
+}
 
 .opacity-tr{
     opacity: 0.5;
