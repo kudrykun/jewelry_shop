@@ -260,6 +260,10 @@
                       <% end %>
                   <% end %>
                 </div>
+                <div class="form-group">
+                  <%= f.label :sex, 'Пол' %>
+                  <%= f.select :sex, Product.sexes.keys.map {|sex| [sex_i18n(sex),sex]} %>
+                </div>
               </div>
             </div>
             <!--Это нужно будет подредактировать-->
