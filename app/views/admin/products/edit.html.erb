@@ -8,13 +8,18 @@
 <!--Кнопка назад-->
 <%if @from_products%>
     <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
+<%else%>
+    <%if @from_category%>
+      <%= link_to 'Назад', admin_category_path(@category), class: 'btn btn-default' %>
+    <%else%>
+      <%if @from_collection%>
+            <%= link_to 'Назад', admin_collection_path(@collection), class: 'btn btn-default' %>
+      <%else%>
+            <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
+      <%end%>
+    <%end%>
 <%end%>
-<%if @from_category%>
-    <%= link_to 'Назад', admin_category_path(@category), class: 'btn btn-default' %>
-<%end%>
-<%if @from_collection%>
-    <%= link_to 'Назад', admin_collection_path(@collection), class: 'btn btn-default' %>
-<%end%>
+
 
 <%= link_to admin_product_path(@product), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger pull-right' do %>
     Удалить изделие <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Удалить товар"></i>

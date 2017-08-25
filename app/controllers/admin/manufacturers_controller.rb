@@ -50,6 +50,6 @@ class Admin::ManufacturersController < Admin::AdminController
     end
 
     def manufacturer_params
-      params.require(:manufacturer).permit(:title)
+      params.require(:manufacturer).permit(:title, :description)
     end
 end
