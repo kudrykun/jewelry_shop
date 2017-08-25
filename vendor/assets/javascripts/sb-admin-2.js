@@ -41,11 +41,6 @@ $(function() {
         })
     }
 
-    // Когда по сообщению кликнули, спрятать его
-    // $('.message').click(function(){
-    //     $(this).animate({top: -$(this).outerHeight()}, 500);
-    // });
-
 });
 
 $(function() {
@@ -204,6 +199,9 @@ $(function() {
             break;
         }
     }
+});
+$(function () {
+    $('body').tooltip({selector: '[data-toggle="tooltip"]'});
 });
 
 

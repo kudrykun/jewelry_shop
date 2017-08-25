@@ -26,95 +26,21 @@
           <div class="tab-pane fade active in" id="main">
             <div class="col-lg-4">
               <div class="form-group has-error">
-                <%= f.label :title, 'Название' %>
-                <%= f.text_field :title, {class: 'form-control'} %>
+                <%= f.label :title, 'Название *' %>
+                <%= f.text_field :title, {class: 'form-control', placeholder: 'Введите название'} %>
               </div>
 
               <div class="form-group">
-                <%= f.label :artikul, 'Артикул' %>
-                <%= f.text_field :artikul, {class: 'form-control'} %>
+                <%= f.label :artikul, 'Артикул *' %>
+                <%= f.text_field :artikul, {class: 'form-control', placeholder: 'Введите артикул'} %>
               </div>
 
-              <!--<div class="material-switch pull-right">
-                <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
-                <label for="someSwitchOptionDefault" class="label-default"></label>
-              </div>-->
 
-              <div class="form-group">
-                <%= f.label :to_main_page, 'На главную' %>
-                <div class="material-switch pull-right">
-                  <%= f.check_box :to_main_page  %>
-                  <%= f.label :to_main_page, class: 'label-primary' do %>
-                  <% end %>
-                </div>
-              </div>
 
-              <div class="form-group">
-                <%= f.label :recommendation, 'Рекомендовать' %>
-                <div class="material-switch ml10 pull-right">
-                  <%= f.check_box :recommendation  %>
-                  <%= f.label :recommendation, class: 'label-primary' do %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="form-group">
-                <%= f.label :hit, 'Хит' %>
-                <div class="material-switch ml10 pull-right">
-                  <%= f.check_box :hit  %>
-                  <%= f.label :hit, class: 'label-primary' do %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="form-group">
-                <%= f.label :visible, 'Видимость' %>
-                <div class="material-switch ml10 pull-right">
-                  <%= f.check_box :visible  %>
-                  <%= f.label :visible, class: 'label-primary' do %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="form-group">
-                <%= f.label :priority, 'Приоритет' %>
-                <%= f.number_field :priority, {class: 'form-control'} %>
-              </div>
-
-              <!--Размеры в разных магазинах-->
-              <div class="form-group">
-                <b>Размеры в магазинах:</b>
-                <ul class="list-unstyled">
-                  <% @shops.each do |shop| %>
-                      <%= shop.title %>:
-                      <li id="shop_<%= shop.id %>_sizes">
-                        <div class="hidden-fields">
-                          <%= f.fields_for :size_items, f.object.size_items.where(shop: shop) do |item| %>
-                              <div id="shop_<%= item.object.shop.id %>_size_<%= item.object.size.id %>">
-                                <%= item.hidden_field :shop_id %>
-                                <%= item.hidden_field :size_id %>
-                                <%= item.check_box :_destroy, hidden: true %>
-                              </div>
-                          <% end %>
-                        </div>
-                        <!--Класс shop-sizes испольщуется для поиска в shops_sizes.js-->
-                        <select multiple="multiple" class="form-control selectpicker shop-sizes" data-shop-id="<%= shop.id %>" data-live-search="true" data-live-search-placeholder="Введите размер" title="Выберете размеры...">
-                          <% @sizes.each do |size| %>
-                              <% if f.object.size_items.where(shop: shop, size: size).empty? %>
-                                  <option value="<%= size.id %>"><%= size.size %></option>
-                              <% else %>
-                                  <option selected="selected" value="<%= size.id %>"><%= size.size %></option>
-                              <% end %>
-                          <% end %>
-                        </select>
-                      </li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-lg-4">
               <div class="form-group">
                 <%= f.label :weight, 'Вес' %>
                 <div class="input-group">
-                  <%= f.text_field :weight, {class: 'form-control', id: 'weight-input'} %>
+                  <%= f.text_field :weight, {class: 'form-control', id: 'weight-input', placeholder: 'Введите вес изделия'} %>
                   <span class="input-group-addon">
                   <i class="fa fa-balance-scale" aria-hidden="true"></i>
                 </span>
@@ -124,7 +50,7 @@
               <div class="form-group">
                 <%= f.label :price_per_gramm, 'Цена за грамм' %>
                 <div class="input-group">
-                  <%= f.text_field :price_per_gramm, {class: 'form-control', id: 'price-per-gramm-input'} %>
+                  <%= f.text_field :price_per_gramm, {class: 'form-control', id: 'price-per-gramm-input', placeholder: 'Введите цену за грамм, если имеется'} %>
                   <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
                 </span>
@@ -139,7 +65,7 @@
                     <i class="fa fa-calculator" aria-hidden="true"></i>
                   </button>
                 </span>
-                  <%= f.text_field :price, {class: 'form-control ', id: 'price-input'} %>
+                  <%= f.text_field :price, {class: 'form-control ', id: 'price-input', placeholder: 'Введите цену'} %>
                   <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
                 </span>
@@ -167,7 +93,8 @@
                 </span>
                   <%= f.text_field :new_price, {class: 'form-control',
                                                 id: 'new-price-input',
-                                                :disabled => ''} %>
+                                                :disabled => '',
+                                                placeholder: 'Считается автоматически'} %>
                   <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
                 </span>
@@ -176,19 +103,104 @@
             </div>
 
             <div class="col-lg-4">
+
+              <!--Размеры в разных магазинах-->
+              <div class="form-group">
+                <b>Размеры в магазинах:</b>
+                <ul class="list-unstyled">
+                  <% @shops.each do |shop| %>
+                      <div class="pb5 pt5"><%= shop.title %>:</div>
+                      <li id="shop_<%= shop.id %>_sizes">
+                        <div class="hidden-fields">
+                          <%= f.fields_for :size_items, f.object.size_items.where(shop: shop) do |item| %>
+                              <div id="shop_<%= item.object.shop.id %>_size_<%= item.object.size.id %>">
+                                <%= item.hidden_field :shop_id %>
+                                <%= item.hidden_field :size_id %>
+                                <%= item.check_box :_destroy, hidden: true %>
+                              </div>
+                          <% end %>
+                        </div>
+                        <!--Класс shop-sizes испольщуется для поиска в shops_sizes.js-->
+                        <select multiple="multiple" class="form-control selectpicker shop-sizes" data-shop-id="<%= shop.id %>" data-live-search="true" data-live-search-placeholder="Введите размер" title="Выберете размеры...">
+                          <% @sizes.each do |size| %>
+                              <% if f.object.size_items.where(shop: shop, size: size).empty? %>
+                                  <option value="<%= size.id %>"><%= size.size %></option>
+                              <% else %>
+                                  <option selected="selected" value="<%= size.id %>"><%= size.size %></option>
+                              <% end %>
+                          <% end %>
+                        </select>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div class="form-group" style="padding-right: 150px">
+                <%= f.label :to_main_page, 'На главную', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на главной странице?'} %> <i class="fa fa-info" aria-hidden="true" ></i>
+                <div class="material-switch pull-right">
+                  <%= f.check_box :to_main_page  %>
+                  <%= f.label :to_main_page, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="form-group" style="padding-right: 150px">
+                <%= f.label :recommendation, 'Рекомендовать', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие в "Вам понравится" ?'} %> <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие в 'Вам понравится' ?"></i>
+                <div class="material-switch ml10 pull-right">
+                  <%= f.check_box :recommendation  %>
+                  <%= f.label :recommendation, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group" style="padding-right: 150px">
+                <%= f.label :hit, 'Хит', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на вкладке ХИТ ?'} %> <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на вкладке ХИТ ?"></i>
+                <div class="material-switch ml10 pull-right">
+                  <%= f.check_box :hit  %>
+                  <%= f.label :hit, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group" style="padding-right: 150px">
+                <%= f.label :visible, 'Видимость', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на сайте ?'} %> <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на сайте ?"></i>
+                <div class="material-switch ml10 pull-right">
+                  <%= f.check_box :visible  %>
+                  <%= f.label :visible, class: 'label-primary' do %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :priority, 'Приоритет' %>
+                <%= f.number_field :priority, {class: 'form-control', placeholder: 'Введите приоритет отображения от 1 до 9999'} %>
+              </div>
+
+
+            </div>
+
+            <div class="col-lg-4">
               <div class="form-group">
                 <%= f.label :manufacturer, 'Производитель' %>
                 <%= f.collection_select :manufacturer_id, @manufacturers, :id, :title,
                                         {include_blank: 'Пусто'},
-                                        class: 'form-control' %>
+                                        {class: 'form-control selectpicker',
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите производителя',
+                                         :"title" => 'Выберете производителя...'} %>
               </div>
               <div class="form-group has-error">
-                <%= f.label :category_id, 'Категория' %>
-                <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+                <%= f.label :category_id, 'Категория *' %>
+                <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'},
+                                        {class: 'form-control selectpicker',
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите категорию',
+                                         :"title" => 'Выберете категорию...'} %>
               </div>
               <div class="form-group">
                 <%= f.label :collection_id, 'Коллекция' %>
-                <%= f.collection_select :collection_id, @collections, :id, :title, {include_blank: 'Пусто'}, class: 'form-control' %>
+                <%= f.collection_select :collection_id, @collections, :id, :title, {include_blank: 'Пусто'},
+                                        {class: 'form-control selectpicker',
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите коллекцию',
+                                         :"title" => 'Выберете коллекцию...'} %>
               </div>
               <div class="form-group">
                 <%= f.label :kit_id, 'Комплект' %>
