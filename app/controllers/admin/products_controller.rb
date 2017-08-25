@@ -15,6 +15,23 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def edit
+    @from_products = false
+    @from_category = false
+    @from_collection = false
+    # определяет, с отуда отправлен запрос на редактирование
+    prev = Rails.application.routes.recognize_path(request.referrer)
+    @prev = Rails.application.routes.recognize_path(request.referrer)
+    if (prev[:controller] == 'admin/products') && (prev[:action] == 'index')
+      @from_products = true
+    end
+    if (prev[:controller] == 'admin/categories') && (prev[:action] == 'show')
+      @from_category = true
+      @category = Category.find(prev[:id])
+    end
+    if (prev[:controller] == 'admin/collections') && (prev[:action] == 'show')
+      @from_collection = true
+      @collection = Collection.find(prev[:id])
+    end
   end
 
   def create
