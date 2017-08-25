@@ -31,6 +31,19 @@ $(document).ready(function() {
 // });
 
 $(function() {
+    if ($('#notice').text()) {
+        $('#notice').animate({top: 10}, 500);
+        setTimeout(function(){
+            $('#notice').animate({top: -60}, 500);
+        }, 3000);
+        $('#notice').click(function () {
+            $('#notice').animate({top: -60}, 500);
+        })
+    }
+
+});
+
+$(function() {
 
     $(function () {
         if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null){
@@ -131,6 +144,7 @@ $(document).ready(function() {
         }
     });
     $('#table').css("visibility", "visible");
+    $('i.fa-refresh').remove();
 });
 
 
@@ -185,6 +199,9 @@ $(function() {
             break;
         }
     }
+});
+$(function () {
+    $('body').tooltip({selector: '[data-toggle="tooltip"]'});
 });
 
 

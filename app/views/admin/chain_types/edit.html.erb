@@ -1,0 +1,8 @@
+<div class="row">
+  <h1 class="panel-heading">Редактирование виды плетения</h1>
+</div>
+<div class="mb15">
+  <%= link_to 'Показать', admin_chain_type_path(@chain_type), class: 'btn btn-default mr10'  %>
+  <%= link_to 'Назад', admin_chain_types_path, class: 'btn btn-default'  %>
+</div>
+<%= render 'form', chain_type: @chain_type %>

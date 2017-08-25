@@ -15,6 +15,23 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def edit
+    @from_products = false
+    @from_category = false
+    @from_collection = false
+    # определяет, с отуда отправлен запрос на редактирование
+    prev = Rails.application.routes.recognize_path(request.referrer)
+    @prev = Rails.application.routes.recognize_path(request.referrer)
+    if (prev[:controller] == 'admin/products') && (prev[:action] == 'index')
+      @from_products = true
+    end
+    if (prev[:controller] == 'admin/categories') && (prev[:action] == 'show')
+      @from_category = true
+      @category = Category.find(prev[:id])
+    end
+    if (prev[:controller] == 'admin/collections') && (prev[:action] == 'show')
+      @from_collection = true
+      @collection = Collection.find(prev[:id])
+    end
   end
 
   def create
@@ -24,7 +41,7 @@ class Admin::ProductsController < Admin::AdminController
         if params[:picture_ids]
           params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
         end
-        format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно создан.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно создан.'}
         format.json {render :show, status: :created, location: @product}
       else
         format.html {render :new}
@@ -39,7 +56,7 @@ class Admin::ProductsController < Admin::AdminController
         if params[:picture_ids]
           params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
         end
-        format.html {redirect_to admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @product}
       else
         format.html {render :edit}
@@ -84,6 +101,7 @@ class Admin::ProductsController < Admin::AdminController
     @product_types = ProductType.all
     @sale_sizes = SaleSize.all.order(:sale_percent)
     @manufacturers = Manufacturer.all
+    @chain_types = ChainType.all
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -99,6 +117,7 @@ class Admin::ProductsController < Admin::AdminController
                                     :collection_id,
                                     :category_id,
                                     :kit_id,
+                                    :chain_type_id,
                                     :new_price,
                                     :to_main_page,
                                     :manufacturer_id,
