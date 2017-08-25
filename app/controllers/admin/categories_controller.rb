@@ -22,7 +22,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to admin_category_path(@category), notice: 'Категория была успешно создана.'
+      redirect_to edit_admin_category_path(@category), notice: 'Категория была успешно создана.'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class Admin::CategoriesController < Admin::AdminController
   # PATCH/PUT /categories/1.json
   def update
     if @category.update(category_params)
-      redirect_to admin_category_path(@category), notice: 'Категория была успешно обновлена.'
+      redirect_to edit_admin_category_path(@category), notice: 'Категория была успешно обновлена.'
     else
       render :edit
     end

@@ -28,7 +28,7 @@ class Admin::MetalTypesController < Admin::AdminController
 
     respond_to do |format|
       if @metal_type.save
-        format.html { redirect_to admin_metal_type_path(@metal_type), notice: 'Тип металла был успешно создан.' }
+        format.html { redirect_to admin_metal_types_path, notice: 'Тип металла был успешно создан.' }
         format.json { render :show, status: :created, location: @metal_type }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::MetalTypesController < Admin::AdminController
   def update
     respond_to do |format|
       if @metal_type.update(metal_type_params)
-        format.html { redirect_to admin_metal_type_path(@metal_type), notice: 'Тип металла был успешно обновлен.' }
+        format.html { redirect_to admin_metal_types_path, notice: 'Тип металла был успешно обновлен.' }
         format.json { render :show, status: :ok, location: @metal_type }
       else
         format.html { render :edit }

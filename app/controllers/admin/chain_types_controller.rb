@@ -20,7 +20,7 @@ class Admin::ChainTypesController < Admin::AdminController
     @chain_type = ChainType.new(chain_type_params)
 
     if @chain_type.save
-      redirect_to admin_chain_type_path(@chain_type), notice: 'Вид плетения был успешно создан.'
+      redirect_to admin_chain_types_path, notice: 'Вид плетения был успешно создан.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::ChainTypesController < Admin::AdminController
 
   def update
     if @chain_type.update(chain_type_params)
-      redirect_to admin_chain_type_path(@chain_type), notice: 'Вид плетения был успешно обновлен.'
+      redirect_to admin_chain_types_path, notice: 'Вид плетения был успешно обновлен.'
     else
       render :edit
     end

@@ -28,7 +28,7 @@ class Admin::SaleSizesController < Admin::AdminController
 
     respond_to do |format|
       if @sale_size.save
-        format.html { redirect_to admin_sale_size_path(@sale_size), notice: 'Скидка была создана.' }
+        format.html { redirect_to admin_sale_sizes_path, notice: 'Скидка была создана.' }
         format.json { render :show, status: :created, location: @sale_size }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::SaleSizesController < Admin::AdminController
   def update
     respond_to do |format|
       if @sale_size.update(sale_size_params)
-        format.html { redirect_to admin_sale_size_path(@sale_size), notice: 'Скидка была обновлена.' }
+        format.html { redirect_to admin_sale_sizes_path, notice: 'Скидка была обновлена.' }
         format.json { render :show, status: :ok, location: @sale_size }
       else
         format.html { render :edit }
