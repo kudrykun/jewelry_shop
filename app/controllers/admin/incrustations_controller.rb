@@ -28,7 +28,7 @@ class Admin::IncrustationsController < Admin::AdminController
 
     respond_to do |format|
       if @incrustation.save
-        format.html { redirect_to admin_incrustation_path(@incrustation), notice: 'Вставка была успешно создана.' }
+        format.html { redirect_to admin_incrustations_path, notice: 'Вставка была успешно создана.' }
         format.json { render :show, status: :created, location: @incrustation }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::IncrustationsController < Admin::AdminController
   def update
     respond_to do |format|
       if @incrustation.update(incrustation_params)
-        format.html { redirect_to admin_incrustation_path(@incrustation), notice: 'Вставка была успешно обновлена.' }
+        format.html { redirect_to admin_incrustations_path, notice: 'Вставка была успешно обновлена.' }
         format.json { render :show, status: :ok, location: @incrustation }
       else
         format.html { render :edit }

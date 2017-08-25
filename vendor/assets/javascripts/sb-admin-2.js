@@ -30,18 +30,7 @@ $(document).ready(function() {
 //
 // });
 
-$(function() {
-    if ($('#notice').text()) {
-        $('#notice').animate({top: 10}, 500);
-        setTimeout(function(){
-            $('#notice').animate({top: -60}, 500);
-        }, 3000);
-        $('#notice').click(function () {
-            $('#notice').animate({top: -60}, 500);
-        })
-    }
 
-});
 
 $(function() {
 
@@ -202,6 +191,18 @@ $(function() {
 });
 $(function () {
     $('body').tooltip({selector: '[data-toggle="tooltip"]'});
+});
+$(function() {
+    if ($('#notice').text()) {
+        $('#notice').animate({top: 10}, 500);
+        setTimeout(function(){
+            $('#notice').animate({top: -60}, 500);
+        }, 3000);
+        $('#notice').click(function () {
+            $('#notice').animate({top: -60}, 500);
+        })
+    }
+
 });
 
 

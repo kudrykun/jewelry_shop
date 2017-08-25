@@ -21,7 +21,7 @@
 
     <div class="field-group">
       <%= f.label :description, 'Описание' %>
-      <%= f.text_area :description,{class: 'form-control'} %>
+      <%= f.text_area :description,{class: 'form-control',style: 'min-height: 150px'} %>
     </div>
 
     <div class="field-group">
@@ -31,7 +31,11 @@
 
     <div class="form-group">
       <%= f.label :product_ids, 'Товары' %>
-      <%= f.collection_select :product_ids, @products, :id, :title, {}, {multiple: true, include_blank: 'Пусто', class: 'form-control'} %>
+      <%= f.collection_select :product_ids, @products, :id, :artikul, {}, {multiple: true,
+                                                                           class: 'form-control selectpicker',
+                                                                           :"data-live-search" => 'true',
+                                                                           :"data-live-Search-Placeholder" => 'Введите артикул',
+                                                                           :"title" => 'Выберете артикулы...'} %>
     </div>
 
     <div class="actions" style="margin-top: 10px">
