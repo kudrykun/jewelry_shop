@@ -166,7 +166,7 @@
 
       <% @product.kit.products.each do |product| %>
         <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item">
-          <%= render './layouts/product-card', product: product %>
+          <%= render './layouts/renders/product-card', product: product %>
         </div>
       <% end %>
 
@@ -366,7 +366,7 @@
 
       <% @products.each do |product| %>
           <div class="item">
-            <%= render './layouts/product-card', product: product %>
+            <%= render './layouts/renders/product-card', product: product %>
           </div>
       <% end %>
 
