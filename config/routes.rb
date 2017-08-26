@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'store/main_page#index'
+
   get 'product/:id', to: 'store/product#show', as: 'product'
+  get 'catalog', to: 'store/catalog#index'
 
 
   namespace :admin do
