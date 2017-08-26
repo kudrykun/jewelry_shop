@@ -47,9 +47,9 @@
     <div id="price-1" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-1" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-        <% @products.where(to_main_page: true).each do |product| %>
+        <% @products_hit.where(hit: true).each do |product| %>
           <div class="item">
-            <%= render '/store/main_page/product-card', product: product %>
+            <%= render './layouts/product-card', product: product %>
           </div>
         <% end %>
 
@@ -58,9 +58,9 @@
     <div id="sale15" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-2" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-        <% @products.where(to_main_page: true).each do |product| %>
+        <% @products15.each do |product| %>
             <div class="item">
-              <%= render '/store/main_page/product-card', product: product %>
+              <%= render './layouts/product-card', product: product %>
             </div>
         <% end %>
 

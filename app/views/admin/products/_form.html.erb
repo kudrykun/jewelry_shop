@@ -223,15 +223,7 @@
                       :"data-live-Search-Placeholder" => 'Введите вид изделия',
                       :"title" => 'Выберите вид...'} %>
                 </div>
-                <div class="form-group">
-                  <%= f.label :chain_type_id, 'Вид плетения' %>
-                  <%= f.collection_select :chain_type_id, @chain_types, :id, :title,
-                                          {include_blank: 'Пусто'},
-                                          {class: 'form-control selectpicker',
-                                           :"data-live-search" => 'true',
-                                           :"data-live-Search-Placeholder" => 'Введите вид плетения',
-                                           :"title" => 'Выберите вид плетения...'} %>
-                </div>
+
                 <div class="form-group">
                   <%= f.label :metal_type_ids, 'Тип металла' %>
                   <%= f.collection_select :metal_type_ids, @metal_types, :id, :title, {},
@@ -248,18 +240,23 @@
                                           :"data-live-Search-Placeholder" => 'Введите цвет',
                                           :"title" => 'Выберите цвет...'} %>
                 </div>
+
+
+              </div>
+              <div class="col-lg-6">
                 <div class="form-group">
-                  <%= f.label :sex, 'Пол' %>
-                  <% Product.sexes.keys.each do |sex| %>
-                      <%= f.label :sex, value: sex, class: 'radio-inline' do %>
-                          <%= f.radio_button :sex, sex %>
-                          <%= sex_i18n(sex) %>
-                      <% end %>
-                  <% end %>
+                  <%= f.label :chain_type_id, 'Вид плетения' %>
+                  <%= f.collection_select :chain_type_id, @chain_types, :id, :title,
+                                          {include_blank: 'Пусто'},
+                                          {class: 'form-control selectpicker',
+                                           :"data-live-search" => 'true',
+                                           :"data-live-Search-Placeholder" => 'Введите вид плетения',
+                                           :"title" => 'Выберите вид плетения...'} %>
                 </div>
+
                 <div class="form-group">
                   <%= f.label :sex, 'Пол' %>
-                  <%= f.select :sex, Product.sexes.keys.map {|sex| [sex_i18n(sex),sex]} %>
+                  <%= f.select :sex, Product.sexes.keys.map {|sex| [sex_i18n(sex),sex]},{}, { class:  'form-control selectpicker'} %>
                 </div>
               </div>
             </div>

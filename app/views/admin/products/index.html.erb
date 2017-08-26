@@ -52,6 +52,7 @@
           <th>
             <i class="fa fa-picture-o fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Есть фото? Поиск: фото"></i>
           </th>
+          <th>Нрав</th>
           <th>Приор.</th>
           <th>Категория</th>
           <th>Вид изделия</th>
@@ -115,6 +116,11 @@
             <td>
               <% if product.pictures.size > 0%>
                   Да <span class="hidden">Фото</span>
+              <%end%>
+            </td>
+            <td>
+              <% if product.recommendation %>
+                  Да <span class="hidden">главная</span>
               <%end%>
             </td>
             <td><%= product.priority %></td>
