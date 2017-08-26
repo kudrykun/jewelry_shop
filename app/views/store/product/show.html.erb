@@ -298,6 +298,10 @@
           <div class="col l6 m6 s12">
             <h6><b>Общие параметры изделия</b></h6>
             <ul class="collection">
+              <% if @product.product_type != nil && @product.product_type.title != '' %>
+                  <li class="collection-item">Вид изделия <span class="secondary-content"><%= @product.product_type.title %></span></li>
+              <%end%>
+
               <% if @product.metal_types.size > 0 %>
                   <li class="collection-item">Тип металла<span class="secondary-content">
                     <% @product.metal_types.each do |metal_type|%>
@@ -350,7 +354,6 @@
           <div class="row">
             <div class="col l12 m12 s12">
               <p><%= @product.manufacturer.description %> </p>
-
             </div>
           </div>
         </div>

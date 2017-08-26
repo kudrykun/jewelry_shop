@@ -91,6 +91,11 @@ $(function() {
     $("#price-input").on("input",function(){
         calc_new_price()
     });
+    $("#new-price-input").on("input",function(){
+        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
+        var new_price = $("#new-price-input").val();
+        $("#price-input").val (( new_price * 100 / (100 - percentage) ).toFixed(2));
+    });
 
 });
 

@@ -1,4 +1,5 @@
 class Store::ProductController < Store::StoreController
+  layout 'product'
   before_action :set_product, only: [:show]
   def index
     @products = Product.where(visible: true)

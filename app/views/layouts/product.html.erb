@@ -127,79 +127,83 @@
 
 <%= render './layouts/renders/footer' %>
 
-
 <%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
 
+<script type="text/javascript">
+    jQuery(function($){
+        $("#phone").mask("+7 (999) 999-9999");
+    });
+</script>
+
 <script>
-    $(document).ready(function() {
-
-        $('#main-slider').owlCarousel({
-            items:1,
-            loop:true,
-            nav:true,
-            margin:0,
-            URLhashListener:true,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            autoplayHoverPause: true,
-            startPosition: 'URLHash'
-        });
-
-        $('#sale_slider-1').owlCarousel({
-            loop:true,
-            nav:true,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                600: { items:3 },
-                800: { items:3 },
-                1280: { items:4 }
+    // Change size
+    $(function () {
+        var $btn = $('#add-to-cart');
+        var $btn2 = $('#add-to-cart-one-click');
+        $(document).on('change', 'input[name=size].btn_set_size', function () {
+            var size = String($(this).val());
+            $btn.attr('data-size', size);
+            $btn.removeAttr('disabled');
+            $btn2.removeAttr('disabled');
+            if (typeof appOneShop !== 'undefined') {
+                appOneShop.size_filter = size;
             }
-        });
-
-        $('#sale_slider-2').owlCarousel({
-            loop:true,
-            nav:true,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                600: { items:3 },
-                800: { items:3 },
-                1280: { items:4 }
-            }
-        });
-
-        $('#sale_slider-3').owlCarousel({
-            loop:true,
-            nav:true,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                600: { items:3 },
-                800: { items:3 },
-                1280: { items:4 }
-            }
-        });
-
-        $('#logo-slider').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 2000,
-            loop:true,
-            nav:false,
-            dots: false,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                700: { items:3 },
-                800: { items:3 },
-                1200: { items:4 }
+            if (typeof appOneOrder !== 'undefined') {
+                appOneOrder.size = size;
             }
         });
     });
+</script>
+
+<script>
+    $('#product_like-slider-1').owlCarousel({
+        loop: false,
+        margin: 10,
+        dots:false,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 2,
+                nav: true
+            },
+            600: {
+                items: 3,
+                nav: true,
+                loop: false
+            },
+            800: {
+                items: 4,
+                nav: true,
+                loop: false
+            },
+            1280: {
+                items: 5,
+                nav: true,
+                loop: false,
+                margin: 20
+            }
+        }
+    });
+</script>
+
+<script>
+
+    $(document).ready(function() {
+        $('#product-slider').owlCarousel({
+            loop:false,
+            dots:true,
+            margin:0,
+            items:1,
+            responsive: {
+                0: {
+                    nav: false
+                },
+                600: {
+                    nav: true
+                }
+            }
+        });
+    })
 
 </script>
 
