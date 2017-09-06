@@ -18,6 +18,11 @@
           <%= f.text_field :title, :placeholder => 'Введите название  ', class: 'form-control' %>
         </div>
 
+        <div class="field-group">
+          <%= f.label :description, 'Описание' %>
+          <%= f.text_area :description,{class: 'form-control'} %>
+        </div>
+
         <div class="actions">
           <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
         </div>

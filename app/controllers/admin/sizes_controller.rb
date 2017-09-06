@@ -28,7 +28,7 @@ class Admin::SizesController < Admin::AdminController
 
     respond_to do |format|
       if @size.save
-        format.html { redirect_to admin_size_path(@size), notice: 'Размер был добавлен.' }
+        format.html { redirect_to admin_sizes_path, notice: 'Размер был добавлен.' }
         format.json { render :show, status: :created, location: @size }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::SizesController < Admin::AdminController
   def update
     respond_to do |format|
       if @size.update(size_params)
-        format.html { redirect_to admin_size_path(@size), notice: 'Размер был обновлен.' }
+        format.html { redirect_to admin_sizes_path, notice: 'Размер был обновлен.' }
         format.json { render :show, status: :ok, location: @size }
       else
         format.html { render :edit }

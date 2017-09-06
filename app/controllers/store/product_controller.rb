@@ -1,4 +1,5 @@
 class Store::ProductController < Store::StoreController
+  layout 'product'
   before_action :set_product, only: [:show]
   def index
     @products = Product.where(visible: true)
@@ -6,7 +7,7 @@ class Store::ProductController < Store::StoreController
   end
 
   def show
-    @products = Product.where(to_main_page: true).where(visible: true)
+    @products = Product.where(recommendation: true).where(visible: true).order(priority: :desc).order(updated_at: :desc)
   end
 
   private

@@ -19,7 +19,7 @@ class Admin::ShopsController < Admin::AdminController
     @shop = Shop.new(shop_params)
     respond_to do |format|
       if @shop.save
-        format.html {redirect_to admin_shop_path(@shop), notice: 'Магазин был успешно создан.'}
+        format.html {redirect_to admin_shops_path, notice: 'Магазин был успешно создан.'}
         format.json {render :show, status: :created, location: @shop}
       else
         format.html {render :new}
@@ -31,7 +31,7 @@ class Admin::ShopsController < Admin::AdminController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html {redirect_to admin_shop_path(@shop), notice: 'Магазин был успешно обновлен.'}
+        format.html {redirect_to admin_shops_path, notice: 'Магазин был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @shop}
       else
         format.html {render :edit}

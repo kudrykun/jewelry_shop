@@ -75,7 +75,7 @@
             <li class="go-back"><a href="#">Назад</a></li>
             <li class="see-all grey lighten-4"><a href=catalog.html>Весь каталог</a></li>
 
-            <%= render 'store/main_page/links-navbar' %>
+            <%= render './layouts/renders/links-navbar' %>
 
             <li><a class="red-text" href="#">Коллекции</a></li>
             <li><a class="red-text" href="#">Бренды</a></li>
@@ -97,7 +97,7 @@
 
         <li><a href="#" class="red-text ">АКЦИИ</a></li>
 
-        <%= render 'store/main_page/links-navbar' %>
+        <%= render './layouts/renders/links-navbar' %>
         <li><a href="#" class="">Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i></a></li>
         <!--<li><a href="#">БРЕНДЫ</a></li>-->
         <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
@@ -123,81 +123,9 @@
 
 <div class="cd-overlay"></div>
 
-  <%= render 'store/main_page/basket' %>
+  <%= render './layouts/renders/basket' %>
 
-<footer class="page-footer">
-  <div class="container">
-    <div class="row ">
-
-      <div class="col l3 m4 sm6 s12  elit-reveal">
-        <%= link_to root_path, class: 'logo' do %>
-            <%= image_tag'elit-logo-white.svg' %>
-        <% end %>
-        <ul class="collection contacts">
-          <li class="collection-item"><i class="material-icons">call</i> <a href="tel:89191732000">8 919 173 2000</a></li>
-          <li class="collection-item"><i class="material-icons">chat</i> <a href="#">Обратная связь</a></li>
-        </ul>
-        <div class="social">
-          <a href="#"><%= image_tag('s-facebook.svg', height: '100%') %></a>
-          <a href="#"><%= image_tag('s-vk.svg', height: '100%') %></a>
-          <a href="#"><%= image_tag('s-instagram.svg', height: '100%') %></a>
-        </div>
-        <!--<div class="about-company hide-on-large-only">
-          <h6>О Элит Ювелир</h6>
-          <ul>
-            <li><a href="#">Контакты</a></li>
-            <li><a href="#">Политика Конфиденциальности</a></li>
-            <li><a href="#">Карьера</a></li>
-          </ul>
-        </div>-->
-      </div>
-      <div class="col l6 m4 sm6 s12" style="padding: 0">
-        <div class="col l6  s12 elit-reveal" style="padding-top: 10px;">
-          <h6>О Элит Ювелир</h6>
-          <ul>
-            <li><a href="#">Контакты</a></li>
-            <li><a href="#">Политика Конфиденциальности</a></li>
-            <li><a href="#">Карьера</a></li>
-          </ul>
-        </div>
-
-
-        <div class="col l6  s12 elit-reveal" style="padding-top: 10px;">
-          <h6>ИНФОРМАЦИЯ ПОКУПАТЕЛЮ</h6>
-
-          <ul>
-            <li><a href="#">Возврат и обмен</a></li>
-            <li><a href="#">Адреса магазинов</a></li>
-            <li><a href="#">Подарочный сертификат</a>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col l3 m4 sm6 s12 elit-reveal" style="padding-top: 10px;">
-        <h6>ПОДПИСАТЬСЯ НА РАССЫЛКУ</h6>
-        <form id="email-subscribe">
-          <div class="input-field">
-            <input id="subscription-email" type="email" name="email" class="validate" required="">
-            <label data-error="Ошибка" for="subscription-email">Email</label>
-          </div>
-
-          <div>
-            <input type="checkbox" id="agree-with-terms" checked="checked" class="validate" required="">
-            <label for="agree-with-terms" class="grey-text text-lighten-1">Я согласен с условиями</label>
-          </div>
-
-          <div class="input-field center">
-            <button type="submit" class="waves-effect waves-light btn border-btn_grey">ОТПРАВИТЬ</button>
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <span>© ООО "Элит Ювелир" 2017. Developed by iliyaking.</span>
-  </div>
-</footer>
+  <%= render './layouts/renders/footer' %>
 
 <%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
 

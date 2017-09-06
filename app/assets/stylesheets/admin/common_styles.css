@@ -1,4 +1,5 @@
 /*Стили, работающие во всей админке*/
+/*Тещу на новом пеке git*/
 .radio-label{
     margin-left: 3px;
     padding-bottom: 5px;
@@ -22,7 +23,9 @@ a.disabled{
 .nav-pills>li>a{
     padding: 7px 16px;
 }
-
+.row{
+    position: relative;
+}
 
 .opacity-tr{
     opacity: 0.5;

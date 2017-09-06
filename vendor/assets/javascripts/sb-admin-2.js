@@ -30,18 +30,7 @@ $(document).ready(function() {
 //
 // });
 
-$(function() {
-    if ($('#notice').text()) {
-        $('#notice').animate({top: 10}, 500);
-        setTimeout(function(){
-            $('#notice').animate({top: -60}, 500);
-        }, 3000);
-        $('#notice').click(function () {
-            $('#notice').animate({top: -60}, 500);
-        })
-    }
 
-});
 
 $(function() {
 
@@ -101,6 +90,11 @@ $(function() {
 
     $("#price-input").on("input",function(){
         calc_new_price()
+    });
+    $("#new-price-input").on("input",function(){
+        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
+        var new_price = $("#new-price-input").val();
+        $("#price-input").val (( new_price * 100 / (100 - percentage) ).toFixed(2));
     });
 
 });
@@ -202,6 +196,18 @@ $(function() {
 });
 $(function () {
     $('body').tooltip({selector: '[data-toggle="tooltip"]'});
+});
+$(function() {
+    if ($('#notice').text()) {
+        $('#notice').animate({top: 10}, 500);
+        setTimeout(function(){
+            $('#notice').animate({top: -60}, 500);
+        }, 3000);
+        $('#notice').click(function () {
+            $('#notice').animate({top: -60}, 500);
+        })
+    }
+
 });
 
 
