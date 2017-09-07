@@ -18,11 +18,15 @@
         <ul class="nav nav-pills">
           <li class="active"><a href="#main" data-toggle="tab" aria-expanded="true">Главная</a></li>
           <li><a href="#extra" data-toggle="tab" aria-expanded="true">Дополнительно</a></li>
-          <li><a href="#pictures" data-toggle="tab" aria-expanded="true">Изображения</a></li>
+          <% if @current_new %>
+              <li><a href="#pictures" data-toggle="tab" aria-expanded="true" class="disabled">Изображения</a></li>
+          <% else %>
+              <li><a href="#pictures" data-toggle="tab" aria-expanded="true">Изображения</a></li>
+          <% end %>
         </ul>
         <div class="tab-content mt10">
           <!--Вкладка "Главная"-->
-          <div class="tab-pane fade active in" id="main">
+          <div class="tab-pane fade active in" id="main">git 
             <div class="col-lg-4">
               <div class="form-group has-error">
                 <%= f.label :title, 'Название *' %>
