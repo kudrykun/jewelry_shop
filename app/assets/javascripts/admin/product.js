@@ -99,7 +99,15 @@ $(document).ready(function () {
         paramName: "picture[image]",
         // отображать ссылки на удаление в дропзоне
         addRemoveLinks: true,
-
+        // опции перевода
+        dictDefaultMessage: "Перетащите изображения сюда или кликните для загрузки",
+        dictFallbackMessage: "Ваш браузер не поддерживает функцию загрузки файлов перетаскиванием",
+        dictFileTooBig: "Файл слишком большой ({{filesize}} МБ). Максимальный размер файла: {{maxFilesize}} МБ.",
+        dictInvalidFileType: "Вы не можете загрузить файл этого формата",
+        dictResponseError: "Сервер ответил ошибкой ({{statusCode}})",
+        dictCancelUpload: "Отменить загрузку",
+        dictCancelUploadConfirmation: "Вы уверены, что хотите отменить загрузку этого файла?",
+        dictRemoveFile: "Удалить файл",
         success: function (file, response) {
             //обновляем не дропзону
             print_product_image(response.id, response.url);
