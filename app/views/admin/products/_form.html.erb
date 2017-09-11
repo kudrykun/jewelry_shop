@@ -312,83 +312,15 @@
           <!--Вкладка "Изображения"-->
           <div class="tab-pane fade" id="pictures">
             <div class="col-lg-12">
-              <div class="form-group">
-                <%= f.label :size_ids, 'Изображения' %>
-                <%= f.fields_for :pictures, html: { multipart: true, class: "dropzone"} do |picture|%>
 
-                    <div class="fallback">
-                      <%= picture.file_field :image %>
-                    </div>
-                <%end%>
-                <div class="entity-images-container">
-                  <div class="row">
-                    <div class="col-md-2">
-
-                      <button type="button" class="add-image btn btn-default" data-toggle="modal" data-target="#dropzoneModal">
-                        Добавить <i class="fa fa-plus"></i>
-                      </button>
-
-                      <!--<div class="add-image" data-toggle="modal" data-target="#dropzoneModal">-->
-                      <!--<i class="fa fa-plus"></i>-->
-                      <!--</div>-->
-                    </div>
-                    <% product.pictures.each do |picture| %>
-                        <div class="col-md-2 entity-image" data-picture-id="<%= picture.id %>">
-                          <div class="btn btn-danger delete-picture">Удалить</div>
-                          <%= image_tag picture.image(:thumb), class: 'img-responsive' %>
-                          <% if product.preview_id == picture.id %>
-                              <div class="btn btn-primary set-preview" style="display:none">Сделать обложкой</div>
-                              <span id="preview-tag">Обложка</span>
-                          <% else %>
-                              <div class="btn btn-primary set-preview">Сделать обложкой</div>
-                          <% end %>
-                        </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
         </div>
       </div>
     </div>
-
-
-
-
-    <div id="hidden-tags">
-      <%= f.hidden_field :preview_id, :value => product.preview_id %>
-      <% product.pictures.each do |picture| %>
-          <input type="hidden" name="picture_ids[]" id="picture_ids_<%= picture.id %>" value="<%= picture.id %>">
-      <% end %>
-    </div>
     <div class="actions pb30">
       <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg mb-30' %>
     </div>
     <!--<div class="well"></div>-->
 <% end %>
-
-
-
-<div class="modal fade" id="dropzoneModal" tabindex="-1" role="dialog" aria-labelledby="dropzoneModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <%= form_for ([:admin, Picture.new]), :html => {multipart: true, class: "dropzone"} do |f| %>
-            <div class="fallback">
-              <%= f.file_field :image %><br>
-              <%= f.submit "Upload" %>
-            </div>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
