@@ -11,47 +11,6 @@
 * В случае реадактирования товара, для каждого товара хранится объект pictures_data_\\айди-товара\\
 * Структура pictures_data проста: id превью и массив с id изображений*/
 
-/*ИНИЦИАЛИЗАЦИЯ ДАННЫХ ДЛЯ STORAGE TITLE*/
-/*id текущего товара*/
-var product_id;
-/*Переменная под имя объекта в session storage*/
-var storage_title;
-/*Если в ссылке на текущий товар есть id, то сохраняем его и используем в качестве имени объекта*/
-if (window.location.href.match(/\/([\d]+)\//)) {
-    product_id = window.location.href.match(/\/([\d]+)\//)[1];
-    storage_title = '_' + product_id;
-} else {
-    storage_title = '';
-}
-/*Инициализируем объект для session storage. Инициализируем уже имеющимся объектом, иначе инициализируем новый пустой объект*/
-var pictures_data = JSON.parse(sessionStorage.getItem("pictures_data" + storage_title)) || {
-        preview: null,
-        pictures_ids: []
-    };
-
-/*При загрузке страницы загружаем из хранилища изображения*/
-$(document).ready(function () {
-    /*Для каждого изображения отрисовываем его вьюху и добавляем скрытый тег
-    *Если изображение уже отрисовано, то не делаем ничего
-    * При наличии в хранилище id превью - устанавливаем и его*/
-    for (var i = 0; i < pictures_data.pictures_ids.length; i++) {
-        if (!($(document).find('#picture_ids_' + pictures_data.pictures_ids[i]).length))
-            $.ajax('/admin/pictures/' + pictures_data.pictures_ids[i], {
-                contentType: 'application/json',
-                dataType: 'json',
-                success: function (result) {
-                    print_product_image(result.picture_id, result.url);
-                    print_image_hidden_tag(result.picture_id);
-                    if (pictures_data.preview) {
-                        set_preview(pictures_data.preview);
-                    }
-                }
-            });
-
-    }
-});
-
-
 /*ФУНКЦИИ ОТРИСОВКИ ИЗМЕНЕНИЙ В КАРТИНКАХ*/
 
 /*Отрисовываем подгруженное изображение*/
@@ -87,8 +46,7 @@ var set_preview = function (current_id) {
 
 
 
-
-
+/*#TODO ВАЖНО!*/
 /*ФУНКЦИИ DROPZONE И ФУНКЦИИ ИЗМЕНЕНИЙ КАРТИНОК*/
 Dropzone.autoDiscover = false;
 $(document).ready(function () {
@@ -109,16 +67,13 @@ $(document).ready(function () {
         dictCancelUploadConfirmation: "Вы уверены, что хотите отменить загрузку этого файла?",
         dictRemoveFile: "Удалить файл",
         success: function (file, response) {
-            //обновляем не дропзону
-            print_product_image(response.id, response.url);
-            print_image_hidden_tag(response.id);
             /*ОБнолвяем дропзону*/
             $(file.previewTemplate).find('.dz-remove').attr('id', response.id);
             $(file.previewTemplate).addClass('dz-success');
 
-            /*Добавляем новое значение в массив и отправляем его в session storage*/
-            pictures_data.pictures_ids.push(response.id);
-            sessionStorage.setItem('pictures_data' + storage_title, JSON.stringify(pictures_data));
+            //обновляем не дропзону
+            print_product_image(response.id, response.url);/*Добавляем изображение и его кнопки*/
+            print_image_hidden_tag(response.id); /*Добавляем скрытый тег в форму*/
         },
 
         removedfile: function (file) {
@@ -129,18 +84,13 @@ $(document).ready(function () {
                 success: function (data) {
                     console.log(data.message);
                     file.previewElement.remove();
-                    //обновляем не дропзону
-                    $(document).find('*[data-picture-id=' + id + ']').remove();
-                    $(document).find('#picture_ids_' + id).remove();
-                    $('#product_preview_id').val('undefined');
 
-                    pictures_data.preview = null;
-                    /*Удалем значение из массива и отправляем его в session storage*/
-                    var index = pictures_data.pictures_ids.indexOf(+id)
-                    if (index != -1) {
-                        pictures_data.pictures_ids.splice(index, 1);
+                    //обновляем не дропзону
+                    $(document).find('*[data-picture-id=' + id + ']').remove(); /*удаление изображения и кнопок*/
+                    $(document).find('#picture_ids_' + id).remove(); /*удаление скрытого тега*/
+                    if ($('#product_preview_id').val() == id) {
+                        $('#product_preview_id').val('undefined');
                     }
-                    sessionStorage.setItem('pictures_data' + storage_title, JSON.stringify(pictures_data));
                 }
             });
         }
@@ -150,9 +100,6 @@ $(document).ready(function () {
     $(document).on('click', '.set-preview', function () {
         var currentId = $(this).parent().data('picture-id');
         set_preview(currentId);
-
-        pictures_data.preview = currentId;
-        sessionStorage.setItem('pictures_data' + storage_title, JSON.stringify(pictures_data));
     });
 
     /*Удаление картинки*/
@@ -162,18 +109,13 @@ $(document).ready(function () {
             type: 'DELETE',
             url: '/admin/pictures/' + picture_id,
             success: function (result) {
-                $(document).find('*[data-picture-id=' + result.id + ']').remove();
-
+                $(document).find('*[data-picture-id=' + result.id + ']').remove();/*удаление изображения и кнопок*/
+                $(document).find('#picture_ids_' + result.id).remove(); /*удаление скрытого тега*/
                 if ($('#product_preview_id').val() == result.id) {
                     $('#product_preview_id').val('undefined');
-                    pictures_data.preview = null;
                 }
-                var index = pictures_data.pictures_ids.indexOf(+result.id)
-                if (index != -1) {
-                    pictures_data.pictures_ids.splice(index, 1);
-                }
-                sessionStorage.setItem('pictures_data' + storage_title, JSON.stringify(pictures_data));
             }
         });
+        $('#new_picture').dropzone.removeFile
     });
 });
