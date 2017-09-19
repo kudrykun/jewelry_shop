@@ -23,9 +23,6 @@ class Admin::ProductsController < Admin::AdminController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        if params[:picture_ids]
-          params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
-        end
         format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно создан. Теперь вы можете добавить изображения.'}
         format.json {render :show, status: :created, location: @product}
       else
@@ -38,11 +35,14 @@ class Admin::ProductsController < Admin::AdminController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        if params[:picture_ids]
-          params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
+        if params[:product][:picture_id]
+          @product.pictures << Picture.find(params[:product][:picture_id])
         end
         format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
+        format.json {render :nothing => true}
+=begin
         format.json {render :show, status: :ok, location: @product}
+=end
       else
         format.html {render :edit}
         format.json {render json: @product.errors, status: :unprocessable_entity}
@@ -151,7 +151,7 @@ class Admin::ProductsController < Admin::AdminController
                                                                :size_id,
                                                                :_destroy],
                                     :metal_type_ids => [],
-                                    :size_ids => [],
-                                    :picture_ids => [])
+                                    :size_ids => []
+                                    )
   end
 end

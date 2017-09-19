@@ -9,9 +9,10 @@ class Admin::PicturesController < Admin::AdminController
     @picture = Picture.new
   end
   def create
+    Rails.logger.debug params.inspect
     @picture = Picture.new(picture_params)
       if @picture.save
-        render json: { message: "success", id: @picture.id, url: @picture.image(:thumb)}, :status => 200
+        render json: { message: "success", id: @picture.id, url: @picture.image(:medium)}, :status => 200
       else
         render json: @picture.errors, :status => 400
       end

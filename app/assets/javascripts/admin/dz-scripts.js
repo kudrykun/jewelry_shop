@@ -9,10 +9,9 @@ function pic_size(){
 };
 /*счетчик картинок*/
 var pictures_size = pic_size();
-
+var current_domain = $(document).attr('URL').match(/http:\/\/([^\/]*)/)[0];
 
 $(document).ready(function(){
-
     var _URL = window.URL || window.webkitURL;
 
     /****************************************************/
@@ -39,6 +38,9 @@ $(document).ready(function(){
         if(ev.originalEvent.dataTransfer){
             if(ev.originalEvent.dataTransfer.files.length) {
                 var droppedFiles = ev.originalEvent.dataTransfer.files;
+
+                var promises = [];/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
+
                 for(var i = 0; i < droppedFiles.length; i++)
                 {
                     console.log(droppedFiles[i]);
@@ -60,9 +62,41 @@ $(document).ready(function(){
                             '</div>' +
                             '</div>'
                         );
-                        /**/
-                        $("#droppedImages > .row > div > .dz-image").last().append(image);
+
+                        $("#droppedImages > .row > div > .dz-image").last().append(image);/*Добавляем изображение в контейнер*/
                         $(image).addClass("img-responsive");
+                        $(image).closest('.dz-image').attr('data-product-id',window.location.href.match(/\/([\d]+)\//)[1]); /*добавляем атрибут с id родителя*/
+
+                        var file_data = droppedFiles[i];   // Получаем файл
+                        var form_data = new FormData();    // создаем объект с файломи его свойствами
+                        form_data.append("picture[image]", file_data); // добавляем его в параметры
+                        var request = $.ajax({
+                            url: current_domain + '/admin/pictures',
+                            data: form_data,
+                            dataType: 'json',
+                            type: 'POST',
+                            processData: false, // это очень важно для работы form data
+                            contentType: false, // это очень важно для работы form data
+                            success: function (result) {
+                                image.src = result.url; // ставим новый адрес картинки, тот что получили от сервера
+                                /*Этим"ajax-ом привязывает картинку к товару*/
+                                $.ajax({
+                                    url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                                    data: {
+                                        product:{
+                                            picture_id: result.id
+                                        }
+                                    },
+                                    dataType: 'json',
+                                    type: 'PATCH',
+                                    success: function () {
+                                        alert('q');
+
+                                    }
+                                });
+                            }
+                        });
+                        promises.push( request);/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
 
                     }
                     image.src = _URL.createObjectURL(droppedFiles[i]);
@@ -70,7 +104,12 @@ $(document).ready(function(){
                         $(".dz-image").addClass('dz-preview');
                     }
                     pictures_size++;
+
+
+
                 }
+                $.when.apply(null, promises).done(function(){/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
+                })
             }
         }
         /*Добавляем класс, скрывающий caption*/
@@ -102,6 +141,7 @@ $(document).ready(function(){
     $('input[type=file]').on('change',function(e){
         if ($(this).get(0).files.length > 0) {
             var droppedFiles = $(this).get(0).files;
+            var promises = [];/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
             for(var i = 0; i < droppedFiles.length; i++)
             {
                 console.log(droppedFiles[i]);
@@ -116,7 +156,7 @@ $(document).ready(function(){
                         '<div class="dz-delete-btn">' +
                         '</div>' +
                         '<div class="dz-details">' +
-                        '<div class="dz-size">' + Math.round(size / 1024) + ' MB</div>' +
+                        '<div class="dz-size">' + Math.round(size / 1024) + ' KB</div>' +
                         '<div class="dz-name">' + name + '</div>' +
                         '</div>' +
                         '</div>' +
@@ -124,6 +164,38 @@ $(document).ready(function(){
                     );
                     $("#droppedImages > .row > div > .dz-image").last().append(image);
                     $(image).addClass("img-responsive");
+                    $(image).closest('.dz-image').attr('data-product-id',window.location.href.match(/\/([\d]+)\//)[1]); /*добавляем атрибут с id родителя*/
+
+                    var file_data = droppedFiles[i];   // Получаем файл
+                    var form_data = new FormData();    // создаем объект с файломи его свойствами
+                    form_data.append("picture[image]", file_data); // добавляем его в параметры
+                    var request = $.ajax({
+                        url: current_domain + '/admin/pictures',
+                        data: form_data,
+                        dataType: 'json',
+                        type: 'POST',
+                        processData: false, // это очень важно для работы form data
+                        contentType: false, // это очень важно для работы form data
+                        success: function (result) {
+                            image.src = result.url; // ставим новый адрес картинки, тот что получили от сервера
+                            /*Этим"ajax-ом привязывает картинку к товару*/
+                            $.ajax({
+                                url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                                data: {
+                                    product:{
+                                        picture_id: result.id
+                                    }
+                                },
+                                dataType: 'json',
+                                type: 'PATCH',
+                                success: function () {
+                                    alert('q');
+
+                                }
+                            });
+                        }
+                    });
+                    promises.push( request);/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
                 }
                 image.src = _URL.createObjectURL(droppedFiles[i]);
                 if(pictures_size == 0) {
@@ -132,6 +204,8 @@ $(document).ready(function(){
                 }
                 pictures_size++;
             }
+            $.when.apply(null, promises).done(function(){/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
+            })
             $('#dzHiddenInput').val('')
             $("#myDropzone").addClass("dz-started");
         }
@@ -174,4 +248,6 @@ $(document).ready(function(){
 
 
 });
+
+
 
