@@ -65,7 +65,6 @@ $(document).ready(function(){
 
                         $("#droppedImages > .row > div > .dz-image").last().append(image);/*Добавляем изображение в контейнер*/
                         $(image).addClass("img-responsive");
-                        $(image).closest('.dz-image').attr('data-product-id',window.location.href.match(/\/([\d]+)\//)[1]); /*добавляем атрибут с id родителя*/
 
                         var file_data = droppedFiles[i];   // Получаем файл
                         var form_data = new FormData();    // создаем объект с файломи его свойствами
@@ -79,6 +78,7 @@ $(document).ready(function(){
                             contentType: false, // это очень важно для работы form data
                             success: function (result) {
                                 image.src = result.url; // ставим новый адрес картинки, тот что получили от сервера
+                                $(image).closest('.dz-image').attr('data-picture-id', result.id); /*добавляем атрибут с id родителя*/
                                 /*Этим"ajax-ом привязывает картинку к товару*/
                                 $.ajax({
                                     url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
@@ -164,7 +164,7 @@ $(document).ready(function(){
                     );
                     $("#droppedImages > .row > div > .dz-image").last().append(image);
                     $(image).addClass("img-responsive");
-                    $(image).closest('.dz-image').attr('data-product-id',window.location.href.match(/\/([\d]+)\//)[1]); /*добавляем атрибут с id родителя*/
+
 
                     var file_data = droppedFiles[i];   // Получаем файл
                     var form_data = new FormData();    // создаем объект с файломи его свойствами
@@ -178,6 +178,7 @@ $(document).ready(function(){
                         contentType: false, // это очень важно для работы form data
                         success: function (result) {
                             image.src = result.url; // ставим новый адрес картинки, тот что получили от сервера
+                            $(image).closest('.dz-image').attr('data-picture-id', result.id); /*добавляем атрибут с id родителя*/
                             /*Этим"ajax-ом привязывает картинку к товару*/
                             $.ajax({
                                 url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
@@ -200,6 +201,16 @@ $(document).ready(function(){
                 image.src = _URL.createObjectURL(droppedFiles[i]);
                 if(pictures_size == 0) {
                     $(".dz-image").addClass('dz-preview');
+                    $.ajax({
+                        url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                        data: {
+                            product:{
+                                preview_id: $('#myDropzone').find('.dz-preview').attr('data-picture-id')
+                            }
+                        },
+                        dataType: 'json',
+                        type: 'PATCH'
+                    });
 
                 }
                 pictures_size++;
@@ -220,16 +231,30 @@ $(document).ready(function(){
 
     /*Удаление картинки*/
     $("#myDropzone").on('click',".dz-delete-btn", function(e){
+        var id = $(this).closest('.dz-image').attr('data-picture-id');
         if( $(this).closest('.dz-image').hasClass('dz-preview')) {
             $(this).closest(".dz-image-container").fadeOut(400,function(){
                 $(this).remove();
                 $('#myDropzone').find('.dz-image').first().addClass('dz-preview');
+                $.ajax({
+                    url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                    data: {
+                        product:{
+                            preview_id: $('#myDropzone').find('.dz-image').first().attr('data-picture-id')
+                        }
+                    },
+                    dataType: 'json',
+                    type: 'PATCH'
+                });
             });
         }
         else{
             $(this).closest(".dz-image-container").fadeOut(300, function(){ $(this).remove(); });
         }
-
+        $.ajax({
+            url: current_domain + '/admin/pictures/' + id,
+            type: 'DELETE',
+        });
         pictures_size--;
         if (pictures_size == 0) {
             $("#myDropzone").removeClass("dz-started");
@@ -241,6 +266,16 @@ $(document).ready(function(){
     $("#myDropzone").on('click',".dz-preview-btn", function(e){
         $('.dz-preview').removeClass('dz-preview');
         $(this).closest(".dz-image").addClass('dz-preview');
+        $.ajax({
+            url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+            data: {
+                product:{
+                    preview_id: $(this).closest(".dz-image").attr('data-picture-id')
+                }
+            },
+            dataType: 'json',
+            type: 'PATCH'
+        });
         return false;/*предотвращает запуск события родителя*/
     });
 
