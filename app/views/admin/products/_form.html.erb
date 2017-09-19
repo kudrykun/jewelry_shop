@@ -26,7 +26,7 @@
         </ul>
         <div class="tab-content mt10">
           <!--Вкладка "Главная"-->
-          <div class="tab-pane fade active in" id="main">git 
+          <div class="tab-pane fade active in" id="main">git
             <div class="col-lg-4">
               <div class="form-group has-error">
                 <%= f.label :title, 'Название *' %>
@@ -137,34 +137,38 @@
               </div>
 
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :to_main_page, 'На главную', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на главной странице?'} %> <i class="fa fa-info" aria-hidden="true" ></i>
+                <%= f.label :to_main_page, 'На главную', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на главной странице?'} %>
+                <i class="fa fa-info" aria-hidden="true"></i>
                 <div class="material-switch pull-right">
-                  <%= f.check_box :to_main_page  %>
+                  <%= f.check_box :to_main_page %>
                   <%= f.label :to_main_page, class: 'label-primary' do %>
                   <% end %>
                 </div>
               </div>
 
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :recommendation, 'Рекомендовать', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие в "Вам понравится" ?'} %> <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие в 'Вам понравится' ?"></i>
+                <%= f.label :recommendation, 'Рекомендовать', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие в "Вам понравится" ?'} %>
+                <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие в 'Вам понравится' ?"></i>
                 <div class="material-switch ml10 pull-right">
-                  <%= f.check_box :recommendation  %>
+                  <%= f.check_box :recommendation %>
                   <%= f.label :recommendation, class: 'label-primary' do %>
                   <% end %>
                 </div>
               </div>
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :hit, 'Хит', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на вкладке ХИТ ?'} %> <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на вкладке ХИТ ?"></i>
+                <%= f.label :hit, 'Хит', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на вкладке ХИТ ?'} %>
+                <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на вкладке ХИТ ?"></i>
                 <div class="material-switch ml10 pull-right">
-                  <%= f.check_box :hit  %>
+                  <%= f.check_box :hit %>
                   <%= f.label :hit, class: 'label-primary' do %>
                   <% end %>
                 </div>
               </div>
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :visible, 'Видимость', :data => { :toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на сайте ?'} %> <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на сайте ?"></i>
+                <%= f.label :visible, 'Видимость', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на сайте ?'} %>
+                <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на сайте ?"></i>
                 <div class="material-switch ml10 pull-right">
-                  <%= f.check_box :visible  %>
+                  <%= f.check_box :visible %>
                   <%= f.label :visible, class: 'label-primary' do %>
                   <% end %>
                 </div>
@@ -240,9 +244,9 @@
                   <%= f.collection_select :metal_color_id, @metal_colors, :id, :title,
                                           {include_blank: 'Пусто'},
                                           {class: 'form-control selectpicker',
-                                          :"data-live-search" => 'true',
-                                          :"data-live-Search-Placeholder" => 'Введите цвет',
-                                          :"title" => 'Выберите цвет...'} %>
+                                           :"data-live-search" => 'true',
+                                           :"data-live-Search-Placeholder" => 'Введите цвет',
+                                           :"title" => 'Выберите цвет...'} %>
                 </div>
 
 
@@ -260,7 +264,7 @@
 
                 <div class="form-group">
                   <%= f.label :sex, 'Пол' %>
-                  <%= f.select :sex, Product.sexes.keys.map {|sex| [sex_i18n(sex),sex]},{}, { class:  'form-control selectpicker'} %>
+                  <%= f.select :sex, Product.sexes.keys.map {|sex| [sex_i18n(sex), sex]}, {}, {class: 'form-control selectpicker'} %>
                 </div>
               </div>
             </div>
@@ -268,7 +272,7 @@
             <div class="incrustations-area">
               <b>Вставки:</b>
               <%= link_to new_admin_incrustation_item_path, remote: true, class: 'btn btn-default' do %>
-                   Добавить <i class="fa fa-plus" aria-hidden="true"></i>
+                  Добавить <i class="fa fa-plus" aria-hidden="true"></i>
               <% end %>
               <!--< %= link_to '+', new_admin_incrustation_item_path, remote: true, class: 'btn btn-default btn-circle'%>-->
               <!--<ul>-->
@@ -314,10 +318,14 @@
             <div class="col-lg-12">
 
               <!-- Скрытый input для открытия окна выбора файлов -->
-              <input id="dzHiddenInput" type="file" style="visibility:hidden" multiple />
+              <input id="dzHiddenInput" type="file" style="visibility:hidden" multiple/>
 
               <!-- Основной элемент дропзоны -->
-              <div class="dropzone" id="myDropzone">
+              <%if product.pictures.size != 0%>
+                  <div class="dropzone dz-started" id="myDropzone">
+              <%else%>
+                  <div class="dropzone" id="myDropzone">
+              <%end%>
                 <!-- ПОдпись в центре -->
                 <div class="dz-caption">
                   <%= image_tag 'dz-icon.png' %>
@@ -326,6 +334,25 @@
                 <!-- Контейнер для изображений -->
                 <div class="dz-dropped" id="droppedImages">
                   <div class="row">
+                    <%product.pictures.each do |picture|%>
+                      <div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">
+                        <%if picture.id == product.preview_id %>
+                            <div class="dz-image dz-preview" data-picture-id="<%=picture.id%>">
+                        <%else%>
+                            <div class="dz-image" data-picture-id="<%=picture.id%>">
+                        <%end%>
+                          <div class="dz-preview-btn">
+                          </div>
+                          <div class="dz-delete-btn">
+                          </div>
+                          <div class="dz-details">
+                            <div class="dz-size"> Math.round(size / 1024) KB</div>
+                            <div class="dz-name"> name</div>
+                          </div>
+                          <%=image_tag picture.image(:medium), class: 'img-responsive'%>
+                        </div>
+                      </div>
+                    <%end%>
                   </div>
                 </div>
               </div>
