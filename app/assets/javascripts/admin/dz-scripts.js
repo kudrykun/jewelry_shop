@@ -43,6 +43,9 @@ $(document).ready(function(){
 
                 for(var i = 0; i < droppedFiles.length; i++)
                 {
+                    var flag = false;
+                    if (pictures_size === 0)
+                        flag = true;
                     console.log(droppedFiles[i]);
                     var image = new Image();
                     /*Важно*/
@@ -100,15 +103,25 @@ $(document).ready(function(){
 
                     }
                     image.src = _URL.createObjectURL(droppedFiles[i]);
-                    if(pictures_size == 0) {
-                        $(".dz-image").addClass('dz-preview');
-                    }
                     pictures_size++;
 
 
 
                 }
                 $.when.apply(null, promises).done(function(){/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
+                    /*if (promises.length === pictures_size) {
+                        $(".dz-image").addClass('dz-preview');
+                        $.ajax({
+                            url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                            data: {
+                                product:{
+                                    preview_id: $('#myDropzone').find('.dz-preview').attr('data-picture-id')
+                                }
+                            },
+                            dataType: 'json',
+                            type: 'PATCH'
+                        });
+                    }*/
                 })
             }
         }
@@ -196,23 +209,25 @@ $(document).ready(function(){
                             });
                         }
                     });
+                    /*if(pictures_size === 0) {
+                        alert('1488');
+                        $(".dz-image").addClass('dz-preview');
+                        $.ajax({
+                            url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                            data: {
+                                product:{
+                                    preview_id: $('#myDropzone').find('.dz-preview').attr('data-picture-id')
+                                }
+                            },
+                            dataType: 'json',
+                            type: 'PATCH'
+                        });
+
+                    }*/
                     promises.push( request);/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
                 }
                 image.src = _URL.createObjectURL(droppedFiles[i]);
-                if(pictures_size == 0) {
-                    $(".dz-image").addClass('dz-preview');
-                    $.ajax({
-                        url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
-                        data: {
-                            product:{
-                                preview_id: $('#myDropzone').find('.dz-preview').attr('data-picture-id')
-                            }
-                        },
-                        dataType: 'json',
-                        type: 'PATCH'
-                    });
 
-                }
                 pictures_size++;
             }
             $.when.apply(null, promises).done(function(){/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
@@ -231,34 +246,57 @@ $(document).ready(function(){
 
     /*Удаление картинки*/
     $("#myDropzone").on('click',".dz-delete-btn", function(e){
-        var id = $(this).closest('.dz-image').attr('data-picture-id');
-        if( $(this).closest('.dz-image').hasClass('dz-preview')) {
-            $(this).closest(".dz-image-container").fadeOut(400,function(){
-                $(this).remove();
-                $('#myDropzone').find('.dz-image').first().addClass('dz-preview');
-                $.ajax({
-                    url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
-                    data: {
-                        product:{
-                            preview_id: $('#myDropzone').find('.dz-image').first().attr('data-picture-id')
-                        }
-                    },
-                    dataType: 'json',
-                    type: 'PATCH'
+        var id = $(this).closest('.dz-image').attr('data-picture-id'); //id удаляемого товара
+        var del = $(this).closest('.dz-image'); //удаляемое изображение
+
+        if( del.hasClass('dz-preview')) { //если этот элемент превью
+            if (pictures_size == 1) { //если картинка последняя
+                del.closest(".dz-image-container").fadeOut(400,function(){
+                    $(this).remove(); //удаялем элемент
+                    $.ajax({ //обнуляем preview_id
+                        url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                        data: {
+                            product:{
+                                preview_id: 'null'
+                            }
+                        },
+                        dataType: 'json',
+                        type: 'PATCH'
+                    });
                 });
+                /*После удаления последней картинки, возвращаем caption*/
+                $("#myDropzone").removeClass("dz-started");
+            }
+            else { //если нет
+                del.closest(".dz-image-container").fadeOut(400,function(){
+                    $(this).remove(); //удаялем элемент
+                    $('#myDropzone').find('.dz-image').first().addClass('dz-preview');  //делаем первоеизображение в дропзону превьюхой
+                    $.ajax({ //обнуляем preview_id
+                        url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
+                        data: {
+                            product:{
+                                preview_id: $('#myDropzone').find('.dz-image').first().attr('data-picture-id')
+                            }
+                        },
+                        dataType: 'json',
+                        type: 'PATCH'
+                    });
+                });
+            }
+        }
+        else { //не превью
+            del.closest(".dz-image-container").fadeOut(400,function(){
+                $(this).remove(); //удаялем элемент
             });
         }
-        else{
-            $(this).closest(".dz-image-container").fadeOut(300, function(){ $(this).remove(); });
-        }
+
+        //Удаляем картинку с сервера
         $.ajax({
             url: current_domain + '/admin/pictures/' + id,
             type: 'DELETE',
         });
+
         pictures_size--;
-        if (pictures_size == 0) {
-            $("#myDropzone").removeClass("dz-started");
-        }
         return false;/*предотвращает запуск события родителя*/
     });
 

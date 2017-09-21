@@ -26,7 +26,7 @@
         </ul>
         <div class="tab-content mt10">
           <!--Вкладка "Главная"-->
-          <div class="tab-pane fade active in" id="main">git
+          <div class="tab-pane fade active in" id="main">
             <div class="col-lg-4">
               <div class="form-group has-error">
                 <%= f.label :title, 'Название *' %>
@@ -334,7 +334,7 @@
                 <!-- Контейнер для изображений -->
                 <div class="dz-dropped" id="droppedImages">
                   <div class="row">
-                    <%product.pictures.each do |picture|%>
+                    <%product.pictures.order(:created_at).each do |picture|%>
                       <div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">
                         <%if picture.id == product.preview_id %>
                             <div class="dz-image dz-preview" data-picture-id="<%=picture.id%>">
@@ -364,6 +364,8 @@
     </div>
     <div class="actions pb30">
       <%= f.submit 'Применить', class: 'btn btn-success center-block btn-lg mb-30' %>
+    </div>
+    </div>
     </div>
     <!--<div class="well"></div>-->
 <% end %>
