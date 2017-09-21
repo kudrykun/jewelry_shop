@@ -54,9 +54,11 @@ $(document).ready(function(){
                         $("#droppedImages .row").append(
                             '<div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">' +
                             '<div class="dz-image">' +
-                            '<div class="dz-preview-btn">' +
+                            '<div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать превью">' +
+                            '<i class="fa fa-thumb-tack pin" aria-hidden="true"></i>'+
                             '</div>' +
-                            '<div class="dz-delete-btn">' +
+                            '<div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить">' +
+                            '<i class="fa fa-times pin" aria-hidden="true"></i>'+
                             '</div>' +
                             '<div class="dz-details">' +
                             '<div class="dz-size">' + Math.round(size / 1024) + ' kB</div>' +
@@ -164,9 +166,11 @@ $(document).ready(function(){
                     $("#droppedImages .row").append(
                         '<div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">' +
                         '<div class="dz-image">' +
-                        '<div class="dz-preview-btn">' +
+                        '<div class="dz-preview-btn"  data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать превью" >' +
+                        '<i class="fa fa-thumb-tack pin" aria-hidden="true"></i>'+
                         '</div>' +
-                        '<div class="dz-delete-btn">' +
+                        '<div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить">' +
+                        '<i class="fa fa-times pin" aria-hidden="true"></i>'+
                         '</div>' +
                         '<div class="dz-details">' +
                         '<div class="dz-size">' + Math.round(size / 1024) + ' KB</div>' +

@@ -1,24 +1,20 @@
-body {
-    background-color: #e9f0fa;
-    padding: 30px;
-}
-
 /*Стили всей дропзоны*/
 .dropzone {
     border: 4px dashed #d0d7e1;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 /*Стили подписи в центре*/
 .dz-caption {
     pointer-events: none; /*Отключение всех событий курсора на этом элементе*/
     width: 80%;
-    margin:	40px auto; /*Центрирование по горизонтали*/
+    margin: 0 auto 40px; /*Центрирование по горизонтали*/
     /*font-family: 'Ubuntu', sans-serif;*/
     font-family: 'Open Sans Condensed', sans-serif;
 }
 .dz-caption > img {
-    width: 50%;
+    width: 40%;
     display: block;
     margin:	0 auto; /*Центрирование по горизонтали*/
 }
@@ -30,8 +26,6 @@ body {
     font-size: 42px;
     color: #b9bec5;
 }
-
-
 
 /*Стили при перетаскивании*/
 .highlightDropArea {
@@ -95,6 +89,16 @@ body {
     opacity: 1;
     width: 25%;
     height: 25%;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.dz-delete-btn .pin{
+    position: absolute;
+    left: 45%;
+    top: 25%;
+    color: white;
+
 }
 
 /*Кнопка выбора превью*/
@@ -120,15 +124,27 @@ body {
     opacity: 1;
     width: 25%;
     height: 25%;
+    font-size: 1.3em;
+    cursor: pointer;
 }
 
-/*Кнопка выбора превью*/
+/*Кнопка выбора превью, когда check*/
 .dz-preview .dz-preview-btn{
     opacity: 1;
     width: 25%;
     height: 25%;
     background: #2196F3;
+    font-size: 1.3em;
 }
+
+.dz-preview-btn .pin{
+    position: absolute;
+    left: 33%;
+    top: 26%;
+    color: white;
+    transform: rotate(30deg);
+}
+
 
 /*Информация для изображения*/
 .dz-details {
@@ -140,10 +156,10 @@ body {
     color: transparent;
     font-size: 1.9em;
     border-radius: 5px;
-    -webkit-transition: background-color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -moz-transition: background-color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -o-transition: background-color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: background-color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transition: background-color 0.3s ease-out;
+    -moz-transition: background-color 0.3s ease-out;
+    -o-transition: background-color 0.3s ease-out;
+    transition: background-color 0.3s ease-out;
 }
 
 .dz-details:hover{
@@ -156,7 +172,8 @@ body {
 .dz-name {
     position: absolute;
     width: 100%;
-    top: 40%;
+    top: 70%;
+    font-size: 0.5em;
     -webkit-transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     -moz-transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     -o-transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -166,7 +183,8 @@ body {
 .dz-size {
     position: absolute;
     width: 100%;
-    top: 50%;
+    top: 80%;
+    font-size: 0.5em;
     -webkit-transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     -moz-transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     -o-transition: color 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -174,5 +192,5 @@ body {
 }
 
 .dz-details:hover .dz-name, .dz-details:hover .dz-size {
-    color: black;
+    color: gray;
 }
