@@ -3,6 +3,8 @@ class Admin::ProductsController < Admin::AdminController
   #загружает цвета металлов, типы продуктов, размеры скидок для создания и сохранения
   before_action :set_selecting_collections, only: [:new, :create, :edit, :update]
 
+  before_action :set_action_info, only: [:new,:edit]
+
   def index
     @products = Product.all
   end
@@ -15,33 +17,13 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def edit
-    @from_products = false
-    @from_category = false
-    @from_collection = false
-    # определяет, с отуда отправлен запрос на редактирование
-    prev = Rails.application.routes.recognize_path(request.referrer)
-    @prev = Rails.application.routes.recognize_path(request.referrer)
-    if (prev[:controller] == 'admin/products') && (prev[:action] == 'index')
-      @from_products = true
-    end
-    if (prev[:controller] == 'admin/categories') && (prev[:action] == 'show')
-      @from_category = true
-      @category = Category.find(prev[:id])
-    end
-    if (prev[:controller] == 'admin/collections') && (prev[:action] == 'show')
-      @from_collection = true
-      @collection = Collection.find(prev[:id])
-    end
   end
 
   def create
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        if params[:picture_ids]
-          params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
-        end
-        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно создан.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно создан. Теперь вы можете добавить изображения.'}
         format.json {render :show, status: :created, location: @product}
       else
         format.html {render :new}
@@ -53,11 +35,14 @@ class Admin::ProductsController < Admin::AdminController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        if params[:picture_ids]
-          params[:picture_ids].each { |picture_id| @product.pictures << Picture.find(picture_id)}
+        if params[:product][:picture_id]
+          @product.pictures << Picture.find(params[:product][:picture_id])
         end
         format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
+        format.json {render :nothing => true}
+=begin
         format.json {render :show, status: :ok, location: @product}
+=end
       else
         format.html {render :edit}
         format.json {render json: @product.errors, status: :unprocessable_entity}
@@ -104,6 +89,34 @@ class Admin::ProductsController < Admin::AdminController
     @chain_types = ChainType.all
   end
 
+  def set_action_info
+    @from_products = false
+    @from_category = false
+    @from_collection = false
+    @from_new = false
+    @current_new = false
+    # определяет, с отуда отправлен запрос на редактирование
+    prev = Rails.application.routes.recognize_path(request.referrer)
+    @prev = Rails.application.routes.recognize_path(request.referrer)
+    if (prev[:controller] == 'admin/products') && (prev[:action] == 'index')
+      @from_products = true
+    end
+    if (prev[:controller] == 'admin/categories') && (prev[:action] == 'show')
+      @from_category = true
+      @category = Category.find(prev[:id])
+    end
+    if (prev[:controller] == 'admin/collections') && (prev[:action] == 'show')
+      @from_collection = true
+      @collection = Collection.find(prev[:id])
+    end
+    if (prev[:controller] == 'admin/products') && (prev[:action] == 'new')
+      @from_new = true
+    end
+    if (controller_name == 'products') && (action_name == 'new')
+      @current_new = true
+    end
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
     params.require(:product).permit(:title,
@@ -138,7 +151,7 @@ class Admin::ProductsController < Admin::AdminController
                                                                :size_id,
                                                                :_destroy],
                                     :metal_type_ids => [],
-                                    :size_ids => [],
-                                    :picture_ids => [])
+                                    :size_ids => []
+                                    )
   end
 end
