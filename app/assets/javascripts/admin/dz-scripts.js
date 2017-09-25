@@ -92,7 +92,8 @@ $(document).ready(function () {
 
     /*Управление
     * обработчик click .dz-delete-btn - удаляет изображения и перевыбирает превью
-    * обработчик click .dz-preview-btn - устанавливает превью*/
+    * обработчик click .dz-preview-btn - устанавливает превью
+    * обработчик click .dz-image-container - отключает вызов диалогового окна при клике на изображение*/
     {
         $("#myDropzone").on('click', ".dz-delete-btn", function () {
             var id = $(this).closest('.dz-image').attr('data-picture-id'); //id удаляемого товара
@@ -140,6 +141,11 @@ $(document).ready(function () {
             return false;
             /*предотвращает запуск события родителя*/
         });
+
+        $("#myDropzone").on('click', ".dz-image-container", function(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        });
     }
 
 
@@ -159,7 +165,7 @@ $(document).ready(function () {
 
                 function a(image, size, name) {
 
-                    print_template();
+                    print_template(size, name);
 
                     $("#droppedImages > .row > div > .dz-image").last().append(image);
                     /*Добавляем изображение в контейнер*/
@@ -223,7 +229,7 @@ $(document).ready(function () {
             });
         }
 
-        var print_template = function(){
+        var print_template = function(size, name){
             $("#droppedImages .row").append(
                 '<div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">' +
                     '<div class="dz-image">' +
