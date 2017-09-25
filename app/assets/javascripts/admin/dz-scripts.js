@@ -16,7 +16,7 @@ $(document).ready(function () {
     * $dropzone - переменная с первой дропзоной (ну как бы, она должна быть одна, другие игнорятся, увы)
     * pictures_size - текущее количество картинок*/
 
-    var current_domain = $(document).attr('URL').match(/http:\/\/([^\/]*)/)[0];
+    var current_domain = $(document).attr('URL').match(/(http|https):\/\/([^\/]*)/)[0];
     var entity_id = $(document).attr('URL').match(/\/([\d]+)\//)[1];
     var rails_entity_path = $('form').attr('action').replace(entity_id,'');
     var _URL = window.URL || window.webkitURL;
