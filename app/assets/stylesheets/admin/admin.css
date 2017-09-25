@@ -6,7 +6,6 @@
  *= require dataTables.bootstrap
  *= require dataTables.responsive
  *= require font-awesome
- *= require dropzone/dropzone
  *= require_self
  *= require_tree .
 */
