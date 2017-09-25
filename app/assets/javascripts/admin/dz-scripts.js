@@ -1,17 +1,18 @@
-/*Инициализация количества картинок*/
-function pic_size(){
-    var size = $("#myDropzone").find(".dz-image-container").length;
-    if (size != 0) {
-        return size;
-    }else {
-        return 0;
-    }
-};
-/*счетчик картинок*/
-var pictures_size = pic_size();
-var current_domain = $(document).attr('URL').match(/http:\/\/([^\/]*)/)[0];
+
 
 $(document).ready(function(){
+    /*Инициализация количества картинок*/
+    function pic_size(){
+        var size = $("#myDropzone").find(".dz-image-container").length;
+        if (size != 0) {
+            return size;
+        }else {
+            return 0;
+        }
+    };
+    /*счетчик картинок*/
+    var pictures_size = pic_size();
+    var current_domain = $(document).attr('URL').match(/http:\/\/([^\/]*)/)[0];
     var _URL = window.URL || window.webkitURL;
 
     /****************************************************/
@@ -82,6 +83,7 @@ $(document).ready(function(){
                             processData: false, // это очень важно для работы form data
                             contentType: false, // это очень важно для работы form data
                             success: function (result) {
+                                pictures_size++;
                                 image.src = result.url; // ставим новый адрес картинки, тот что получили от сервера
                                 $(image).closest('.dz-image').attr('data-picture-id', result.id); /*добавляем атрибут с id родителя*/
                                 /*Этим"ajax-ом привязывает картинку к товару*/
@@ -93,11 +95,7 @@ $(document).ready(function(){
                                         }
                                     },
                                     dataType: 'json',
-                                    type: 'PATCH',
-                                    success: function () {
-                                        alert('q');
-
-                                    }
+                                    type: 'PATCH'
                                 });
                             }
                         });
@@ -105,25 +103,25 @@ $(document).ready(function(){
 
                     }
                     image.src = _URL.createObjectURL(droppedFiles[i]);
-                    pictures_size++;
+
 
 
 
                 }
-                $.when.apply(null, promises).done(function(){/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
-                    /*if (promises.length === pictures_size) {
-                        $(".dz-image").addClass('dz-preview');
+                $.when.apply(null, promises).done(function(result){/*По идее, это не позволяет двум ajax-ам выполнятся одновременно*/
+                    if (pictures_size == promises.length) {
+                        $(".dz-image").first().addClass('dz-preview');
                         $.ajax({
                             url: current_domain + '/admin/products/' + window.location.href.match(/\/([\d]+)\//)[1],
                             data: {
-                                product:{
-                                    preview_id: $('#myDropzone').find('.dz-preview').attr('data-picture-id')
+                                product: {
+                                    preview_id: $('#myDropzone').find('.dz-preview').first().attr('data-picture-id')
                                 }
                             },
                             dataType: 'json',
                             type: 'PATCH'
                         });
-                    }*/
+                    }
                 })
             }
         }

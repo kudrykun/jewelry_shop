@@ -334,7 +334,7 @@
                 <!-- Контейнер для изображений -->
                 <div class="dz-dropped" id="droppedImages">
                   <div class="row">
-                    <%product.pictures.order(:created_at).each do |picture|%>
+                    <%product.pictures.order(created_at: :desc).each do |picture|%>
                       <div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">
                         <%if picture.id == product.preview_id %>
                             <div class="dz-image dz-preview" data-picture-id="<%=picture.id%>">
