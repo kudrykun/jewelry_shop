@@ -46,7 +46,7 @@
               <% if @product.pictures.size > 0 %>
                 <% @product.pictures.each do |picture| %>
                     <div class="item">
-                      <%= image_tag(picture.image) %>
+                      <%= image_tag(picture.image(:large)) %>
                     </div>
                 <% end %>
               <% else %>
@@ -207,7 +207,7 @@
 
               <%= link_to product_path(product) do %>
                   <% if product.preview != nil  %>
-                      <%=image_tag product.preview.image,  width:'100%'  %>
+                      <%=image_tag product.preview.image(:medium),  width:'100%'  %>
                   <% else %>
                       <%=image_tag 'ring2.jpg',  width:'100%' %>
                   <%end%>
