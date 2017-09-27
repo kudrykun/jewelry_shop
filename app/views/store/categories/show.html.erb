@@ -1,0 +1,289 @@
+<!--Баннер категории-->
+<div class="catalog-banner">
+  <div class="catalog-banner_in">
+    <div class="" widht="100%">
+      <div class="container">
+        <nav class="nav_crumbs">
+          <div class="nav-wrapper">
+            <!-- Mobile nav -->
+            <div class="col s12 hide-on-sm-and-up">
+              <a href="#" class="catalog-back"><i class="material-icons left">keyboard_backspace</i>Главная</a>
+            </div>
+            <div class="col s12 hide-on-sm-and-down">
+              <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
+              <%= link_to 'Каталог', catalog_path, class: 'breadcrumb' %>
+              <%= link_to @category.title, category_path(@category), class: 'breadcrumb' %>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col l7 m8 sm9 s12">
+          <h1>
+            <%= @category.title %>
+          </h1>
+        </div>
+      </div>
+    </div><!-- container -->
+  </div>
+</div><!-- catalog-banner -->
+
+<div class="container">
+  <div class="row">
+    <div class="col s12 filter">
+      <div class="col s12">
+        <div class="row">
+          <div class="col l3 m3 hide-on-sm-and-down">
+            <h5>ФИЛЬТРЫ:</h5>
+          </div>
+          <div class="col l9 m9 sm10 s10 applied-filters">
+
+          </div>
+          <div class="col sm2 s2 hide-on-sm-and-up">
+            <a class="btn-flat button-collapse waves-effect waves-light right" href="https://www.valtera.ru/catalogue/search/?seo_slug_=magia-di-gamma.html#" data-activates="slide-out-filter">
+              <i class="material-icons right" style="font-size: 1.625rem; line-height: 3rem;">tune</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Левый фильтр-->
+    <div class="col l3 m3 filter-right hide-on-sm-and-down">
+      <form name="catalog_form_desktop" action="#">
+        <input type="hidden" name="type" value="-1">
+        <input type="hidden" name="filter_search" value="true">
+        <input type="hidden" name="sort" value="3">
+        <input type="hidden" name="perPage" value="24">
+        <input type="hidden" name="seo_slug_" value="magia-di-gamma.html">
+        <ul class="collapsible with-header basket" data-collapsible="expandable">
+
+          <li>
+            <div class="collapsible-header">
+              ЦЕНА <span style="font-size: 1rem; margin-left: 5px;">₽</span>
+            </div>
+            <div class="collapsible-body">
+              <div class="row priceSlider">
+                <div class="col s6 priceSlider-0">
+                  <input type="text" name="price_from" id="input-with-priceSlider-desktop0" class="validate">
+                </div>
+                <div class="col s6 priceSlider-1">
+                  <input type="text" name="price_to" id="input-with-priceSlider-desktop1" class="validate">
+                </div>
+                <div class="col s12">
+                  <div id="priceSlider-desktop" class="noUi-target noUi-ltr noUi-horizontal">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="active">
+            <div class="collapsible-header active">МАТЕРИАЛ</div>
+            <div class="collapsible-body" style="display: block; padding-top: 7.5px; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
+              <ul class="collection jewelry-collection">
+                <li class="collection-item">
+                  <input type="radio" id="material_all_desktop" name="material" value="-1" checked="checked">
+                  <label for="material_all_desktop">Все материалы</label>
+                </li>
+
+                <li class="collection-item">
+                  <input type="radio" id="material_53737fb01408e7274a4692ed_desktop" name="material" value="gold">
+                  <label for="material_53737fb01408e7274a4692ed_desktop">Все золото</label>
+                </li>
+
+                <li class="collection-item">
+                  <input type="radio" id="material_4f7f06f15a67332060000001_desktop" name="material" value="beloe_zoloto">
+                  <label for="material_4f7f06f15a67332060000001_desktop">Белое золото</label>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <div class="collapsible-header">ВСТАВКИ</div>
+            <div class="collapsible-body">
+              <!--
+                            <div class="scroll-box">
+                            <div class="scroll-box-in">
+              -->
+              <ul class="collection jewelry-collection" id="stonefilter_slug">
+                <li class="collection-item hide">
+                  <input type="checkbox" id="stone_zhemchug_desktop" name="stone" value="zhemchug" disabled="">
+                  <label for="stone_zhemchug_desktop">Жемчуг</label>
+                </li>
+
+                <li class="collection-item hide">
+                  <input type="checkbox" id="stone_izumrud_desktop" name="stone" value="izumrud" disabled="">
+                  <label for="stone_izumrud_desktop">Изумруд</label>
+                </li>
+              </ul>
+              <!--              </div>-->
+              <!-- scroll-box-in -->
+              <!--              </div>-->
+              <!-- scroll-box -->
+            </div>
+          </li>
+
+          <li class="active">
+            <div class="collapsible-header active">СКИДКИ</div>
+            <div class="collapsible-body" style="display: block; padding-top: 7.5px; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
+              <ul class="collection">
+                <li class="collection-item">
+                  <input type="checkbox" id="discounts_30_desktop" value="30" name="discounts">
+                  <label for="discounts_30_desktop">-30%</label>
+                </li>
+
+                <li class="collection-item">
+                  <input type="checkbox" id="discounts_50_desktop" value="50" name="discounts">
+                  <label for="discounts_50_desktop">-50%</label>
+                </li>
+
+                <li class="collection-item">
+                  <input type="checkbox" id="discounts_70_desktop" value="70" name="discounts">
+                  <label for="discounts_70_desktop">-70%</label>
+                </li>
+
+                <li class="collection-item">
+                  <input type="checkbox" id="discounts_80_desktop" value="80" name="discounts">
+                  <label for="discounts_80_desktop">-80%</label>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+
+          <li>
+            <div class="collapsible-header">БРЕНДЫ</div>
+            <div class="collapsible-body">
+              <div class="scroll-box">
+                <div class="scroll-box-in">
+                  <ul class="collection jewelry-collection">
+                    <li class="collection-item">
+                      <input type="radio" id="brand_all_desktop" name="brand" value="-1" checked="checked">
+                      <label for="brand_all_desktop">Все бренды</label>
+                    </li>
+
+                    <li class="collection-item">
+                      <input type="radio" id="brand_57593a731408e73bbd5c45d3_desktop" name="brand" value="aldzena">
+                      <label for="brand_57593a731408e73bbd5c45d3_desktop">Альдзена</label>
+                    </li>
+                  </ul>
+                </div><!-- scroll-box-in -->
+              </div><!-- scroll-box -->
+            </div>
+          </li>
+        </ul>
+
+        <button class="btn waves-effect waves-light border-btn_grey" type="submit" name="action">Найти</button>
+      </form>
+    </div>
+    <!--Левый фильтр-->
+
+    <div class="col l9 m9 s12">
+      <div class="row">
+
+        <!--Верхний фильтр-->
+        <div class="col s12 filter-box">
+          <div class="col l5 m5 sm5 s5 hide-on-small-only">
+            <p><b>106</b> товаров найдено</p>
+          </div>
+          <div class="col l7 m7 sm7 s12">
+            <div class="input-field">
+              <select name="sortBy" onchange="window.location.href=this.value;" class="initialized">
+                <option value="#">Возрастанию цены</option>
+                <option value="#">Убыванию цены</option>
+                <option value="#" selected="SELECTED">Новизне</option>
+                <option value="#">Популярности</option>
+                <option value="#">Артикулу</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--Верхний фильтр-->
+
+        <!--Карточки товаров-->
+        <%@products.each do |product|%>
+            <div class="col l3 m4 sm4 s6">
+              <div class="card">
+                <% if product.sale_size != nil %>
+                  <div class="sell-out_card red">-<%= product.sale_size.sale_percent %>%</div>
+                <% end %>
+                <div class="card-image waves-effect waves-block waves-light">
+                  <figure class="hover-effect">
+                    <%= link_to product_path(product) do%>
+                        <%= image_tag product.preview.image(:medium) %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="prices-card truncate">
+                    <% if product.sale_size != nil %>
+                        <span class="new-price"><%= product.new_price %> ₽</span>
+                        <span class="old-price"><s><%= product.price %> ₽</s></span>
+                    <% else %>
+                        <span class="new-price"><%= product.price %> ₽</span>
+                    <% end %>
+                  </div>
+                  <a href="product-card.html">
+                    <h6 class="card-title">
+                      <%= product.title %></b>
+                    </h6>
+                  </a>
+                  <div class="add-discount">
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        <!--Карточки товаров-->
+      </div><!-- row -->
+
+      <!--Пагинация-->
+      <div class="row pagination-box">
+        <!--
+              <div class="col s12 center-align hide-on-med-and-up">
+                <a id="load-more-btn" class="waves-effect waves-light btn border-btn_grey">ПОКАЗАТЬ ЕЩЁ 82</a>
+                <br><br>
+              </div>
+        -->
+        <div class="col s12">
+          <div class="input-field right hide-on-med-and-down">
+            <select name="perPage" onchange="window.location.href=this.value;" class="initialized">
+              <option value="#" selected="selected">Выводить по:  24</option>
+              <option value="#">Выводить по:  48</option>
+              <option value="#">Показать всё</option>
+            </select>
+          </div>
+          <ul class="pagination left-align center-on-sm-and-down">
+            <li class="disabled">
+              <a href="#!">
+                <i class="material-icons">chevron_left</i>
+              </a>
+            </li>
+
+            <li class="active">
+              <a href="#">1</a>
+            </li>
+
+            <li class="waves-effect">
+              <a href="#">2</a>
+            </li>
+
+            <li class="waves-effect">
+              <a href="#">
+                <i class="material-icons">chevron_right</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--Пагинация-->
+
+
+    </div><!-- col -->
+  </div><!-- row -->
+</div><!-- container -->

@@ -44,14 +44,14 @@
             <div id="product-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
               <% if @product.pictures.size > 0 %>
-                <% @product.pictures.each do |picture| %>
-                    <div class="item">
-                      <%= image_tag(picture.image(:large)) %>
-                    </div>
-                <% end %>
+                  <% @product.pictures.each do |picture| %>
+                      <div class="item">
+                        <%= image_tag(picture.image(:large)) %>
+                      </div>
+                  <% end %>
               <% else %>
                   <div class="item">
-                  <%= image_tag 'no-image.png' %>
+                    <%= image_tag 'no-image.png' %>
                   </div>
               <% end %>
 
@@ -96,28 +96,28 @@
         </div>
 
         <% if @product.price != nil && @product.get_shop_sizes(@product.shops).size > 0 %>
-          <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
-            <p><b>Выберите размер:</b></p>
+            <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
+              <p><b>Выберите размер:</b></p>
 
-            <% if @product.shops.size  %>
-                <% @product.shops.each do |shop|%>
-                    <% if @product.get_shop_sizes(shop).size %>
-                        <%=shop.title%>
-                        <ul>
-                          <% @product.get_shop_sizes(shop).each do |size|%>
-                              <label class="btn border-btn">
-                                <input type="radio" name="size" class="btn_set_size" id="size_"><%=size.size%>
-                              </label>
-                          <%end%>
-                        </ul>
-                    <%end%>
-                <%end%>
-            <%end%>
-          </div>
+              <% if @product.shops.size  %>
+                  <% @product.shops.each do |shop|%>
+                      <% if @product.get_shop_sizes(shop).size %>
+                          <%=shop.title%>
+                          <ul>
+                            <% @product.get_shop_sizes(shop).each do |size|%>
+                                <label class="btn border-btn">
+                                  <input type="radio" name="size" class="btn_set_size" id="size_"><%=size.size%>
+                                </label>
+                            <%end%>
+                          </ul>
+                      <%end%>
+                  <%end%>
+              <%end%>
+            </div>
         <% else %>
-          <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
-            Размеры отсутствуют
-          </div>
+            <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
+              Размеры отсутствуют
+            </div>
         <%end%>
 
 
@@ -159,105 +159,105 @@
 
   <div class="line hide-on-sm-and-down"></div>
   <% if @product.kit != nil && @product.kit.products.size > 1 %>
-  <!--    Комплекты-->
+      <!--    Комплекты-->
 
-  <div class="row">
-    <div class="add-set-to-cart-container">
+      <div class="row">
+        <div class="add-set-to-cart-container">
 
-      <% @product.kit.products.each do |product| %>
-        <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item">
-          <%= render './layouts/renders/product-card', product: product %>
-        </div>
-      <% end %>
+          <% @product.kit.products.each do |product| %>
+              <div class="col l3 m3 hide-on-sm-and-down add-set-to-cart-item">
+                <%= render './layouts/renders/product-card', product: product %>
+              </div>
+          <% end %>
 
-      <div class="col l3 m3 hide-on-sm-and-down price_set">
-        <div class="row center-align">
-          <div class="col s12">
-            <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">
-              Цена за комплект</h6>
+          <div class="col l3 m3 hide-on-sm-and-down price_set">
+            <div class="row center-align">
+              <div class="col s12">
+                <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">
+                  Цена за комплект</h6>
+              </div>
+              <div class="col s12 prices">
+
+                <% if @product.kit.getKitNewPrice != nil  %>
+                    <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
+                    <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
+                <% else %>
+                    <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
+                <% end %>
+
+              </div>
+              <div class="col s12">
+                <a class="waves-effect waves-light btn border-btn" onclick="appBasket.addSetToCart(this)">ПОКАЗАТЬ КОМПЛЕКТ</a>
+              </div>
+            </div>
           </div>
-          <div class="col s12 prices">
+        </div>
 
-            <% if @product.kit.getKitNewPrice != nil  %>
-                <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
-                <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
-            <% else %>
-                <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
+        <!-- - -->
+
+        <div class="col s12 hide-on-sm-and-up add-set-to-cart-container">
+          <ul class="collection with-header basket">
+            <li class="collection-header"><h5 class="flow-text">КОМПЛЕКТ</h5></li>
+
+
+            <% @product.kit.products.each do |product| %>
+                <li class="collection-item add-set-to-cart-item" >
+                  <div class="row">
+                    <div class="card-image col l2 m2 sm2 s3">
+
+                      <%= link_to product_path(product) do %>
+                          <% if product.preview != nil  %>
+                              <%=image_tag product.preview.image(:medium),  width:'100%'  %>
+                          <% else %>
+                              <%=image_tag 'ring2.jpg',  width:'100%' %>
+                          <%end%>
+                      <% end %>
+
+                    </div>
+
+                    <div class="card-content col sm7 s5">
+                      <%= link_to product_path(product) do %>
+                          <h6 class="card-title"> <%= product.title %> </h6>
+                      <% end %>
+                    </div>
+
+                    <div class="prices-card col sm3 s4 right-align">
+                      <% if product.new_price != nil  %>
+                          <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span><br>
+                          <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
+                      <% else %>
+                          <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
+                      <% end %>
+                    </div>
+
+                  </div>
+                </li>
             <% end %>
 
-          </div>
-          <div class="col s12">
-            <a class="waves-effect waves-light btn border-btn" onclick="appBasket.addSetToCart(this)">ПОКАЗАТЬ КОМПЛЕКТ</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- - -->
-
-    <div class="col s12 hide-on-sm-and-up add-set-to-cart-container">
-      <ul class="collection with-header basket">
-        <li class="collection-header"><h5 class="flow-text">КОМПЛЕКТ</h5></li>
-
-
-        <% @product.kit.products.each do |product| %>
-        <li class="collection-item add-set-to-cart-item" >
-          <div class="row">
-            <div class="card-image col l2 m2 sm2 s3">
-
-              <%= link_to product_path(product) do %>
-                  <% if product.preview != nil  %>
-                      <%=image_tag product.preview.image(:medium),  width:'100%'  %>
+            <li class="collection-item">
+              <div class="row">
+                <div class="col sm9 s8">
+                  <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">Цена за комплект:</h6>
+                </div>
+                <div class="prices-card col sm3 s4 right-align" style="margin: 0;">
+                  <% if @product.kit.getKitNewPrice != nil  %>
+                      <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
+                      <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
                   <% else %>
-                      <%=image_tag 'ring2.jpg',  width:'100%' %>
-                  <%end%>
-              <% end %>
+                      <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
+                  <% end %>
+                </div>
+                <div class="col s12 center" style="margin: 1.5rem 0 0 0;">
+                  <a class="waves-effect waves-light btn border-btn" >ПОКАЗАТЬ КОМПЛЕКТ</a>
+                </div>
+              </div>
+            </li>
 
-            </div>
+          </ul>
+        </div>
 
-            <div class="card-content col sm7 s5">
-              <%= link_to product_path(product) do %>
-                  <h6 class="card-title"> <%= product.title %> </h6>
-              <% end %>
-            </div>
-
-            <div class="prices-card col sm3 s4 right-align">
-                <% if product.new_price != nil  %>
-                    <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span><br>
-                    <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
-                <% else %>
-                    <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
-                <% end %>
-            </div>
-
-          </div>
-        </li>
-        <% end %>
-
-        <li class="collection-item">
-          <div class="row">
-            <div class="col sm9 s8">
-              <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">Цена за комплект:</h6>
-            </div>
-            <div class="prices-card col sm3 s4 right-align" style="margin: 0;">
-              <% if @product.kit.getKitNewPrice != nil  %>
-                  <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
-                  <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
-              <% else %>
-                  <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span>
-              <% end %>
-            </div>
-            <div class="col s12 center" style="margin: 1.5rem 0 0 0;">
-              <a class="waves-effect waves-light btn border-btn" >ПОКАЗАТЬ КОМПЛЕКТ</a>
-            </div>
-          </div>
-        </li>
-
-      </ul>
-    </div>
-
-  </div><!-- row -->
-  <!--    /Комплекты-->
+      </div><!-- row -->
+      <!--    /Комплекты-->
   <% end %>
 
 </div><!-- container -->
@@ -271,7 +271,7 @@
 
         <li class="tab col l2 m4 s4"><a href="#tab-desc" class="active">ОПИСАНИЕ</a></li>
         <% if @product.manufacturer != nil && @product.manufacturer.description != '' %>
-          <li class="tab col l2 m4 s4"><a href="#tab-coll">О БРЕНДЕ</a></li>
+            <li class="tab col l2 m4 s4"><a href="#tab-coll">О БРЕНДЕ</a></li>
         <% end %>
         <!--<div class="indicator" style="right: 0px; left: 0px;"></div>-->
       </ul>
@@ -285,13 +285,13 @@
       <div id="tab-desc" class="tab-content active">
         <div class="row">
           <% if @product.collection != nil && @product.collection.title != '' %>
-          <div class="col s12">
-            <b>Коллекция:
-              <a href="#">
-                <%= @product.collection.title %>
-              </a>
-            </b>
-            <br><br>
+              <div class="col s12">
+                <b>Коллекция:
+                  <a href="#">
+                    <%= @product.collection.title %>
+                  </a>
+                </b>
+                <br><br>
           <% end %>
           </div>
 
@@ -311,7 +311,7 @@
               <%end%>
 
               <% if @product.metal_color != nil && @product.metal_color.title != '' %>
-                <li class="collection-item">Цвет металла<span class="secondary-content"><%= @product.metal_color.title %></span></li>
+                  <li class="collection-item">Цвет металла<span class="secondary-content"><%= @product.metal_color.title %></span></li>
               <%end%>
 
               <% if @product.weight != nil %>
@@ -330,17 +330,17 @@
 
             <% if @product.incrustation_items.size > 0 %>
 
-                  <% @product.incrustation_items.each do |incrustation_item|%>
-                      <!--ТАКИ ВОТ ТАК ВОТ МОЖНО РАБОТАТЬ СО ВСТАВКАМИ, СЧИТАЮ СВОЮ РАБОТУ ОКОНЧЕННОЙ-->
+                <% @product.incrustation_items.each do |incrustation_item|%>
+                    <!--ТАКИ ВОТ ТАК ВОТ МОЖНО РАБОТАТЬ СО ВСТАВКАМИ, СЧИТАЮ СВОЮ РАБОТУ ОКОНЧЕННОЙ-->
                     <ul class="collection">
                       <li class="collection-item">Тип<span class="secondary-content"><%=incrustation_item.incrustation.title%></span></li>
                       <li class="collection-item">Количество<span class="secondary-content"><%=incrustation_item.quantity%> шт.</span></li>
                       <li class="collection-item">Каратность<span class="secondary-content"><%=incrustation_item.weight%> крт.
                         <%if !incrustation_item.purity.blank? %>
                           <li class="collection-item">Чистота<span class="secondary-content"><%=incrustation_item.purity%></span></li>
-                        <%end%>
+                      <%end%>
                     </ul>
-                  <%end%>
+                <%end%>
 
             <%end%>
 
@@ -350,13 +350,13 @@
 
 
       <% if @product.manufacturer != nil && @product.manufacturer.description != '' %>
-        <div id="tab-coll" class="tab-content">
-          <div class="row">
-            <div class="col l12 m12 s12">
-              <p><%= @product.manufacturer.description %> </p>
+          <div id="tab-coll" class="tab-content">
+            <div class="row">
+              <div class="col l12 m12 s12">
+                <p><%= @product.manufacturer.description %> </p>
+              </div>
             </div>
           </div>
-        </div>
       <% end %>
     </div>
   </div><!-- container -->
