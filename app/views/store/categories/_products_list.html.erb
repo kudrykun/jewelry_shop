@@ -1,0 +1,40 @@
+<div id="filterrific_results">
+  <% products.each do |product| %>
+      <div class="col l3 m4 sm4 s6">
+        <div class="card">
+          <% if product.sale_size != nil %>
+              <div class="sell-out_card red">-<%= product.sale_size.sale_percent %>%</div>
+          <% end %>
+          <div class="card-image waves-effect waves-block waves-light">
+            <figure class="hover-effect">
+              <%= link_to product_path(product) do %>
+                  <% if product.preview != nil %>
+                    <%= image_tag product.preview.image(:medium) %>
+                  <% else %>
+                      <%= image_tag 'no-image.png' %>
+                  <% end %>
+              <% end %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="prices-card truncate">
+              <% if product.sale_size != nil %>
+                  <span class="new-price"><%= product.new_price %> ₽</span>
+                  <span class="old-price"><s><%= product.price %> ₽</s></span>
+              <% else %>
+                  <span class="new-price"><%= product.price %> ₽</span>
+              <% end %>
+            </div>
+            <a href="product-card.html">
+              <h6 class="card-title">
+                <%= product.title %></b>
+              </h6>
+            </a>
+            <div class="add-discount">
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
