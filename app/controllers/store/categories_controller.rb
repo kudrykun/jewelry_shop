@@ -6,7 +6,9 @@ class Store::CategoriesController < Store::StoreController
                        params[:filterrific],
                        select_options: {
                            sorted_by: Product.options_for_sorted_by
-                       }
+                       },
+                        persistence_id: 'shared_key',
+                        default_filter_params: {}
     ) or return
 
     # Respond to html for initial page load and to js for AJAX filter updates.

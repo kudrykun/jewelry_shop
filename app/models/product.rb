@@ -57,6 +57,12 @@ class Product < ApplicationRecord
         # Joining on other tables is quite common in Filterrific, and almost
         # every ActiveRecord table has a 'created_at' column.
         order("products.price #{ direction }")
+      when /^artikul/
+        # Simple sort on the created_at column.
+        # Make sure to include the table name to avoid ambiguous column names.
+        # Joining on other tables is quite common in Filterrific, and almost
+        # every ActiveRecord table has a 'created_at' column.
+        order("products.artikul #{ direction }")
       else
         raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
