@@ -6,8 +6,7 @@ class Store::CategoriesController < Store::StoreController
                        params[:filterrific],
                        select_options: {
                            sorted_by: Product.options_for_sorted_by
-                       },
-                       available_filters: [:sorted_by],
+                       }
     ) or return
 
     # Respond to html for initial page load and to js for AJAX filter updates.
