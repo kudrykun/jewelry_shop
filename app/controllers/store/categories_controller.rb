@@ -1,12 +1,13 @@
 class Store::CategoriesController < Store::StoreController
   def show
     @category = Category.find(params[:id])
+
+    # Здесь начинает работать фильтр
     @filterrific = initialize_filterrific(
                        Product,
                        params[:filterrific],
                        select_options: {
                            sorted_by: Product.options_for_sorted_by,
-                           with_metal_type: MetalType.options_for_metal_type_select,
                            with_all_metal_type_ids: MetalType.options_for_metal_type_select
                        },
                         persistence_id: 'shared_key',
@@ -14,7 +15,7 @@ class Store::CategoriesController < Store::StoreController
     ) or return
 
     # Respond to html for initial page load and to js for AJAX filter updates.
-    @products = @filterrific.find.where(category: @category).page(params[:page])
+    @products = @filterrific.find.where(category: @category).page(params[:page]).per_page(5)
     respond_to do |format|
       format.html
       format.js

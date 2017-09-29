@@ -34,16 +34,16 @@ class Product < ApplicationRecord
     end
     a
   end
-  self.per_page = 10
+
   filterrific(
       default_filter_params: { sorted_by: 'created_at_desc' },
       available_filters: [
           :sorted_by,
-          :with_metal_type,
           :with_all_metal_type_ids
       ]
   )
 
+  # Сортировать по ...
   scope :sorted_by, lambda { |sort_option|
     # extract the sort direction from the param value.
     direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
@@ -58,10 +58,8 @@ class Product < ApplicationRecord
         raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
   }
-  scope :with_metal_type, lambda { |metal_type|
-    where(metal_type: {title: metal_type}).joins(:metal_types)
-  }
 
+  # Сортировка по типу металла. Я право же не знаю, почему это работает
   scope :with_all_metal_type_ids, lambda{ |metal_type_ids|
     # get a reference to the join table
     metal_types_products = MetalTypeProduct.arel_table
@@ -76,25 +74,8 @@ class Product < ApplicationRecord
       )
   }
 
-=begin
-  scope :with_any_role_ids, lambda{ |role_ids|
-    # get a reference to the join table
-    role_assignments = RoleAssignment.arel_table
-    # get a reference to the filtered table
-    students = Student.arel_table
-    # let AREL generate a complex SQL query
-    where(
-        RoleAssignment \
-      .where(role_assignments[:student_id].eq(students[:id])) \
-      .where(role_assignments[:role_id].in([*role_ids].map(&:to_i))) \
-      .project(Arel.star) \
-      .exists
-    )
-  }
-=end
-
-  # This method provides select options for the `sorted_by` filter select input.
-  # It is called in the controller as part of `initialize_filterrific`.
+  # Опции для сортировать по
+  # TODO Сортировка по популярности
   def self.options_for_sorted_by
     [
         ['Возрастанию цены', 'price_asc'],

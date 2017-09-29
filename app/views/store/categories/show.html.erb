@@ -85,11 +85,6 @@
               <div class="collapsible-header active">МАТЕРИАЛ</div>
               <div class="collapsible-body" style="display: block; padding-top: 7.5px; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
                 <%= f.select(
-                        :with_metal_type,
-                        @filterrific.select_options[:with_metal_type],
-                        { include_blank: 'Любой' }
-                    ) %>
-                <%= f.select(
                         :with_all_metal_type_ids,
                         @filterrific.select_options[:with_all_metal_type_ids],
                         { include_blank: 'Любой', multiple: true }
@@ -183,7 +178,7 @@
             <!--Верхний фильтр-->
             <div class="col s12 filter-box">
               <div class="col l5 m5 sm5 s5 hide-on-small-only">
-                <p><b>106</b> товаров найдено</p>
+               <!-- page_entries_info @products, :model => 'product' -->
                 <%= render_filterrific_spinner %>
               </div>
               <div class="col l7 m7 sm7 s12">
@@ -193,7 +188,7 @@
               </div>
             </div>
             <!--Верхний фильтр-->
-            <%= render_filterrific_spinner %>
+
 
             <!--Карточки товаров-->
             <%= render(
@@ -205,6 +200,7 @@
           </div><!-- row -->
 
           <!--Пагинация-->
+          <!--will_paginate @products -->
           <div class="row pagination-box">
             <!--
                   <div class="col s12 center-align hide-on-med-and-up">
