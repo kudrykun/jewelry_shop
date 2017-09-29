@@ -14,7 +14,7 @@ class Store::CategoriesController < Store::StoreController
     ) or return
 
     # Respond to html for initial page load and to js for AJAX filter updates.
-    @products = @filterrific.find.page(params[:page])
+    @products = @filterrific.find.where(category: @category).page(params[:page])
     respond_to do |format|
       format.html
       format.js
