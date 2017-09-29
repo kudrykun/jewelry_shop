@@ -5,7 +5,9 @@ class Store::CategoriesController < Store::StoreController
                        Product,
                        params[:filterrific],
                        select_options: {
-                           sorted_by: Product.options_for_sorted_by
+                           sorted_by: Product.options_for_sorted_by,
+                           with_metal_type: MetalType.options_for_metal_type_select,
+                           with_all_metal_type_ids: MetalType.options_for_metal_type_select
                        },
                         persistence_id: 'shared_key',
                         default_filter_params: {}

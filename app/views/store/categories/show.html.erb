@@ -84,22 +84,16 @@
             <li class="active">
               <div class="collapsible-header active">МАТЕРИАЛ</div>
               <div class="collapsible-body" style="display: block; padding-top: 7.5px; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
-                <ul class="collection jewelry-collection">
-                  <li class="collection-item">
-                    <input type="radio" id="material_all_desktop" name="material" value="-1" checked="checked">
-                    <label for="material_all_desktop">Все материалы</label>
-                  </li>
-
-                  <li class="collection-item">
-                    <input type="radio" id="material_53737fb01408e7274a4692ed_desktop" name="material" value="gold">
-                    <label for="material_53737fb01408e7274a4692ed_desktop">Все золото</label>
-                  </li>
-
-                  <li class="collection-item">
-                    <input type="radio" id="material_4f7f06f15a67332060000001_desktop" name="material" value="beloe_zoloto">
-                    <label for="material_4f7f06f15a67332060000001_desktop">Белое золото</label>
-                  </li>
-                </ul>
+                <%= f.select(
+                        :with_metal_type,
+                        @filterrific.select_options[:with_metal_type],
+                        { include_blank: 'Любой' }
+                    ) %>
+                <%= f.select(
+                        :with_all_metal_type_ids,
+                        @filterrific.select_options[:with_all_metal_type_ids],
+                        { include_blank: 'Любой', multiple: true }
+                    ) %>
               </div>
             </li>
 
@@ -190,6 +184,7 @@
             <div class="col s12 filter-box">
               <div class="col l5 m5 sm5 s5 hide-on-small-only">
                 <p><b>106</b> товаров найдено</p>
+                <%= render_filterrific_spinner %>
               </div>
               <div class="col l7 m7 sm7 s12">
                 <div class="input-field">

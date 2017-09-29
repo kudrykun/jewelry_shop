@@ -1,3 +1,8 @@
 class MetalType < ApplicationRecord
-  has_and_belongs_to_many :products
+  has_many :metal_type_products
+  has_many :products, through: :metal_type_products
+
+  def self.options_for_metal_type_select
+    order('LOWER(title)').map { |e| [e.title, e.id] }
+  end
 end
