@@ -39,7 +39,7 @@
   <% end %>
 
   <div class="row pagination-box">
-    <%= will_paginate @products %>
+
     <!--
           <div class="col s12 center-align hide-on-med-and-up">
             <a id="load-more-btn" class="waves-effect waves-light btn border-btn_grey">ПОКАЗАТЬ ЕЩЁ 82</a>
@@ -47,13 +47,14 @@
           </div>
     -->
     <div class="col s12">
-      <div class="input-field right hide-on-med-and-down">
+      <%= will_paginate @products, :renderer => @custom_renderer%>
+     <!-- <div class="input-field right hide-on-med-and-down">
         <select name="perPage" onchange="window.location.href=this.value;" class="initialized">
           <option value="#" selected="selected">Выводить по:  24</option>
           <option value="#">Выводить по:  48</option>
           <option value="#">Показать всё</option>
         </select>
-      </div>
+      </div>-->
       <ul class="pagination left-align center-on-sm-and-down">
         <li class="disabled">
           <a href="#!">
