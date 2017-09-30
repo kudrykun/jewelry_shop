@@ -39,7 +39,12 @@ class Product < ApplicationRecord
       default_filter_params: { sorted_by: 'created_at_desc' },
       available_filters: [
           :sorted_by,
-          :with_all_metal_type_ids
+          :with_all_metal_type_ids,
+          :with_all_incrustation_ids,
+          :with_manufacturer_id,
+          :with_sale_size_id,
+          :with_greater_price,
+          :with_less_price
       ]
   )
 
@@ -72,6 +77,36 @@ class Product < ApplicationRecord
         .where(metal_types_products[:metal_type_id].in([*metal_type_ids].map(&:to_i))) \
         .exists
       )
+  }
+
+  # сортировка по производителю
+  scope :with_manufacturer_id, lambda { |manufacturer_ids|
+    where(manufacturer_id: [*manufacturer_ids])
+  }
+
+  scope :with_sale_size_id, lambda { |sale_size_ids|
+    where(sale_size_id: [*sale_size_ids])
+  }
+
+  # Сортировка по вставкам. Я право же не знаю, почему это работает
+  scope :with_all_incrustation_ids, lambda{ |incrustation_ids|
+    # get a reference to the join table
+    incrustation_items = IncrustationItem.arel_table
+    # get a reference to the filtered table
+    products = Product.arel_table
+    # let AREL generate a complex SQL query
+    where(
+        IncrustationItem \
+        .where(incrustation_items[:product_id].eq(products[:id])) \
+        .where(incrustation_items[:incrustation_id].in([*incrustation_ids].map(&:to_i))) \
+        .exists
+    )
+  }
+  scope :with_greater_price, lambda { |product_price|
+    where('products.price >= ?', product_price)
+  }
+  scope :with_less_price, lambda { |product_price|
+    where('products.price <= ?', product_price)
   }
 
   # Опции для сортировать по
