@@ -11,14 +11,14 @@ ru:
     page_gap: "&hellip;"
     page_entries_info:
       single_page:
-        zero:  "No %{model} found"
-        one:   "Displaying 1 %{model}"
-        other: "Displaying all %{count} %{model}"
+        zero:  "Не найдено %{model}"
+        one:   "Найден 1 %{model}"
+        other: "Найдено %{count} %{model}"
       single_page_html:
-        zero:  "No %{model} found"
-        one:   "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
-      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+        zero:  "Не найдено %{model}"
+        one:   "Найден <b>1</b> %{model}"
+        other: "Найдено <b>%{count}</b> %{model}"
+      multi_page: "Найдено %{model} %{from} - %{to} из %{count} найденных"
       multi_page_html: "<p><b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b> найденных %{model}</p>"
   activerecord:
     attributes:

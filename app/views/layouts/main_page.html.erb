@@ -133,7 +133,8 @@
 <%= render './layouts/renders/footer' %>
 
 
-<%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'store/store' %>
+<%= javascript_include_tag 'store/main_page/main_page'%>
 
 <script>
     $(document).ready(function() {

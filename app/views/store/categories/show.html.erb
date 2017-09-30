@@ -42,13 +42,130 @@
 
           </div>
           <div class="col sm2 s2 hide-on-sm-and-up">
-            <a class="btn-flat button-collapse waves-effect waves-light right" href="https://www.valtera.ru/catalogue/search/?seo_slug_=magia-di-gamma.html#" data-activates="slide-out-filter">
+            <a class="btn-flat button-collapse waves-effect waves-light right" href="#" data-activates="slide-out-filter">
               <i class="material-icons right" style="font-size: 1.625rem; line-height: 3rem;">tune</i>
             </a>
           </div>
         </div>
       </div>
     </div>
+    <%= form_for_filterrific @filterrific do |f| %>
+      <!--Левый фильтр-->
+      <div class="col l3 m3 filter-right hide-on-sm-and-down">
+
+        <input type="hidden" name="type" value="-1">
+        <input type="hidden" name="filter_search" value="true">
+        <input type="hidden" name="sort" value="3">
+        <input type="hidden" name="perPage" value="24">
+        <input type="hidden" name="seo_slug_" value="magia-di-gamma.html">
+        <ul class="collapsible with-header basket" data-collapsible="expandable">
+
+          <li class="active">
+            <div class="collapsible-header active">
+              ЦЕНА <span style="font-size: 1rem; margin-left: 5px;">₽</span>
+            </div>
+            <div class="collapsible-body">
+              <div class="row priceSlider" >
+                <div class="col s6 priceSlider-0">
+                  <%= f.text_field(:with_greater_price, class: 'validate tooltiped', id: 'input-with-priceSlider-desktop0', data:{:position => "top", :delay => "1000", :tooltip => "Нажмите Enter, после ввода"} ) %>
+                  <!--<input type="text" name="price_from" id="input-with-priceSlider-desktop0" class="validate">-->
+                </div>
+                <div class="col s6 priceSlider-1">
+                  <%= f.text_field(:with_less_price, class: 'validate tooltiped', id: 'input-with-priceSlider-desktop1', data:{:position => "top", :delay => "1000", :tooltip => "Нажмите Enter, после ввода"}) %>
+                </div>
+                <div class="col s12">
+                  <div id="priceSlider-desktop" class="noUi-target noUi-ltr noUi-horizontal">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="active">
+            <div class="collapsible-header active">МАТЕРИАЛ</div>
+            <div class="collapsible-body" style="display: block; padding-top: 0; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
+              <%= f.select(
+                      :with_all_metal_type_ids,
+                      @filterrific.select_options[:with_all_metal_type_ids],
+                      { include_blank: 'Любой', multiple: true }
+                  ) %>
+            </div>
+          </li>
+
+          <li class="active">
+            <div class="collapsible-header active">ВСТАВКИ</div>
+            <div class="collapsible-body">
+              <%= f.select(
+                      :with_all_incrustation_ids,
+                      @filterrific.select_options[:with_all_incrustation_ids],
+                      { include_blank: 'Все вставки', multiple: true }
+                  ) %>
+            </div>
+          </li>
+
+          <li class="active">
+            <div class="collapsible-header active">СКИДКИ</div>
+            <div class="collapsible-body" style="display: block; padding-top: 7.5px; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
+              <%= f.select(
+                      :with_sale_size_id,
+                      @filterrific.select_options[:with_sale_size_id],
+                      { include_blank: 'Все товары' }
+                  ) %>
+            </div>
+          </li>
+
+
+          <li class="active">
+            <div class="collapsible-header active">БРЕНДЫ</div>
+            <div class="collapsible-body">
+              <%= f.select(
+                      :with_manufacturer_id,
+                      @filterrific.select_options[:with_manufacturer_id],
+                      { include_blank: 'Все бренды' }
+                  ) %>
+            </div>
+          </li>
+        </ul>
+
+        <%= link_to(
+                'СБРОСИТЬ',
+                reset_filterrific_url, class: 'btn waves-effect waves-light border-btn_grey tooltiped', data:{:position => "bottom",
+                                                                                                              :delay => "50",
+                                                                                                              :tooltip => "Сбросить фильтр"}
+            ) %>
+      </div>
+      <!--Левый фильтр-->
+
+      <div class="col l9 m9 s12">
+        <div class="row">
+
+          <!--Верхний фильтр-->
+          <div class="col s12 filter-box">
+            <div class="col l5 m5 sm5 s5 hide-on-small-only">
+              <%= render_filterrific_spinner %>
+
+            </div>
+            <div class="col l7 m7 sm7 s12">
+              <div class="input-field">
+                <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+              </div>
+            </div>
+
+          <!--/Верхний фильтр-->
+
+          <!--Карточки товаров-->
+          <%= render(
+                  partial: 'store/products/list',
+                  locals: { products: @products }
+              ) %>
+          <!--Карточки товаров-->
+          </div>
+        </div><!-- row -->
+      </div><!-- col -->
+    <% end %>
+
+
     <%= form_for_filterrific @filterrific do |f| %>
         <!--Левый фильтр-->
         <div class="col l3 m3 filter-right hide-on-sm-and-down">
@@ -60,18 +177,18 @@
           <input type="hidden" name="seo_slug_" value="magia-di-gamma.html">
           <ul class="collapsible with-header basket" data-collapsible="expandable">
 
-            <li>
-              <div class="collapsible-header">
+            <li class="active">
+              <div class="collapsible-header active">
                 ЦЕНА <span style="font-size: 1rem; margin-left: 5px;">₽</span>
               </div>
               <div class="collapsible-body">
-                <div class="row priceSlider">
+                <div class="row priceSlider" >
                   <div class="col s6 priceSlider-0">
-                    <%= f.text_field(:with_greater_price, class: 'validate', id: 'input-with-priceSlider-desktop0' ) %>
+                    <%= f.text_field(:with_greater_price, class: 'validate tooltiped', id: 'input-with-priceSlider-desktop0', data:{:position => "top", :delay => "1000", :tooltip => "Нажмите Enter, после ввода"} ) %>
                     <!--<input type="text" name="price_from" id="input-with-priceSlider-desktop0" class="validate">-->
                   </div>
                   <div class="col s6 priceSlider-1">
-                    <%= f.text_field(:with_less_price, class: 'validate', id: 'input-with-priceSlider-desktop1') %>
+                    <%= f.text_field(:with_less_price, class: 'validate tooltiped', id: 'input-with-priceSlider-desktop1', data:{:position => "top", :delay => "1000", :tooltip => "Нажмите Enter, после ввода"}) %>
                   </div>
                   <div class="col s12">
                     <div id="priceSlider-desktop" class="noUi-target noUi-ltr noUi-horizontal">
@@ -84,7 +201,7 @@
 
             <li class="active">
               <div class="collapsible-header active">МАТЕРИАЛ</div>
-              <div class="collapsible-body" style="display: block; padding-top: 7.5px; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
+              <div class="collapsible-body" style="display: block; padding-top: 0; margin-top: 0px; padding-bottom: 7.5px; margin-bottom: 0px;">
                 <%= f.select(
                         :with_all_metal_type_ids,
                         @filterrific.select_options[:with_all_metal_type_ids],
@@ -93,13 +210,13 @@
               </div>
             </li>
 
-            <li>
-              <div class="collapsible-header">ВСТАВКИ</div>
+            <li class="active">
+              <div class="collapsible-header active">ВСТАВКИ</div>
               <div class="collapsible-body">
                 <%= f.select(
                         :with_all_incrustation_ids,
                         @filterrific.select_options[:with_all_incrustation_ids],
-                        { include_blank: 'Любые', multiple: true }
+                        { include_blank: 'Все вставки', multiple: true }
                     ) %>
               </div>
             </li>
@@ -116,8 +233,8 @@
             </li>
 
 
-            <li>
-              <div class="collapsible-header">БРЕНДЫ</div>
+            <li class="active">
+              <div class="collapsible-header active">БРЕНДЫ</div>
               <div class="collapsible-body">
                 <%= f.select(
                         :with_manufacturer_id,
@@ -130,7 +247,9 @@
 
           <%= link_to(
                   'СБРОСИТЬ',
-                  reset_filterrific_url, class: 'btn waves-effect waves-light border-btn_grey'
+                  reset_filterrific_url, class: 'btn waves-effect waves-light border-btn_grey tooltiped', data:{:position => "bottom",
+                                                                                                                :delay => "50",
+                                                                                                                :tooltip => "Сбросить фильтр"}
               ) %>
         </div>
         <!--Левый фильтр-->
@@ -141,27 +260,28 @@
             <!--Верхний фильтр-->
             <div class="col s12 filter-box">
               <div class="col l5 m5 sm5 s5 hide-on-small-only">
-               <!-- page_entries_info @products, :model => 'product' -->
                 <%= render_filterrific_spinner %>
+
               </div>
               <div class="col l7 m7 sm7 s12">
                 <div class="input-field">
                   <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
                 </div>
               </div>
+
+              <!--/Верхний фильтр-->
+
+              <!--Карточки товаров-->
+              <%= render(
+                      partial: 'store/products/list',
+                      locals: { products: @products }
+                  ) %>
+              <!--Карточки товаров-->
             </div>
-            <!--Верхний фильтр-->
-
-            <!--Карточки товаров-->
-            <%= render(
-                    partial: 'store/products/list',
-                    locals: { products: @products }
-                ) %>
-            <!--Карточки товаров-->
-
           </div><!-- row -->
+        </div><!-- col -->
     <% end %>
 
-    </div><!-- col -->
+
   </div><!-- row -->
 </div><!-- container -->

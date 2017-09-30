@@ -55,7 +55,7 @@
 
             <%= image_tag('menu/shopping-bag.svg', height: '100%' ) %>
           </a>
-          <a href="tel:+79191732000" class="right ring basket_button hide-on-small-and-up">
+          <a href="tel:+79191732000" class="right basket_button hide-on-small-and-up">
             <%= image_tag('menu/phone.png', width: '24' ) %>
           </a>
         </div>
@@ -128,14 +128,15 @@
 <%= render './layouts/renders/footer' %>
 
 <%= javascript_include_tag 'store/store' %>
-<%= javascript_include_tag 'store/product/product.js' %>
+<%= javascript_include_tag 'store/catalog/catalog' %>
 
-<script type="text/javascript">
-    jQuery(function($){
-        $("#phone").mask("+7 (999) 999-9999");
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+
+        $('.tooltiped').tooltip();
     });
 </script>
-
 <script>
     // Change size
     $(function () {
@@ -154,73 +155,6 @@
             }
         });
     });
-</script>
-
-<script>
-    $('#product_like-slider-1').owlCarousel({
-        loop: false,
-        margin: 10,
-        dots:false,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 2,
-                nav: true
-            },
-            600: {
-                items: 3,
-                nav: true,
-                loop: false
-            },
-            800: {
-                items: 4,
-                nav: true,
-                loop: false
-            },
-            1280: {
-                items: 5,
-                nav: true,
-                loop: false,
-                margin: 20
-            }
-        }
-    });
-</script>
-
-<script>
-
-    $(document).ready(function() {
-        $('#product-slider').owlCarousel({
-            loop:false,
-            dots:true,
-            margin:0,
-            items:1,
-            responsive: {
-                0: {
-                    nav: false
-                },
-                600: {
-                    nav: true
-                }
-            }
-        });
-    })
-
-</script>
-
-<script>
-    window.sr = ScrollReveal({
-        duration: 3000,
-
-        origin: 'bottom',
-        reset: false
-    });
-    sr.reveal('.elit-reveal', {
-        viewFactor: 0.1,
-        duration: 1000,
-        reset: false
-    });
-
 </script>
 
 </body>

@@ -1,4 +1,5 @@
 class Store::CategoriesController < Store::StoreController
+  layout 'catalog'
   def show
     @category = Category.find(params[:id])
 
@@ -18,7 +19,7 @@ class Store::CategoriesController < Store::StoreController
     ) or return
 
     # Respond to html for initial page load and to js for AJAX filter updates.
-    @products = @filterrific.find.where(category: @category).page(params[:page]).per_page(24)
+    @products = @filterrific.find.where(category: @category).page(params[:page]).per_page(12)
     respond_to do |format|
       format.html
       format.js

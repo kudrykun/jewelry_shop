@@ -5,10 +5,10 @@ $(document).ready(function () {
         var input1 = document.getElementById('input-with-priceSlider-desktop1');
         var inputs = [input0, input1];
         var start_from = parseInt("", 10) || 0;
-        var start_to = parseInt("", 10) || 9000000;
+        var start_to = parseInt("", 10) || 100000;
         if (start_from > start_to) {
             start_from = 0;
-            start_to = 9000000
+            start_to = 100000
         }
 
         noUiSlider.create(keypressSlider, {
