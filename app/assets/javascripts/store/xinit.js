@@ -40,53 +40,7 @@ $(function() {
     });
 
 
-function buildPriceRangeFilter(from, to) {
-  var range = [
-    [5, 500],
-    [10, 1000],
-    [15, 2000],
-    [20, 3000],
-    [30, 4000],
-    [40, 5000],
-    [50, 6000],
-    [60, 7000],
-    [65, 8000],
-    [70, 9000],
-    [75, 10000],
-    [80, 15000],
-    [85, 25000],
-    [90, 50000],
-    [95, 80000],
-  ];
-  var result = {'min': 0};
-  $.each(range, function(i, val) {
-    result['' + val[0] + '%'] = val[1];
-  });
-  result['max'] = 100000;
-  for (var i=0; i<range.length; i++) {
-    var percent = range[i][0];
-    var price = range[i][1];
-    if (price === from) { break; }
-    if (price > from) {
-      result['' + (percent - 2) + '%'] = from;
-      break;
-    }
-  }
-  for (var i=0; i<range.length; i++) {
-    var percent = range[i][0];
-    var price = range[i][1];
-    if (price === to) { break; }
-    if (price > to) {
-      var newPercent = '' + (percent - 2) + '%';
-      if (result[newPercent]) {
-        newPercent = '' + (percent - 1) + '%';
-      }
-      result[newPercent] = to;
-      break;
-    }
-  }
-  return result;
-}
+
 
 (function($){
 

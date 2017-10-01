@@ -7,7 +7,9 @@
           <div class="nav-wrapper">
             <!-- Mobile nav -->
             <div class="col s12 hide-on-sm-and-up">
-              <a href="#" class="catalog-back"><i class="material-icons left">keyboard_backspace</i>Главная</a>
+              <%= link_to catalog_path, class: 'catalog-back' do %>
+                  <i class="material-icons left">keyboard_backspace</i>Каталог
+              <% end %>
             </div>
             <div class="col s12 hide-on-sm-and-down">
               <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
@@ -59,8 +61,7 @@
         <input type="hidden" name="perPage" value="24">
         <input type="hidden" name="seo_slug_" value="magia-di-gamma.html">
         <ul class="collapsible with-header basket" data-collapsible="expandable">
-
-          <li class="active">
+          <li class="active" >
             <div class="collapsible-header active">
               ЦЕНА <span style="font-size: 1rem; margin-left: 5px;">₽</span>
             </div>

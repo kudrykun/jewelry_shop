@@ -1,5 +1,5 @@
 <div class="col s12" id="filterrific_results">
-  <p><%= page_entries_info @products, :model => 'product' %></p>
+  <p class="hide-on-small-only"><%= page_entries_info @products, :model => 'product' %></p>
   <% products.each do |product| %>
       <div class="col l3 m4 sm4 s6">
         <%= render './layouts/renders/product-card', product: product %>
