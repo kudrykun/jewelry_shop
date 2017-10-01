@@ -1086,10 +1086,14 @@ figure.effect-steve h6 {
 .grid-item--width2 {
     width: 66.6666666667%;
 }
+.grid-item--width3 {
+    width: 100%;
+}
 
 @media screen and (max-width: 800px) {
     .grid .grid-item {width: 50%;}
     .grid .grid-item--width2 {width: 100%;}
+    .grid .grid-item--width3 {width: 100%;}
 }
 
 

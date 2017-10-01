@@ -1,5 +1,5 @@
 class Store::CategoriesController < Store::StoreController
-  layout 'catalog'
+  layout 'categories'
   def show
     @category = Category.find(params[:id])
 

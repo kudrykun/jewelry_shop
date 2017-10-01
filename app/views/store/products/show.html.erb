@@ -13,8 +13,8 @@
         <div class="col s12 hide-on-sm-and-down">
 
           <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
-          <%= link_to 'Каталог', root_path, class: 'breadcrumb' %>
-          <%= link_to 'Название категории', root_path, class: 'breadcrumb' %>
+          <%= link_to 'Каталог', catalog_path, class: 'breadcrumb' %>
+          <%= link_to @product.category.title, category_path(@product.category) , class: 'breadcrumb' %>
           <%= link_to @product.title, product_path(@product), class: 'breadcrumb' %>
         </div>
       </div>
