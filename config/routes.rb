@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   get 'catalog', to: 'store/catalog#index'
 
 
+
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
+    get 'products_light', to: 'products_light#index', as: 'products_light'
     resources :categories
     resources :collections
     resources :products

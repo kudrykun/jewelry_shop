@@ -44,6 +44,7 @@ gem 'faker'
 
 gem 'filterrific'
 gem 'will_paginate'
+gem 'jquery-ui-rails'
 
 
 
