@@ -251,11 +251,10 @@ $(document).ready(function () {
             var extension_permitted = (permitted_file_extensions.indexOf(extension) != -1);
             var size_permitted = (file_size <= restriction_in_bytes);
             if (extension_permitted && size_permitted) {
-                alert('p');
                 return true;
             }
             else {
-                alert('d');
+                alert("Ограничение на размер файла: " + file_size_restriction + " Mб");
                 return false;
             }
         };

@@ -6,6 +6,7 @@ class Picture < ApplicationRecord
   belongs_to :imageable, polymorphic: true, optional: true
   has_one :product_preview, foreign_key: "preview_id", class_name: 'Product'
 
-  has_attached_file :image, styles: { medium: "400x400#", thumb: "150x150#" }
+  has_attached_file :image, styles: { large: "800x800#", medium: "400x400#", thumb: "150x150#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment :image,size: { in: 0..3.megabytes }
 end

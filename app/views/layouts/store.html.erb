@@ -81,7 +81,7 @@
             <li><a class="red-text" href="#">Бренды</a></li>
 
           </ul>
-        </li><!-- catalog -->
+        </li><!-- categories -->
 
         <li><a class="red-text text-darken-2" href="#">Акции</a></li>
         <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>
@@ -124,15 +124,23 @@
 <div class="cd-overlay"></div>
 
   <%= render './layouts/renders/basket' %>
-
   <%= render './layouts/renders/footer' %>
 
-<%= javascript_include_tag 'store/store', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'store/store' %>
 
-  <script type="text/javascript">
-      jQuery(function($){
-          $("#phone").mask("+7 (999) 999-9999");
+  <script>
+      window.sr = ScrollReveal({
+          duration: 3000,
+
+          origin: 'bottom',
+          reset: false
       });
+      sr.reveal('.elit-reveal', {
+          viewFactor: 0.1,
+          duration: 1000,
+          reset: false
+      });
+
   </script>
 
   <script>
@@ -154,140 +162,6 @@
           });
       });
   </script>
-
-  <script>
-      $('#product_like-slider-1').owlCarousel({
-          loop: false,
-          margin: 10,
-          dots:false,
-          responsiveClass: true,
-          responsive: {
-              0: {
-                  items: 2,
-                  nav: true
-              },
-              600: {
-                  items: 3,
-                  nav: true,
-                  loop: false
-              },
-              800: {
-                  items: 4,
-                  nav: true,
-                  loop: false
-              },
-              1280: {
-                  items: 5,
-                  nav: true,
-                  loop: false,
-                  margin: 20
-              }
-          }
-      });
-  </script>
-
-<script>
-    $(document).ready(function() {
-
-
-        $(document).ready(function() {
-            $('#product-slider').owlCarousel({
-                loop:false,
-                dots:true,
-                margin:0,
-                items:1,
-                responsive: {
-                    0: {
-                        nav: false
-                    },
-                    600: {
-                        nav: true
-                    }
-                }
-            });
-        })
-
-
-        $('#main-slider').owlCarousel({
-            items:1,
-            loop:true,
-            nav:true,
-            margin:0,
-            URLhashListener:true,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            autoplayHoverPause: true,
-            startPosition: 'URLHash'
-        });
-        $('#sale_slider-1').owlCarousel({
-            loop:true,
-            nav:true,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                600: { items:3 },
-                800: { items:3 },
-                1280: { items:4 }
-            }
-        });
-        $('#sale_slider-2').owlCarousel({
-            loop:true,
-            nav:true,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                600: { items:3 },
-                800: { items:3 },
-                1280: { items:4 }
-            }
-        });
-        $('#sale_slider-3').owlCarousel({
-            loop:true,
-            nav:true,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                600: { items:3 },
-                800: { items:3 },
-                1280: { items:4 }
-            }
-        });
-
-        $('#logo-slider').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 2000,
-            loop:true,
-            nav:false,
-            dots: false,
-            margin:0,
-            responsiveClass: true,
-            responsive: {
-                0: { items:2 },
-                700: { items:3 },
-                800: { items:3 },
-                1200: { items:4 }
-            }
-        });
-    });
-</script>
-
-<script>
-    window.sr = ScrollReveal({
-        duration: 3000,
-
-        origin: 'bottom',
-        reset: false
-    });
-    sr.reveal('.elit-reveal', {
-        viewFactor: 0.1,
-        duration: 1000,
-        reset: false
-    });
-
-</script>
 
 </body>
 </html>

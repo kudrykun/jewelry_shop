@@ -8,6 +8,7 @@
 
 Faker::Config.locale = 'ru'
 
+MetalTypeProduct.delete_all
 SizeItem.delete_all
 Product.all.each do |product|
   product.incrustations = []
@@ -43,7 +44,7 @@ shop_titles = ["Универмаг","Линия"]
 chain_type_titles = ["Якорное","Двойной якорь","Ролло","Шопард","Гарибальди","Аврора","Гавайка","Панцирная","Ромб","Нонна","Фигаро","Картье","Лав","Улитка","Скрепка","Роза","Снейк","Корда","Сингапур","Бисмарк","Питон",""]
 
 # количество генерируемых товаров
-products_size = 50
+products_size = 200
 
 # количество остальных сущностей
 categories_size = category_titles.size
@@ -157,7 +158,8 @@ products_size.times do |i|
   end
 
   # выбираем рандомный металл
-  temp.metal_types << metalTypes.sample(rand(2))
+  # temp.metal_types << metalTypes.sample(rand(2))
+  MetalTypeProduct.create(product: products.last,metal_type: metalTypes.sample)
 
   # для каждого магазина делаем от 0 до 4 уникальных(в рамках магазина) размеров
   shops.each do |shop|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825221654) do
+ActiveRecord::Schema.define(version: 20170929110247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,17 +72,17 @@ ActiveRecord::Schema.define(version: 20170825221654) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "metal_type_products", force: :cascade do |t|
+    t.integer "metal_type_id"
+    t.integer "product_id"
+    t.index ["metal_type_id"], name: "index_metal_type_products_on_metal_type_id", using: :btree
+    t.index ["product_id"], name: "index_metal_type_products_on_product_id", using: :btree
+  end
+
   create_table "metal_types", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "metal_types_products", force: :cascade do |t|
-    t.integer "metal_type_id"
-    t.integer "product_id"
-    t.index ["metal_type_id"], name: "index_metal_types_products_on_metal_type_id", using: :btree
-    t.index ["product_id"], name: "index_metal_types_products_on_product_id", using: :btree
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(version: 20170825221654) do
 
   add_foreign_key "incrustation_items", "incrustations"
   add_foreign_key "incrustation_items", "products"
-  add_foreign_key "metal_types_products", "metal_types"
-  add_foreign_key "metal_types_products", "products"
+  add_foreign_key "metal_type_products", "metal_types"
+  add_foreign_key "metal_type_products", "products"
   add_foreign_key "product_types", "categories"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "chain_types"

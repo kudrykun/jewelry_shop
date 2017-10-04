@@ -398,7 +398,7 @@
   font-size: 0.9375rem;
   color: #e53935;
   font-weight: 500;
-  width: 60px;
+  width: 70px;
   margin-bottom: 0;
 }
 
@@ -410,7 +410,7 @@
 .priceSlider-0:before {
     content: "ОТ: ";
     display: inline-block;
-    width: 25px;
+    width: 20px;
     font-size: 0.75rem;
     line-height: 2.5rem;
     color: #757575;
@@ -419,13 +419,13 @@
 
 .priceSlider-1 {
     margin-bottom: 5px;
-    text-align: right;
+    text-align: left;
     padding-left: 0 !important;
 }
 .priceSlider-1:before {
     content: "ДО: ";
     display: inline-block;
-    width: 25px;
+    width: 20px;
     font-size: 0.75rem;
     line-height: 2.5rem;
     color: #757575;

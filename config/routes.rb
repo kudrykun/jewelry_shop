@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   root 'store/main_page#index'
 
-  get 'product/:id', to: 'store/product#show', as: 'product'
+  get 'products/:id', to: 'store/products#show', as: 'product'
+  get 'categories/:id', to: 'store/categories#show', as: 'category'
   get 'catalog', to: 'store/catalog#index'
+
 
 
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
+    get 'products_light', to: 'products_light#index', as: 'products_light'
     resources :categories
     resources :collections
     resources :products

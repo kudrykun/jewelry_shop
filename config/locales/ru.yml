@@ -1,4 +1,25 @@
 ru:
+  will_paginate:
+    models:
+      product:
+        zero:  товаров
+        one:   товар
+        few:   товаров
+        other: товаров
+    previous_label: '<i class="material-icons">chevron_left</i>'
+    next_label: '<i class="material-icons">chevron_right</i>'
+    page_gap: "&hellip;"
+    page_entries_info:
+      single_page:
+        zero:  "Не найдено %{model}"
+        one:   "Найден 1 %{model}"
+        other: "Найдено %{count} %{model}"
+      single_page_html:
+        zero:  "Не найдено %{model}"
+        one:   "Найден <b>1</b> %{model}"
+        other: "Найдено <b>%{count}</b> %{model}"
+      multi_page: "Найдено %{model} %{from} - %{to} из %{count} найденных"
+      multi_page_html: "<p><b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{count}</b> найденных %{model}</p>"
   activerecord:
     attributes:
       product:

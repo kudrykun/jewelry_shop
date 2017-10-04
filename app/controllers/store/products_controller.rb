@@ -1,4 +1,4 @@
-class Store::ProductController < Store::StoreController
+class Store::ProductsController < Store::StoreController
   layout 'product'
   before_action :set_product, only: [:show]
   def index

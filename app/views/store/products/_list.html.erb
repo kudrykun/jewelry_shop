@@ -1,0 +1,28 @@
+<p class="hide-on-small-only"><%= page_entries_info @products, :model => 'product' %></p>
+<% products.each do |product| %>
+    <div class="col l3 m4 sm4 s6">
+      <%= render './layouts/renders/product-card', product: product %>
+    </div>
+<% end %>
+
+<div class="row pagination-box">
+
+  <!--
+        <div class="col s12 center-align hide-on-med-and-up">
+          <a id="load-more-btn" class="waves-effect waves-light btn border-btn_grey">ПОКАЗАТЬ ЕЩЁ 82</a>
+          <br><br>
+        </div>
+  -->
+  <div class="col s12">
+    <%= will_paginate @products %>
+    <!-- <div class="input-field right hide-on-med-and-down">
+       <select name="perPage" onchange="window.location.href=this.value;" class="initialized">
+         <option value="#" selected="selected">Выводить по:  24</option>
+         <option value="#">Выводить по:  48</option>
+         <option value="#">Показать всё</option>
+       </select>
+     </div>-->
+  </div>
+</div>
+
+
