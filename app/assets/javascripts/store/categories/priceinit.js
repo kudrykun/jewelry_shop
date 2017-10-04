@@ -62,9 +62,21 @@ $(document).ready(function () {
         var input0 = document.getElementById('input-with-priceSlider-desktop0');
         var input1 = document.getElementById('input-with-priceSlider-desktop1');
         var inputs = [input0, input1];
+        var start = 0;
+        var stop = 0;
+
+        if (start != undefined || start != NaN)
+            start = input0.value;
+        else
+            start = 0;
+
+        if (stop != undefined || stop != NaN)
+            stop = input1.value;
+        else
+            stop = 100000;
 
         noUiSlider.create(keypressSlider, {
-            start: [0, 100000],
+            start: [input0.value == 0 ? 0 : input0.value, input1.value == 100000? 100000 : input1.value ],
             connect: true,
             step: 1000,
             range: {
@@ -94,6 +106,15 @@ $(document).ready(function () {
 
         keypressSlider.noUiSlider.on('update', function( values, handle ) {
             inputs[handle].value = Math.round(values[handle]);
+
+        });
+        keypressSlider.noUiSlider.on('end', function( values, handle ) {
+            if(handle == 0){
+                $(input0).trigger("change");
+            }
+            else {
+                $(input1).trigger("change");
+            }
         });
 
         input0.addEventListener('change', function(){
