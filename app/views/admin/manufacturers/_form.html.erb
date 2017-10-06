@@ -1,4 +1,4 @@
-<%= form_for([:admin,manufacturer]) do |f| %>
+<%= form_for([:admin,manufacturer], :html => {multipart: true}) do |f| %>
   <% if manufacturer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(manufacturer.errors.count, "error") %> prohibited this manufacturer from being saved:</h2>
@@ -23,10 +23,28 @@
           <%= f.text_area :description,{class: 'form-control'} %>
         </div>
 
+        <!--Изображение в списке брендов-->
+        <div class="form-group">
+          <%= f.label :index, 'Изображение в списке брендов' %>
+          <% if manufacturer.index %>
+              <%= image_tag manufacturer.index.image(:medium), class: 'img-responsive' %>
+          <% end %>
+          <%= file_field_tag "index", class: 'form-control' %>
+        </div>
+        <!--Изображение слайдере брендов-->
+        <div class="form-group">
+          <%= f.label :slide, 'Изображение в слайдере' %>
+          <% if manufacturer.slide %>
+              <%= image_tag manufacturer.slide.image(:medium), class: 'img-responsive' %>
+          <% end %>
+          <%= file_field_tag "slide", class: 'form-control' %>
+        </div>
+
         <div class="actions">
           <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
         </div>
       </div>
     </div>
+
 
 <% end %>

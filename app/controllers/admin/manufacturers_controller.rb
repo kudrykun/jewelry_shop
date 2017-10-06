@@ -19,6 +19,14 @@ class Admin::ManufacturersController < Admin::AdminController
 
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)
+    if params[:index]
+        index = Picture.create(image: params[:index])
+        @manufacturer.index = index
+    end
+    if params[:slide]
+      slide = Picture.create(image: params[:slide])
+      @manufacturer.slide = slide
+    end
 
     if @manufacturer.save
       redirect_to admin_manufacturers_path, notice: 'Производитель был успешно добавлен.'
@@ -28,6 +36,14 @@ class Admin::ManufacturersController < Admin::AdminController
   end
 
   def update
+    if params[:index]
+      index = Picture.create(image: params[:index])
+      @manufacturer.index = index
+    end
+    if params[:slide]
+      slide = Picture.create(image: params[:slide])
+      @manufacturer.slide = slide
+    end
     if @manufacturer.update(manufacturer_params)
       redirect_to admin_manufacturers_path, notice: 'Производитель был успешно обновлен.'
     else
