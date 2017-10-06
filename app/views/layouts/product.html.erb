@@ -5,7 +5,7 @@
   <%= favicon_link_tag 'elit-logo-2.png', type: 'image/png' %>
   <%= favicon_link_tag 'elit-logo-2.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <meta name="theme-color" content="#c62828">
-  <title>Элит Ювелир - Главная</title>
+  <title><%= @product.title %>. Элит Ювелир</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <%= csrf_meta_tags %>
 
@@ -73,7 +73,9 @@
           <!-- Начало каталога -->
 
           <li class="go-back"><a href="#">Назад</a></li>
-          <li class="see-all grey lighten-4"><a href=catalog.html>Весь каталог</a></li>
+          <li class="see-all grey lighten-4">
+            <%= link_to 'Весь каталог', catalog_path  %>
+          </li>
 
           <%= render './layouts/renders/links-navbar' %>
 
@@ -99,8 +101,6 @@
 
       <%= render './layouts/renders/links-navbar' %>
       <li><a href="#" class="">Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i></a></li>
-      <!--<li><a href="#">БРЕНДЫ</a></li>-->
-      <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
 
     </ul> <!-- primary-nav -->
   </div>

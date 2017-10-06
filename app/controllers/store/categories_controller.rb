@@ -1,6 +1,7 @@
 class Store::CategoriesController < Store::StoreController
   layout 'categories'
   def show
+    @categories = Category.all.order(:priority)
     @category = Category.find(params[:id])
 
     # Здесь начинает работать фильтр
