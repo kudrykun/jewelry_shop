@@ -73,7 +73,9 @@
             <!-- Начало каталога -->
 
             <li class="go-back"><a href="#">Назад</a></li>
-            <li class="see-all grey lighten-4"><a href=catalog.html>Весь каталог</a></li>
+            <li class="see-all grey lighten-4">
+              <%= link_to 'Весь каталог', catalog_path  %>
+            </li>
 
             <%= render './layouts/renders/links-navbar' %>
 
@@ -91,6 +93,7 @@
       <!-- primary-nav -->
     </div>
 
+
     <!-- Декстоп навигатор -->
     <div class="cd-nav hide-on-med-and-down">
       <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
@@ -98,12 +101,15 @@
         <li><a href="#" class="red-text ">АКЦИИ</a></li>
 
         <%= render './layouts/renders/links-navbar' %>
-        <li><a href="#" class="">Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i></a></li>
-        <!--<li><a href="#">БРЕНДЫ</a></li>-->
-        <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
+        <li><%= link_to  catalog_path do %>
+              Весь каталог
+              <i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
+          <% end %>
+        </li>
 
       </ul> <!-- primary-nav -->
     </div>
+
 
     <ul class="cd-header-buttons"></ul>
 
@@ -115,7 +121,6 @@
   </header>
 
 <main class="cd-main-content" style="padding:0;">
-
 
 <%= yield %>
 

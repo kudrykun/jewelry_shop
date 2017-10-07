@@ -77,14 +77,13 @@
             <%= link_to 'Весь каталог', catalog_path  %>
           </li>
 
-          <%= render './layouts/renders/links-navbar' %>
+          <%= render './layouts/renders/links-navbar', categories: @categories %>
 
-          <li><a class="red-text" href="#">Коллекции</a></li>
-          <li><a class="red-text" href="#">Бренды</a></li>
 
         </ul>
       </li><!-- catalog -->
-
+      <li><a class="red-text" href="#">Коллекции</a></li>
+      <li><a class="red-text" href="#">Бренды</a></li>
       <li><a class="red-text text-darken-2" href="#">Акции</a></li>
       <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>
       <li class="hide-on-small-and-up"><a class="grey-text text-darken-2" href="#">Магазины</a></li>
@@ -99,13 +98,12 @@
 
       <li><a href="#" class="red-text ">АКЦИИ</a></li>
 
-      <%= render './layouts/renders/links-navbar' %>
+      <%= render './layouts/renders/links-navbar', categories: @categories %>
+
       <li><%= link_to  catalog_path do %>
             Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
             <% end %>
       </li>
-      <!--<li><a href="#">БРЕНДЫ</a></li>-->
-      <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
 
     </ul> <!-- primary-nav -->
   </div>

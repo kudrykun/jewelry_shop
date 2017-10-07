@@ -5,7 +5,7 @@
   <%= favicon_link_tag 'elit-logo-2.png', type: 'image/png' %>
   <%= favicon_link_tag 'elit-logo-2.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <meta name="theme-color" content="#c62828">
-  <title>Элит Ювелир - Главная</title>
+  <title>Каталог</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <%= csrf_meta_tags %>
 
@@ -67,13 +67,15 @@
   <div class="cd-nav hide-on-large-only">
     <ul id="cd-primary-nav" class="cd-primary-nav">
       <li class="has-children">
-        <a href="#"><i class="material-icons">dehaze</i> КАТАЛОГ</a>
+        <a href="#"><i class="material-icons">dehaze</i>КАТАЛОГ</a>
         <ul class="cd-secondary-nav is-hidden">
 
           <!-- Начало каталога -->
 
           <li class="go-back"><a href="#">Назад</a></li>
-          <li class="see-all grey lighten-4"><a href=catalog.html>Весь каталог</a></li>
+          <li class="see-all grey lighten-4">
+            <%= link_to 'Весь каталог', catalog_path  %>
+          </li>
 
           <%= render './layouts/renders/links-navbar' %>
 
@@ -98,9 +100,10 @@
       <li><a href="#" class="red-text ">АКЦИИ</a></li>
 
       <%= render './layouts/renders/links-navbar' %>
-      <li><a href="#" class="">Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i></a></li>
-      <!--<li><a href="#">БРЕНДЫ</a></li>-->
-      <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
+      <li><%= link_to  catalog_path do %>
+            Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
+        <% end %>
+      </li>
 
     </ul> <!-- primary-nav -->
   </div>
@@ -130,25 +133,28 @@
 <%= javascript_include_tag 'store/catalog/catalog' %>
 
 <script type="text/javascript">
-    $('.grid').packery({
-        // options
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        gutter: 0
+
+    var $grid = $('.grid').imagesLoaded( function() {
+        // init Packery after all images have loaded
+        $grid.packery({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            gutter: 0
+        });
+        window.sr = ScrollReveal({
+            duration: 3000,
+            origin: 'bottom',
+            reset: false
+        });
+        sr.reveal('.elit-reveal', {
+            viewFactor: 0.1,
+            duration: 1000,
+            reset: false
+        });
     });
 </script>
 <script>
-    window.sr = ScrollReveal({
-        duration: 3000,
 
-        origin: 'bottom',
-        reset: false
-    });
-    sr.reveal('.elit-reveal', {
-        viewFactor: 0.1,
-        duration: 1000,
-        reset: false
-    });
 
 </script>
 

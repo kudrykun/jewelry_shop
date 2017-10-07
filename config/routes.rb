@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'products/:id', to: 'store/products#show', as: 'product'
   get 'categories/:id', to: 'store/categories#show', as: 'category'
   get 'catalog', to: 'store/catalog#index'
-
+  get 'brands', to: 'store/manufacturers#index', as: 'brands'
 
 
   namespace :admin do

@@ -149,6 +149,9 @@ main .container nav {
 
 /* ===== Главная ===== */
 
+.hidden{
+    visibility: hidden;
+}
 
 .main-slider {
     width: 100%;
@@ -1058,30 +1061,13 @@ figure.effect-steve h6 {
 
 
 
-
-
 /* ---- Grid ---- */
 
-
-.grid {
-  margin: 2px;
-
-}
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-.grid-item {
-  float: left;
-  height: auto;
-  overflow: hidden;
-}
 .grid-item,
 .grid-sizer {
-  width: 33.3333333333%;
-  min-width: 150px;
-  margin: 0;
+    width: 33.3333333333%;
+    min-width: 150px;
+    visibility: hidden;
 }
 .grid-item--width2 {
     width: 66.6666666667%;
@@ -1095,7 +1081,6 @@ figure.effect-steve h6 {
     .grid .grid-item--width2 {width: 100%;}
     .grid .grid-item--width3 {width: 100%;}
 }
-
 
 
 .seo-block {
@@ -1148,6 +1133,9 @@ figure.effect-steve h6 {
 .filter-box .card:hover{
     -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+    -webkit-transform: translate3d(0,-5px,0);
+    transform: translate3d(0,-5px,0);
+    border-radius: 3px;
 }
 .card .card-content {
     padding: 5px;
