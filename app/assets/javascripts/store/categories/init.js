@@ -27,6 +27,7 @@ $(document).ready(function () {
     });*/
 
 
+
 /*
     var inputNumber1 = document.getElementById('input-with-priceSlider-desktop0');
     var inputNumber2 = document.getElementById('input-with-priceSlider-desktop1');
@@ -53,6 +54,37 @@ $(document).ready(function () {
     });
 */
 
+
+$(document).ready(function () {
+    var mobile = false;
+    if(document.documentElement.clientWidth < 801)
+    {
+        mobile = true;
+        $('#filterrific_filter').appendTo('.row.filter .filter-right');
+    }
+    $(window).resize(function() {
+        if((document.documentElement.clientWidth > 800) && (mobile)) {
+            $('#filterrific_filter').insertAfter($('body > main > div.container > div > div.col.s12.filter'));
+            mobile = false;
+        }else{
+            if((document.documentElement.clientWidth < 801) && (!mobile)){
+                $('#filterrific_filter').appendTo('.row.filter .filter-right');
+                mobile = true;
+            }
+        }
+    });
+
+
+
+});
+
+// $(window).resize(function() {
+//
+//     // $('#filterrific_filter').remove();
+//     // if(document.documentElement.clientWidth > 1200) {
+//     //     // тут ваш скрипт
+//     // }
+// });
 
 
 
@@ -113,4 +145,19 @@ $(document).ready(function () {
         });
     })();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -4,8 +4,8 @@
       <div class="nav-wrapper">
         <!-- Mobile nav -->
         <div class="col s12 hide-on-sm-and-up">
-          <%= link_to root_path, class: 'catalog-back' do %>
-              <i class="material-icons left">keyboard_backspace</i>На главную
+          <%= link_to category_path(@product.category), class: 'catalog-back' do %>
+              <i class="material-icons left">keyboard_backspace</i><%= @product.category.title %>
           <% end %>
 
         </div>

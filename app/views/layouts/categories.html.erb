@@ -128,6 +128,18 @@
 
 <%= render './layouts/renders/basket' %>
 
+
+<div id="slide-out-filter" class="side-nav right-aligned" style="width: 600px; transform: translateX(100%);">
+  <div class="row filter">
+    <div class="col s12 filter-right">
+
+    </div><!-- col s12 -->
+    <div class="col s12">
+      <br><br>
+    </div>
+  </div>
+</div><!-- slide-out-filter -->
+
 <%= render './layouts/renders/footer' %>
 
 <%= javascript_include_tag 'store/store' %>
@@ -136,7 +148,6 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-
         $('.tooltiped').tooltip();
     });
 </script>
