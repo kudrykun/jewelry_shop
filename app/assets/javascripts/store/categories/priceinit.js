@@ -63,20 +63,20 @@ $(document).ready(function () {
         var input1 = document.getElementById('input-with-priceSlider-desktop1');
         var inputs = [input0, input1];
         var start = 0;
-        var stop = 0;
+        var end = 100000;
 
-        if (start != undefined || start != NaN)
+       /* if (start != undefined || start != NaN)
             start = input0.value;
         else
             start = 0;
 
-        if (stop != undefined || stop != NaN)
-            stop = input1.value;
+        if (input1.value != undefined & input1.value != NaN & !input1.value)
+            end = input1.value;
         else
-            stop = 100000;
+            end = 100000;*/
 
         noUiSlider.create(keypressSlider, {
-            start: [input0.value == 0 ? 0 : input0.value, input1.value == 100000? 100000 : input1.value ],
+            start: [!input0.value ? 0 : input0.value, !input1.value ? 1000000 : input1.value ],
             connect: true,
             step: 1000,
             range: {
@@ -106,7 +106,6 @@ $(document).ready(function () {
 
         keypressSlider.noUiSlider.on('update', function( values, handle ) {
             inputs[handle].value = Math.round(values[handle]);
-
         });
         keypressSlider.noUiSlider.on('end', function( values, handle ) {
             if(handle == 0){
@@ -117,16 +116,17 @@ $(document).ready(function () {
             }
         });
 
-        input0.addEventListener('change', function(){
+        /*input0.addEventListener('change', function(){
             keypressSlider.noUiSlider.set([null, this.value]);
         });
         input1.addEventListener('change', function(){
             keypressSlider.noUiSlider.set([null, this.value]);
-        });
+        });*/
         /*$('.priceSlider').on('click', function( values, handle ) {
 
         });*/
-    })()});
+    })()
+});
 
 /*
 function buildPriceRangeFilter(from, to) {
