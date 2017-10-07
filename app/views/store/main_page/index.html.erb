@@ -1,4 +1,4 @@
-<div class="main-slider center-align elit-reveal">
+<div class="main-slider center-align hidden elit-reveal">
   <div id="main-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
     <div class="item" style="background-image: url(<%= image_path('banner-img/night-sale.gif') %>);">
@@ -23,7 +23,7 @@
   <!--</div>-->
 <!--</div>-->
 
-<div class="container sale_sliders elit-reveal">
+<div class="container sale_sliders hidden elit-reveal">
   <div class="row tabs-box">
     <div class="col s12">
       <ul class="tabs">
@@ -77,11 +77,22 @@
 
 
 
-<div class="logo-slider ">
+<div class="logo-slider">
   <div class="container">
     <div class="row">
-      <div class="col s12 elit-reveal">
+      <div class="col s12 hidden elit-reveal">
         <div id="logo-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+
+          <% @brands.each do |brands| %>
+            <% if brands.slide != nil %>
+              <div class="item">
+                <%= link_to '#' do %>
+                  <%= image_tag(brands.slide.image, class: 'responsive-img') %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
 
           <div class="item">
             <a href="#"><%= image_tag('logo/logo-1.png', class: 'responsive-img') %></a>
@@ -92,24 +103,24 @@
           <div class="item">
             <a href="#"><%= image_tag('logo/logo-3.png', class: 'responsive-img') %></a>
           </div>
-          <div class="item">
-            <a href="#"><%= image_tag('logo/logo-4.png', class: 'responsive-img') %></a>
+<!--          <div class="item">
+            <a href="#">< %= image_tag('logo/logo-4.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><%= image_tag('logo/logo-5.png', class: 'responsive-img') %></a>
+            <a href="#">< %= image_tag('logo/logo-5.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><%= image_tag('logo/logo-6.png', class: 'responsive-img') %></a>
+            <a href="#">< %= image_tag('logo/logo-6.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><%= image_tag('logo/logo-7.png', class: 'responsive-img') %></a>
+            <a href="#">< %= image_tag('logo/logo-7.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><%= image_tag('logo/logo-8.png', class: 'responsive-img') %></a>
+            <a href="#">< %= image_tag('logo/logo-8.png', class: 'responsive-img') %></a>
           </div>
           <div class="item">
-            <a href="#"><%= image_tag('logo/logo-9.png', class: 'responsive-img') %></a>
-          </div>
+            <a href="#">< %= image_tag('logo/logo-9.png', class: 'responsive-img') %></a>
+          </div>-->
         </div>
       </div>
     </div><!-- row -->
@@ -119,7 +130,7 @@
 <div class="container">
   <div class="row">
     <div></div>
-    <div class="col sm4 s6 card  waves-effect">
+    <div class="col sm4 s6 card waves-effect">
       <figure class="effect-steve elit-reveal">
         <%= image_tag('content-img/image-1.jpg') %>
         <figcaption>
@@ -129,8 +140,8 @@
       </figure>
     </div>
 
-    <div class="col sm4 s6 card elit-reveal">
-      <figure class="effect-steve">
+    <div class="col sm4 s6 card">
+      <figure class="effect-steve elit-reveal">
         <%= image_tag('content-img/image-2.jpg') %>
         <figcaption>
           <a href="#"></a>
@@ -139,8 +150,8 @@
       </figure>
     </div>
 
-    <div class="col sm4 s12 card elit-reveal">
-      <figure class="effect-steve">
+    <div class="col sm4 s12 card">
+      <figure class="effect-steve elit-reveal">
         <%= image_tag('content-img/image-3.jpg') %>
         <figcaption>
           <a href="#"></a>
@@ -150,8 +161,8 @@
     </div>
 
 
-    <div class="col sm6 s12 card elit-reveal">
-      <figure class="effect-steve">
+    <div class="col sm6 s12 card">
+      <figure class="effect-steve elit-reveal">
         <%= image_tag('content-img/image-5.jpg') %>
         <figcaption>
           <a href="#"></a>
@@ -160,8 +171,8 @@
       </figure>
     </div>
 
-    <div class="col sm6 s12 card elit-reveal">
-      <figure class="effect-steve">
+    <div class="col sm6 s12 card">
+      <figure class="effect-steve elit-reveal">
         <%= image_tag('content-img/image-6.jpg') %>
         <figcaption>
           <a href="#"></a>

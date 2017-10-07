@@ -133,25 +133,28 @@
 <%= javascript_include_tag 'store/catalog/catalog' %>
 
 <script type="text/javascript">
-    $('.grid').packery({
-        // options
-        itemSelector: '.grid-item',
-        percentPosition: true,
-        gutter: 0
+
+    var $grid = $('.grid').imagesLoaded( function() {
+        // init Packery after all images have loaded
+        $grid.packery({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            gutter: 0
+        });
+        window.sr = ScrollReveal({
+            duration: 3000,
+            origin: 'bottom',
+            reset: false
+        });
+        sr.reveal('.elit-reveal', {
+            viewFactor: 0.1,
+            duration: 1000,
+            reset: false
+        });
     });
 </script>
 <script>
-    window.sr = ScrollReveal({
-        duration: 3000,
 
-        origin: 'bottom',
-        reset: false
-    });
-    sr.reveal('.elit-reveal', {
-        viewFactor: 0.1,
-        duration: 1000,
-        reset: false
-    });
 
 </script>
 
