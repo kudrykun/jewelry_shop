@@ -62,18 +62,6 @@ $(document).ready(function () {
         var input0 = document.getElementById('input-with-priceSlider-desktop0');
         var input1 = document.getElementById('input-with-priceSlider-desktop1');
         var inputs = [input0, input1];
-        var start = 0;
-        var end = 100000;
-
-       /* if (start != undefined || start != NaN)
-            start = input0.value;
-        else
-            start = 0;
-
-        if (input1.value != undefined & input1.value != NaN & !input1.value)
-            end = input1.value;
-        else
-            end = 100000;*/
 
         noUiSlider.create(keypressSlider, {
             start: [!input0.value ? 0 : input0.value, !input1.value ? 1000000 : input1.value ],
@@ -107,6 +95,7 @@ $(document).ready(function () {
         keypressSlider.noUiSlider.on('update', function( values, handle ) {
             inputs[handle].value = Math.round(values[handle]);
         });
+
         keypressSlider.noUiSlider.on('end', function( values, handle ) {
             if(handle == 0){
                 $(input0).trigger("change");
@@ -116,63 +105,12 @@ $(document).ready(function () {
             }
         });
 
-        /*input0.addEventListener('change', function(){
+        input0.addEventListener('change', function(){
             keypressSlider.noUiSlider.set([null, this.value]);
         });
         input1.addEventListener('change', function(){
             keypressSlider.noUiSlider.set([null, this.value]);
-        });*/
-        /*$('.priceSlider').on('click', function( values, handle ) {
-
-        });*/
-    })()
+        });
+    })();
 });
 
-/*
-function buildPriceRangeFilter(from, to) {
-    var range = [
-        [5, 500],
-        [10, 1000],
-        [15, 2000],
-        [20, 3000],
-        [30, 4000],
-        [40, 5000],
-        [50, 6000],
-        [60, 7000],
-        [65, 8000],
-        [70, 9000],
-        [75, 10000],
-        [80, 15000],
-        [85, 25000],
-        [90, 50000],
-        [95, 80000],
-    ];
-    var result = {'min': 0};
-    $.each(range, function(i, val) {
-        result['' + val[0] + '%'] = val[1];
-    });
-    result['max'] = 100000;
-    for (var i=0; i<range.length; i++) {
-        var percent = range[i][0];
-        var price = range[i][1];
-        if (price === from) { break; }
-        if (price > from) {
-            result['' + (percent - 2) + '%'] = from;
-            break;
-        }
-    }
-    for (var i=0; i<range.length; i++) {
-        var percent = range[i][0];
-        var price = range[i][1];
-        if (price === to) { break; }
-        if (price > to) {
-            var newPercent = '' + (percent - 2) + '%';
-            if (result[newPercent]) {
-                newPercent = '' + (percent - 1) + '%';
-            }
-            result[newPercent] = to;
-            break;
-        }
-    }
-    return result;
-}*/

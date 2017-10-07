@@ -4,39 +4,11 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-// Мои кастомные скрипты (ГОСПОДИ, КАКИЕ КАСТЫЛИ)
-// $(function() {
-// //     document.getElementById('weight-input').addEventListener('input', function(e){
-// //         document.getElementById('price-input').value = (this.value * document.getElementById('price-per-gramm-input').value).toFixed(2);
-// // });
-//     document.getElementById('price-per-gramm-input').addEventListener('input', function(e){
-//         document.getElementById('price-input').value = (this.value * document.getElementById('weight-input').value).toFixed(2);
-// });
-// });
-
-//Пытался сделать очистку поля
-/*
-$(document).ready(function() {
-    $(".bs-searchbox").addClass("input-group");
-    $(".bs-searchbox").append('<span class="input-group-btn"><input class="btn btn-default" type="button"><i class="glyphicon glyphicon-remove-circle"></i></input></span>');
-    var clearBtn = $(".searchbox-clear");
-    clearBtn.on('click', (function(){
-        $('.bs-searchbox input').val('');
-    }));
-});
-*/
-
-// $(function () {
-//
-// });
-
-
-
 $(function() {
 
     $(function () {
         if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null){
-            $("#new-price-input").removeAttr("disabled");
+            $("#new-price-input").removeAttr("readonly");
         }
     });
 
@@ -44,7 +16,7 @@ $(function() {
     function calc_new_price() {
         var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
         if  (percentage != null) /*& ($("#price-input").val() != '' ) )*/ {
-            $("#new-price-input").removeAttr("disabled");
+            $("#new-price-input").removeAttr("readonly");
             var price = $("#price-input").val();
             if (price != ''){
                 $("#new-price-input").val ((price - ( price * percentage / 100 )).toFixed(2));
@@ -55,6 +27,7 @@ $(function() {
         }
         else {
             $("#new-price-input").val('');
+            $("#new-price-input").prop("readonly", "readonly")
             // я хз как заставить это работать
             // проблема в том, что если поле блокируется, то не передается то, что в нем есть (т.е. ничего)!
             // $("#new-price-input").prop("disabled", "true");
@@ -207,7 +180,6 @@ $(function() {
             $('#notice').animate({top: -60}, 500);
         })
     }
-
 });
 
 
