@@ -3,6 +3,6 @@ class Promo < ApplicationRecord
   belongs_to :preview, class_name: 'Picture', optional: true
   # изображение для текста акции
   belongs_to :picture, class_name: 'Picture', optional: true
-
-  has_many :products, through: :product_promos
+  has_many :products_promos
+  has_many :products, :through => :products_promos
 end

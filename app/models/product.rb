@@ -16,7 +16,8 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :size_items, allow_destroy: true
   has_many :sizes, -> { distinct }, :through => :size_items
   has_many :shops, -> { distinct }, :through => :size_items
-  has_many :promos, through: :product_promos
+  has_many :products_promos
+  has_many :promos, :through => :products_promos
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.
   #TODO Удаляются именно объекты класса Picture. Необходимо явно удалять сами файлы изображений
   has_many :pictures, as: :imageable, dependent: :destroy
