@@ -24,7 +24,7 @@
       </ul>
       <ul class="right">
         <li><a href="#">Скупка и Обмен</a></li>
-        <li><a href="#">Магазины</a></li>
+        <li><%= link_to 'Магазины', shops_path %></li>
       </ul>
     </div>
   </nav>
@@ -86,7 +86,9 @@
       <li><a class="red-text" href="#">Бренды</a></li>
       <li><a class="red-text text-darken-2" href="#">Акции</a></li>
       <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>
-      <li class="hide-on-small-and-up"><a class="grey-text text-darken-2" href="#">Магазины</a></li>
+      <li class="hide-on-small-and-up">
+        <%= link_to 'Магазины', shops_path, class: 'grey-text text-darken-2' %>
+      </li>
 
     </ul>
     <!-- primary-nav -->
