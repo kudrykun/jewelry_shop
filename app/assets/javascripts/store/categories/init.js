@@ -138,7 +138,7 @@ $(document).ready(function () {
         });
 
         input0.addEventListener('change', function(){
-            keypressSlider.noUiSlider.set([null, this.value]);
+            keypressSlider.noUiSlider.set([this.value, null]);
         });
         input1.addEventListener('change', function(){
             keypressSlider.noUiSlider.set([null, this.value]);

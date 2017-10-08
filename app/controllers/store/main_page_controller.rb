@@ -2,7 +2,6 @@ class Store::MainPageController < Store::StoreController
   layout 'main_page'
 
   def index
-    @categories = Category.all.order(:priority)
     @brands = Manufacturer.all
     @products_hit = Product.where(visible: true).where(hit: true).order(priority: :desc).order(updated_at: :desc)
     @products15 = Product.where(visible: true).where(to_main_page: true).order(priority: :desc).order(updated_at: :desc)
