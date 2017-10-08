@@ -1,4 +1,4 @@
-<%= form_for([:admin, category]) do |f| %>
+<%= form_for([:admin, category], :html => {multipart: true}) do |f| %>
     <% if category.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
@@ -24,7 +24,23 @@
           <%= f.number_field :priority, {class: 'form-control'} %>
         </div>
 
+        <!--Изображение превью-->
+        <div class="form-group">
+          <%= f.label :preview, 'Изображение превью' %>
+          <% if category.preview %>
+              <%= image_tag category.preview.image(:medium), class: 'img-responsive' %>
+          <% end %>
+          <%= file_field_tag "preview", class: 'form-control' %>
+        </div>
 
+        <!--Изображение--->
+        <div class="form-group">
+          <%= f.label :banner, 'Изображение-баннер' %>
+          <% if category.banner %>
+              <%= image_tag category.banner.image(:medium), class: 'img-responsive' %>
+          <% end %>
+          <%= file_field_tag "banner", class: 'form-control' %>
+        </div>
 
         <div class="actions">
           <%= f.submit 'Применить', class: 'btn btn-success' %>
