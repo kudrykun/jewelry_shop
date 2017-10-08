@@ -7,7 +7,6 @@ class Store::ProductsController < Store::StoreController
   end
 
   def show
-    @categories = Category.all.order(:priority)
     @products = Product.where(recommendation: true).where(visible: true).order(priority: :desc).order(updated_at: :desc)
   end
 
