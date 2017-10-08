@@ -1,5 +1,5 @@
 <!--Баннер категории-->
-<div class="catalog-banner">
+<div class="catalog-banner"  <% if @category.banner %> style="background-image: url('<%= @category.banner.image %>')" <% end %>>
   <div class="catalog-banner_in">
     <div class="" widht="100%">
       <div class="container">
