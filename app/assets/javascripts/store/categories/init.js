@@ -1,60 +1,4 @@
 
-/*var priceSlider = document.getElementById('priceSlider-desktop');
-$(document).ready(function () {
-    noUiSlider.create(priceSlider, {
-        start: [0, 100000],
-        connect: true,
-        step: 1000,
-        range: {
-            'min': [0, 500],
-            '5%': [500, 1000],
-            '10%': [1000, 2000],
-            '15%': [2000, 3000],
-            '20%': [3000, 4000],
-            '30%': [4000, 5000],
-            '40%': [5000, 6000],
-            '50%': [6000, 7000],
-            '60%': [7000, 8000],
-            '65%': [8000, 9000],
-            '70%': [9000, 10000],
-            '75%': [10000, 15000],
-            '80%': [15000, 20000],
-            '85%': [25000, 50000],
-            '90%': [50000, 80000],
-            '95%': [80000, 100000],
-            'max': [100000]
-        }
-    });*/
-
-
-
-/*
-    var inputNumber1 = document.getElementById('input-with-priceSlider-desktop0');
-    var inputNumber2 = document.getElementById('input-with-priceSlider-desktop1');
-
-    priceSlider.noUiSlider.on('update', function( values, handle ) {
-
-        var value = values[handle];
-
-        if ( handle ) {
-            inputNumber2.value = Math.round(value);
-        }
-        else {
-            inputNumber1.value = Math.round(value);
-        }
-    });
-});
-
-    inputNumber1.addEventListener('change', function(){
-        html5Slider.noUiSlider.set([this.value, null]);
-    });
-
-    inputNumber2.addEventListener('change', function(){
-        html5Slider.noUiSlider.set([null, this.value]);
-    });
-*/
-
-
 $(document).ready(function () {
     var mobile = false;
     if(document.documentElement.clientWidth < 801)
@@ -63,11 +7,11 @@ $(document).ready(function () {
         $('#filterrific_filter').appendTo('.row.filter .filter-right');
     }
     $(window).resize(function() {
-        if((document.documentElement.clientWidth > 800) && (mobile)) {
+        if((mobile) && (document.documentElement.clientWidth > 800)) {
             $('#filterrific_filter').insertAfter($('body > main > div.container > div > div.col.s12.filter'));
             mobile = false;
         }else{
-            if((document.documentElement.clientWidth < 801) && (!mobile)){
+            if((!mobile) && (document.documentElement.clientWidth < 801)){
                 $('#filterrific_filter').appendTo('.row.filter .filter-right');
                 mobile = true;
             }
@@ -77,16 +21,6 @@ $(document).ready(function () {
 
 
 });
-
-// $(window).resize(function() {
-//
-//     // $('#filterrific_filter').remove();
-//     // if(document.documentElement.clientWidth > 1200) {
-//     //     // тут ваш скрипт
-//     // }
-// });
-
-
 
 $(document).ready(function () {
     (function() {

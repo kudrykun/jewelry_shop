@@ -76,43 +76,52 @@ $(function() {
     $('#side-menu').metisMenu();
 });
 
+$.extend( $.fn.dataTable.defaults, {
+    responsive: true,
+    columnDefs: [
+        { responsivePriority: 1, targets: 0 },
+        { responsivePriority: 1, targets: 1 },
+        { responsivePriority: 4, targets: -4 },
+        { responsivePriority: 3, targets: -3 },
+        { responsivePriority: 2, targets: -2 },
+        { responsivePriority: 1, targets: -1 }
+    ],
+    language: {
+        "processing": "Подождите...",
+        "search": "Поиск:",
+        "lengthMenu": "Показать _MENU_ записей",
+        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+        "infoPostFix": "",
+        "loadingRecords": "Загрузка записей...",
+        "zeroRecords": "Записи отсутствуют.",
+        "emptyTable": "В таблице отсутствуют данные",
+        "paginate": {
+            "first": "Первая",
+            "previous": "Предыдущая",
+            "next": "Следующая",
+            "last": "Последняя"
+        },
+        "aria": {
+            "sortAscending": ": активировать для сортировки столбца по возрастанию",
+            "sortDescending": ": активировать для сортировки столбца по убыванию"
+        }
+    }
+} );
+
 $(document).ready(function() {
     $('#dataTables-example').DataTable({
-        responsive: true,
-        columnDefs: [
-            { responsivePriority: 1, targets: 0 },
-            { responsivePriority: 1, targets: 1 },
-            { responsivePriority: 4, targets: -4 },
-            { responsivePriority: 3, targets: -3 },
-            { responsivePriority: 2, targets: -2 },
-            { responsivePriority: 1, targets: -1 }
-        ],
-        "language": {
-            "processing": "Подождите...",
-            "search": "Поиск:",
-            "lengthMenu": "Показать _MENU_ записей",
-            "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-            "infoEmpty": "Записи с 0 до 0 из 0 записей",
-            "infoFiltered": "(отфильтровано из _MAX_ записей)",
-            "infoPostFix": "",
-            "loadingRecords": "Загрузка записей...",
-            "zeroRecords": "Записи отсутствуют.",
-            "emptyTable": "В таблице отсутствуют данные",
-            "paginate": {
-                "first": "Первая",
-                "previous": "Предыдущая",
-                "next": "Следующая",
-                "last": "Последняя"
-            },
-            "aria": {
-                "sortAscending": ": активировать для сортировки столбца по возрастанию",
-                "sortDescending": ": активировать для сортировки столбца по убыванию"
-            }
-        }
     });
     $('#table').css("visibility", "visible");
     $('i.fa-refresh').remove();
+    $('.category_dataTable').dataTable( {
+        "order": [[ 2, "asc" ]]
+    });
 });
+
+
+
 
 
 //Loads the correct sidebar on window load,

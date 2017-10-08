@@ -24,22 +24,24 @@
       <h1 class="flow-text">Каталог</h1>
 
 
-
       <div class="grid">
-    <!-- Шаблон для категорий-->
-    <!--    < % @categories.each do |category| %>
+        <% @categories.each do |category| %>
             <div class="grid-item elit-reveal">
               <div class="card" style="margin: 0;">
                 <figure class="effect-jazz">
-                  < %= image_tag('catalog/grid_2.jpg') %>
+                  <%= image_tag (category.preview.image) %>
                   <figcaption>
-                    <h2 class="flow-text">< %= category.title %></h2>
-                    < %= link_to '', category_path(category) %>
+                    <h2 class="flow-text"><%= category.title %></h2>
+                    <%= link_to category.title, category_path(category) %>
                   </figcaption>
                 </figure>
               </div>
             </div>
-        < % end %>-->
+        <% end %>
+      </div>
+
+     <!-- <div class="grid">
+
 
         <div class="grid-item elit-reveal">
           <div class="card" style="margin: 0;">
@@ -77,7 +79,7 @@
           </div>
         </div>
 
-        <div class="grid-item  grid-item--width2 elit-reveal">
+        <div class="grid-item grid-item&#45;&#45;width2 elit-reveal">
           <div class="card" style="margin: 0;">
             <figure class="effect-jazz">
               <%= image_tag('catalog/grid_4.jpg') %>
@@ -89,7 +91,7 @@
           </div>
         </div>
 
-        <div class="grid-item  grid-item--width3 elit-reveal">
+        <div class="grid-item  grid-item&#45;&#45;width3 elit-reveal">
           <div class="card" style="margin: 0;">
             <figure class="effect-jazz">
               <%= image_tag('catalog/grid_5.jpg') %>
@@ -147,8 +149,8 @@
             </figure>
           </div>
         </div>
-      </div><!-- grid -->
-
+      </div>&lt;!&ndash; grid &ndash;&gt;
+-->
     </div>
 
   </div>
