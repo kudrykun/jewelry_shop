@@ -51,6 +51,7 @@
         </div>
       </div>
     </div>
+    <div class="row filterrific" style="position: relative; margin: 0">
     <%= form_for_filterrific @filterrific do |f| %>
         <!--Левый фильтр-->
         <div class="col s12 l3 m3 filter-right">
@@ -61,6 +62,10 @@
 
             </li>
             <a class="btn waves-effect waves-light border-btn_grey close  hide-on-med-and-up" href="#">Показать изделия</a>
+            <div class="filter-header hide-on-med-and-up">СОРТИРОВАТЬ ПО</div>
+            <div class="filter-sort">
+              <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+            </div>
             <li class="active">
               <div class="collapsible-header active">
                 ЦЕНА <span style="font-size: 1rem; margin-left: 5px;">₽</span>
@@ -129,9 +134,10 @@
             </li>
           </ul>
 
-          <%= link_to('СБРОСИТЬ ФИЛЬТР', reset_filterrific_url, class: 'btn waves-effect waves-light border-btn_grey') %>
+          <%= link_to('СБРОСИТЬ ФИЛЬТР', reset_filterrific_url, {class: 'btn waves-effect waves-light border-btn_grey', style: 'margin-top: 50px;'})%>
 
         </div>
+
     <% end %>
         <!--Левый фильтр-->
 
@@ -140,16 +146,9 @@
 
             <!--Верхний фильтр-->
             <div class="col s12 filter-box">
-              <div class="col l5 m5 sm5 s5" id="filter-info">
+              <div class=filter-info" style="height: 45px">
                 <%= render_filterrific_spinner %>
-
               </div>
-              <div class="col l7 m7 sm7 s7" id="filter-sort">
-                <div class="input-field right">
-                  <!--< %= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>-->
-                </div>
-              </div>
-
               <!--/Верхний фильтр-->
 
               <!--Карточки товаров-->
@@ -166,6 +165,6 @@
         </div><!-- col -->
 
 
-
+    </div>
   </div><!-- row -->
 </div><!-- container -->

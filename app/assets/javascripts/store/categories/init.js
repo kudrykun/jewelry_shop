@@ -7,11 +7,11 @@ $(document).ready(function () {
         $('#filterrific_filter').appendTo('.row.filter .filter-right');
     }
     $(window).resize(function() {
-        if((mobile) && (document.documentElement.clientWidth > 800)) {
-            $('#filterrific_filter').insertAfter($('body > main > div.container > div > div.col.s12.filter'));
+        if((mobile) && (document.documentElement.clientWidth > 785)) {
+            $('#filterrific_filter').prependTo($('.row.filterrific'));
             mobile = false;
         }else{
-            if((!mobile) && (document.documentElement.clientWidth < 801)){
+            if((!mobile) && (document.documentElement.clientWidth < 786)){
                 $('#filterrific_filter').appendTo('.row.filter .filter-right');
                 mobile = true;
             }

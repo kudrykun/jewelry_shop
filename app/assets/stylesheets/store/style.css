@@ -601,10 +601,20 @@ main .container nav {
     display: inline-block;
     margin-right: 10px;
 }
-.filter-box .input-field {
-    margin: 0;
+
+.filter-header{
+    padding: 0 16px;
+    min-height: 3rem;
+    line-height: 48px;
 }
-.filter-box .select-wrapper input.select-dropdown {
+
+.filter-sort {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+}
+.filter-sort .select-wrapper input.select-dropdown {
     font-size: 0.875rem;
     font-weight: 600;
     color: #757575;
@@ -612,18 +622,32 @@ main .container nav {
     margin: 0;
     min-width: 170px;
 }
-.filter-box .dropdown-content li > span {
+.filter-sort .dropdown-content li > span {
     font-size: 0.875rem;
     font-weight: 600;
 }
 
-.filter-box .input-field {
-    margin-top: 0;
-    float: left;
-}
-@media only screen and (min-width: 601px) {
-    .filter-box .input-field {
-        float: right;
+
+@media only screen and (max-width: 802px) {
+    .filter-sort {
+        position: relative;
+        display: block;
+        padding: 0px 1rem 10px;
+        color: black;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .filter-sort .select-wrapper input.select-dropdown {
+        font-size: 0.9375rem;
+        font-weight: 500;
+    }
+    .filter-sort .dropdown-content li > span {
+        font-size: 0.9375rem;
+        font-weight: 500;
+    }
+
+    p.filter-info{
+        top: -49px;
     }
 }
 
