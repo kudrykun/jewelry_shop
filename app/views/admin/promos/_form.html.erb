@@ -1,0 +1,50 @@
+<%= form_for([:admin,promo], :html => {multipart: true}) do |f| %>
+    <% if promo.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(promo.errors.count, "error") %> prohibited this promo from being saved:</h2>
+
+          <ul>
+            <% promo.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= f.label :title, 'Название' %>
+          <%= f.text_field :title, :placeholder => 'Введите название  ', class: 'form-control' %>
+        </div>
+
+        <div class="field-group">
+          <%= f.label :text, 'Текст' %>
+          <%= f.text_area :text,{class: 'form-control'} %>
+        </div>
+
+        <!--Изображение в списке брендов-->
+        <div class="form-group">
+          <%= f.label :preview, 'Изображение в списке брендов' %>
+          <% if promo.preview %>
+              <%= image_tag promo.preview.image(:medium), class: 'img-responsive' %>
+          <% end %>
+          <%= file_field_tag "preview", class: 'form-control' %>
+        </div>
+        <!--Изображение слайдере брендов-->
+        <div class="form-group">
+          <%= f.label :picture, 'Изображение в слайдере' %>
+          <% if promo.picture %>
+              <%= image_tag promo.picture.image(:medium), class: 'img-responsive' %>
+          <% end %>
+          <%= file_field_tag "picture", class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
+        </div>
+      </div>
+    </div>
+
+
+<% end %>

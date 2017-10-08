@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :manufacturers
     resources :shops
     resources :chain_types
+    resources :promos
   end
 
 end
