@@ -24,6 +24,11 @@
           <%= f.number_field :priority, {class: 'form-control'} %>
         </div>
 
+        <div class="form-group">
+          <%= f.label :to_nav, 'Отображать в навигации' %>
+          <%= f.check_box :to_nav, {class: 'form-control'} %>
+        </div>
+
         <!--Изображение превью-->
         <div class="form-group">
           <%= f.label :preview, 'Изображение превью' %>
