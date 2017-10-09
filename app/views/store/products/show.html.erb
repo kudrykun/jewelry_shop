@@ -178,7 +178,7 @@
               </div>
               <div class="col s12 prices">
 
-                <% if @product.kit.getKitNewPrice != nil  %>
+                <% if @product.kit.getKitNewPrice != nil && (@product.kit.getKitNewPrice != @product.kit.getKitPrice) %>
                     <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
                     <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
                 <% else %>
@@ -240,7 +240,7 @@
                   <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">Цена за комплект:</h6>
                 </div>
                 <div class="prices-card col sm3 s4 right-align" style="margin: 0;">
-                  <% if @product.kit.getKitNewPrice != nil  %>
+                  <% if @product.kit.getKitNewPrice != nil && (@product.kit.getKitNewPrice != @product.kit.getKitPrice) %>
                       <span class="new-price"><%= number_to_currency(@product.kit.getKitNewPrice, locale: :ru) %></span><br>
                       <span class="old-price"><s><%= number_to_currency(@product.kit.getKitPrice, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
                   <% else %>
