@@ -47,7 +47,7 @@
     <div id="price-1" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-1" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-        <% @products_hit.where(hit: true).each do |product| %>
+        <% @products_hit.each do |product| %>
           <div class="item">
             <%= render './layouts/renders/product-card', product: product %>
           </div>
