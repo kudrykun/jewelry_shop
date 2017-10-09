@@ -319,7 +319,7 @@
               <%end%>
 
               <% if @product.sex != 'genderless' %>
-                  <li class="collection-item">Принадлежность<span class="secondary-content"><%= @product.sex %></span></li>
+                  <li class="collection-item">Принадлежность<span class="secondary-content"><%= I18n.t :"activerecord.attributes.product.sex.#{@product.sex}"%></span></li>
               <%end%>
 
             </ul>
