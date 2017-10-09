@@ -26,6 +26,7 @@
 
       <div class="grid">
         <% @categories.each do |category| %>
+          <% if category.preview != nil %>
             <div class="grid-item elit-reveal">
               <div class="card" style="margin: 0;">
                 <figure class="effect-jazz">
@@ -37,6 +38,7 @@
                 </figure>
               </div>
             </div>
+          <% end %>
         <% end %>
       </div>
 

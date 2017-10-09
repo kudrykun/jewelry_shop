@@ -14,111 +14,8 @@
 </head>
 
 <body class="nav-on-left">
-  <header class="cd-main-header">
-    <nav role="navigation" class="hide-on-small-only">
-      <div class="nav-wrapper container">
-        <ul class="left">
-          <li><!--  <i class="material-icons">location_on</i>-->
-            <a href="#">Железногорск,<b> Курская область</b></a>
-          </li>
-        </ul>
-        <ul class="right">
-          <li><a href="#">Скупка и Обмен</a></li>
-          <li><%= link_to 'Магазины', shops_path %></li>
-        </ul>
-      </div>
-    </nav>
 
-    <div class="header-box z-depth-1">
-      <div class="container">
-        <div class="row">
-          <div class="col l1 m1 sm1 s4 hide-on-large-only">
-            <a class="cd-nav-trigger left" href="#cd-primary-nav">
-              <span></span></a>
-            <a class="cd-search-trigger left hide-on-small-and-up" href="#cd-search"><span></span></a>
-          </div>
-          <div class="col push-l3 l6 m4 sm4 s4 logo-box center-on-small-only">
-
-            <%= link_to root_path, class: 'logo' do %>
-                <%= image_tag('elit-logo.svg', class: 'hide-on-small-and-up') %>
-                <%= image_tag('elit-main.svg', class: 'hide-on-small-only') %>
-            <% end %>
-
-          </div>
-          <div class="col pull-l6 l3 m4 sm4 hide-on-small-only phone-center">
-            <span class="phone flow-text">8 (47148) 7-89-88</span>
-          </div>
-          <div id="notification-bar" class="col l3 m3 sm3 s4">
-            <a href="#cd-search" class="cd-search-trigger right hide-on-small-only"><span></span></a>
-            <a href="#" data-activates="slide-out" class="right button-collapse basket_button">
-              <span class="amount">1</span>
-
-              <%= image_tag('menu/shopping-bag.svg', height: '100%' ) %>
-            </a>
-            <a href="tel:+74714878988 " class="right basket_button hide-on-small-and-up">
-              <%= image_tag('menu/phone.png', width: '24' ) %>
-            </a>
-          </div>
-        </div><!-- row -->
-      </div><!-- container -->
-    </div>
-
-
-  <!-- Мобильный навигатор -->
-  <div class="cd-nav hide-on-large-only">
-    <ul id="cd-primary-nav" class="cd-primary-nav">
-      <li class="has-children">
-        <a href="#"><i class="material-icons">dehaze</i> КАТАЛОГ</a>
-        <ul class="cd-secondary-nav is-hidden">
-
-          <!-- Начало каталога -->
-
-          <li class="go-back"><a href="#">Назад</a></li>
-          <li class="see-all grey lighten-4">
-            <%= link_to 'Весь каталог', catalog_path  %>
-          </li>
-
-          <%= render './layouts/renders/links-navbar', categories: @categories %>
-
-        </ul>
-      </li><!-- catalog -->
-      <li class="hide"><a class="red-text" href="#">Коллекции</a></li>
-      <li><%=link_to 'Бренды', brands_path, class: 'red-text text-darken-1'%></li>
-      <li><%=link_to 'Акции', promos_path, class: 'red-text text-darken-1'%></li>
-      <!--<li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>-->
-      <li class="hide-on-small-and-up">
-        <%= link_to 'Магазины', shops_path, class: 'grey-text text-darken-2' %>
-      </li>
-
-    </ul>
-    <!-- primary-nav -->
-  </div>
-
-  <!-- Декстоп навигатор -->
-  <div class="cd-nav hide-on-med-and-down">
-    <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
-
-      <li><%=link_to 'Акции', promos_path, class: 'red-text'%></li>
-
-      <%= render './layouts/renders/links-navbar', categories: @categories %>
-
-      <li><%=link_to 'Бренды', brands_path, class: 'red-text'%></li>
-      <li><%= link_to  catalog_path do %>
-            Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
-        <% end %>
-      </li>
-
-    </ul> <!-- primary-nav -->
-  </div>
-
-  <ul class="cd-header-buttons"></ul>
-
-  <div id="cd-search" class="cd-search">
-    <form method="get" action="#">
-      <input type="search" placeholder="Поиск по артикулу" name="search_string">
-    </form>
-  </div><!-- cd-search -->
-</header>
+  <%= render 'layouts/header' %>
 
 <main class="cd-main-content" style="padding:0;">
 
@@ -167,6 +64,5 @@
           });
       });
   </script>
-
 </body>
 </html>

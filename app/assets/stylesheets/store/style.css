@@ -2349,19 +2349,6 @@ label {
     .border-blue {
         border-color: #2196F3 !important;
     }
-    .border-purple {
-        border-color: #9c27b0 !important;
-    }
-
-
-.street {
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    font-size: 0.9375rem;
-    color: #212121;
-    text-transform: none;
-}
-
 
 .shopping_back {
     line-height: 50px;
@@ -2391,6 +2378,12 @@ a.btn {
     color: red;
     width: auto;
 }
+
+.side-nav a.btn.filter-reset{
+    margin-top: 40px;
+}
+
+
 
 .side-nav .filter a:hover {
     background-color: transparent;
@@ -2479,15 +2472,6 @@ a.btn {
 .content ul:not(.browser-default) {
     padding-left: 20px;
 }
-
-
-.share_gifts {
-    display: block;
-    padding: 0.5rem 0;
-    border: 1px solid #e9e9e9;
-    margin-bottom: 1.25rem;
-}
-
 
 /* ===== . . . ===== */
 
@@ -2653,9 +2637,6 @@ input:-ms-input-placeholder      {color:#757575;}
 }
 
 
-
-
-
 /* ===== Подвал ===== */
 
 
@@ -2767,10 +2748,6 @@ footer.page-footer ul li {
 }
 
 
-[v-cloak] {
-  display: none !important;
-}
-
 .progress .indeterminate {
     background-color: #e53935;
 }
@@ -2782,48 +2759,4 @@ footer.page-footer ul li {
 [type=checkbox]:not(:checked) {
     left: inherit;
     margin-top: 8px;
-}
-
-/* Catalog filter tooltip */
-.filter-tooltip {
-    background-color: #e53935;
-    border-color: #e53935;
-    border-radius: 4px;
-    padding: 0px 10px;
-    line-height: 34px;
-    z-index: 1000;
-    display: none;
-    cursor: pointer;
-    color: white;
-}
-.filter-tooltip-desktop {
-    position: absolute;
-    min-width: 50px;
-}
-.filter-tooltip-mobile {
-    padding: 10px;
-    position: fixed;
-    margin: 5px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    min-height: 50px;
-    text-align: center;
-    font-size: 1.25rem;
-}
-.filter-tooltip-desktop::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #e53935 transparent transparent;
-}
-
-.btn_sizes-group .border-btn.active {
-    border: 1px solid #e53935 !important;
-    color: #ffffff !important;
-    background: #e53935 !important;
 }
