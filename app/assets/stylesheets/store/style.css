@@ -97,7 +97,7 @@ main .container nav {
     width: 80%;
 }
 .modal h4 {
-    font-weight: 400;
+    font-weight: 300;
 }
 .modal .modal-content {
     padding: 1.25rem 0.75rem 2rem;
@@ -1622,7 +1622,7 @@ nav .nav-wrapper .col {
 }
 
 .btn_sizes-group{
-    margin: 0 0 15px 0;
+    margin: 15px 0;
 }
 .btn_sizes-group .border-btn {
     border: 1px solid #e0e0e0 !important;
@@ -1653,6 +1653,12 @@ nav .nav-wrapper .col {
     margin: 10px 0;
     text-decoration: underline;
 }
+.off-sizes{
+    font-size: 1rem;
+    color: #757575;
+    margin-top: 5px;
+}
+
 
 
 .btn_basket-group {
@@ -1903,11 +1909,7 @@ nav .nav-wrapper .col {
     line-height: 28px;
 }
 
-
-
-
 /* ===== Корзина ===== */
-
 
 .basket {
     margin-top:0;
@@ -2075,12 +2077,12 @@ nav .nav-wrapper .col {
 }
 .ordering .tabs .tab a:hover {
     background-color: #f5f5f5;
-    color: #9434a1;
+    color: #F44336;
     font-weight: 600;
 }
 .ordering .tabs .tab a.active {
     background-color: #f5f5f5;
-    color: #9434a1;
+    color: #F44336;
     font-weight: 600;
 }
 .ordering .tabs .indicator {
@@ -2094,12 +2096,12 @@ nav .nav-wrapper .col {
 }
 .ordering .inner_tabs .tabs .tab a:hover {
     background-color: transparent;
-    color: #9434a1;
+    color: #F44336;
 }
 .ordering .inner_tabs .tabs .tab a.active {
     background-color: transparent;
     font-weight: 600;
-    color: #9434a1;
+    color: #F44336;
 }
 
 
@@ -2111,7 +2113,7 @@ nav .nav-wrapper .col {
     z-index: 1;
 }
 .ordering .input-field a:hover {
-    color: #d500f9;
+    color: #F44336;
 }
 
 
@@ -2316,44 +2318,6 @@ label {
     line-height: 38px;
 }
 
-
-.metro {
-    font-weight: 500;
-    line-height: 1.5rem;
-    font-size: 0.9375rem;
-    text-transform: none;
-    color: #212121;
-}
-.metro b {
-    width: 12px;
-    height: 12px;
-    display: block;
-    float: left;
-    text-align: center;
-    border-radius: 50%;
-    color: #FFF;
-    line-height: 12px;
-    font-size: 1px;
-    margin: 4px 10px 0 3px;
-    text-transform: none;
-    font-weight: 600;
-    border: 3px solid #9e9e9e;
-}
-    .border-red {
-        border-color: #F44336 !important;
-    }
-    .border-grey {
-        border-color: #9e9e9e !important;
-    }
-    .border-green {
-        border-color: #4CAF50 !important;
-    }
-    .border-brown {
-        border-color: #795548 !important;
-    }
-    .border-blue {
-        border-color: #2196F3 !important;
-    }
 
 .shopping_back {
     line-height: 50px;

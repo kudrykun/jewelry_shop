@@ -74,7 +74,7 @@
               </span>
         </div>
 
-        <div class="col m12 s5 push-s7 share-like">
+        <div class="col m12 s5 push-s7 share-like hide">
           <a href="#" class="left hide-on-sm-and-down">
           </a>
         </div>
@@ -96,9 +96,8 @@
         </div>
 
         <% if @product.price != nil && @product.get_shop_sizes(@product.shops).size > 0 %>
-            <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
+            <div class="col s12 btn_sizes-group" style="margin: 0;">
               <p><b>Выберите размер:</b></p>
-
               <% if @product.shops.size  %>
                   <% @product.shops.each do |shop|%>
                       <% if @product.get_shop_sizes(shop).size %>
@@ -115,8 +114,8 @@
               <%end%>
             </div>
         <% else %>
-            <div class="col s12 btn_sizes-group" style="margin: 0 0 15px 0;">
-              Размеры отсутствуют
+            <div class="col s12 btn_sizes-group">
+              <span class="off-sizes">Размеры отсутствуют</span>
             </div>
         <%end%>
 
@@ -125,12 +124,12 @@
           <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
 
 
-          <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store" data-art="94041" disabled="">ЗАБРАТЬ В МАГАЗИНЕ</a>
+          <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store" disabled="">ЗАБРАТЬ В МАГАЗИНЕ</a>
 
 
-          <div class="card-panel">
+          <div class="card-panel hide">
             <div class="input-field inline">
-              <a id="buy-in-one-click" href="https://www.valtera.ru/catalogue/94041/#">
+              <a id="buy-in-one-click" >
                 <i class="material-icons">phone_forwarded</i></a>
               <input id="phone" type="tel" class="validate" placeholder="+7 (___) ___-____" value="">
               <label for="phone" class="active"><b class="grey-text text-darken-1">Заказать звонок
@@ -143,13 +142,16 @@
           <ul class="collection">
             <li class="collection-header"><p><b>Сроки доставки</b></p></li>
             <li class="collection-item">
-              <div><i class="material-icons">shopping_basket</i>Забрать в магазине<span class="badge">Сегодня</span></div>
+              <div>
+                <i class="material-icons">shopping_basket</i>
+                Забрать в магазине
+                <% if !@product.size_items.empty?  %>
+                  <span class="badge">Сегодня</span>
+                <% else  %>
+                  <span class="badge">Под заказ</span>
+                <% end  %>
+              </div>
             </li>
-            <!--
-                            <li class="collection-item">
-                              <div><i class="material-icons">local_shipping</i>Доставка<span class="badge">от 2-х дней</span></div>
-                            </li>
-            -->
           </ul>
         </div>
 
@@ -187,7 +189,7 @@
 
               </div>
               <div class="col s12">
-                <a class="waves-effect waves-light btn border-btn" onclick="appBasket.addSetToCart(this)">ПОКАЗАТЬ КОМПЛЕКТ</a>
+                <a class="waves-effect waves-light btn border-btn" >ПОКАЗАТЬ КОМПЛЕКТ</a>
               </div>
             </div>
           </div>
@@ -305,7 +307,7 @@
               <% if @product.metal_types.size > 0 %>
                   <li class="collection-item">Тип металла<span class="secondary-content">
                     <% @product.metal_types.each do |metal_type|%>
-                        <%=metal_type.title%>,
+                        <%=metal_type.title%>
                     <%end%>
                   </span></li>
               <%end%>

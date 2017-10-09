@@ -19,7 +19,6 @@
 
 <main class="cd-main-content" style="padding:0;">
 
-
   <%= yield %>
 
 </main>
@@ -28,16 +27,92 @@
 
 <%= render './layouts/renders/basket' %>
 
+<div id="modal-store" class="modal" style="max-width: 850px; z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+
+  <div id="one-store" data-current-city-id="6" class="modal-content shop-location">
+    <h4 class="flow-text">
+      <a href="#!" class="modal-close right">
+        <i class="material-icons">close</i>
+      </a>
+      Железногорск, Курская область
+    </h4>
+    <div class="row ordering">
+      <div class="col l4 m4 sm5 s9 inner_tabs">
+        <ul class="tabs">
+          <li class="tab col s6">
+            <a href="#on-list" class="left-align active"><i class="material-icons left">toc</i> Списком</a>
+          </li>
+          <li class="tab col s6">
+            <a href="#on-map" class="left-align">
+              <i class="material-icons left">place</i> На карте</a>
+          </li>
+        </ul>
+      </div> <!---->
+      <!--<div class="col l4 m4 sm5 s12">
+        <div class="checkbox_group"><input type="checkbox" id="presence"> <label for="presence">Наличие в магазине</label>
+        </div>
+      </div>-->
+      <div id="on-list" class="col s12 active">
+        <div class="address_list">
+          <ul class="collection">
+            <li class="collection-item">
+              <div class="row">
+                <div class="col l3 m5 sm5 s12">
+                  <p>ТЦ «Универмаг»<br>Ювелирный салон «Элит»</p>
+                </div>
+                <div class="col l5 m7 sm7 s12">
+                  <p class="grey-text text-darken-1"><i class="material-icons left">place</i>ул. Ленина, 37. Левое крыло</p>
+                  <p class="grey-text text-darken-1"><i class="material-icons left">access_time</i>Пн. - Вс.: 10:00 - 19:00</p>
+                </div>
+                <div class="col l4 m12 sm12 s12">
+                  <p class="grey-text  text-darken-1">Размеры в наличии:
+                  <% @product.get_shop_sizes(Shop.find_by(title:'Универмаг')).each do |size|%>
+                      <%=size.size%>
+                  <% end %>
+                  </p>
+                  <a href="tel:+79611960782" class="waves-effect waves-light btn border-btn pickup-btn">Позвонить в салон: +7 961 196-0782</a>
+                </div>
+              </div>
+            </li>
+            <li class="collection-item">
+              <div class="row">
+                <div class="col l3 m5 sm5 s12">
+                  <p>ТЦ «Линия»<br>Ювелирный салон «Элит»</p>
+                </div>
+                <div class="col l5 m7 sm7 s12">
+                  <p class="grey-text text-darken-1"><i class="material-icons left">place</i>ул. Воинов-Интернационалистов, 18.</p>
+                  <p class="grey-text text-darken-1"><i class="material-icons left">access_time</i>Пн. - Вс.: 10:00 - 20:00</p>
+                </div>
+                <div class="col l4 m12 sm12 s12">
+                  <p class="grey-text  text-darken-1">Размеры в наличии:
+                    <% @product.get_shop_sizes(Shop.find_by(title:'Линия')).each do |size|%>
+                        <%=size.size%>
+                    <% end %>
+                  </p>
+                  <a href="tel:+79611960781" class="waves-effect waves-light btn border-btn pickup-btn">Позвонить в салон: +7 961 196-0781</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="on-map"  class="col s12">
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9baccced7a055dc94951ec0ba1ba141430dba02669e023939272fdf6affff375&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=false"></script>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%= render './layouts/renders/footer' %>
 
 <%= javascript_include_tag 'store/store' %>
 <%= javascript_include_tag 'store/product/product.js' %>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     jQuery(function($){
         $("#phone").mask("+7 (999) 999-9999");
     });
-</script>
+</script>-->
 
 <script>
     // Change size
@@ -60,38 +135,6 @@
 </script>
 
 <script>
-    $('#product_like-slider-1').owlCarousel({
-        loop: false,
-        margin: 10,
-        dots:false,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 2,
-                nav: true
-            },
-            600: {
-                items: 3,
-                nav: true,
-                loop: false
-            },
-            800: {
-                items: 4,
-                nav: true,
-                loop: false
-            },
-            1280: {
-                items: 5,
-                nav: true,
-                loop: false,
-                margin: 20
-            }
-        }
-    });
-</script>
-
-<script>
-
     $(document).ready(function() {
         $('#product-slider').owlCarousel({
             loop:false,
@@ -104,6 +147,34 @@
                 },
                 600: {
                     nav: true
+                }
+            }
+        });
+        $('#product_like-slider-1').owlCarousel({
+            loop: false,
+            margin: 10,
+            dots:false,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: true,
+                    loop: false
+                },
+                800: {
+                    items: 4,
+                    nav: true,
+                    loop: false
+                },
+                1280: {
+                    items: 5,
+                    nav: true,
+                    loop: false,
+                    margin: 20
                 }
             }
         });
@@ -123,7 +194,6 @@
         duration: 1000,
         reset: false
     });
-
 </script>
 
 </body>

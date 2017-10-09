@@ -33,7 +33,7 @@ class Product < ApplicationRecord
     self.size_items.where(shop: shop).each do |item|
       a << item.size
     end
-    a
+    a.sort_by{|e| e[:size]}
   end
 
   filterrific(
