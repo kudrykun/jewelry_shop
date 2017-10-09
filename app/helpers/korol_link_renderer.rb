@@ -44,7 +44,7 @@ class KorolLinkRenderer < WillPaginate::ActionView::LinkRenderer
 
   def previous_or_next_page(page, text, classname)
     if page
-      tag(:a, link(text, page, :class => classname), :class => '')
+      link(text, page, :class => classname)
 
     else
       tag(:a, text, :class => classname + ' bg-dark-blue near-white')
