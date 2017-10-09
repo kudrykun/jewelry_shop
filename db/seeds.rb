@@ -1,13 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 Faker::Config.locale = 'ru'
 
+ProductsPromo.delete_all
+Promo.delete_all
 MetalTypeProduct.delete_all
 SizeItem.delete_all
 Product.all.each do |product|
@@ -37,7 +31,7 @@ collection_titles = ["Геометрия","Золото и бриллианты"
 incrustation_titles = ["Алмаз","Рубин","Сапфир","Аквамарин","Изумруд","Александрит","Гранаты","Аметист","Опал благородный","Опал огненный","Топаз","Жемчуг","Янтарь","Коралл"]
 kit_titles = ["Альфа","Бета","Гамма","Дельта","Эпсилон","Дзета","Эта","Тета","Йота","Каппа","Лямбда","Омикрон"]
 size_titles = ["14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20","20.5","21","21.5","22","22.5","23","23.5","24","24.5","25","40","45","50","55","60","65","70","75"]
-sale_Size_percent = [10,20,30]
+sale_Size_percent = [10,20,30,40,50]
 metal_color_titles = ["Белый","Желтый","Красный","Розовый"]
 metal_type_titles = ["Золото(585)","Серебро(925)"]
 shop_titles = ["Универмаг","Линия"]
@@ -58,6 +52,7 @@ metalTypes_size = metal_type_titles.size
 manufacturers_size = 5;
 shops_size = shop_titles.size
 chain_types_size = chain_type_titles.size
+promos_size = 10
 
 # создание сущностей
 manufacturers = []
@@ -85,6 +80,11 @@ end
 incrustations = []
 incrustations_size.times do
   incrustations << Incrustation.create(title: incrustation_titles.delete(incrustation_titles.sample))
+end
+
+promos = []
+promos_size.times do
+  promos << Promo.create(title: Faker::StarWars.character, text:Faker::Lorem.paragraph(6))
 end
 
 sizes = []
@@ -133,7 +133,7 @@ products_size.times do |i|
                              artikul: Faker::Code.asin,
                              weight: 5 + rand(26),
                              product_type: temp.product_types.sample,
-                             sale_size: Faker::Boolean.boolean(0.2) ? saleSizes.sample : nil,
+                             sale_size: Faker::Boolean.boolean(0.3) ? saleSizes.sample : nil,
                              to_main_page: Faker::Boolean.boolean(0.1),
                              manufacturer: manufacturers.sample,
                              priority: Faker::Number.between(1,products_size),
@@ -160,6 +160,11 @@ products_size.times do |i|
   # выбираем рандомный металл
   # temp.metal_types << metalTypes.sample(rand(2))
   MetalTypeProduct.create(product: products.last,metal_type: metalTypes.sample)
+
+  # Связываем товары с акциями
+  if Faker::Boolean.boolean(0.1)
+    ProductsPromo.create(product: products.last, promo: promos.sample)
+  end
 
   # для каждого магазина делаем от 0 до 4 уникальных(в рамках магазина) размеров
   shops.each do |shop|
