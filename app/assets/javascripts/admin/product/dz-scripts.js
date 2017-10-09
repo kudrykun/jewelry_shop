@@ -93,43 +93,45 @@ $(document).ready(function () {
     * обработчик click .dz-image-container - отключает вызов диалогового окна при клике на изображение*/
     {
         $dropzone.on('click', ".dz-delete-btn", function () {
-            var id = $(this).closest('.dz-image').attr('data-picture-id'); //id удаляемого товара
-            var del = $(this).closest('.dz-image'); //удаляемое изображение
+            if (confirm("Вы уверены что хотите удалить фото?")) {
+                var id = $(this).closest('.dz-image').attr('data-picture-id'); //id удаляемого товара
+                var del = $(this).closest('.dz-image'); //удаляемое изображение
 
-            if (del.hasClass('dz-preview')) { //если этот элемент превью
-                if (pictures_size == 1) { //если картинка последняя
+                if (del.hasClass('dz-preview')) { //если этот элемент превью
+                    if (pictures_size == 1) { //если картинка последняя
+                        del.closest(".dz-image-container").fadeOut(400, function () {
+                            $(this).remove(); //удаялем элемент
+                            set_preview('null');
+                        });
+                        /*После удаления последней картинки, возвращаем caption*/
+                        $dropzone.removeClass("dz-started");
+                    }
+                    else { //если нет
+                        del.closest(".dz-image-container").fadeOut(400, function () {
+                            $(this).remove(); //удаялем элемент
+                            $dropzone.find('.dz-image').first().addClass('dz-preview');  //делаем первое изображение в дропзону превьюхой
+                            set_preview($dropzone.find('.dz-image').first().attr('data-picture-id'));
+                        });
+                    }
+                }
+                else { //не превью
                     del.closest(".dz-image-container").fadeOut(400, function () {
                         $(this).remove(); //удаялем элемент
-                        set_preview('null');
-                    });
-                    /*После удаления последней картинки, возвращаем caption*/
-                    $dropzone.removeClass("dz-started");
-                }
-                else { //если нет
-                    del.closest(".dz-image-container").fadeOut(400, function () {
-                        $(this).remove(); //удаялем элемент
-                        $dropzone.find('.dz-image').first().addClass('dz-preview');  //делаем первое изображение в дропзону превьюхой
-                        set_preview($dropzone.find('.dz-image').first().attr('data-picture-id'));
                     });
                 }
-            }
-            else { //не превью
-                del.closest(".dz-image-container").fadeOut(400, function () {
-                    $(this).remove(); //удаялем элемент
+
+                //Удаляем картинку с сервера
+                $.ajax({
+                    url: current_domain + rails_pictures_path + id,
+                    type: 'DELETE'
                 });
+
+                pictures_size--;
+                return false;
+                /*предотвращает запуск события родителя*/
+
             }
-
-            //Удаляем картинку с сервера
-            $.ajax({
-                url: current_domain + rails_pictures_path + id,
-                type: 'DELETE'
-            });
-
-            pictures_size--;
-            return false;
-            /*предотвращает запуск события родителя*/
         });
-
 
         $dropzone.on('click', ".dz-preview-btn", function () {
             $('.dz-preview').removeClass('dz-preview');

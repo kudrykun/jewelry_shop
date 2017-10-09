@@ -78,6 +78,7 @@ $(function() {
 
 $.extend( $.fn.dataTable.defaults, {
     responsive: true,
+    order: [],
     columnDefs: [
         { responsivePriority: 1, targets: 0 },
         { responsivePriority: 1, targets: 1 },

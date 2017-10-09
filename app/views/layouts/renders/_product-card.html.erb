@@ -11,7 +11,7 @@
 
       <%= link_to product_path(product) do %>
           <% if product.preview != nil  %>
-              <%=image_tag product.preview.image  %>
+              <%=image_tag product.preview.image(:medium)  %>
           <% else %>
               <%=image_tag('no-image.png') %>
           <%end%>

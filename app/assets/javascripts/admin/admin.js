@@ -8,4 +8,4 @@
 //= require dataTables.responsive
 //= require sb-admin-2
 
-//= require_tree .
+//= require_directory .

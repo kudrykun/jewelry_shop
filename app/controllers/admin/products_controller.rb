@@ -6,7 +6,7 @@ class Admin::ProductsController < Admin::AdminController
   before_action :set_action_info, only: [:new,:edit]
 
   def index
-    @products = Product.all
+    @products = Product.all.order(updated_at: :desc)
   end
 
   def show

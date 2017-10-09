@@ -1641,6 +1641,11 @@ nav .nav-wrapper .col {
     color: #ffffff !important;
     background: #e53935 !important;
 }
+.btn_sizes-group .border-btn.active {
+    border: 1px solid #e53935 !important;
+    color: #ffffff !important;
+    background: #e53935 !important;
+}
 .btn_sizes-group a {
     display: inline-block;
     color: #212121;

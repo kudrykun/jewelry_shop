@@ -3,7 +3,6 @@
   <h1 class="panel-heading">Редактирование товара</h1>
 </div>
 
-<%= link_to 'Показать', admin_product_path(@product), class: 'btn btn-default pull-left mr10' %>
 
 <!--Кнопка назад-->
 <%if @from_products%>
@@ -20,9 +19,14 @@
     <%end%>
 <%end%>
 
-
+<%= link_to 'Показать', admin_product_path(@product), class: 'btn btn-default ml10' %>
+<%= link_to product_path(@product),  target: :_blank, class: 'btn btn-default ml10' do %>
+    Показать на сайте
+    <i class="fa fa-external-link" aria-hidden="true"></i>
+<% end %>
 <%= link_to admin_product_path(@product), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger pull-right' do %>
     Удалить изделие <i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Удалить товар"></i>
 <% end %>
 <%= render 'form', product: @product %>
 <%= render 'nav_toggling', flag: @from_new %>
+<%= javascript_include_tag 'admin/product/dz-scripts.js' %>

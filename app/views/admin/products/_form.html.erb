@@ -342,7 +342,7 @@
                 <!-- Контейнер для изображений -->
                 <div class="dz-dropped" id="droppedImages">
                   <div class="row">
-                    <%product.pictures.order(created_at: :desc).each do |picture|%>
+                    <% product.pictures.order(created_at: :desc).each do |picture|%>
                       <div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">
                         <%if picture.id == product.preview_id %>
                             <div class="dz-image dz-preview" data-picture-id="<%=picture.id%>">
@@ -352,12 +352,12 @@
                           <div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать превью">
                             <i class="fa fa-thumb-tack pin" aria-hidden="true"></i>
                           </div>
-                          <div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить">
+                          <div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить" >
                             <i class="fa fa-times pin" aria-hidden="true"></i>
                           </div>
                           <div class="dz-details">
-                            <div class="dz-size"> Math.round(size / 1024) KB</div>
-                            <div class="dz-name"> name</div>
+                            <div class="dz-size">  <%= number_to_human_size(picture.image_file_size)  %></div>
+                            <div class="dz-name"> <%= picture.image_file_name  %> </div>
                           </div>
                           <%=image_tag picture.image(:medium), class: 'img-responsive'%>
                         </div>
