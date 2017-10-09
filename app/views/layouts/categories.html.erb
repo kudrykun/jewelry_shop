@@ -63,6 +63,7 @@
     </div><!-- container -->
   </div>
 
+
   <!-- Мобильный навигатор -->
   <div class="cd-nav hide-on-large-only">
     <ul id="cd-primary-nav" class="cd-primary-nav">
@@ -77,16 +78,14 @@
             <%= link_to 'Весь каталог', catalog_path  %>
           </li>
 
-          <%= render './layouts/renders/links-navbar' %>
-
-          <li><a class="red-text" href="#">Коллекции</a></li>
-          <li><a class="red-text" href="#">Бренды</a></li>
+          <%= render './layouts/renders/links-navbar', categories: @categories %>
 
         </ul>
-      </li><!-- categories -->
-
-      <li><a class="red-text text-darken-2" href="#">Акции</a></li>
-      <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>
+      </li><!-- catalog -->
+      <li class="hide"><a class="red-text" href="#">Коллекции</a></li>
+      <li><%=link_to 'Бренды', brands_path, class: 'red-text text-darken-1'%></li>
+      <li><%=link_to 'Акции', promos_path, class: 'red-text text-darken-1'%></li>
+      <!--<li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>-->
       <li class="hide-on-small-and-up">
         <%= link_to 'Магазины', shops_path, class: 'grey-text text-darken-2' %>
       </li>
@@ -99,9 +98,11 @@
   <div class="cd-nav hide-on-med-and-down">
     <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
 
-      <li><a href="#" class="red-text ">АКЦИИ</a></li>
+      <li><%=link_to 'Акции', promos_path, class: 'red-text'%></li>
 
-      <%= render './layouts/renders/links-navbar' %>
+      <%= render './layouts/renders/links-navbar', categories: @categories %>
+
+      <li><%=link_to 'Бренды', brands_path, class: 'red-text'%></li>
       <li><%= link_to  catalog_path do %>
             Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
         <% end %>

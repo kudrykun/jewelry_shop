@@ -1,1 +1,40 @@
-Тут будет индекс акций
+<div widht="100%">
+  <div class="container">
+    <nav class="nav_crumbs">
+      <div class="nav-wrapper">
+        <!-- Mobile nav -->
+        <div class="col s12 hide-on-sm-and-up">
+          <%= link_to root_path, class: 'catalog-back' do %>
+              <i class="material-icons left">keyboard_backspace</i>На главную
+          <% end %>
+        </div>
+        <div class="col s12 hide-on-sm-and-down">
+          <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
+          <%= link_to 'Акции', promos_path, class: 'breadcrumb' %>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="margin: 0;">
+    <div class="col s12 inner_heading ">
+      <h1 class="flow-text">Акции</h1>
+
+      <% @promos.each do |promo| %>
+        <div class="col l6 m6 sm12 s12 card center" style="margin-bottom: 2rem;">
+          <%= link_to '#', class: 'waves-effect waves-light' do %>
+              <% if promo.preview != nil %>
+                <%= image_tag(promo.preview.image, width: '100%') %>
+              <% end %>
+          <% end %>
+          <div class="card-content">
+            <%= promo.title %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+  <br>
+</div><!-- container -->

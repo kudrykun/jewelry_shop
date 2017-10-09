@@ -22,27 +22,34 @@
           <%= f.label :text, 'Текст' %>
           <%= f.text_area :text,{class: 'form-control'} %>
         </div>
+      </div>
+    </div>
 
-        <!--Изображение в списке брендов-->
+    <div class="row">
+      <!--Изображение в списке брендов-->
+      <div class="col-lg-6">
         <div class="form-group">
-          <%= f.label :preview, 'Изображение в списке брендов' %>
-          <% if promo.preview %>
-              <%= image_tag promo.preview.image(:medium), class: 'img-responsive' %>
-          <% end %>
+          <%= f.label :preview, 'Превью акции' %>
           <%= file_field_tag "preview", class: 'form-control' %>
         </div>
-        <!--Изображение слайдере брендов-->
+        <% if promo.preview %>
+            <%= image_tag promo.preview.image, class: 'img-responsive' %>
+        <% end %>
+      </div>
+      <!--Изображение слайдере брендов-->
+      <div class="col-lg-6">
         <div class="form-group">
-          <%= f.label :picture, 'Изображение в слайдере' %>
-          <% if promo.picture %>
-              <%= image_tag promo.picture.image(:medium), class: 'img-responsive' %>
-          <% end %>
+          <%= f.label :picture, 'Изображение акции' %>
           <%= file_field_tag "picture", class: 'form-control' %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
-        </div>
+      </div>
+        <% if promo.picture %>
+            <%= image_tag promo.picture.image, class: 'img-responsive' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="actions text-center">
+        <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
       </div>
     </div>
 
