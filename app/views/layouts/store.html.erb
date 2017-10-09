@@ -63,64 +63,62 @@
       </div><!-- container -->
     </div>
 
-    <!-- Мобильный навигатор -->
-    <div class="cd-nav hide-on-large-only">
-      <ul id="cd-primary-nav" class="cd-primary-nav">
-        <li class="has-children">
-          <a href="#"><i class="material-icons">dehaze</i> КАТАЛОГ</a>
-          <ul class="cd-secondary-nav is-hidden">
 
-            <!-- Начало каталога -->
+  <!-- Мобильный навигатор -->
+  <div class="cd-nav hide-on-large-only">
+    <ul id="cd-primary-nav" class="cd-primary-nav">
+      <li class="has-children">
+        <a href="#"><i class="material-icons">dehaze</i> КАТАЛОГ</a>
+        <ul class="cd-secondary-nav is-hidden">
 
-            <li class="go-back"><a href="#">Назад</a></li>
-            <li class="see-all grey lighten-4">
-              <%= link_to 'Весь каталог', catalog_path  %>
-            </li>
+          <!-- Начало каталога -->
 
-            <%= render './layouts/renders/links-navbar' %>
+          <li class="go-back"><a href="#">Назад</a></li>
+          <li class="see-all grey lighten-4">
+            <%= link_to 'Весь каталог', catalog_path  %>
+          </li>
 
-            <li><a class="red-text" href="#">Коллекции</a></li>
-            <li><a class="red-text" href="#">Бренды</a></li>
+          <%= render './layouts/renders/links-navbar', categories: @categories %>
 
-          </ul>
-        </li><!-- categories -->
+        </ul>
+      </li><!-- catalog -->
+      <li class="hide"><a class="red-text" href="#">Коллекции</a></li>
+      <li><%=link_to 'Бренды', brands_path, class: 'red-text text-darken-1'%></li>
+      <li><%=link_to 'Акции', promos_path, class: 'red-text text-darken-1'%></li>
+      <!--<li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>-->
+      <li class="hide-on-small-and-up">
+        <%= link_to 'Магазины', shops_path, class: 'grey-text text-darken-2' %>
+      </li>
 
-        <li><a class="red-text text-darken-2" href="#">Акции</a></li>
-        <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>
-        <li class="hide-on-small-and-up">
-          <%= link_to 'Магазины', shops_path, class: 'grey-text text-darken-2' %>
-        </li>
+    </ul>
+    <!-- primary-nav -->
+  </div>
 
-      </ul>
-      <!-- primary-nav -->
-    </div>
+  <!-- Декстоп навигатор -->
+  <div class="cd-nav hide-on-med-and-down">
+    <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
 
+      <li><%=link_to 'Акции', promos_path, class: 'red-text'%></li>
 
-    <!-- Декстоп навигатор -->
-    <div class="cd-nav hide-on-med-and-down">
-      <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
+      <%= render './layouts/renders/links-navbar', categories: @categories %>
 
-        <li><a href="#" class="red-text ">АКЦИИ</a></li>
+      <li><%=link_to 'Бренды', brands_path, class: 'red-text'%></li>
+      <li><%= link_to  catalog_path do %>
+            Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
+        <% end %>
+      </li>
 
-        <%= render './layouts/renders/links-navbar' %>
-        <li><%= link_to  catalog_path do %>
-              Весь каталог
-              <i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
-          <% end %>
-        </li>
+    </ul> <!-- primary-nav -->
+  </div>
 
-      </ul> <!-- primary-nav -->
-    </div>
+  <ul class="cd-header-buttons"></ul>
 
-
-    <ul class="cd-header-buttons"></ul>
-
-    <div id="cd-search" class="cd-search">
-      <form method="get" action="#">
-        <input type="search" placeholder="Поиск по артикулу" name="search_string">
-      </form>
-    </div><!-- cd-search -->
-  </header>
+  <div id="cd-search" class="cd-search">
+    <form method="get" action="#">
+      <input type="search" placeholder="Поиск по артикулу" name="search_string">
+    </form>
+  </div><!-- cd-search -->
+</header>
 
 <main class="cd-main-content" style="padding:0;">
 

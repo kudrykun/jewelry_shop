@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008171750) do
+
+ActiveRecord::Schema.define(version: 20171008194218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +150,24 @@ ActiveRecord::Schema.define(version: 20171008171750) do
     t.index ["sale_size_id"], name: "index_products_on_sale_size_id", using: :btree
   end
 
+  create_table "products_promos", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "promo_id"
+    t.index ["product_id"], name: "index_products_promos_on_product_id", using: :btree
+    t.index ["promo_id"], name: "index_products_promos_on_promo_id", using: :btree
+  end
+
+  create_table "promos", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.integer  "picture_id"
+    t.integer  "preview_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["picture_id"], name: "index_promos_on_picture_id", using: :btree
+    t.index ["preview_id"], name: "index_promos_on_preview_id", using: :btree
+  end
+
   create_table "sale_sizes", force: :cascade do |t|
     t.integer  "sale_percent"
     t.datetime "created_at",   null: false
@@ -191,6 +210,8 @@ ActiveRecord::Schema.define(version: 20171008171750) do
   add_foreign_key "products", "metal_colors"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "sale_sizes"
+  add_foreign_key "products_promos", "products"
+  add_foreign_key "products_promos", "promos"
   add_foreign_key "size_items", "products"
   add_foreign_key "size_items", "shops"
   add_foreign_key "size_items", "sizes"
