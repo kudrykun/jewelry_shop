@@ -87,6 +87,7 @@ class Admin::ProductsController < Admin::AdminController
     @sale_sizes = SaleSize.all.order(:sale_percent)
     @manufacturers = Manufacturer.all
     @chain_types = ChainType.all
+    @promos = Promo.all
   end
 
   def set_action_info
@@ -151,7 +152,8 @@ class Admin::ProductsController < Admin::AdminController
                                                                :size_id,
                                                                :_destroy],
                                     :metal_type_ids => [],
-                                    :size_ids => []
+                                    :size_ids => [],
+                                    :promo_ids => []
                                     )
   end
 end

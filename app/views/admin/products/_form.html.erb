@@ -33,7 +33,7 @@
                 <%= f.text_field :title, {class: 'form-control', placeholder: 'Введите название'} %>
               </div>
 
-              <div class="form-group">
+              <div class="form-group has-error">
                 <%= f.label :artikul, 'Артикул *' %>
                 <%= f.text_field :artikul, {class: 'form-control', placeholder: 'Введите артикул'} %>
               </div>
@@ -94,7 +94,7 @@
                 </span>
                   <%= f.text_field :new_price, {class: 'form-control',
                                                 id: 'new-price-input',
-                                                :disabled => '',
+                                                :readonly => 'readonly',
                                                 placeholder: 'Считается автоматически'} %>
                   <span class="input-group-addon">
                   <i class="fa fa-rub" aria-hidden="true"></i>
@@ -182,6 +182,14 @@
             </div>
 
             <div class="col-lg-4">
+              <div class="form-group has-error">
+                <%= f.label :category_id, 'Категория *' %>
+                <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'},
+                                        {class: 'form-control selectpicker',
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите категорию',
+                                         :"title" => 'Выберете категорию...'} %>
+              </div>
               <div class="form-group">
                 <%= f.label :manufacturer, 'Производитель' %>
                 <%= f.collection_select :manufacturer_id, @manufacturers, :id, :title,
@@ -190,14 +198,6 @@
                                          :"data-live-search" => 'true',
                                          :"data-live-Search-Placeholder" => 'Введите производителя',
                                          :"title" => 'Выберете производителя...'} %>
-              </div>
-              <div class="form-group has-error">
-                <%= f.label :category_id, 'Категория *' %>
-                <%= f.collection_select :category_id, @categories, :id, :title, {include_blank: 'Пусто'},
-                                        {class: 'form-control selectpicker',
-                                         :"data-live-search" => 'true',
-                                         :"data-live-Search-Placeholder" => 'Введите категорию',
-                                         :"title" => 'Выберете категорию...'} %>
               </div>
               <div class="form-group">
                 <%= f.label :collection_id, 'Коллекция' %>
@@ -215,7 +215,15 @@
                                          :"data-live-Search-Placeholder" => 'Введите комплект или артикул',
                                          :"title" => 'Выберете комплект...'} %>
               </div>
-
+              <div class="form-group">
+                <%= f.label :promo_ids, 'Акции' %>
+                <%= f.collection_select :promo_ids, @promos, :id, :title, {include_blank: 'Пусто'},
+                                        {multiple: true,
+                                            class: 'form-control selectpicker',
+                                         :"data-live-search" => 'true',
+                                         :"data-live-Search-Placeholder" => 'Введите название',
+                                         :"title" => 'Выберете акции...'} %>
+              </div>
             </div>
           </div>
 

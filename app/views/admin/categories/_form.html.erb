@@ -1,4 +1,4 @@
-<%= form_for([:admin, category]) do |f| %>
+<%= form_for([:admin, category], :html => {multipart: true}) do |f| %>
     <% if category.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
@@ -11,8 +11,8 @@
         </div>
     <% end %>
 
-    <div class="row">
-      <div class="col-lg-6">
+    <div class="row mt20">
+      <div class="col-lg-3">
 
         <div class="form-group">
           <%= f.label :title, 'Название' %>
@@ -23,15 +23,57 @@
           <%= f.label :priority, 'Приоритет' %>
           <%= f.number_field :priority, {class: 'form-control'} %>
         </div>
+      </div>
+      <div class="col-lg-3">
 
-
-
-        <div class="actions">
-          <%= f.submit 'Применить', class: 'btn btn-success' %>
+        <div class="form-group">
+          <%= f.label :to_nav, 'Отображать в навигации?' %>
+          <%= f.check_box :to_nav, {class: 'checkbox'} %>
         </div>
+
+        <div class="form-group">
+          <label> Выберите ширину превью в выборе категорий</label>
+          <div>
+          <label for="radio">1/3 ширины</label>
+          <input type="radio" class="radio-inline"/>
+          <label for="radio">2/3 ширины</label>
+          <input type="radio" class="radio-inline"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-6">
+        <div class="form-group">
+          <!--Изображение превью-->
+          <%= f.label :preview, 'Изображение превью' %>
+          <%= file_field_tag "preview", class: 'form-control' %>
+        </div>
+
+        <% if category.preview %>
+            <%= image_tag category.preview.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;" %>
+        <% end %>
+
+      </div>
+
+      <div class="col-lg-6">
+        <!--Изображение--->
+        <div class="form-group">
+          <%= f.label :banner, 'Изображение-баннер' %>
+          <%= file_field_tag "banner", class: 'form-control' %>
+        </div>
+
+          <% if category.banner %>
+              <%= image_tag category.banner.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;"%>
+          <% end %>
 
       </div>
     </div>
-
+    <div class="row">
+    <div class="actions text-center">
+      <%= f.submit 'Применить', class: 'btn btn-success' %>
+    </div>
+    </div>
 <% end %>
 <br>

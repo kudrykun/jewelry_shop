@@ -93,6 +93,18 @@
           <%= @product.kit.title %>
       <%end%>
     </p>
+    <p>
+      <strong>Акции:</strong>
+      <% if @product.promos.size%>
+        <ul>
+          <% @product.promos.each do |promo|%>
+              <li>
+                <%=promo.title%>,
+              </li>
+          <%end%>
+        </ul>
+    <%end%>
+    </p>
 
       <strong>Вставки:</strong>
       <% if @product.incrustation_items.size%>

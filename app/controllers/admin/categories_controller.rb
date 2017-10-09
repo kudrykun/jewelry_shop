@@ -20,7 +20,14 @@ class Admin::CategoriesController < Admin::AdminController
 
   def create
     @category = Category.new(category_params)
-
+    if params[:preview]
+      preview = Picture.create(image: params[:preview])
+      @category.preview = preview
+    end
+    if params[:banner]
+      banner = Picture.create(image: params[:banner])
+      @category.banner = banner
+    end
     if @category.save
       redirect_to edit_admin_category_path(@category), notice: 'Категория была успешно создана.'
     else
@@ -31,6 +38,14 @@ class Admin::CategoriesController < Admin::AdminController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    if params[:preview]
+      preview = Picture.create(image: params[:preview])
+      @category.preview = preview
+    end
+    if params[:banner]
+      banner = Picture.create(image: params[:banner])
+      @category.banner = banner
+    end
     if @category.update(category_params)
       redirect_to edit_admin_category_path(@category), notice: 'Категория была успешно обновлена.'
     else
@@ -60,6 +75,7 @@ class Admin::CategoriesController < Admin::AdminController
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
     params.require(:category).permit(:title,
+                                     :to_nav,
                                      :priority,
                                      :product_ids => [])
   end

@@ -5,10 +5,10 @@
   <%= favicon_link_tag 'elit-logo-2.png', type: 'image/png' %>
   <%= favicon_link_tag 'elit-logo-2.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <meta name="theme-color" content="#c62828">
-  <title>Элит Ювелир - Главная</title>
+  <title><%= @category.title %>. Элит Ювелир</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <%= csrf_meta_tags %>
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= stylesheet_link_tag    'store/store', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 </head>
@@ -24,7 +24,7 @@
       </ul>
       <ul class="right">
         <li><a href="#">Скупка и Обмен</a></li>
-        <li><a href="#">Магазины</a></li>
+        <li><%= link_to 'Магазины', shops_path %></li>
       </ul>
     </div>
   </nav>
@@ -46,7 +46,7 @@
 
         </div>
         <div class="col pull-l6 l3 m4 sm4 hide-on-small-only phone-center">
-          <span class="phone flow-text">8 919 173 2000</span>
+          <span class="phone flow-text">8 (47148) 7-89-88</span>
         </div>
         <div id="notification-bar" class="col l3 m3 sm3 s4">
           <a href="#cd-search" class="cd-search-trigger right hide-on-small-only"><span></span></a>
@@ -55,13 +55,14 @@
 
             <%= image_tag('menu/shopping-bag.svg', height: '100%' ) %>
           </a>
-          <a href="tel:+79191732000" class="right basket_button hide-on-small-and-up">
+          <a href="tel:+74714878988 " class="right basket_button hide-on-small-and-up">
             <%= image_tag('menu/phone.png', width: '24' ) %>
           </a>
         </div>
       </div><!-- row -->
     </div><!-- container -->
   </div>
+
 
   <!-- Мобильный навигатор -->
   <div class="cd-nav hide-on-large-only">
@@ -73,19 +74,21 @@
           <!-- Начало каталога -->
 
           <li class="go-back"><a href="#">Назад</a></li>
-          <li class="see-all grey lighten-4"><a href=catalog.html>Весь каталог</a></li>
+          <li class="see-all grey lighten-4">
+            <%= link_to 'Весь каталог', catalog_path  %>
+          </li>
 
-          <%= render './layouts/renders/links-navbar' %>
-
-          <li><a class="red-text" href="#">Коллекции</a></li>
-          <li><a class="red-text" href="#">Бренды</a></li>
+          <%= render './layouts/renders/links-navbar', categories: @categories %>
 
         </ul>
-      </li><!-- categories -->
-
-      <li><a class="red-text text-darken-2" href="#">Акции</a></li>
-      <li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>
-      <li class="hide-on-small-and-up"><a class="grey-text text-darken-2" href="#">Магазины</a></li>
+      </li><!-- catalog -->
+      <li class="hide"><a class="red-text" href="#">Коллекции</a></li>
+      <li><%=link_to 'Бренды', brands_path, class: 'red-text text-darken-1'%></li>
+      <li><%=link_to 'Акции', promos_path, class: 'red-text text-darken-1'%></li>
+      <!--<li class="hide-on-small-and-up"><a class="red-text text-darken-2" href="#">Скупка и Обмен</a></li>-->
+      <li class="hide-on-small-and-up">
+        <%= link_to 'Магазины', shops_path, class: 'grey-text text-darken-2' %>
+      </li>
 
     </ul>
     <!-- primary-nav -->
@@ -95,12 +98,15 @@
   <div class="cd-nav hide-on-med-and-down">
     <ul id="cd-primary-nav" class="cd-primary-nav is-fixed" >
 
-      <li><a href="#" class="red-text ">АКЦИИ</a></li>
+      <li><%=link_to 'Акции', promos_path, class: 'red-text'%></li>
 
-      <%= render './layouts/renders/links-navbar' %>
-      <li><a href="#" class="">Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i></a></li>
-      <!--<li><a href="#">БРЕНДЫ</a></li>-->
-      <!--<li><a href="#">КОЛЛЕКЦИИ</a></li>-->
+      <%= render './layouts/renders/links-navbar', categories: @categories %>
+
+      <li><%=link_to 'Бренды', brands_path, class: 'red-text'%></li>
+      <li><%= link_to  catalog_path do %>
+            Весь каталог<i class="material-icons right" style="display: block;line-height: 37px;">arrow_forward</i>
+        <% end %>
+      </li>
 
     </ul> <!-- primary-nav -->
   </div>
@@ -125,6 +131,18 @@
 
 <%= render './layouts/renders/basket' %>
 
+
+<div id="slide-out-filter" class="side-nav right-aligned" style="width: 600px; transform: translateX(100%);">
+  <div class="row filter">
+    <div class="col s12 filter-right">
+
+    </div><!-- col s12 -->
+    <div class="col s12">
+      <br><br>
+    </div>
+  </div>
+</div><!-- slide-out-filter -->
+
 <%= render './layouts/renders/footer' %>
 
 <%= javascript_include_tag 'store/store' %>
@@ -133,7 +151,6 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-
         $('.tooltiped').tooltip();
     });
 </script>

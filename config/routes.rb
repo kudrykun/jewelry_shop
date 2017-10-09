@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'products/:id', to: 'store/products#show', as: 'product'
   get 'categories/:id', to: 'store/categories#show', as: 'category'
   get 'catalog', to: 'store/catalog#index'
-
+  get 'brands', to: 'store/manufacturers#index', as: 'brands'
+  get 'shops', to: 'store/shops#index', as: 'shops'
+  get 'promos', to: 'store/promos#index', as: 'promos'
+  get 'promos/:id', to: 'store/promos#show', as: 'promo'
 
 
   namespace :admin do
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
     resources :manufacturers
     resources :shops
     resources :chain_types
+    resources :promos
   end
 
 end

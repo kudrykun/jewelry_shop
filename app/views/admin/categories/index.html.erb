@@ -10,22 +10,40 @@
 <br><br>
 
 <div class="panel panel-default">
-<table  width="100%" class="table table-striped table-bordered table-hover" >
+  <div class="panel-body">
+  <table  width="100%" class="table table-striped table-bordered table-hover category_dataTable" >
   <thead>
     <tr>
+      <th width="40px">ID</th>
       <th>Название</th>
       <th>Приоритет</th>
       <th>Товаров</th>
-      <th colspan="3"></th>
+      <th width="90px">Фото (П Б)</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @categories.each do |category| %>
       <tr>
+        <td><%= category.id %></td>
         <td><%= category.title %></td>
         <td><%= category.priority %></td>
         <td><%= @products.where(category: category).size %></td>
+        <td>
+          <% if category.preview %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+          <% else %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+          <%end%>
+          <% if category.banner %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+          <% else %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+          <%end%>
+        </td>
         <td><%= link_to 'Показать', admin_category_path(category) %></td>
         <td><%= link_to 'Изменить', edit_admin_category_path(category) %></td>
         <td>
@@ -46,6 +64,7 @@
     <% end %>
   </tbody>
 </table>
+  </div>
 </div>
 <script>
     $(function () {

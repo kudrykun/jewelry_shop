@@ -1,0 +1,39 @@
+<div widht="100%">
+  <div class="container">
+    <nav class="nav_crumbs">
+      <div class="nav-wrapper">
+        <!-- Mobile nav -->
+        <div class="col s12 hide-on-sm-and-up">
+          <%= link_to root_path, class: 'catalog-back' do %>
+              <i class="material-icons left">keyboard_backspace</i>На главную
+          <% end %>
+        </div>
+        <div class="col s12 hide-on-sm-and-down">
+          <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
+          <%= link_to 'Бренды', brands_path, class: 'breadcrumb' %>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="margin: 0;">
+    <div class="col s12 inner_heading ">
+      <h1 class="flow-text">Наши Бренды</h1>
+
+
+      <% @brands.each do |brands| %>
+          <% if brands.index != nil %>
+              <div class="col l6 m6 sm12 s12 card center" style="margin-bottom: 2rem;">
+                <%= link_to '#', class: 'waves-effect waves-light' do %>
+                    <%= image_tag(brands.index.image, width: '100%') %>
+                <% end %>
+              </div>
+
+          <% end %>
+      <% end %>
+
+    </div>
+  </div>
+  <br>
+</div><!-- container -->
