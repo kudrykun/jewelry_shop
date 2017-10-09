@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20171008194218) do
+ActiveRecord::Schema.define(version: 20171009220526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +194,14 @@ ActiveRecord::Schema.define(version: 20171008194218) do
     t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "slides", force: :cascade do |t|
+    t.boolean "hide",       default: false
+    t.string  "href"
+    t.integer "priority"
+    t.integer "picture_id"
+    t.index ["picture_id"], name: "index_slides_on_picture_id", using: :btree
   end
 
   add_foreign_key "incrustation_items", "incrustations"
