@@ -22,27 +22,35 @@
           <%= f.label :description, 'Описание' %>
           <%= f.text_area :description,{class: 'form-control'} %>
         </div>
-
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
         <!--Изображение в списке брендов-->
         <div class="form-group">
           <%= f.label :index, 'Изображение в списке брендов' %>
-          <% if manufacturer.index %>
-              <%= image_tag manufacturer.index.image(:medium), class: 'img-responsive' %>
-          <% end %>
           <%= file_field_tag "index", class: 'form-control' %>
         </div>
+        <% if manufacturer.index %>
+            <%= image_tag manufacturer.index.image, class: 'img-responsive', style: 'max-height:300px; margin:auto'  %>
+        <% end %>
+      </div>
+      <div class="col-lg-6">
         <!--Изображение слайдере брендов-->
         <div class="form-group">
           <%= f.label :slide, 'Изображение в слайдере' %>
-          <% if manufacturer.slide %>
-              <%= image_tag manufacturer.slide.image(:medium), class: 'img-responsive' %>
-          <% end %>
           <%= file_field_tag "slide", class: 'form-control' %>
         </div>
-
-        <div class="actions">
-          <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
-        </div>
+          <% if manufacturer.slide %>
+            <div style="background: #c62828; padding: 10px">
+              <%= image_tag manufacturer.slide.image, class: 'img-responsive', style: 'max-height:300px; border: 1px solid black; margin:auto' %>
+            </div>
+          <% end %>
+      </div>
+    </div>
+    <div class="row mt10">
+      <div class="actions text-center">
+        <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
       </div>
     </div>
 

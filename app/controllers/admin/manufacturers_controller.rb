@@ -29,7 +29,7 @@ class Admin::ManufacturersController < Admin::AdminController
     end
 
     if @manufacturer.save
-      redirect_to admin_manufacturers_path, notice: 'Производитель был успешно добавлен.'
+      redirect_to edit_admin_manufacturer_path(@manufacturer), notice: 'Производитель был успешно добавлен.'
     else
       render :new
     end
@@ -45,7 +45,7 @@ class Admin::ManufacturersController < Admin::AdminController
       @manufacturer.slide = slide
     end
     if @manufacturer.update(manufacturer_params)
-      redirect_to admin_manufacturers_path, notice: 'Производитель был успешно обновлен.'
+      redirect_to edit_admin_manufacturer_path(@manufacturer), notice: 'Производитель был успешно обновлен.'
     else
       render :edit
     end
