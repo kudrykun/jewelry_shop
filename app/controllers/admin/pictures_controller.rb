@@ -37,8 +37,13 @@ class Admin::PicturesController < Admin::AdminController
   def destroy
     @picture = Picture.find(params[:id])
     picture_id = @picture.id
+    @picture.image.destroy
     @picture.destroy
-    render json: {message: 'Файл удален с сервера', id: picture_id}
+
+    respond_to do |format|
+      format.js   { render :layout => false }
+      format.json { render json:{message: 'Файл удален с сервера', id: picture_id}}
+    end
   end
 
   private

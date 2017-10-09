@@ -33,6 +33,9 @@
           <%= file_field_tag "preview", class: 'form-control' %>
         </div>
         <% if promo.preview %>
+            <%= link_to admin_picture_path(promo.preview), method: :delete, :remote => true, :class => 'delete-image' do %>
+                Удалить
+            <% end %>
             <%= image_tag promo.preview.image, class: 'img-responsive' %>
         <% end %>
       </div>
@@ -43,6 +46,9 @@
           <%= file_field_tag "picture", class: 'form-control' %>
       </div>
         <% if promo.picture %>
+            <%= link_to admin_picture_path(promo.picture), method: :delete, :remote => true, :class => 'delete-image' do %>
+                Удалить
+            <% end %>
             <%= image_tag promo.picture.image, class: 'img-responsive' %>
         <% end %>
       </div>

@@ -50,8 +50,10 @@
           <%= f.label :preview, 'Изображение превью' %>
           <%= file_field_tag "preview", class: 'form-control' %>
         </div>
-
         <% if category.preview %>
+            <%= link_to admin_picture_path(category.preview), method: :delete, :remote => true, :class => 'delete-image' do %>
+              Удалить
+            <% end %>
             <%= image_tag category.preview.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;" %>
         <% end %>
 
@@ -65,7 +67,10 @@
         </div>
 
           <% if category.banner %>
-              <%= image_tag category.banner.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;"%>
+            <%= link_to admin_picture_path(category.banner), method: :delete, :remote => true, :class => 'delete-image' do %>
+                Удалить
+            <% end %>
+            <%= image_tag category.banner.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;"%>
           <% end %>
 
       </div>

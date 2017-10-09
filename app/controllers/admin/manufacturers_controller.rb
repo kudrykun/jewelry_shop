@@ -52,6 +52,12 @@ class Admin::ManufacturersController < Admin::AdminController
   end
 
   def destroy
+    if !@manufacturer.index.nil?
+      @manufacturer.index.destroy
+    end
+    if !@manufacturer.slide.nil?
+      @manufacturer.slide.destroy
+    end
     @manufacturer.products.each do |product|
       product.manufacturer = nil
       product.save
