@@ -27,17 +27,15 @@
   <div class="row tabs-box">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s6">
-          <a href="#price-1" class="active">Хиты <span class="hide-on-small-only">продаж</span> </a>
+        <li class="tab col s4">
+          <a href="#price-1" class="active">Хит<span class="hide-on-small-only">ы продаж</span> </a>
         </li>
-        <li class="tab col s6">
-          <a href="#sale15" class=""><span class="hide-on-small-only">Скидка</span> 15%</a>
+        <li class="tab col s4">
+          <a href="#sale40" class=""><span class="hide-on-small-only">Скидка</span> 40%</a>
         </li>
-        <!--
-                   <li class="tab col s4">
-                    <a href="https://www.valtera.ru/#sale30" class=""><span class="hide-on-small-only">Скидка</span> 30%</a>
-                  </li>
-        -->
+        <li class="tab col s4">
+          <a href="#sale50" class=""><span class="hide-on-small-only">Скидка</span> 50%</a>
+        </li>
 
         <div class="indicator" ></div>
       </ul>
@@ -55,10 +53,21 @@
 
       </div><!-- owl -->
     </div><!-- price -->
-    <div id="sale15" class="tab-content col s10 offset-s1 active" >
+    <div id="sale40" class="tab-content col s10 offset-s1 active" >
       <div id="sale_slider-2" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-        <% @products15.each do |product| %>
+        <% @products40.each do |product| %>
+            <div class="item">
+              <%= render './layouts/renders/product-card', product: product %>
+            </div>
+        <% end %>
+
+      </div>
+    </div>
+    <div id="sale50" class="tab-content col s10 offset-s1 active" >
+      <div id="sale_slider-3" class="owl-carousel owl-theme owl-loaded owl-drag">
+
+        <% @products50.each do |product| %>
             <div class="item">
               <%= render './layouts/renders/product-card', product: product %>
             </div>

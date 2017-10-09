@@ -2,10 +2,10 @@ ru:
   will_paginate:
     models:
       product:
-        zero:  товаров
-        one:   товар
-        few:   товаров
-        other: товаров
+        zero:  изделий
+        one:   изделие
+        few:   изделий
+        other: изделий
     previous_label: '<i class="material-icons">chevron_left</i>'
     next_label: '<i class="material-icons">chevron_right</i>'
     page_gap: "&hellip;"
