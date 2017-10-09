@@ -14,7 +14,7 @@ class Store::CategoriesController < Store::StoreController
                            with_manufacturer_id: Manufacturer.options_for_manufacturer_select,
                            with_sale_size_id: SaleSize.options_for_sale_size_select,
                        },
-                        persistence_id: 'shared_key',
+                        persistence_id: false,
                         default_filter_params: {}
     ) or return
 
