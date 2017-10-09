@@ -1,0 +1,50 @@
+<%= form_for([:admin,slide], :html => {multipart: true}) do |f| %>
+    <% if slide.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(slide.errors.count, "error") %> prohibited this slide from being saved:</h2>
+
+          <ul>
+            <% slide.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= f.label :href, 'Ссылка' %>
+          <%= f.text_field :href, :placeholder => 'Введите ссылку  ', class: 'form-control' %>
+        </div>
+
+        <div class="field-group">
+          <%= f.label :hide, 'Скрыть' %>
+          <%= f.check_box :hide %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!--Изображение в списке брендов-->
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= f.label :picture, 'Изображение' %>
+          <%= file_field_tag "picture", class: 'form-control' %>
+        </div>
+        <% if slide.picture %>
+            <%= link_to admin_picture_path(slide.picture), method: :delete, :remote => true, :class => 'delete-image' do %>
+                Удалить
+            <% end %>
+            <%= image_tag slide.picture.image, class: 'img-responsive' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="actions text-center">
+        <%= f.submit 'Применить', class: 'btn btn-success mb10 mr10' %>
+      </div>
+    </div>
+
+
+<% end %>
