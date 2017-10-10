@@ -29,15 +29,16 @@
         <!--Изображение в списке брендов-->
         <div class="form-group">
           <%= f.label :index, 'Изображение в списке брендов' %>
-          <% if manufacturer.index %>
-              <%= link_to admin_picture_path(manufacturer.index), method: :delete, :remote => true, :class => 'delete-image' do %>
-                  Удалить
-              <% end %>
-              <%= image_tag manufacturer.index.image(:medium), class: 'img-responsive' %>
-          <% end %>
+
           <%= file_field_tag "index", class: 'form-control' %>
         </div>
         <% if manufacturer.index %>
+            <%= link_to admin_picture_path(manufacturer.index), method: :delete,
+                        :remote => true,
+                        :class => 'delete-image',
+                        data: { confirm: 'Фото будет удалено безвозвратно, Вы уверены?' } do %>
+                <div class="btn btn-danger mb10">Удалить фото</div>
+            <% end %>
             <%= image_tag manufacturer.index.image, class: 'img-responsive', style: 'max-height:300px; margin:auto'  %>
         <% end %>
       </div>
@@ -45,15 +46,15 @@
         <!--Изображение слайдере брендов-->
         <div class="form-group">
           <%= f.label :slide, 'Изображение в слайдере' %>
-          <% if manufacturer.slide %>
-              <%= link_to admin_picture_path(manufacturer.slide), method: :delete, :remote => true, :class => 'delete-image' do %>
-                  Удалить
-              <% end %>
-              <%= image_tag manufacturer.slide.image(:medium), class: 'img-responsive' %>
-          <% end %>
           <%= file_field_tag "slide", class: 'form-control' %>
         </div>
-          <% if manufacturer.slide %>
+        <% if manufacturer.slide %>
+            <%= link_to admin_picture_path(manufacturer.slide), method: :delete,
+                        :remote => true,
+                        :class => 'delete-image',
+                        data: { confirm: 'Фото будет удалено безвозвратно, Вы уверены?' } do %>
+                <div class="btn btn-danger mb10">Удалить фото</div>
+            <% end %>
             <div style="background: #c62828; padding: 10px">
               <%= image_tag manufacturer.slide.image, class: 'img-responsive', style: 'max-height:300px; border: 1px solid black; margin:auto' %>
             </div>

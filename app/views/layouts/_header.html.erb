@@ -2,13 +2,21 @@
   <nav role="navigation" class="hide-on-small-only">
     <div class="nav-wrapper container">
       <ul class="left">
-        <li><!--  <i class="material-icons">location_on</i>-->
-          <a href="#">Железногорск,<b> Курская область</b></a>
+        <li>
+          <i class="material-icons location-icon">location_on</i>
+          <a href="#" style="padding-left: 25px">
+            Железногорск,<b> Курская область</b>
+          </a>
         </li>
       </ul>
       <ul class="right">
         <!--<li><a href="#">Скупка и Обмен</a></li>-->
-        <li><%= link_to 'Магазины', shops_path %></li>
+        <li>
+          <%= link_to shops_path do %>
+              Магазины
+              <%= image_tag('menu/store.svg', width: '18', style: 'position: relative;top: 5px;left: 5px' ) %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </nav>
@@ -34,12 +42,12 @@
         </div>
         <div id="notification-bar" class="col l3 m3 sm3 s4">
           <a href="#cd-search" class="cd-search-trigger right hide-on-small-only"><span></span></a>
-          <a href="#" data-activates="slide-out" class="right button-collapse basket_button hide">
+          <!--<a href="#" data-activates="slide-out" class="right button-collapse basket_button">
             <span class="amount">1</span>
-            <%= image_tag('menu/shopping-bag.svg', height: '100%' ) %>
-          </a>
+            < %= image_tag('menu/shopping-bag.svg', height: '100%' ) %>
+          </a>-->
           <a href="tel:+74714878988 " class="right basket_button hide-on-small-and-up">
-            <%= image_tag('menu/phone.png', width: '24' ) %>
+            <%= image_tag('menu/phone-call.svg', width: '24' ) %>
           </a>
         </div>
       </div><!-- row -->

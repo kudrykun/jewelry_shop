@@ -13,6 +13,7 @@
     <thead>
     <tr>
       <th>Изображение</th>
+      <th>Приоритет</th>
       <th>Скрыт</th>
       <th>Ссылка</th>
       <th colspan="3"></th>
@@ -24,9 +25,10 @@
         <tr>
           <td>
             <% if !slide.picture.nil? %>
-                <%= slide.picture.image(:thumb) %>
+                <%= image_tag (slide.picture.image(:thumb)) %>
             <% end %>
           </td>
+          <td><%= slide.priority %></td>
           <td><%= slide.hide %></td>
           <td><%= slide.href %></td>
           <td><%= link_to 'Показать', admin_slide_path(slide) %></td>
