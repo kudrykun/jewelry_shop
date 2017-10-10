@@ -1,0 +1,2 @@
+class FasterProduct < ApplicationRecord
+end
