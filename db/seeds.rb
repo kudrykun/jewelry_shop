@@ -2,6 +2,7 @@ Faker::Config.locale = 'ru'
 
 ProductsPromo.delete_all
 Promo.delete_all
+Slide.delete_all
 MetalTypeProduct.delete_all
 SizeItem.delete_all
 Product.all.each do |product|
@@ -52,7 +53,11 @@ metalTypes_size = metal_type_titles.size
 manufacturers_size = 5;
 shops_size = shop_titles.size
 chain_types_size = chain_type_titles.size
+<<<<<<< HEAD
 promos_size = 10
+=======
+slides_size = 5
+>>>>>>> slider
 
 # создание сущностей
 manufacturers = []
@@ -121,6 +126,11 @@ kits = []
 kits_size.times do
   kits << Kit.create(title: kit_titles.delete(kit_titles.sample))
   Kit.reset_counters(kits.last.id, :products)
+end
+
+slides = []
+slides_size.times do
+  slides << Slide.create(hide: Faker::Boolean.boolean(0.4), href: Faker::Internet.url)
 end
 
 # создание товаров

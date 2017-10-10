@@ -74,7 +74,16 @@
             <!--<a class="active" href="index.html">Dashboard</a>-->
             <%= link_to admin_dashboard_path do %> <i class="fa fa-dashboard fa-fw"></i> Главная <% end %>
           </li>
+          <li>
+            <a href="#"><i class="fa fa-cogs fa-fw"></i> Настройки <span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+              <li>
+                <%= link_to 'Слайдер главной страницы', admin_slides_path %>
+              </li>
+            </ul>
+          </li>
           <!--<li>
+
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
           </li>-->
           <li>
