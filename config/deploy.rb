@@ -15,14 +15,12 @@ set :unicorn_pid,    "/var/run/unicorn/#{fetch(:user)}/" \
                      "#{fetch(:application)}.#{fetch(:login)}.pid"
 set :bundle_without, %w{development test}.join(' ')             # this is default
 set :use_sudo,       false
-
-set :repo_url,       "#{fetch(:user)}@cobalt.locum.ru:" \
-                     "git/#{fetch(:application)}.git"
+set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :repo_url,       "git@github.com:kudrykun/jewelry_shop.git"
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-set :scm, :git
 set :format, :pretty
 set :pty, true
 
@@ -54,8 +52,17 @@ set :unicorn_start_cmd,
     "(cd #{fetch(:deploy_to)}/current; rvm use #{fetch(:rvm_ruby_version)} " \
     "do bundle exec unicorn_rails -Dc #{fetch(:unicorn_conf)})"
 
+=begin
+namespace :db do
+  task :copy_configuration do
+    run "cp #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
+end
+=end
+
 # - for unicorn - #
 namespace :deploy do
+
   desc 'Start application'
   task :start do
     on roles(:app) do
@@ -82,3 +89,4 @@ namespace :deploy do
     end
   end
 end
+
