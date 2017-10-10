@@ -5,7 +5,7 @@ lock '3.9.1'
 # Project configuration options
 # ------------------------------
 
-set :application,    'jewelry_shop'
+set :application,    'jewelry-store'
 set :login,          'jeweller046'
 set :user,           'hosting_jeweller046'
 
@@ -16,6 +16,7 @@ set :unicorn_pid,    "/var/run/unicorn/#{fetch(:user)}/" \
 set :bundle_without, %w{development test}.join(' ')             # this is default
 set :use_sudo,       false
 set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
 set :repo_url,       "git@github.com:kudrykun/jewelry_shop.git"
 
 # Default branch is :master
