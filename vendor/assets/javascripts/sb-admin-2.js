@@ -5,125 +5,12 @@
  */
 
 $(function() {
-
-    $(function () {
-        if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null){
-            $("#new-price-input").removeAttr("readonly");
-        }
-    });
-
-    // Считает новую цену
-    function calc_new_price() {
-        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
-        if  (percentage != null) /*& ($("#price-input").val() != '' ) )*/ {
-            $("#new-price-input").removeAttr("readonly");
-            var price = $("#price-input").val();
-            if (price != ''){
-                $("#new-price-input").val ((price - ( price * percentage / 100 )).toFixed(2));
-            }
-            else {
-                $("#new-price-input").val('');
-            }
-        }
-        else {
-            $("#new-price-input").val('');
-            $("#new-price-input").prop("readonly", "readonly")
-            // я хз как заставить это работать
-            // проблема в том, что если поле блокируется, то не передается то, что в нем есть (т.е. ничего)!
-            // $("#new-price-input").prop("disabled", "true");
-        }
-    }
-
-
-    // Считает старую цену
-    function old_price() {
-        $("#price-input").val( ($("#weight-input").val() * $("#price-per-gramm-input").val() ).toFixed(2));
-        calc_new_price();
-    }
-
-    $('input[name="product[sale_size_id]"]').click(function sale(){
-        calc_new_price();
-    });
-
-    // раскоментить если надо сделать расчет сразу после загрузки страницы
-    // old_price();
-
-    // Подсчет цены по кнопке
-    $(".calculate").click(function () {
-        old_price();
-    });
-
-    $("#weight-input").on('input', function () {
-        old_price();
-    });
-
-    $("#price-per-gramm-input").on('input', function() {
-        old_price();
-    });
-
-    $("#price-input").on("input",function(){
-        calc_new_price()
-    });
-    $("#new-price-input").on("input",function(){
-        var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
-        var new_price = $("#new-price-input").val();
-        $("#price-input").val (( new_price * 100 / (100 - percentage) ).toFixed(2));
-    });
-
-});
-
-$(function() {
     $('#side-menu').metisMenu();
 });
 
-$.extend( $.fn.dataTable.defaults, {
-    responsive: true,
-    order: [],
-    columnDefs: [
-        { responsivePriority: 1, targets: 0 },
-        { responsivePriority: 1, targets: 1 },
-        { responsivePriority: 4, targets: -4 },
-        { responsivePriority: 3, targets: -3 },
-        { responsivePriority: 2, targets: -2 },
-        { responsivePriority: 1, targets: -1 }
-    ],
-    language: {
-        "processing": "Подождите...",
-        "search": "Поиск:",
-        "lengthMenu": "Показать _MENU_ записей",
-        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
-        "infoEmpty": "Записи с 0 до 0 из 0 записей",
-        "infoFiltered": "(отфильтровано из _MAX_ записей)",
-        "infoPostFix": "",
-        "loadingRecords": "Загрузка записей...",
-        "zeroRecords": "Записи отсутствуют.",
-        "emptyTable": "В таблице отсутствуют данные",
-        "paginate": {
-            "first": "Первая",
-            "previous": "Предыдущая",
-            "next": "Следующая",
-            "last": "Последняя"
-        },
-        "aria": {
-            "sortAscending": ": активировать для сортировки столбца по возрастанию",
-            "sortDescending": ": активировать для сортировки столбца по убыванию"
-        }
-    }
-} );
-
-$(document).ready(function() {
-    $('#dataTables-example').DataTable({
-    });
-    $('#table').css("visibility", "visible");
-    $('i.fa-refresh').remove();
-    $('.category_dataTable').dataTable( {
-        "order": [[ 2, "asc" ]]
-    });
+$(function () {
+    $('body').tooltip({selector: '[data-toggle="tooltip"]'});
 });
-
-
-
-
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
@@ -177,9 +64,7 @@ $(function() {
         }
     }
 });
-$(function () {
-    $('body').tooltip({selector: '[data-toggle="tooltip"]'});
-});
+
 $(function() {
     if ($('#notice').text()) {
         $('#notice').animate({top: 10}, 500);
@@ -191,5 +76,51 @@ $(function() {
         })
     }
 });
+
+$.extend( $.fn.dataTable.defaults, {
+    responsive: true,
+    order: [],
+    columnDefs: [
+        { responsivePriority: 1, targets: 0 },
+        { responsivePriority: 1, targets: 1 },
+        { responsivePriority: 4, targets: -4 },
+        { responsivePriority: 3, targets: -3 },
+        { responsivePriority: 2, targets: -2 },
+        { responsivePriority: 1, targets: -1 }
+    ],
+    language: {
+        "processing": "Подождите...",
+        "search": "Поиск:",
+        "lengthMenu": "Показать _MENU_ записей",
+        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+        "infoPostFix": "",
+        "loadingRecords": "Загрузка записей...",
+        "zeroRecords": "Записи отсутствуют.",
+        "emptyTable": "В таблице отсутствуют данные",
+        "paginate": {
+            "first": "Первая",
+            "previous": "Предыдущая",
+            "next": "Следующая",
+            "last": "Последняя"
+        },
+        "aria": {
+            "sortAscending": ": активировать для сортировки столбца по возрастанию",
+            "sortDescending": ": активировать для сортировки столбца по убыванию"
+        }
+    }
+} );
+
+$(document).ready(function() {
+    $('#dataTables-example').DataTable({
+    });
+    $('#table').css("visibility", "visible");
+    $('i.fa-refresh').remove();
+    $('.category_dataTable').dataTable( {
+        "order": [[ 2, "asc" ]]
+    });
+});
+
 
 
