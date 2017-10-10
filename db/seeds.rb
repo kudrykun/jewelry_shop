@@ -53,11 +53,8 @@ metalTypes_size = metal_type_titles.size
 manufacturers_size = 5;
 shops_size = shop_titles.size
 chain_types_size = chain_type_titles.size
-<<<<<<< HEAD
 promos_size = 10
-=======
 slides_size = 5
->>>>>>> slider
 
 # создание сущностей
 manufacturers = []
