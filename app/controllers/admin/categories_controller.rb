@@ -56,6 +56,12 @@ class Admin::CategoriesController < Admin::AdminController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    if !@category.preview.nil?
+      @category.preview.destroy
+    end
+    if !@category.banner.nil?
+      @category.banner.destroy
+    end
     @category.destroy
     redirect_to admin_categories_url, notice: 'Категория была успешно удалена.'
   end

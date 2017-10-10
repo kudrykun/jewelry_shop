@@ -29,6 +29,12 @@
         <!--Изображение в списке брендов-->
         <div class="form-group">
           <%= f.label :index, 'Изображение в списке брендов' %>
+          <% if manufacturer.index %>
+              <%= link_to admin_picture_path(manufacturer.index), method: :delete, :remote => true, :class => 'delete-image' do %>
+                  Удалить
+              <% end %>
+              <%= image_tag manufacturer.index.image(:medium), class: 'img-responsive' %>
+          <% end %>
           <%= file_field_tag "index", class: 'form-control' %>
         </div>
         <% if manufacturer.index %>
@@ -39,6 +45,12 @@
         <!--Изображение слайдере брендов-->
         <div class="form-group">
           <%= f.label :slide, 'Изображение в слайдере' %>
+          <% if manufacturer.slide %>
+              <%= link_to admin_picture_path(manufacturer.slide), method: :delete, :remote => true, :class => 'delete-image' do %>
+                  Удалить
+              <% end %>
+              <%= image_tag manufacturer.slide.image(:medium), class: 'img-responsive' %>
+          <% end %>
           <%= file_field_tag "slide", class: 'form-control' %>
         </div>
           <% if manufacturer.slide %>
