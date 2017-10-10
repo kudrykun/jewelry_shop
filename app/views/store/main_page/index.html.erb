@@ -1,9 +1,15 @@
 <div class="main-slider center-align hidden elit-reveal">
   <div id="main-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-    <div class="item" style="background-image: url(<%= image_path('banner-img/night-sale.gif') %>);">
-      <a href="#"></a>
-    </div>
+    <% @slides.each do |slide| %>
+        <% if slide.picture %>
+            <div class="item" style="background-image:url(<%= image_path(slide.picture.image) %>);">
+              <a href="<%= slide.href %>"></a>
+            </div>
+        <% end %>
+    <% end %>
+
+
     <div class="item" style="background-image: url(<%= image_path('banner-img/2560x600_sT3ANHB.jpg') %>) ;">
       <a href="#"></a>
     </div>

@@ -51,8 +51,11 @@
           <%= file_field_tag "preview", class: 'form-control' %>
         </div>
         <% if category.preview %>
-            <%= link_to admin_picture_path(category.preview), method: :delete, :remote => true, :class => 'delete-image' do %>
-              Удалить
+            <%= link_to admin_picture_path(category.preview), method: :delete,
+                        :remote => true,
+                        :class => 'delete-image',
+                        data: { confirm: 'Фото будет удалено безвозвратно, Вы уверены?' } do %>
+                <div class="btn btn-danger mb10">Удалить фото</div>
             <% end %>
             <%= image_tag category.preview.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;" %>
         <% end %>
@@ -67,8 +70,11 @@
         </div>
 
           <% if category.banner %>
-            <%= link_to admin_picture_path(category.banner), method: :delete, :remote => true, :class => 'delete-image' do %>
-                Удалить
+            <%= link_to admin_picture_path(category.banner), method: :delete,
+                        :remote => true,
+                        :class => 'delete-image',
+                        data: { confirm: 'Фото будет удалено безвозвратно, Вы уверены?' } do %>
+                <div class="btn btn-danger mb10">Удалить фото</div>
             <% end %>
             <%= image_tag category.banner.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;"%>
           <% end %>
@@ -76,7 +82,7 @@
       </div>
     </div>
     <div class="row">
-    <div class="actions text-center">
+    <div class="actions text-center mt10">
       <%= f.submit 'Применить', class: 'btn btn-success' %>
     </div>
     </div>

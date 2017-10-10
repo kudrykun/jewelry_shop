@@ -2,7 +2,7 @@ class Admin::SlidesController < Admin::AdminController
   before_action :set_slide, only: [:show, :edit, :update, :destroy]
 
   def index
-    @slides = Slide.all
+    @slides = Slide.all.order(:priority)
   end
 
   def show
