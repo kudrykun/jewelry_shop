@@ -64,8 +64,8 @@ end
 
 categories = []
 categories_size.times do |j|
-  categories << Category.create(title: category_titles.delete(category_titles.sample),
-                                priority: j + 1)
+  categories << Category.create(title: category_titles[j],
+                                priority: j + 1, to_nav: true)
   temp = categories.last
   rand(6).times do |i|
     temp.product_types.create(title: "#{temp.title}#Вид изделия #{i}")
