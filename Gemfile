@@ -67,6 +67,10 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
+  # Инфа в левом верхнем углу о времени обработки запроса
+  gem 'rack-mini-profiler'
+  # ищет узкие места в структуре приложения и БД
+  gem 'bullet'
 end
 
 group :production do

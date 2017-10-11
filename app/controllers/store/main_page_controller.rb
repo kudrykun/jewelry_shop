@@ -5,6 +5,7 @@ class Store::MainPageController < Store::StoreController
     # Бренды для слайдера брендов
     @brands = Manufacturer.all
     @slides = Slide.all.where(hide: false).order(priority: :desc)
+    @category = Category.all
     #TODO передавать в слайды только те объекты, кто есть картинки!
     # Продукты на главную страницу с пометкой hit
     @products_hit = Product.where(visible: true).where(hit: true).order(priority: :desc).order(updated_at: :desc)

@@ -9,6 +9,18 @@ class Admin::CategoriesController < Admin::AdminController
 
   def show
     @products = Product.where(category: @category)
+                    .includes(:manufacturer)
+                    .includes(:sale_size)
+                    .includes(:shops)
+                    .includes(:sizes)
+                    .includes(:category)
+                    .includes(:product_type)
+                    .includes(:kit)
+                    .includes(:collection)
+                    .includes(:metal_types)
+                    .includes(:metal_color)
+                    .includes(:incrustations)
+                    .includes(:pictures)
   end
 
   def new

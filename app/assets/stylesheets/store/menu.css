@@ -712,7 +712,7 @@ input[type="search"]::-webkit-search-results-decoration {
     transition: color 0.3s, box-shadow 0.3s;
   }
   .cd-primary-nav > li > a:hover {
-    color: red;
+    color: #848484;
   }
   .cd-primary-nav > li > a.selected {
     color: #F44336;

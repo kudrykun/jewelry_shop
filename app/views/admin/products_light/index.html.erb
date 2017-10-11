@@ -62,6 +62,31 @@
           <th></th>
         </tr>
       </thead>
+      <tfoot>
+      <tr>
+        <th>id</th>
+        <th>Название</th>
+        <th>Производитель</th>
+        <th >Артикул</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </tfoot>
 
       <tbody>
         <% @products.each do |product| %>
@@ -129,26 +154,25 @@
               <%end%>
             </td>
             <td align="center" style="vertical-align: middle; padding-top: 12px" >
-              <%= link_to product_path(product), target: :_blank do %>
-                  <i class="fa fa-external-link fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Открыть в новой вкладке страницу изделия"></i>
-              <% end %>
+              <!--Узкое место роутов-->
+              <a target="_blank" href="/products/<%= product.id %>">
+                <i class="fa fa-external-link fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Открыть в новой вкладке страницу изделия"></i>
+              </a>
             </td>
             <td align="center" style="vertical-align: middle; ">
-              <%= link_to admin_product_path(product) do %>
-                  <i class="fa fa-bars fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Просмотреть всю информацию"></i>
-              <% end %>
+              <a href="/admin/products/<%= product.id %>">
+                <i class="fa fa-bars fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Просмотреть всю информацию"></i>
+              </a>
             </td>
             <td align="center" style="vertical-align: middle">
-
-              <%= link_to edit_admin_product_path(product) do %>
-                  <i class="fa fa-pencil-square fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Редактировать"></i>
-              <% end %>
-
+              <a href="/admin/products/<%= product.id %>/edit">
+                <i class="fa fa-pencil-square fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Редактировать"></i>
+              </a>
             </td>
             <td align="center" style="vertical-align: middle">
-              <%= link_to admin_product_path(product), method: :delete, data: { confirm: 'Вы уверены?' } do %>
-                  <i class="fa fa-times fa-2x" style="color: red;" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Удалить изделие"></i>
-              <% end %>
+              <a data-confirm="Вы уверены?" rel="nofollow" data-method="delete" href="/admin/products/<%= product.id %>">
+                <i class="fa fa-times fa-2x" style="color: red;" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Удалить изделие"></i>
+              </a>
             </td>
           </tr>
         <% end %>

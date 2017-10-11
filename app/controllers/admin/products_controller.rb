@@ -6,7 +6,19 @@ class Admin::ProductsController < Admin::AdminController
   before_action :set_action_info, only: [:new,:edit]
 
   def index
-    @products = Product.all.order(updated_at: :desc)
+    @products = Product.includes(:manufacturer)
+                    .includes(:sale_size)
+                    .includes(:shops)
+                    .includes(:sizes)
+                    .includes(:category)
+                    .includes(:product_type)
+                    .includes(:kit)
+                    .includes(:collection)
+                    .includes(:metal_types)
+                    .includes(:metal_color)
+                    .includes(:incrustations)
+                    .includes(:pictures)
+                    .all.order(updated_at: :desc)
   end
 
   def show
