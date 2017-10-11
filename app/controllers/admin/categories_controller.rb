@@ -96,6 +96,7 @@ class Admin::CategoriesController < Admin::AdminController
                                      :to_nav,
                                      :priority,
                                      :preview_priority,
+                                     :preview_class,
                                      :product_ids => [])
   end
 end
