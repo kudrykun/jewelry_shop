@@ -26,8 +26,14 @@ $(function() {
         //  console.log(this.href.match( new RegExp (url.href, \/admin\/.*\/));
         //  return (this.href.match( new RegExp( ) ));
         var link = url.href.match(/^(.*?)admin\/([^/]*)/);
-        console.log(link[0]);
-        return this.href == link[0];
+        // console.log(link[0]);
+
+        if (link != null ){
+            return (this.href == link[0])
+        }else
+            {
+            return null
+        }
         // return (this.href.indexOf(url) !== -1);
     }).addClass('active').parent();
 
