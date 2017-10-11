@@ -17,6 +17,7 @@
       <th width="40px">ID</th>
       <th>Название</th>
       <th>Приоритет</th>
+      <th>Приоритет превью</th>
       <th>Товаров</th>
       <th width="90px">Фото (П Б)</th>
       <th></th>
@@ -31,6 +32,7 @@
         <td><%= category.id %></td>
         <td><%= category.title %></td>
         <td><%= category.priority %></td>
+        <td><%= category.preview_priority %></td>
         <td><%= @products.where(category: category).size %></td>
         <td>
           <% if category.preview %>

@@ -95,6 +95,7 @@ class Admin::CategoriesController < Admin::AdminController
     params.require(:category).permit(:title,
                                      :to_nav,
                                      :priority,
+                                     :preview_priority,
                                      :product_ids => [])
   end
 end

@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009220526) do
+ActiveRecord::Schema.define(version: 20171011144249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "priority"
     t.integer  "preview_id"
     t.integer  "banner_id"
-    t.boolean  "to_nav",     default: false
+    t.boolean  "to_nav",           default: false
+    t.integer  "preview_priority"
     t.index ["banner_id"], name: "index_categories_on_banner_id", using: :btree
     t.index ["preview_id"], name: "index_categories_on_preview_id", using: :btree
   end
