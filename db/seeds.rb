@@ -27,7 +27,7 @@ Manufacturer.delete_all
 Picture.delete_all
 
 # база названий для основных таблицЦЕПОЧКИ
-category_titles = ["Кольца","Часы","Подвески","Колье","Браслеты","Серьги","Кулоны","Столовые приборы"]
+category_titles = ["Кольца","Серьги","Подвески","Кулоны","Часы","Колье","Браслеты","Столовые приборы"]
 collection_titles = ["Геометрия","Золото и бриллианты","Вальс тюльпанов","Цветочный рай","Природные мотивы","Золото и бриллианты","Цветной водопад","Солнечное царство","Antique","Эволюция"]
 incrustation_titles = ["Алмаз","Рубин","Сапфир","Аквамарин","Изумруд","Александрит","Гранаты","Аметист","Опал благородный","Опал огненный","Топаз","Жемчуг","Янтарь","Коралл"]
 kit_titles = ["Альфа","Бета","Гамма","Дельта","Эпсилон","Дзета","Эта","Тета","Йота","Каппа","Лямбда","Омикрон"]
@@ -39,7 +39,7 @@ shop_titles = ["Универмаг","Линия"]
 chain_type_titles = ["Якорное","Двойной якорь","Ролло","Шопард","Гарибальди","Аврора","Гавайка","Панцирная","Ромб","Нонна","Фигаро","Картье","Лав","Улитка","Скрепка","Роза","Снейк","Корда","Сингапур","Бисмарк","Питон",""]
 
 # количество генерируемых товаров
-products_size = 5000
+products_size = 500
 
 # количество остальных сущностей
 categories_size = category_titles.size
@@ -63,9 +63,9 @@ manufacturers_size.times do
 end
 
 categories = []
-categories_size.times do
-  categories << Category.create(title: category_titles.delete(category_titles.sample),
-                                priority: Faker::Number.between(1,categories_size))
+categories_size.times do |j|
+  categories << Category.create(title: category_titles[j],
+                                priority: j + 1, preview_priority: j + 1, to_nav: true)
   temp = categories.last
   rand(6).times do |i|
     temp.product_types.create(title: "#{temp.title}#Вид изделия #{i}")

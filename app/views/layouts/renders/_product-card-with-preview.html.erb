@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-image waves-effect waves-block waves-light">
+
+    <% if product.sale_size != nil && product.sale_size.sale_percent != '' %>
+        <div class="sell-out_card red z-depth-3">
+          -<%= product.sale_size.sale_percent %>%
+        </div>
+    <%end%>
+
+    <figure class="hover-effect">
+
+      <%= link_to product_path(product) do %>
+              <%=image_tag product.preview.image(:medium)  %>
+      <% end %>
+
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="prices-card truncate">
+      <% if product.new_price != nil  %>
+          <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span>
+          <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
+      <% else %>
+          <span class="new-price"><%= number_to_currency(product.price, locale: :ru) %></span>
+      <% end %>
+    </div>
+    <%= link_to product_path(product) do %>
+        <h6 class="card-title">
+          <%= product.title %>
+        </h6>
+    <% end %>
+    <!--<div class="add-discount">-->
+    <!--</div>-->
+  </div>
+</div>

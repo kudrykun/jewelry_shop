@@ -2,32 +2,14 @@
   <div id="main-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
     <% @slides.each do |slide| %>
-        <% if slide.picture %>
             <div class="item" style="background-image:url(<%= image_path(slide.picture.image) %>);">
               <a href="<%= slide.href %>"></a>
             </div>
-        <% end %>
     <% end %>
 
-
-    <div class="item" style="background-image: url(<%= image_path('banner-img/2560x600_sT3ANHB.jpg') %>) ;">
-      <a href="#"></a>
-    </div>
-    <div class="item" style="background-image: url(<%= image_path('banner-img/bannerhd-02.jpg') %>);">
-      <a href="#"></a>
-    </div>
-    <div class="item" style="background-image: url(<%= image_path('banner-img/2550x560.jpg') %>);">
-      <a href="#"></a>
-    </div>
-  </div><!-- #main-slider -->
+  </div>
 </div>
 <!-- main-slider -->
-
-<!--<div class="categories-banner elit-reveal">-->
-  <!--<div>-->
-    <!--<a class="waves-effect waves-red button-to-category flow-text " href="product-card.html">Перейти в каталог</a>-->
-  <!--</div>-->
-<!--</div>-->
 
 <div class="container sale_sliders hidden elit-reveal">
   <div class="row tabs-box">
@@ -53,7 +35,7 @@
 
         <% @products_hit.each do |product| %>
           <div class="item">
-            <%= render './layouts/renders/product-card', product: product %>
+            <%= render './layouts/renders/product-card-with-preview', product: product %>
           </div>
         <% end %>
 
@@ -64,7 +46,7 @@
 
         <% @products40.each do |product| %>
             <div class="item">
-              <%= render './layouts/renders/product-card', product: product %>
+              <%= render './layouts/renders/product-card-with-preview', product: product %>
             </div>
         <% end %>
 
@@ -75,7 +57,7 @@
 
         <% @products50.each do |product| %>
             <div class="item">
-              <%= render './layouts/renders/product-card', product: product %>
+              <%= render './layouts/renders/product-card-with-preview', product: product %>
             </div>
         <% end %>
 
@@ -98,15 +80,12 @@
       <div class="col s12 hidden elit-reveal">
         <div id="logo-slider" class="owl-carousel owl-theme owl-loaded owl-drag">
 
-
           <% @brands.each do |brands| %>
-            <% if brands.slide != nil %>
               <div class="item">
                 <%= link_to '#' do %>
                   <%= image_tag(brands.slide.image, class: 'responsive-img') %>
                 <% end %>
               </div>
-            <% end %>
           <% end %>
 
           <div class="item">

@@ -3,17 +3,17 @@ class Store::MainPageController < Store::StoreController
 
   def index
     # Бренды для слайдера брендов
-    @brands = Manufacturer.all
-    @slides = Slide.all.where(hide: false).order(priority: :desc)
+    @brands = Manufacturer.all.where.not(slide: nil)
+    @slides = Slide.all.where(hide: false).where.not(picture: nil).order(priority: :desc)
     @category = Category.all
     #TODO передавать в слайды только те объекты, кто есть картинки!
     # Продукты на главную страницу с пометкой hit
-    @products_hit = Product.where(visible: true).where(hit: true).order(priority: :desc).order(updated_at: :desc)
+    @products_hit = Product.where(visible: true).where(hit: true).where.not(preview: nil).order(priority: :desc).order(updated_at: :desc)
 
     # Продукты на главную страницу со скидкой 40%
-    @products40 = SaleSize.all.find_by(sale_percent: 40).products.where(visible: true).where(to_main_page: true).order(priority: :desc).order(updated_at: :desc)
+    @products40 = SaleSize.all.find_by(sale_percent: 40).products.where(visible: true).where(to_main_page: true).where.not(preview: nil).order(priority: :desc).order(updated_at: :desc)
 
     # Продукты на главную страницу со скидкой 50%
-    @products50 = SaleSize.all.find_by(sale_percent: 50).products.where(visible: true).where(to_main_page: true).order(priority: :desc).order(updated_at: :desc)
+    @products50 = SaleSize.all.find_by(sale_percent: 50).products.where(visible: true).where(to_main_page: true).where.not(preview: nil).order(priority: :desc).order(updated_at: :desc)
   end
 end
