@@ -25,9 +25,9 @@
 
 
       <div class="grid">
-        <% @categories.each do |category| %>
+        <% @category.each do |category| %>
           <% if category.preview != nil %>
-            <div class="grid-item elit-reveal">
+            <div class="grid-item <%= category.preview_class %> elit-reveal">
               <div class="card" style="margin: 0;">
                 <figure class="effect-jazz">
                   <%= image_tag (category.preview.image) %>
@@ -51,7 +51,7 @@
               <%= image_tag('catalog/grid_2.jpg') %>
               <figcaption>
                 <h2 class="flow-text">КОЛЬЦА</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -63,7 +63,7 @@
               <%= image_tag('catalog/grid_3.jpg') %>
               <figcaption>
                 <h2 class="flow-text">ПОДВЕСЫ</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -75,7 +75,7 @@
               <%= image_tag('catalog/grid_6.jpg') %>
               <figcaption>
                 <h2 class="flow-text">колье</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -87,7 +87,7 @@
               <%= image_tag('catalog/grid_4.jpg') %>
               <figcaption>
                 <h2 class="flow-text">СЕРЬГИ</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -99,7 +99,7 @@
               <%= image_tag('catalog/grid_5.jpg') %>
               <figcaption>
                 <h2 class="flow-text">ШАРМЫ</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -111,7 +111,7 @@
               <%= image_tag('catalog/grid_1.jpg') %>
               <figcaption>
                 <h2 class="flow-text">ЧАСЫ</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -123,7 +123,7 @@
               <%= image_tag('catalog/grid_7.jpg') %>
               <figcaption>
                 <h2 class="flow-text">ЦЕПИ</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -135,7 +135,7 @@
               <%= image_tag('catalog/grid_8.jpg') %>
               <figcaption>
                 <h2 class="flow-text">БРАСЛЕТЫ</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>
@@ -146,7 +146,7 @@
               <%= image_tag('catalog/grid_9.jpg') %>
               <figcaption>
                 <h2 class="flow-text">Столовые приборы</h2>
-                <%= link_to '', category_path(@categories.sample) %>
+                <%= link_to '', category_path(@category.sample) %>
               </figcaption>
             </figure>
           </div>

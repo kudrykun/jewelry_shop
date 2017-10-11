@@ -23,12 +23,16 @@
           <%= f.label :priority, 'Приоритет' %>
           <%= f.number_field :priority, {class: 'form-control'} %>
         </div>
+        <div class="form-group">
+          <%= f.label :preview_priority, 'Приоритет превью' %>
+          <%= f.number_field :preview_priority, {class: 'form-control'} %>
+        </div>
       </div>
       <div class="col-lg-3">
 
         <div class="form-group">
           <%= f.label :to_nav, 'Отображать в навигации?' %>
-          <div class="material-switch pull-right">
+          <div class="material-switch ml10">
 
             <%= f.check_box :to_nav %>
             <%= f.label :to_nav, class: 'label-primary' do %>
@@ -38,15 +42,24 @@
         </div>
 
         <div class="form-group">
-          <label style="display: block">Кто идет нахуй?</label>
+          <label style="display: block"> Выберите ширину превью в выборе категорий</label>
           <div class="md-radio md-radio-inline">
-            <input id="3" type="radio" name="g2" checked>
-            <label for="3">Серега</label>
+            <%= f.radio_button :preview_class, '' %>
+            <%= f.label :preview_class, '1/3 ширины' %>
           </div>
           <div class="md-radio md-radio-inline">
-            <input id="4" type="radio" name="g2">
+            <%= f.radio_button :preview_class, ' grid-item--width2 ' %>
+            <%= f.label :preview_class, '2/3 ширины' %>
+          </div>
+          <div class="md-radio md-radio-inline">
+            <%= f.radio_button :preview_class, ' grid-item--width3 ' %>
+            <%= f.label :preview_class, '3/3 ширины' %>
+          </div>
+          <div class="md-radio md-radio-inline">
+            <input id="4" type="radio" name="g2">  <!--Сдейлай чтобы label было имя инпута, то есть for что-то там-->
             <label for="4">Илюха</label>
           </div>
+
         </div>
       </div>
     </div>
@@ -62,7 +75,7 @@
             <%= link_to admin_picture_path(category.preview), method: :delete,
                         :remote => true,
                         :class => 'delete-image',
-                        data: { confirm: 'Фото будет удалено безвозвратно, Вы уверены?' } do %>
+                        data: {confirm: 'Фото будет удалено безвозвратно, Вы уверены?'} do %>
                 <div class="btn btn-danger mb10">Удалить фото</div>
             <% end %>
             <%= image_tag category.preview.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;" %>
@@ -77,22 +90,22 @@
           <%= file_field_tag "banner", class: 'form-control' %>
         </div>
 
-          <% if category.banner %>
+        <% if category.banner %>
             <%= link_to admin_picture_path(category.banner), method: :delete,
                         :remote => true,
                         :class => 'delete-image',
-                        data: { confirm: 'Фото будет удалено безвозвратно, Вы уверены?' } do %>
+                        data: {confirm: 'Фото будет удалено безвозвратно, Вы уверены?'} do %>
                 <div class="btn btn-danger mb10">Удалить фото</div>
             <% end %>
-            <%= image_tag category.banner.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;"%>
-          <% end %>
+            <%= image_tag category.banner.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;" %>
+        <% end %>
 
       </div>
     </div>
     <div class="row">
-    <div class="actions text-center mt10">
-      <%= f.submit 'Применить', class: 'btn btn-success' %>
-    </div>
+      <div class="actions text-center mt10">
+        <%= f.submit 'Применить', class: 'btn btn-success' %>
+      </div>
     </div>
 <% end %>
 <br>
