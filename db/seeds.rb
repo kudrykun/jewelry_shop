@@ -39,7 +39,7 @@ shop_titles = ["Универмаг","Линия"]
 chain_type_titles = ["Якорное","Двойной якорь","Ролло","Шопард","Гарибальди","Аврора","Гавайка","Панцирная","Ромб","Нонна","Фигаро","Картье","Лав","Улитка","Скрепка","Роза","Снейк","Корда","Сингапур","Бисмарк","Питон",""]
 
 # количество генерируемых товаров
-products_size = 5000
+products_size = 200
 
 # количество остальных сущностей
 categories_size = category_titles.size
@@ -63,9 +63,9 @@ manufacturers_size.times do
 end
 
 categories = []
-categories_size.times do
+categories_size.times do |j|
   categories << Category.create(title: category_titles.delete(category_titles.sample),
-                                priority: Faker::Number.between(1,categories_size))
+                                priority: j + 1)
   temp = categories.last
   rand(6).times do |i|
     temp.product_types.create(title: "#{temp.title}#Вид изделия #{i}")
