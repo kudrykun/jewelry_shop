@@ -71,7 +71,6 @@
             <!-- /input-group -->
           </li>
           <li>
-            <!--<a class="active" href="index.html">Dashboard</a>-->
             <%= link_to admin_dashboard_path do %> <i class="fa fa-dashboard fa-fw"></i> Главная <% end %>
           </li>
           <li>
@@ -148,29 +147,32 @@
             </ul>
           </li>
           </li>
-          <!--<li>
-            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-
-          </li>
-          <li >
-            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level">
-              <li>
-                <a href="blank.html">Blank Page</a>
-              </li>
-              <li>
-                <a href="login.html">Login Page</a>
-              </li>
-            </ul>
-          </li>-->
         </ul>
       </div>
       <!-- /.sidebar-collapse -->
     </div>
     <!-- /.navbar-static-side -->
+    <script type="text/javascript" charset="utf-8">
+
+        $('#side-menu').metisMenu();
+        var url = window.location;
+        var element = $('ul.nav a').filter(function() {
+            var link = url.href.match(/^(.*?)admin\/([^/]*)/);
+            if (link != null ){
+                return (this.href == link[0])
+            }else {
+                return null
+            }
+        }).addClass('active').parent();
+
+        while (true) {
+            if (element.is('li')) {
+                element = element.parent().addClass('in').parent();
+            } else {
+                break;
+            }
+        }
+    </script>
   </nav>
     <div id="page-wrapper">
 <%= yield %>

@@ -9,43 +9,6 @@
 // Sets the min-height of #page-wrapper to window size
 
 
-
-$(function() {
-    var url = window.location;
-    // console.log(url);
-    // var element = $('ul.nav a').filter(function() {
-    //     return this.href == url;
-    // }).addClass('active').parent().parent().addClass('in').parent();
-    var element = $('ul.nav a').filter(function() {
-        // alert(url);
-        // alert(this.href);
-        // return (("url").indexOf("this.href")+1) ;
-        // console.log(url.pathname);
-        // console.log(this.href);
-        // console.log(!!this.href.match(new RegExp(url.pathname, 'g')));
-        //  console.log(this.href.match( new RegExp (url.href, \/admin\/.*\/));
-        //  return (this.href.match( new RegExp( ) ));
-        var link = url.href.match(/^(.*?)admin\/([^/]*)/);
-        // console.log(link[0]);
-
-        if (link != null ){
-            return (this.href == link[0])
-        }else
-            {
-            return null
-        }
-        // return (this.href.indexOf(url) !== -1);
-    }).addClass('active').parent();
-
-    while (true) {
-        if (element.is('li')) {
-            element = element.parent().addClass('in').parent();
-        } else {
-            break;
-        }
-    }
-});
-
 $(function() {
     if ($('#notice').text()) {
         $('#notice').animate({top: 10}, 500);
@@ -127,9 +90,6 @@ $(document).ready(function() {
     } );
 } );
 
-$(function() {
-    $('#side-menu').metisMenu();
-});
 
 $(window).bind("resize load", function() {
     var topOffset = 50;
