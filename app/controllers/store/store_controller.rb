@@ -3,6 +3,6 @@ class Store::StoreController < ApplicationController
   before_action :set_nav_categories
 
   def set_nav_categories
-    @categories = Category.all.order(:priority)
+    @categories = Category.all.where(to_nav: true).order(:priority)
   end
 end

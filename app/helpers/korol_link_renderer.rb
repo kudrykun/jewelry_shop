@@ -17,7 +17,7 @@ class KorolLinkRenderer < WillPaginate::ActionView::LinkRenderer
 
   def gap
     text = @template.will_paginate_translate(:page_gap) { '&hellip;' }
-    %(<span class="mr2">#{text}</span>)
+    %(<li><a href="#!">#{text}</a></li>)
   end
 
   def previous_page

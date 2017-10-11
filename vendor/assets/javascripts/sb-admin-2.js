@@ -4,36 +4,11 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-$(function() {
-    $('#side-menu').metisMenu();
-});
-
-$(function () {
-    $('body').tooltip({selector: '[data-toggle="tooltip"]'});
-});
-
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
 
 
-$(window).bind("resize load", function() {
-    var topOffset = 50;
-    var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-    if (width < 768) {
-        $('div.navbar-collapse').addClass('collapse');
-        topOffset = 100; // 2-row-menu
-    } else {
-        $('div.navbar-collapse').removeClass('collapse');
-    }
-    var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-    height = height - topOffset;
-    if (height < 1) height = 1;
-    if (height > topOffset) {
-        $("#page-wrapper").css("min-height", (height+1) + "px");
-    }
-
-});
 
 $(function() {
     var url = window.location;
@@ -90,7 +65,7 @@ $.extend( $.fn.dataTable.defaults, {
     ],
     language: {
         "processing": "Подождите...",
-        "search": "Поиск:",
+        "search": "Поиск по всей таблице:",
         "lengthMenu": "Показать _MENU_ записей",
         "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
         "infoEmpty": "Записи с 0 до 0 из 0 записей",
@@ -113,8 +88,6 @@ $.extend( $.fn.dataTable.defaults, {
 } );
 
 $(document).ready(function() {
-    $('#dataTables-example').DataTable({
-    });
     $('#table').css("visibility", "visible");
     $('i.fa-refresh').remove();
     $('.category_dataTable').dataTable( {
@@ -122,5 +95,54 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
 
+    $('#dataTables-example').DataTable( {
+        initComplete: function () {
+            this.api().columns([0,1,2,3]).every( function () {
+                var column = this;
+                var select = $('<select class="selectpicker" data-width="fit" title="..."><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+} );
+
+$(function() {
+    $('#side-menu').metisMenu();
+});
+
+$(window).bind("resize load", function() {
+    var topOffset = 50;
+    var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+    if (width < 768) {
+        $('div.navbar-collapse').addClass('collapse');
+        topOffset = 100; // 2-row-menu
+    } else {
+        $('div.navbar-collapse').removeClass('collapse');
+    }
+    var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+    height = height - topOffset;
+    if (height < 1) height = 1;
+    if (height > topOffset) {
+        $("#page-wrapper").css("min-height", (height+1) + "px");
+    }
+
+});
+
+$(function () {
+    $('body').tooltip({selector: '[data-toggle="tooltip"]'});
+});
