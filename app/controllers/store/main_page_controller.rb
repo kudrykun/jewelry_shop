@@ -4,7 +4,7 @@ class Store::MainPageController < Store::StoreController
   def index
     # Бренды для слайдера брендов
     @brands = Manufacturer.all
-    @slides = Slide.all.where(hide: false).order(priority: :desc)
+    @slides = Slide.all.where(hide: false).where.not(picture: nil).order(priority: :desc)
     @category = Category.all
     #TODO передавать в слайды только те объекты, кто есть картинки!
     # Продукты на главную страницу с пометкой hit
