@@ -283,12 +283,6 @@ main .container nav {
     .main-slider {
         height: 350px;
     }
-    .categories-banner{
-        height: 150px;
-    }
-    .button-to-category{
-        margin-top: 45px;
-    }
 }
 @media only screen and (max-width: 800px) {
     .main-slider {
@@ -303,13 +297,6 @@ main .container nav {
     }
     .advantage-item p {
         font-size: 0.625rem;
-    }
-    .categories-banner{
-        height: 100px;
-    }
-    .button-to-category{
-        padding: 8px 20px;
-        margin-top: 25px;
     }
 }
 @media only screen and (max-width: 600px) {

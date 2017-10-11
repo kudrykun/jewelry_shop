@@ -23,9 +23,15 @@
           <%= f.number_field :priority, {class: 'form-control'} %>
         </div>
 
-        <div class="field-group">
+        <div class="form-group">
           <%= f.label :hide, 'Скрыть' %>
-          <%= f.check_box :hide %>
+          <div class="material-switch ml20">
+
+            <%= f.check_box :hide %>
+            <%= f.label :hide, class: 'label-primary' do %>
+            <% end %>
+
+          </div>
         </div>
       </div>
 
