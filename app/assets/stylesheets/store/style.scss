@@ -182,31 +182,6 @@ main .container nav {
     margin:0;
 }
 
-.main-slider .item-one {
-    background-color: #64a7c9;
-    background-image: url(../banner_hd-1.gif);
-}
-.main-slider .item-two {
-    background-color: #ebebeb;
-    background-image: url(../banner_hd-2.jpg);
-}
-.main-slider .item-three {
-    background-color: #003c84;
-    background-image: url(../banner_hd-3.gif);
-}
-
-
-.main-slider .item-1 {
-    background-color: #f0f0f0;
-    background-image: url(../banner_hd-night-sale.gif);
-}
-.main-slider .item-2 {
-    background-color: #f0f0f0;
-    background-image: url(../banner_hd-01.jpg);
-}
-
-
-
 #main-slider {
   height: 100%;
 }
@@ -393,18 +368,15 @@ main .container nav {
     text-align: center;
     font-weight: 300;
 }
-
-
 .catalog-banner {
     width: 100%;
     height: auto;
     min-height: 180px;
-    background: url(../bg-1.jpg) no-repeat top center;
+    background: image_url('bg-1.jpg') no-repeat top center black;
     background-size: auto 100%;
-    background-color: #000000;
 }
 .catalog-watch {
-    background: url(../bg-2.jpg) no-repeat top center;
+    background: image_url('bg-2.jpg') no-repeat top center;
     background-size: auto 100%;
     background-color: #000000;
 }
@@ -582,7 +554,7 @@ main .container nav {
 }
 [type="checkbox"] + label:before, [type="checkbox"]:not(.filled-in) + label:after {
     border: 1px solid #757575;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .filter-box {
@@ -633,7 +605,7 @@ main .container nav {
     .filter-sort {
         position: relative;
         display: block;
-        padding: 0px 1rem 10px;
+        padding: 0 1rem 10px;
         color: black;
         border-bottom: 1px solid #ddd;
     }
@@ -932,7 +904,7 @@ figure.effect-jazz h2 {
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
     color: rgba(255,255,255,.95);
-    padding: 0rem 1.5rem;
+    padding: 0 1.5rem;
     margin: 0;
     font-weight: 300;
     text-shadow: 1px 1px 4px rgba(0,0,0,.5);
@@ -945,7 +917,7 @@ figure.effect-jazz h2 {
 }
 
 figure.effect-jazz p {
-    padding: 0rem 1.5rem;
+    padding: 0 1.5rem;
     text-transform: none;
     font-size:  0.9375rem;
     font-weight: 300;
@@ -1125,10 +1097,10 @@ figure.effect-steve h6 {
 .grid-item::after {
     content: "";
     position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     /*background: rgba(0, 30, 255, 0.53);*/
     box-shadow: inset 0 0 0 4px #ffffff;
 }
@@ -1161,7 +1133,7 @@ figure.effect-steve h6 {
   color: #757575;
 }
 .seo-block .seo {
-  padding: 2rem 0rem 1rem 0rem;
+  padding: 2rem 0 1rem 0;
 }
 .seo-block .fade-away {
   background: #fff;
@@ -1177,7 +1149,7 @@ figure.effect-steve h6 {
   left: 0;
   width: 100%;
   margin: 0; 
-  padding: 5rem 0.75rem 0rem 0.75rem;
+  padding: 5rem 0.75rem 0 0.75rem;
   font-size: 0.75rem;
   text-align: right;
   text-transform: uppercase;
@@ -1236,7 +1208,7 @@ figure.effect-steve h6 {
     color: #e53935;
 }
 .prices-card {
-    padding: 4px 0px 0px 0px;
+    padding: 4px 0 0 0;
     border: 1px solid #ffffff;
     text-align: center;
 }
@@ -1299,7 +1271,7 @@ figure.effect-steve h6 {
 }
 .card .collection .collection-item {
     background-color: transparent;
-    padding: 8px 0px;
+    padding: 8px 0;
 }
 .card .collection .collection-item span {
     color: #757575;
@@ -1319,8 +1291,7 @@ figure.effect-steve h6 {
 
 .card-panel {
     padding: 0;
-    margin: 0;
-    margin-top: 0.75rem;
+    margin: 0.75rem 0 0 0;
     border-radius: 0;
     box-shadow: none;
 }
@@ -1425,7 +1396,7 @@ nav .nav-wrapper .col {
 .breadcrumb:before {
     color: #9e9e9e;
     font-size: 18px;
-    margin: 0 3px 0 0px;
+    margin: 0 3px 0 0;
 }
 .breadcrumb:last-child {
     color: #757575;
@@ -1616,7 +1587,7 @@ nav .nav-wrapper .col {
     font-size: 1.375rem;
 }
 .price_set .new-price {
-    margin-right: 0px;
+    margin-right: 0;
 }
 .price_set .prices {
     margin: 30px 0;
@@ -1871,7 +1842,7 @@ nav .nav-wrapper .col {
 .product_description .collection .collection-item {
     background-color: transparent;
     line-height: 1.5rem;
-    padding: 10px 0 0px 0;
+    padding: 10px 0 0 0;
     margin: 0;
     border-bottom: 1px dashed #9e9e9e;
 }
@@ -1939,7 +1910,7 @@ nav .nav-wrapper .col {
     display: block;
     font-weight: 500;
     height: auto;
-    line-height: 0rem;
+    line-height: 0;
     padding: 0;
 }
 .basket .card-content a h6 {
@@ -1962,7 +1933,7 @@ nav .nav-wrapper .col {
     color: #757575;
 }
 .basket .card-content .size .dropdown-content {
-    min-width: auto;
+    /*min-width: auto;*/
     max-width: 75px;
     width: 100%;
 }
@@ -2147,7 +2118,7 @@ textarea.materialize-textarea {
 
 
 #pay .collection .collection-item {
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 
 
@@ -2177,7 +2148,7 @@ label {
 
 
 .ordering .collection {
-    margin: 1rem 0 0rem 0;
+    margin: 1rem 0 0 0;
 }
 .pay_card {
     margin: 0;
@@ -2265,7 +2236,7 @@ label {
     margin: 0 !important;
 }
 .address_list .collection-item {
-    padding: 10px 0px !important;
+    padding: 10px 0 !important;
 }
 .address_list .collection-item p {
     margin: 0.5rem 0;
@@ -2286,12 +2257,11 @@ label {
 }
 .address_list .btn {
     font-size: 0.6875rem;
-    margin: 0;
+    margin: 0 0 2px 0;
     padding: 0 0.75rem;
     height: 30px;
     line-height: 30px;
     font-weight: 500;
-    margin-bottom: 2px;
 }
 
 .address_list .pickup-btn {
@@ -2308,8 +2278,7 @@ label {
 
 
 .shop-location .ordering .tabs {
-    margin:0;
-    margin-top: 1rem;
+    margin: 1rem 0 0 0;
 }
 .shop-location .ordering .tabs a {
     border:0 !important;
@@ -2465,11 +2434,10 @@ a.btn {
     font-size: 1.1rem;
 }
 .collection.with-header .collection-header {
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 .collection.with-header .collection-item {
-    padding-left: 0px;
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 .collection .collection-item {
     background-color: transparent;
@@ -2493,7 +2461,6 @@ a.btn {
 .line-h {
     text-align: center;
     text-transform: uppercase;
-    font-weight: normal;
     position: relative;
     z-index: 1;
     font-size: 1.25rem;
@@ -2599,7 +2566,7 @@ input:-ms-input-placeholder      {color:#757575;}
 
 
 .choice-city .collection .collection-item {
-    padding: 5px 0px;
+    padding: 5px 0;
     font-weight: 500;
 }
 .choice-city .collection .collection-item a {
@@ -2625,7 +2592,7 @@ footer.page-footer a {
 footer.page-footer .footer-copyright {
     display: block;
     background-color: rgba(0,0,0, 0.3);
-    color: rgba(255,255,255, 0.9);
+    color: rgba(255,255,255, 1);
     font-size: 0.875rem;
     text-align: center;
 }
@@ -2677,13 +2644,14 @@ footer.page-footer ul li {
     justify-content: center;
     align-items: center;
     float: left;
-    border: 1px solid #9e9e9e;
+    border: 1px solid white;
     border-radius: 50%;
     padding: 9px 0;
     margin-right: 10px;
+    transition: .3s;
 }
 .social a:hover {
-    border: 1px solid #f44336;
+    border: 1px solid #9a9a9a;
 }
 .social a img {
     margin: auto;

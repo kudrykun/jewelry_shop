@@ -79,7 +79,7 @@
           </a>
         </div>
 
-        <div class="col l12 m12 s7 pull-s5 prices">
+        <div class="col l12 m12 s12 prices">
           <% if @product.new_price != nil  %>
               <span class="new-price left"><%= number_to_currency(@product.new_price, locale: :ru) %></span>
               <span class="old-price"><s><%= number_to_currency(@product.price, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>

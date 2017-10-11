@@ -3,7 +3,7 @@
 //= require bootstrap.min
 //= require metisMenu
 //= require bootstrap-select
-//= require jquery.dataTables
+//= require jquery.dataTables.min
 //= require dataTables.bootstrap
 //= require dataTables.responsive
 //= require sb-admin-2
