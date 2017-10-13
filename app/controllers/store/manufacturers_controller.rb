@@ -1,5 +1,5 @@
 class Store::ManufacturersController < Store::StoreController
   def index
-    @brands = Manufacturer.all
+    @brands = Manufacturer.includes(:index).all
   end
 end
