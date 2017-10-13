@@ -3,14 +3,14 @@ class Admin::CategoriesController < Admin::AdminController
   before_action :set_selecting_products, only: [:new, :create, :edit, :update]
 
   def index
-    @categories = Category.all
+    @categories = Category.includes(:preview).includes(:banner).all
     @products = Product.all
   end
 
   def show
-    @products = Product.where(category: @category)
-                    .includes(:manufacturer)
+    @products = Product.includes(:manufacturer)
                     .includes(:sale_size)
+                    .includes(:category)
                     .includes(:shops)
                     .includes(:sizes)
                     .includes(:category)
@@ -21,6 +21,8 @@ class Admin::CategoriesController < Admin::AdminController
                     .includes(:metal_color)
                     .includes(:incrustations)
                     .includes(:pictures)
+                    .where(category: @category)
+
   end
 
   def new

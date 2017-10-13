@@ -2,7 +2,7 @@ class Admin::ManufacturersController < Admin::AdminController
   before_action :set_manufacturer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @manufacturers = Manufacturer.all
+    @manufacturers = Manufacturer.includes(:index).includes(:slide).all
   end
 
 

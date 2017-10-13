@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :metal_color, optional: true
   belongs_to :product_type, optional: true
-  belongs_to :category
+  belongs_to :category, counter_cache: true
   belongs_to :sale_size, optional: true
   belongs_to :collection, optional: true
   belongs_to :kit, optional: true, counter_cache: true

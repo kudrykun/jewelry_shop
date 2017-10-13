@@ -5,7 +5,7 @@ class Admin::ProductTypesController < Admin::AdminController
   # GET /product_types
   # GET /product_types.json
   def index
-    @product_types = ProductType.all
+    @product_types = ProductType.includes(:category).all
   end
 
   # GET /product_types/1
