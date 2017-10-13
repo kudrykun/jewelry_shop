@@ -83,11 +83,12 @@ class Admin::ProductsController < Admin::AdminController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product
+                   .find(params[:id])
   end
 
   def set_selecting_collections
-    @categories = Category.all.order(:updated_at).order(:priority)
+    @categories = Category.includes(:product_types).all.order(:updated_at).order(:priority)
     @collections = Collection.all.order(:updated_at).order(:priority)
     @kits = Kit.all
     @incrustations = Incrustation.all.order(:title)

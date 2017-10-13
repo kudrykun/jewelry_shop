@@ -1,6 +1,6 @@
 class Store::PromosController < Store::StoreController
   def index
-    @promos = Promo.all.order(created_at: :desc)
+    @promos = Promo.includes(:preview).all.order(created_at: :desc)
   end
 
   def show

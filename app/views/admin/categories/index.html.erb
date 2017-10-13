@@ -33,7 +33,7 @@
         <td><%= category.title %></td>
         <td><%= category.priority %></td>
         <td><%= category.preview_priority %></td>
-        <td><%= @products.where(category: category).size %></td>
+        <td><%= category.products.size %></td>
         <td>
           <% if category.preview %>
               <i class="fa fa-check" aria-hidden="true"></i>
