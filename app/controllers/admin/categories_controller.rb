@@ -3,7 +3,7 @@ class Admin::CategoriesController < Admin::AdminController
   before_action :set_selecting_products, only: [:new, :create, :edit, :update]
 
   def index
-    @categories = Category.includes(:preview).includes(:banner).all
+    @categories = Category.includes(:preview).includes(:banner).all.order(:priority)
     @products = Product.all
   end
 
