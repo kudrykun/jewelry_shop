@@ -4,7 +4,11 @@ class Admin::KitsController < Admin::AdminController
 
   def index
     @kits =  Kit.includes(:products).order(products_count: :desc)
-    @max_cols = @kits.first.products_count
+    if @kits.empty?
+      @max_cols = 0
+    else
+      @max_cols = @kits.first.products_count
+    end
   end
 
   def show
