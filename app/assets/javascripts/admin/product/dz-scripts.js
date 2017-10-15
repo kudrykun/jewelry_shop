@@ -50,7 +50,6 @@ $(document).ready(function () {
                     var droppedFiles = ev.originalEvent.dataTransfer.files;
                     var promises = [];
                     upload_files(droppedFiles, promises);
-                    $dropzone.addClass("dz-started");
                 }
             }
             $dropzone.removeClass("highlightDropArea");
@@ -80,7 +79,6 @@ $(document).ready(function () {
                 var promises = [];
                 upload_files(droppedFiles, promises);
                 $('#dzHiddenInput').val('');
-                $dropzone.addClass("dz-started");
             }
             $dropzone.removeClass("highlightDropArea");
         });
@@ -205,6 +203,7 @@ $(document).ready(function () {
                     }
 
                     image.src = _URL.createObjectURL(droppedFiles[i]);
+                    $dropzone.addClass("dz-started");
                 }
             }
             $.when.apply(null, promises).done(function () {
