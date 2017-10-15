@@ -1,7 +1,16 @@
 
     $(function () {
-        if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null){
-            $("#new-price-input").removeAttr("readonly");
+        if ($('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value") != null)
+            if($('#price-input').val() != "")
+                $("#new-price-input").removeAttr("readonly");
+
+    });
+
+    // делает поле новой цены недоступным, если поле цены пустое
+    $("#price-input").on('keyup',function(){
+        if($('#price-input').val() == "") {
+            $("#new-price-input").val('');
+            $("#new-price-input").prop("readonly", "readonly");
         }
     });
 
@@ -9,13 +18,15 @@
     function calc_new_price() {
         var percentage = $('input[type=radio][name="product[sale_size_id]"]:checked').parent().attr("data-value");
         if  (percentage != null) /*& ($("#price-input").val() != '' ) )*/ {
-            $("#new-price-input").removeAttr("readonly");
-            var price = $("#price-input").val();
-            if (price != ''){
-                $("#new-price-input").val ((price - ( price * percentage / 100 )).toFixed(2));
-            }
-            else {
-                $("#new-price-input").val('');
+            if($('#price-input').val() != ""){
+                $("#new-price-input").removeAttr("readonly");
+                var price = $("#price-input").val();
+                if (price != ''){
+                    $("#new-price-input").val ((price - ( price * percentage / 100 )).toFixed(2));
+                }
+                else {
+                    $("#new-price-input").val('');
+                }
             }
         }
         else {
