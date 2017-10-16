@@ -47,7 +47,6 @@ gem 'will_paginate'
 gem 'jquery-ui-rails'
 
 
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -75,6 +74,8 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'fog-google'
+  gem 'google-api-client', '~> 0.8.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

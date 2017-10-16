@@ -17,6 +17,7 @@ set :bundle_without, %w{development test}.join(' ')             # this is defaul
 set :use_sudo,       false
 set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/initializers/paperclip.rb')
 set :repo_url,       "git@github.com:kudrykun/jewelry_shop.git"
 
 # Default branch is :master
