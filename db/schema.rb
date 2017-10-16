@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011144935) do
+ActiveRecord::Schema.define(version: 20171013134109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171011144935) do
     t.boolean  "to_nav",           default: false
     t.integer  "preview_priority"
     t.string   "preview_class",    default: ""
+    t.integer  "products_count"
     t.index ["banner_id"], name: "index_categories_on_banner_id", using: :btree
     t.index ["preview_id"], name: "index_categories_on_preview_id", using: :btree
   end

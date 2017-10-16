@@ -1,5 +1,5 @@
 class MetalType < ApplicationRecord
-  has_many :metal_type_products
+  has_many :metal_type_products, dependent: :delete_all
   has_many :products, through: :metal_type_products
 
   # опции для фильтра по металлу

@@ -12,7 +12,19 @@ class Admin::CollectionsController < Admin::AdminController
   # GET /collections/1
   # GET /collections/1.json
   def show
-    @products = Product.where(collection: @collection)
+    @products = Product.includes(:manufacturer)
+                    .includes(:sale_size)
+                    .includes(:shops)
+                    .includes(:sizes)
+                    .includes(:category)
+                    .includes(:product_type)
+                    .includes(:kit)
+                    .includes(:collection)
+                    .includes(:metal_types)
+                    .includes(:metal_color)
+                    .includes(:incrustations)
+                    .includes(:pictures)
+                    .where(collection: @collection)
   end
 
   # GET /collections/new

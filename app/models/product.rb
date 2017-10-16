@@ -1,13 +1,13 @@
 class Product < ApplicationRecord
   belongs_to :metal_color, optional: true
   belongs_to :product_type, optional: true
-  belongs_to :category
+  belongs_to :category, counter_cache: true
   belongs_to :sale_size, optional: true
   belongs_to :collection, optional: true
   belongs_to :kit, optional: true, counter_cache: true
   belongs_to :manufacturer, optional: true
   belongs_to :chain_type, optional: true
-  has_many :metal_type_products
+  has_many :metal_type_products, dependent: :delete_all
   has_many :metal_types, through: :metal_type_products
   has_many :incrustation_items, inverse_of: :product
   accepts_nested_attributes_for :incrustation_items, allow_destroy: true
@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :size_items, allow_destroy: true
   has_many :sizes, -> { distinct }, :through => :size_items
   has_many :shops, -> { distinct }, :through => :size_items
-  has_many :products_promos
+  has_many :products_promos, dependent: :delete_all
   has_many :promos, :through => :products_promos
   #связан полиморфной связью с картинками. Связанные картинки удаляются при удалении товара.
   #TODO Удаляются именно объекты класса Picture. Необходимо явно удалять сами файлы изображений
