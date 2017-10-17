@@ -89,14 +89,14 @@
                   <%= link_to category.title, admin_category_path(category) %>
                 </li>
               <% end %>
+              <li>
+                <%= link_to 'Все изделия', admin_products_path %>
+              </li>
             </ul>
           </li>
           <li>
             <a href="#"><i class="fa fa-table fa-fw"></i>Основные таблицы <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
-              <li>
-                <%= link_to 'Все изделия', admin_products_path %>
-              </li>
               <li>
                 <%= link_to 'Все изделия (light)', admin_products_light_path %>
               </li>
@@ -157,7 +157,7 @@
         $('#side-menu').metisMenu();
         var url = window.location;
         var element = $('ul.nav a').filter(function() {
-            var link = url.href.match(/^(.*?)admin\/([^/]*)/);
+            var link = url.href.match(/^(.*?)admin\/((categories\/[^/]*)|([^/]*))/);
             if (link != null ){
                 return (this.href == link[0])
             }else {

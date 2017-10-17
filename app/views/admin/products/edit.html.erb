@@ -6,15 +6,15 @@
 
 <!--Кнопка назад-->
 <%if @from_products%>
-    <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
+    <%= link_to 'Во все изделия', admin_products_path, class: 'btn btn-default' %>
 <%else%>
     <%if @from_category%>
-      <%= link_to 'Назад', admin_category_path(@category), class: 'btn btn-default' %>
+      <%= link_to 'В категорию', admin_category_path(@category), class: 'btn btn-default' %>
     <%else%>
       <%if @from_collection%>
-            <%= link_to 'Назад', admin_collection_path(@collection), class: 'btn btn-default' %>
+            <%= link_to 'В коллецию', admin_collection_path(@collection), class: 'btn btn-default' %>
       <%else%>
-            <%= link_to 'Назад', admin_products_path, class: 'btn btn-default' %>
+            <%= link_to 'В категорию', admin_products_path, class: 'btn btn-default' %>
       <%end%>
     <%end%>
 <%end%>

@@ -73,9 +73,10 @@ class Admin::ProductsController < Admin::AdminController
         item.delete
       end
     end
+    category = @product.category
     @product.destroy
     respond_to do |format|
-      format.html {redirect_to admin_products_url, notice: 'Товар был успешно удален.'}
+      format.html {redirect_to admin_category_path(category), notice: 'Товар был успешно удален.'}
       format.json {head :no_content}
     end
   end
