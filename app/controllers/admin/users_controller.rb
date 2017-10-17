@@ -9,11 +9,16 @@ class Admin::UsersController < Admin::AdminController
 
   def update
     if params[:picture]
+      #удаляем старое изображение
+      if !@user.picture.nil?
+        @user.picture.destroy
+      end
+      # добавляем новое
       picture = Picture.create(image: params[:picture])
       @user.picture = picture
     end
     if @user.update(user_params)
-      redirect_to show_admin_user_path(@user), notice: 'Пользователь был успешно обновлен.'
+      redirect_to admin_user_path(@user), notice: 'Пользователь был успешно обновлен.'
     else
       render :edit
     end

@@ -33,7 +33,9 @@
 
     <ul class="nav navbar-top-links navbar-right">
       <li>
-        <%= image_tag current_user.picture.image(:thumb), width: 50, height: 50 %>
+        <% if current_user.picture %>
+          <%= image_tag current_user.picture.image(:thumb), width: 50, height: 50 %>
+        <%end%>
       </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">

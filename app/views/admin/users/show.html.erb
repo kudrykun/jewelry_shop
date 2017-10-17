@@ -31,7 +31,9 @@
 <b>Обновлен</b>
 <%= @user.updated_at %></br>
 <b>Картинка</b>
-<%= image_tag @user.picture.image(:thumb) %></br>
+<% if @user.picture%>
+  <%= image_tag @user.picture.image(:thumb) %></br>
+<%end%>
 
 <%= link_to 'Изменить', edit_admin_user_path %>
 <%= link_to 'Изменить пароль', edit_password_admin_users_path %>
