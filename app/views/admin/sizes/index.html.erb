@@ -9,23 +9,27 @@
 <% end %>
 <br><br>
 <div class="panel panel-default">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Размер</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @sizes.each do |size| %>
+  <div class="panel-body">
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="simpleDataTable">
+      <thead>
         <tr>
-          <td><%= size.size %></td>
-          <td><%= link_to 'Показать', admin_size_path(size) %></td>
-          <td><%= link_to 'Изменить', edit_admin_size_path(size) %></td>
-          <td><%= link_to 'Удалить', admin_size_path(size), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          <th>Размер</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @sizes.each do |size| %>
+          <tr>
+            <td><%= size.size %></td>
+            <td><%= link_to 'Показать', admin_size_path(size) %></td>
+            <td><%= link_to 'Изменить', edit_admin_size_path(size) %></td>
+            <td><%= link_to 'Удалить', admin_size_path(size), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

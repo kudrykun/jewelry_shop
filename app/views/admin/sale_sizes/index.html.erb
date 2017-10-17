@@ -10,23 +10,39 @@
 <br><br>
 
 <div class="panel panel-default">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Скидка</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @sale_sizes.each do |sale_size| %>
+  <div class="panel-body">
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="simpleDataTable">
+      <thead>
         <tr>
-          <td><%= sale_size.sale_percent %></td>
-          <td><%= link_to 'Показать', admin_sale_size_path(sale_size) %></td>
-          <td><%= link_to 'Изменить', edit_admin_sale_size_path(sale_size) %></td>
-          <td><%= link_to 'Удалить', admin_sale_size_path(sale_size), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          <th>Скидка</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @sale_sizes.each do |sale_size| %>
+          <tr>
+            <td><%= sale_size.sale_percent %></td>
+            <td><%= link_to 'Показать', admin_sale_size_path(sale_size) %></td>
+            <td><%= link_to 'Изменить', edit_admin_sale_size_path(sale_size) %></td>
+            <td>
+              <div
+              <% if sale_size.products.size > 0 %>
+              data-toggle="tooltip"
+              data-placement="left"
+              data-original-title="Невозможно удалить скидку, которая есть в изделиях"
+              >
+              <a href="#" class="disabled">Удалить</a>
+              <% else %>
+              >
+              <%= link_to 'Удалить', admin_sale_size_path(sale_size), method: :delete, data: { confirm: 'Вы уверены?'}, class: '' %>
+              <% end %>
+              </div>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -59,9 +59,10 @@ $.extend( $.fn.dataTable.defaults, {
 $(document).ready(function() {
     $('#table').css("visibility", "visible");
     $('i.fa-refresh').remove();
-    $('.category_dataTable').dataTable( {
+    $('#categoryDataTable').dataTable( {
         "order": [[ 2, "asc" ]]
     });
+    $('#simpleDataTable').dataTable();
 });
 
 $(document).ready(function() {
@@ -73,11 +74,6 @@ $(document).ready(function() {
                     var title = $(this).text();
                     $(this).html( '<input type="text" class="" placeholder="'+title+'" />' );
                 } );
-            this.api().columns.adjust().draw();
-                // DataTable
-                // var table = $('#productDataTable').DataTable();
-
-                // Apply the search
             this.api().columns().every( function () {
                     var that = this;
 
