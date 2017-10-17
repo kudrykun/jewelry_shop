@@ -66,8 +66,34 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-    $('#dataTables-example').DataTable( {
+    $('#productDataTable').DataTable( {
         initComplete: function () {
+                // Setup - add a text input to each footer cell
+                $('#productDataTable tfoot th.filterring').each( function () {
+                    var title = $(this).text();
+                    $(this).html( '<input type="text" class="" placeholder="'+title+'" />' );
+                } );
+            this.api().columns.adjust().draw();
+                // DataTable
+                // var table = $('#productDataTable').DataTable();
+
+                // Apply the search
+            this.api().columns().every( function () {
+                    var that = this;
+
+                    $( 'input', this.footer() ).on( 'keyup change', function () {
+                        if ( that.search() !== this.value ) {
+                            that
+                                .search( this.value )
+                                .draw();
+                        }
+                    } );
+                } );
+
+
+
+
+/*
             this.api().columns([0,1,2,3]).every( function () {
                 var column = this;
                 var select = $('<select class="selectpicker" data-width="fit" title="..."><option value=""></option></select>')
@@ -85,7 +111,10 @@ $(document).ready(function() {
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
-            } );
+            } );*/
+
+
+
         }
     } );
 } );

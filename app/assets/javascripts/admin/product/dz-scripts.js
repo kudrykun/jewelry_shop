@@ -231,7 +231,7 @@ $(document).ready(function () {
             $("#droppedImages .row").append(
                 '<div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">' +
                     '<div class="dz-image">' +
-                        '<div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать превью">' +
+                        '<div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать обложкой">' +
                             '<i class="fa fa-thumb-tack pin" aria-hidden="true"></i>' +
                         '</div>' +
                         '<div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить">' +

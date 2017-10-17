@@ -22,7 +22,7 @@ class Admin::CategoriesController < Admin::AdminController
                     .includes(:incrustations)
                     .includes(:pictures)
                     .where(category: @category)
-
+                    .order(updated_at: :desc)
   end
 
   def new

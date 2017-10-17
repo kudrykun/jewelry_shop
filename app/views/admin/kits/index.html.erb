@@ -20,7 +20,7 @@
         <tr>
           <th>Название</th>
           <% @max_cols.times do %>
-              <th></th>
+              <th>Артикул</th>
           <%end%>
           <th></th>
           <th></th>
@@ -36,7 +36,7 @@
                 <%if kit.products[i].nil?%>
                     <td></td>
                 <%else%>
-                    <td><%= kit.products[i].artikul %></td>
+                    <td><%= link_to kit.products[i].artikul, edit_admin_product_path(kit.products[i]) %></td>
                 <%end%>
             <%end%>
             <td><%= link_to 'Показать', admin_kit_path(kit) %></td>
