@@ -1,0 +1,6 @@
+<div class="row">
+  <div id="notice" class="alert alert-success"><%= notice %></div>
+  <h1 class="panel-heading">Редактирование пользователя</h1>
+</div>
+<%= link_to 'Назад', admin_user_path(@user), class: 'btn btn-default'   %>
+<%= render 'form', user: @user %>

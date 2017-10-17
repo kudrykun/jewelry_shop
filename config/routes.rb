@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :skip => [:registrations]
   root 'store/main_page#index'
 
   get 'products/:id', to: 'store/products#show', as: 'product'
@@ -31,6 +31,13 @@ Rails.application.routes.draw do
     resources :chain_types
     resources :promos
     resources :slides
+    resources :users, only: [:show,:edit,:update]
+    resource :users, only: [:update_password, :edit_password] do
+      collection do
+        patch ':id/update_password', to: 'users#update_password'
+        get ':id/edit_password', to: 'users#edit_password', as: 'edit_password'
+      end
+    end
   end
 
 end
