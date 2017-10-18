@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :chain_types
     resources :promos
     resources :slides
-    resources :users, only: [:show,:edit,:update, :index, :destroy]
+    resources :users
     resource :users, only: [:update_password, :edit_password] do
       collection do
         patch ':id/update_password', to: 'users#update_password'

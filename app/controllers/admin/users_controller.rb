@@ -8,7 +8,22 @@ class Admin::UsersController < Admin::AdminController
   def show
   end
 
+  def new
+    @user = User.new
+  end
+
   def edit
+  end
+
+  def create
+    @user = User.new(user_params)
+    # Генерация пароля из 8 символов. TODO это еще нужно совместить с confirmation
+    @user.password = Devise.friendly_token.first(8)
+    if @user.save
+      redirect_to admin_user_path(@user), notice: 'Комплект был добавлен.'
+    else
+      render :new
+    end
   end
 
   def update
@@ -57,6 +72,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:email, :first_name, :second_name, :password, :password_confirmation, :current_password)
   end
 end

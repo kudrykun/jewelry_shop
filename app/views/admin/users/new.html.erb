@@ -1,13 +1,8 @@
 <div class="row">
   <div id="notice" class="alert alert-success"><%= notice %></div>
-  <% if current_user == @user %>
-      <h1 class="panel-heading">Редактирование вашего профиля</h1>
-  <%else%>
-      <h1> Информация о профиле <%= @user.first_name %> <%= @user.second_name %></h1>
-  <%end%>
+  <h1> Создание нового пользователя </h1>
 </div>
-
-<%= link_to 'Назад', admin_user_path(@user), class: 'btn btn-default'   %>
+<%= link_to 'Назад', admin_users_path, class: 'btn btn-default'   %>
 
 <%= form_for([:admin, @user], :html => {multipart: true}) do |f| %>
     <% if @user.errors.any? %>
@@ -26,6 +21,11 @@
       <div class="col-lg-12">
 
         <div class="form-group">
+          <%= f.label :email, 'Электронная почта *' %>
+          <%= f.text_field :email, {class: 'form-control'} %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :first_name, 'Имя' %>
           <%= f.text_field :first_name, {class: 'form-control'} %>
         </div>
@@ -34,17 +34,9 @@
           <%= f.label :second_name, 'Фамилия' %>
           <%= f.text_field :second_name, {class: 'form-control'} %>
         </div>
-
-        <div class="form-group">
-          <!--Изображение превью-->
-          <%= f.label :picture, 'Изображение превью' %>
-          <%= file_field_tag "picture", class: 'form-control' %>
-        </div>
-        <% if @user.picture %>
-            <%= image_tag @user.picture.image, class: 'img-responsive', style: "max-height: 300px; margin: auto;" %>
-        <% end %>
+        <!--Изображение генерится-->
+        <!--Пароль генерится-->
       </div>
-
     </div>
     <div class="row">
       <div class="actions text-center mt10">
@@ -53,4 +45,3 @@
     </div>
 <% end %>
 <br>
-
