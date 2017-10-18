@@ -1,5 +1,6 @@
 Faker::Config.locale = 'ru'
 
+User.delete_all
 ProductsPromo.delete_all
 Promo.delete_all
 Slide.delete_all
@@ -190,4 +191,9 @@ kits.each do |kit|
   (2 + rand(2)).times do
     kit.products << products.delete(products.sample)
   end
+end
+
+User.create!(email: 'cunt@gmail.com', first_name: 'Сергей', second_name: 'Василенко', password: 'qwerty')
+7.times do |i|
+  User.create!(email: "user#{i}@gmail.com", first_name: Faker::Name.first_name, second_name: Faker::Name.last_name, password: 'qwerty')
 end

@@ -1,10 +1,29 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update, :edit_password, :update_password]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
+
+  def index
+    @users = User.all.where.not(id: current_user.id).to_a
+  end
 
   def show
   end
 
+  def new
+    @user = User.new
+  end
+
   def edit
+  end
+
+  def create
+    @user = User.new(user_params)
+    # Генерация пароля из 8 символов. TODO это еще нужно совместить с confirmation
+    @user.password = Devise.friendly_token.first(8)
+    if @user.save
+      redirect_to admin_user_path(@user), notice: 'Комплект был добавлен.'
+    else
+      render :new
+    end
   end
 
   def update
@@ -22,6 +41,14 @@ class Admin::UsersController < Admin::AdminController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if !@user.picture.nil?
+      @user.picture.destroy
+    end
+    @user.destroy
+    redirect_to admin_users_url, notice: 'Пользователь был успешно удален.'
   end
 
   def edit_password
@@ -45,6 +72,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :username, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:email, :first_name, :second_name, :password, :password_confirmation, :current_password)
   end
 end

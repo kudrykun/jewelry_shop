@@ -5,6 +5,8 @@ class User < ApplicationRecord
           :rememberable, :trackable, :lockable, :registerable
 
   belongs_to :picture, optional: true
+
+  validates :email, :first_name, :second_name, presence: true
   after_create :generate_profile_image
 
   def generate_profile_image

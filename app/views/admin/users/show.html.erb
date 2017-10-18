@@ -1,3 +1,8 @@
+<% if current_user == @user %>
+    <h1>Информация о вашем профиле</h1>
+<%else%>
+    <h1> Информация о профиле <%= @user.first_name %> <%= @user.second_name %></h1>
+<%end%>
 <b>Email</b>
 <%= @user.email %></br>
 <b>Шифрованный пароль</b>
@@ -20,8 +25,6 @@
 <%= @user.unlock_token %></br>
 <b>Дата блокировки</b>
 <%= @user.locked_at %></br>
-<b>Юзернэйм</b>
-<%= @user.username %></br>
 <b>имя</b>
 <%= @user.first_name %></br>
 <b>Фамилия</b>
@@ -35,6 +38,10 @@
   <%= image_tag @user.picture.image(:thumb) %></br>
 <%end%>
 
-<%= link_to 'Изменить', edit_admin_user_path %>
-<%= link_to 'Изменить пароль', edit_password_admin_users_path %>
+
+<!--Изменять можно только своой профиль-->
+<% if current_user == @user %>
+    <%= link_to 'Изменить', edit_admin_user_path %>
+  <%= link_to 'Изменить пароль', edit_password_admin_users_path %>
+<%end%>
 
