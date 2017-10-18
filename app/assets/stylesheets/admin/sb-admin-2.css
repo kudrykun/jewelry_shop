@@ -25,6 +25,12 @@ body {
 .navbar-top-links {
   margin-right: 0;
 }
+.navbar-top-links li a.profile-icon{
+    padding: 0;
+}
+.profile-icon img{
+    border-radius: 50%;
+}
 .navbar-top-links li {
   display: inline-block;
 }

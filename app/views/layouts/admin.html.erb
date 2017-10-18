@@ -34,8 +34,8 @@
     <ul class="nav navbar-top-links navbar-right">
       <li>
         <% if current_user.picture %>
-            <%= link_to admin_user_path(current_user) do %>
-              <%= image_tag current_user.picture.image(:thumb), width: 50, height: 50, style: 'border-radius: 50%' %>
+            <%= link_to admin_user_path(current_user), class: 'profile-icon' do %>
+              <%= image_tag current_user.picture.image(:thumb), width: 50, height: 50 %>
             <%end%>
         <%end%>
       </li>
