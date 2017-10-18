@@ -1,47 +1,63 @@
-<% if current_user == @user %>
-    <h1>Информация о вашем профиле</h1>
-<%else%>
-    <h1> Информация о профиле <%= @user.first_name %> <%= @user.second_name %></h1>
-<%end%>
-<b>Email</b>
-<%= @user.email %></br>
-<b>Шифрованный пароль</b>
-<%= @user.encrypted_password %></br>
-<b>remember_created_at</b>
-<%= @user.remember_created_at %></br>
-<b>Количество входов</b>
-<%= @user.sign_in_count %></br>
-<b>Начало текущей сессии</b>
-<%= @user.current_sign_in_at %></br>
-<b>Начало последней сессии</b>
-<%= @user.last_sign_in_at %></br>
-<b>Текущий ip</b>
-<%= @user.current_sign_in_ip %></br>
-<b>Последний ip</b>
-<%= @user.last_sign_in_ip %></br>
-<b>Неудачных попыток входа</b>
-<%= @user.failed_attempts %></br>
-<b>Токен разблокировки</b>
-<%= @user.unlock_token %></br>
-<b>Дата блокировки</b>
-<%= @user.locked_at %></br>
-<b>имя</b>
-<%= @user.first_name %></br>
-<b>Фамилия</b>
-<%= @user.second_name %></br>
-<b>Создан</b>
-<%= @user.created_at %></br>
-<b>Обновлен</b>
-<%= @user.updated_at %></br>
-<b>Картинка</b>
-<% if @user.picture%>
-  <%= image_tag @user.picture.image(:thumb) %></br>
-<%end%>
-
-
+<div class="row">
+  <% if current_user == @user %>
+      <h1 class="panel-heading">Информация о вашем профиле</h1>
+  <%else%>
+      <h1 class="panel-heading">Информация о профиле <%= @user.first_name %> <%= @user.second_name %></h1>
+  <%end%>
+  <div id="notice" class="alert alert-success"><%= notice %></div>
+</div>
 <!--Изменять можно только своой профиль-->
-<% if current_user == @user %>
-    <%= link_to 'Изменить', edit_admin_user_path %>
-  <%= link_to 'Изменить пароль', edit_password_admin_users_path %>
+<div class="row ml0 mb20">
+  <% if current_user == @user %>
+      <% if current_user == @user %>
+        <%= link_to 'Все профили(Убрать ссылку у обычных пользователей)', admin_users_path, class: 'btn btn-default mr20' %>
+      <%end%>
+      <%= link_to 'Изменить профиль', edit_admin_user_path, class: 'btn btn-success mr20' %>
+      <%= link_to 'Изменить пароль', edit_password_admin_users_path, class: 'btn btn-success' %>
+  <%end%>
+
+</div>
+
+<% if @user.picture%>
+    <%= image_tag @user.picture.image(:thumb), class: 'img-circle ml125 mb20' %></br>
 <%end%>
+
+<dl class="dl-horizontal">
+
+
+
+  <dt><b>Email</b>                         </dt>
+  <dd><%= @user.email %></br>              </dd>
+  <dt>Шифрованный пароль            </dt>
+  <dd><%= @user.encrypted_password %></br> </dd>
+  <dt>remember_created_at           </dt>
+  <dd><%= @user.remember_created_at %></br></dd>
+  <dt>Количество входов             </dt>
+  <dd><%= @user.sign_in_count %></br>      </dd>
+  <dt>Начало текущей сессии         </dt>
+  <dd><%= @user.current_sign_in_at %></br> </dd>
+  <dt>Начало последней сессии       </dt>
+  <dd><%= @user.last_sign_in_at %></br>    </dd>
+  <dt>Текущий ip                    </dt>
+  <dd><%= @user.current_sign_in_ip %></br> </dd>
+  <dt>Последний ip                  </dt>
+  <dd><%= @user.last_sign_in_ip %></br>    </dd>
+  <dt>Неудачных попыток входа       </dt>
+  <dd><%= @user.failed_attempts %></br>    </dd>
+  <dt>Токен разблокировки           </dt>
+  <dd><%= @user.unlock_token %></br>       </dd>
+  <dt>Дата блокировки               </dt>
+  <dd><%= @user.locked_at %></br>          </dd>
+  <dt>Имя                         </dt>
+  <dd><%= @user.first_name %></br>         </dd>
+  <dt>Фамилия                       </dt>
+  <dd><%= @user.second_name %></br>        </dd>
+  <dt>Создан                        </dt>
+  <dd><%= @user.created_at %></br>         </dd>
+  <dt>Обновлен                      </dt>
+  <dd><%= @user.updated_at %></br>         </dd>
+</dl>
+
+
+
 

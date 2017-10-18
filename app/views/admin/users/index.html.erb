@@ -1,31 +1,41 @@
-<h1>Пользователи</h1>
+<div class="row">
+  <h1 class="panel-heading">Пользователи</h1>
+  <div id="notice" class="alert alert-success"><%= notice %></div>
+</div>
+<%= link_to new_admin_user_path, class: 'btn btn-success' do %>
+    Создать пользователя
+    <i class="fa fa-plus"></i>
+<% end %>
+<br>
+<br>
 <div class="panel panel-default">
+  <div class="panel-body">
   <!--TODO id-->
-  <table  width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-    <thead>
-    <tr>
-      <th>Email</th>
-      <th>Имя</th>
-      <th>Фамилия</th>
-      <th>Входов</th>
-      <th></th>
-      <th></th>
-    </tr>
-    </thead>
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+      <thead>
+      <tr>
+        <th>Email</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Входов</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
 
-    <tbody>
-    <% @users.each do |user| %>
-        <tr>
-          <td><%= user.email %></td>
-          <td><%= user.first_name %></td>
-          <td><%= user.second_name %></td>
-          <td><%= user.sign_in_count %></td>
-          <td><%= link_to 'Показать', admin_user_path(user) %></td>
-          <td><%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.second_name %></td>
+            <td><%= user.sign_in_count %></td>
+            <td><%= link_to 'Показать', admin_user_path(user) %></td>
+            <td><%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<%= link_to 'Создать пользователя', new_admin_user_path %>
