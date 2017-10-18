@@ -1,5 +1,9 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update, :edit_password, :update_password]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
+
+  def index
+    @users = User.all.where.not(id: current_user.id).to_a
+  end
 
   def show
   end
@@ -24,6 +28,14 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def destroy
+    if !@user.picture.nil?
+      @user.picture.destroy
+    end
+    @user.destroy
+    redirect_to admin_users_url, notice: 'Пользователь был успешно удален.'
+  end
+
   def edit_password
   end
 
@@ -45,6 +57,6 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :username, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:first_name, :second_name, :password, :password_confirmation, :current_password)
   end
 end

@@ -1,6 +1,11 @@
 <div class="row">
   <div id="notice" class="alert alert-success"><%= notice %></div>
-  <h1 class="panel-heading">Редактирование пользователя</h1>
+  <% if current_user == @user %>
+      <h1 class="panel-heading">Редактирование вашего профиля</h1>
+  <%else%>
+      <h1 class="panel-heading">Редактирование вашего профиля</h1>
+      <h1> Информация о профиле <%= @user.first_name %> <%= @user.second_name %></h1>
+  <%end%>
 </div>
 <%= link_to 'Назад', admin_user_path(@user), class: 'btn btn-default'   %>
 <%= render 'form', user: @user %>
