@@ -7,6 +7,7 @@
       <div class="login-panel panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Войдите в свой аккаунт</h3>
+          <!--Информация всякая ИЛЬЯ-->
           <%flash.each do |name, msg| %>
               <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
           <%end %>
