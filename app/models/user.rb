@@ -5,8 +5,7 @@ class User < ApplicationRecord
           :rememberable,
          :trackable,
          :lockable,
-         :registerable,
-         :confirmable
+         :registerable
 
   belongs_to :picture, optional: true
 

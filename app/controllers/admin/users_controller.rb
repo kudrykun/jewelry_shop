@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::AdminController
     # Генерация пароля из 8 символов. TODO это еще нужно совместить с confirmation
     @user.password = Devise.friendly_token.first(8)
     if @user.save
-      redirect_to admin_user_path(@user), notice: 'Комплект был добавлен.'
+      redirect_to admin_user_path(@user), notice: 'Пользователь был добавлен.'
     else
       render :new
     end
