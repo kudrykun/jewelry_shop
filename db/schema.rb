@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019210414) do
+ActiveRecord::Schema.define(version: 20171019215704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "note"
+    t.string   "user_ip"
+    t.string   "controller"
+    t.string   "action"
+    t.datetime "created_at",  null: false
+    t.string   "user_name"
+    t.string   "entity_name"
+    t.index ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -231,6 +243,7 @@ ActiveRecord::Schema.define(version: 20171019210414) do
     t.index ["picture_id"], name: "index_users_on_picture_id", using: :btree
   end
 
+  add_foreign_key "activity_logs", "users"
   add_foreign_key "incrustation_items", "incrustations"
   add_foreign_key "incrustation_items", "products"
   add_foreign_key "metal_type_products", "metal_types"

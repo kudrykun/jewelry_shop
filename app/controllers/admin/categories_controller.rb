@@ -43,6 +43,7 @@ class Admin::CategoriesController < Admin::AdminController
       @category.banner = banner
     end
     if @category.save
+      record_activity(@category)
       redirect_to edit_admin_category_path(@category), notice: 'Категория была успешно создана.'
     else
       render :new
