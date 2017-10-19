@@ -1,24 +1,25 @@
 
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+
       <div class="login-panel panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Войдите в свой аккаунт</h3>
-          <!--Информация всякая ИЛЬЯ-->
-          <%flash.each do |name, msg| %>
-              <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-          <%end %>
         </div>
         <div class="panel-body">
           <%= devise_error_messages! %>
+          <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %> alert-password">
+                <a href="#" data-dismiss="alert" class="close">×</a>
+                <ul class="list-unstyled">
+                  <li>
+                    <%= value %>
+                  </li>
+                </ul>
+              </div>
+          <% end %>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <fieldset>
-              <div class="field">
-
-              </div>
 
                 <div class="form-group">
                 <%= f.label :email, 'Электронная почта' %><br />
@@ -29,7 +30,6 @@
                 <%= f.label :password, 'Пароль' %><br />
                 <%= f.password_field :password, autocomplete: "off", class:'form-control' %>
               </div>
-
 
               <% if devise_mapping.rememberable? -%>
                 <div class="checkbox">
@@ -49,6 +49,3 @@
           <%= render "devise/shared/links" %>
         </div>
       </div>
-    </div>
-  </div>
-</div>

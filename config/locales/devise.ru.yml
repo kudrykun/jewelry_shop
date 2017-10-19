@@ -2,6 +2,34 @@
 # Другие переводы на http://github.com/plataformatec/devise/wiki/I18n
 
 ru:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at:
+        confirmation_token:
+        confirmed_at:
+        created_at:
+        current_password: "Текущий пароль"
+        current_sign_in_at:
+        current_sign_in_ip:
+        email: Email
+        encrypted_password:
+        failed_attempts:
+        last_sign_in_at:
+        last_sign_in_ip:
+        locked_at:
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        remember_created_at:
+        remember_me: "Запомнить меня"
+        reset_password_sent_at:
+        reset_password_token: "Ссылка сброса пароля"
+        sign_in_count:
+        unconfirmed_email:
+        unlock_token: "Токен разблокировки"
+        updated_at:
+    models:
+      user: "Пользователь"
   devise:
     confirmations:
       confirmed: "Ваша учётная запись подтверждена."
@@ -52,14 +80,14 @@ ru:
     unlocks:
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по разблокировке вашей учётной записи."
       send_paranoid_instructions: "Если ваша учётная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по её разблокировке."
-      unlocked: "Ваша учётная запись разблокирована. Теперь вы вошли в систему."
+      unlocked: "Ваша учётная запись разблокирована. Теперь можете войти в систему."
   errors:
     messages:
-      already_confirmed: "уже подтверждена. Пожалуйста, попробуйте войти в систему"
+      already_confirmed: "уже подтвержден. Пожалуйста, попробуйте войти в систему"
       confirmation_period_expired: "должен быть подтвержден в течении %{period}, пожалуйста, запросите подтверждение ещё раз"
-      expired: "устарела. Пожалуйста, запросите новую"
-      not_found: "не найдена"
-      not_locked: "не заблокирована"
+      expired: "устарел. Пожалуйста, запросите новый"
+      not_found: "не найден"
+      not_locked: "не заблокирован"
       not_saved:
         one: "%{resource}: сохранение не удалось из-за %{count} ошибки"
         other: "%{resource}: сохранение не удалось из-за %{count} ошибки"
