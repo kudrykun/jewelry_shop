@@ -94,49 +94,66 @@
 
 
         </div>
-
+<% #TODO Сделай чтобы выводило все размеры, если не в наличии, а если в наличи, то сразу кнопку показать %>
         <% if @product.price != nil && @product.get_shop_sizes(@product.shops).size > 0 %>
-            <div class="col s12 btn_sizes-group" style="margin: 0;">
-              <p><b>Выберите размер:</b></p>
-              <% if @product.shops.size  %>
-                  <% @product.shops.each do |shop|%>
-                      <% if @product.get_shop_sizes(shop).size %>
-                          <%=shop.title%>
-                          <ul>
-                            <% @product.get_shop_sizes(shop).each do |size|%>
-                                <label class="btn border-btn">
-                                  <input type="radio" name="size" class="btn_set_size" id="size_"><%=size.size%>
-                                </label>
-                            <%end%>
-                          </ul>
+            <% if @product.shops.size  %>
+                <% if  @product.get_shop_sizes(Shop.all.sample).size != 'В наличии' %>
+                  <div class="col s12 btn_sizes-group" style="margin: 0;">
+                    <p><b>Выберите размер:</b></p>
+                      <% @product.shops.each do |shop|%>
+                          <% if @product.get_shop_sizes(shop).size %>
+                              <%=shop.title%>
+                              <ul>
+                                <% @product.get_shop_sizes(shop).each do |size|%>
+                                    <label class="btn border-btn">
+                                      <input type="radio" name="size" class="btn_set_size" id="size_"><%=size.size%>
+                                    </label>
+                                <%end%>
+                              </ul>
+                          <%end%>
                       <%end%>
-                  <%end%>
-              <%end%>
-            </div>
+                    </div>
+                    <div class="col l12 m12 sm12 s12 btn_basket-group">
+                      <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
+
+                      <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store"
+                         disabled="">
+                        ЗАБРАТЬ В МАГАЗИНЕ
+                      </a>
+
+                      <div class="card-panel hide">
+                        <div class="input-field inline">
+                          <a id="buy-in-one-click" >
+                            <i class="material-icons">phone_forwarded</i></a>
+                          <input id="phone" type="tel" class="validate" placeholder="+7 (___) ___-____" value="">
+                          <label for="phone" class="active"><b class="grey-text text-darken-1">Заказать звонок
+                          </b> <span>( укажите свой телефон )</span></label>
+                        </div>
+                      </div>
+                    </div>
+
+                <% else %>
+
+                    <div class="col l12 m12 sm12 s12 btn_basket-group">
+                      <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store">
+                        ЗАБРАТЬ В МАГАЗИНЕ
+                      </a>
+                    </div>
+
+                <%end%>
+
+            <%end%>
+
+
+
         <% else %>
             <div class="col s12 btn_sizes-group">
-              <span class="off-sizes">Размеры отсутствуют</span>
+              <span class="off-sizes">Размеры отсутствуют (Под заказ)</span>
             </div>
-        <%end%>
+        <% end %>
 
 
-        <div class="col l12 m12 sm12 s12 btn_basket-group">
-          <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
 
-
-          <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store" disabled="">ЗАБРАТЬ В МАГАЗИНЕ</a>
-
-
-          <div class="card-panel hide">
-            <div class="input-field inline">
-              <a id="buy-in-one-click" >
-                <i class="material-icons">phone_forwarded</i></a>
-              <input id="phone" type="tel" class="validate" placeholder="+7 (___) ___-____" value="">
-              <label for="phone" class="active"><b class="grey-text text-darken-1">Заказать звонок
-              </b> <span>( укажите свой телефон )</span></label>
-            </div>
-          </div>
-        </div>
 
         <div class="col l12 m12 sm6 s12 delivery">
           <ul class="collection">
