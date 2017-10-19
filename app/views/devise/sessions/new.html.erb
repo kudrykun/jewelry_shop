@@ -7,16 +7,19 @@
       <div class="login-panel panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Войдите в свой аккаунт</h3>
+          <%flash.each do |name, msg| %>
+              <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+          <%end %>
         </div>
         <div class="panel-body">
-
+          <%= devise_error_messages! %>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <fieldset>
               <div class="field">
 
               </div>
 
-              <div class="form-group">
+                <div class="form-group">
                 <%= f.label :email, 'Электронная почта' %><br />
                 <%= f.email_field :email, autofocus: true, class:'form-control' %>
               </div>
