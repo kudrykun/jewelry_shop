@@ -1,8 +1,13 @@
 class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
-
+  # если текущий пользователь не админ, то запретить: создание нового пользователя
+  before_action :not_admin, only: [:new, :create, :index, :destroy]
+  # если пользователь не админ и не просматриваемый пользователь , то запретить: просмотр, удаление, обновление
+  before_action :not_admin_current_user, only: [:show, :edit, :update, :edit_password, :update_password, :destroy]
+  # если пользователь админ и не просматриваемый пользователь , то запретить: просмотр, удаление, обновление
+  before_action :is_admin_not_current_user, only: [:edit, :update, :edit_password, :update_password]
   def index
-    @users = User.all.where.not(id: current_user.id).to_a
+    @users = User.all.where.not(id: current_user.id).order(admin: :desc).to_a
   end
 
   def show
@@ -66,7 +71,21 @@ class Admin::UsersController < Admin::AdminController
   end
 
   private
-
+  def not_admin
+    if !current_user.admin?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+  def not_admin_current_user
+    if current_user != @user && !current_user.admin?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+  def is_admin_not_current_user
+    if current_user != @user && current_user.admin?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
   def set_user
     @user = User.find(params[:id])
   end

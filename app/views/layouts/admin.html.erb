@@ -48,9 +48,11 @@
           <li>
             <%= link_to admin_user_path(current_user) do %> <i class="fa fa-user fa-fw"></i> Профиль <% end %>
           </li>
-          <li>
-            <%= link_to admin_users_path do %> <i class="fa fa-users fa-fw"></i> Пользователи <% end %>
-          </li>
+          <% if current_user.admin? %>
+              <li>
+                <%= link_to admin_users_path do %> <i class="fa fa-users fa-fw"></i> Пользователи <% end %>
+              </li>
+          <% end%>
           <li>
             <%= link_to admin_dashboard_path do %> <i class="fa fa-gear fa-fw"></i> Настройки <% end %>
           </li>

@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :trackable,
          :lockable,
          :registerable,
-         :recoverable
+         :recoverable,
+         :timeoutable
 
   belongs_to :picture, optional: true
 

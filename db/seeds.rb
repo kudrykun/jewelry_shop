@@ -193,7 +193,8 @@ kits.each do |kit|
   end
 end
 
-User.create!(email: 'cunt@gmail.com', first_name: 'Сергей', second_name: 'Василенко', password: 'qwerty')
-7.times do |i|
+User.create!(email: 'kudry@gmail.com', first_name: 'Сергей', second_name: 'Василенко', password: 'qwerty', admin: true)
+User.create!(email: 'king@gmail.com', first_name: 'Илья', second_name: 'Король', password: 'qwerty', admin: true)
+5.times do |i|
   User.create!(email: "user#{i}@gmail.com", first_name: Faker::Name.first_name, second_name: Faker::Name.last_name, password: 'qwerty')
 end

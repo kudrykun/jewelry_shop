@@ -18,6 +18,8 @@
         <th>Имя</th>
         <th>Фамилия</th>
         <th>Входов</th>
+        <th>Заблокирован</th>
+        <th>Запроса сброса пароля</th>
         <th></th>
         <th></th>
       </tr>
@@ -26,12 +28,32 @@
       <tbody>
       <% @users.each do |user| %>
           <tr>
-            <td><%= user.email %></td>
+            <td>
+              <% if user.admin? %>
+                Администратор
+              <% end %>
+              <%= user.email %>
+            </td>
             <td><%= user.first_name %></td>
             <td><%= user.second_name %></td>
             <td><%= user.sign_in_count %></td>
+            <td>
+              <% case user.failed_attempts %>
+              <% when 5%>
+                  Да
+              <% when 4%>
+                  Почти
+              <% else %>
+                  Нет
+              <% end %>
+            </td>
+            <td><%= user.reset_password_token %></td>
             <td><%= link_to 'Показать', admin_user_path(user) %></td>
-            <td><%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+            <td>
+              <% if !user.admin? %>
+                  <%= link_to 'Удалить', admin_user_path(user), method: :delete, data: { confirm: 'Вы уверены?' } %>
+              <%end%>
+            </td>
           </tr>
       <% end %>
       </tbody>

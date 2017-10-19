@@ -9,8 +9,8 @@
 <!--Изменять можно только своой профиль-->
 <div class="row ml0 mb20">
   <% if current_user == @user %>
-      <% if current_user == @user %>
-        <%= link_to 'Все профили(Убрать ссылку у обычных пользователей)', admin_users_path, class: 'btn btn-default mr20' %>
+      <% if current_user.admin?%>
+        <%= link_to 'Все профили', admin_users_path, class: 'btn btn-default mr20' %>
       <%end%>
       <%= link_to 'Изменить профиль', edit_admin_user_path, class: 'btn btn-success mr20' %>
       <%= link_to 'Изменить пароль', edit_password_admin_users_path, class: 'btn btn-success' %>
