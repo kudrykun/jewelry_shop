@@ -32,7 +32,13 @@
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
-
+      <li>
+        <% if current_user.picture %>
+            <%= link_to admin_user_path(current_user), class: 'profile-icon' do %>
+              <%= image_tag current_user.picture.image(:thumb), width: 50, height: 50 %>
+            <%end%>
+        <%end%>
+      </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
           <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -40,14 +46,19 @@
         <ul class="dropdown-menu dropdown-user">
 
           <li>
-            <%= link_to admin_dashboard_path do %> <i class="fa fa-user fa-fw"></i> Профиль <% end %>
+            <%= link_to admin_user_path(current_user) do %> <i class="fa fa-user fa-fw"></i> Профиль <% end %>
           </li>
+          <% if current_user.admin? %>
+              <li>
+                <%= link_to admin_users_path do %> <i class="fa fa-users fa-fw"></i> Пользователи <% end %>
+              </li>
+          <% end%>
           <li>
             <%= link_to admin_dashboard_path do %> <i class="fa fa-gear fa-fw"></i> Настройки <% end %>
           </li>
           <li class="divider"></li>
           <li>
-            <%= link_to admin_dashboard_path do %> <i class="fa fa-sign-out fa-fw"></i> Выход <% end %>
+            <%= link_to destroy_user_session_path, :method => :delete do %> <i class="fa fa-sign-out fa-fw"></i> Выход <% end %>
           </li>
         </ul>
         <!-- /.dropdown-user -->
