@@ -72,6 +72,7 @@ group :development do
   gem 'rack-mini-profiler'
   # ищет узкие места в структуре приложения и БД
   gem 'bullet'
+  gem "letter_opener"
 end
 
 group :production do

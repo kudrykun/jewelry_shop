@@ -25,6 +25,16 @@
 <%= @user.unlock_token %></br>
 <b>Дата блокировки</b>
 <%= @user.locked_at %></br>
+
+<b>Токен подтверждения</b>
+<%= @user.confirmation_token %></br>
+
+<b>Дата подтверждения</b>
+<%= @user.confirmed_at %></br>
+
+<b>Дата отправки сообщения с подтверждением</b>
+<%= @user.confirmation_sent_at %></br>
+
 <b>имя</b>
 <%= @user.first_name %></br>
 <b>Фамилия</b>
