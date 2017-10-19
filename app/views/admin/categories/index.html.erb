@@ -32,7 +32,7 @@
             <td><%= category.title %></td>
             <td><%= category.priority %></td>
             <td><%= category.preview_priority %></td>
-            <td><%= category.products.size %></td>
+            <td><%= @products.where(category: category).size %></td>
             <td>
               <% if category.preview %>
                   <i class="fa fa-check" aria-hidden="true"></i>
@@ -48,7 +48,7 @@
             <td><%= link_to 'Изменить', edit_admin_category_path(category) %></td>
             <td>
               <div
-                <% if category.products.size > 0 %>
+                <% if @products.where(category: category).size > 0 %>
                 data-toggle="tooltip"
                 data-placement="left"
                 data-original-title="Невозможно удалить категорию в которой есть изделия или виды изделий"

@@ -117,7 +117,7 @@
                 <%end%>
               </td>
               <td><%= product.priority %></td>
-              <td>
+              <td >
                 <% if product.product_type != nil && product.product_type.title != '' %>
                     <%= product.product_type.title %>
                 <%end%>
@@ -132,7 +132,7 @@
                     <%= product.collection.title %>
                 <%end%>
               </td>
-              <td>
+              <td class="text-center align-middle">
                 <% if product.hit %>
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
                     <span class="hidden">хит</span>
@@ -140,7 +140,7 @@
                     <i class="fa fa-times text-secondary" aria-hidden="true"></i>
                 <%end%>
               </td>
-              <td>
+              <td class="text-center align-middle">
                 <% if product.to_main_page %>
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
                     <span class="hidden">главная</span>
@@ -148,7 +148,7 @@
                     <i class="fa fa-times text-secondary" aria-hidden="true"></i>
                 <%end%>
               </td>
-              <td>
+              <td class="text-center align-middle">
                 <% if product.pictures.size > 0%>
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
                     <span class="hidden">Фото</span>
@@ -156,7 +156,7 @@
                     <i class="fa fa-times text-secondary" aria-hidden="true"></i>
                 <%end%>
               </td>
-              <td>
+              <td class="text-center align-middle">
                 <% if product.recommendation %>
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
                     <span class="hidden">нрав</span>
@@ -164,7 +164,7 @@
                     <i class="fa fa-times text-secondary" aria-hidden="true"></i>
                 <%end%>
               </td>
-              <td>
+              <td class="text-center align-middle">
                 <% if product.visible %>
                     <i class="fa fa-check text-success" aria-hidden="true"></i>
                     <span class="hidden">Виден</span>
