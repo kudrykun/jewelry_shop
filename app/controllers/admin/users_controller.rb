@@ -43,7 +43,6 @@ class Admin::UsersController < Admin::AdminController
       @user.picture = picture
     end
     if @user.update(user_params)
-      record_activity(@user)
       redirect_to admin_user_path(@user), notice: 'Пользователь был успешно обновлен.'
     else
       render :edit

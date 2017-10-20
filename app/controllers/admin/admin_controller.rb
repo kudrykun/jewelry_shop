@@ -17,10 +17,10 @@ class Admin::AdminController < ApplicationController
     @activity.user = current_user
     @activity.user_ip = current_user.current_sign_in_ip
     @activity.controller = controller_name
-
+    @activity.action = action_name
     @activity.user_name = "#{@activity.user.first_name} #{@activity.user.second_name}"
-
-    @activity.action = case action_name
+    @activity.entity_name = obj.class.model_name
+    action =  case action_name
                when 'create'
                  'создал'
                when 'update'
@@ -31,7 +31,7 @@ class Admin::AdminController < ApplicationController
                  action_name
              end
 
-    @activity.entity_name = case obj.class.model_name
+    entity_name = case obj.class.model_name
       when 'Category' #
         'категорию'
       when 'ChainType' #
@@ -67,7 +67,7 @@ class Admin::AdminController < ApplicationController
       when 'User'
         'пользователя'
       else
-        controller_name
+        obj.class.model_name
     end
     @activity.object_title = case obj.class.model_name
       when 'Picture'
@@ -83,7 +83,7 @@ class Admin::AdminController < ApplicationController
       else
         ' "' + obj.title + '"'
     end
-    @activity.note = @activity.user_name + ' ' + @activity.action + ' ' + @activity.entity_name + @activity.object_title
+    @activity.note = @activity.user_name + ' ' + action + ' ' + entity_name + @activity.object_title
 
     @activity.save
   end
