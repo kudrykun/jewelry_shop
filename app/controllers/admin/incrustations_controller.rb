@@ -28,6 +28,7 @@ class Admin::IncrustationsController < Admin::AdminController
 
     respond_to do |format|
       if @incrustation.save
+        record_activity(@incrustation)
         format.html { redirect_to admin_incrustations_path, notice: 'Вставка была успешно создана.' }
         format.json { render :show, status: :created, location: @incrustation }
       else
@@ -42,6 +43,7 @@ class Admin::IncrustationsController < Admin::AdminController
   def update
     respond_to do |format|
       if @incrustation.update(incrustation_params)
+        record_activity(@incrustation)
         format.html { redirect_to admin_incrustations_path, notice: 'Вставка была успешно обновлена.' }
         format.json { render :show, status: :ok, location: @incrustation }
       else
@@ -54,7 +56,9 @@ class Admin::IncrustationsController < Admin::AdminController
   # DELETE /incrustations/1
   # DELETE /incrustations/1.json
   def destroy
+    @incrustation_tmp = @incrustation.dup
     @incrustation.destroy
+    record_activity(@incrustation_tmp)
     respond_to do |format|
       format.html { redirect_to admin_incrustations_url, notice: 'Вставка была успешно удалена.' }
       format.json { head :no_content }

@@ -62,6 +62,7 @@ class Admin::CategoriesController < Admin::AdminController
       @category.banner = banner
     end
     if @category.update(category_params)
+      record_activity(@category)
       redirect_to edit_admin_category_path(@category), notice: 'Категория была успешно обновлена.'
     else
       render :edit
@@ -77,7 +78,9 @@ class Admin::CategoriesController < Admin::AdminController
     if !@category.banner.nil?
       @category.banner.destroy
     end
+    @category_tmp = @category.dup
     @category.destroy
+    record_activity(@category_tmp)
     redirect_to admin_categories_url, notice: 'Категория была успешно удалена.'
   end
 

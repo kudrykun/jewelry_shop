@@ -24,6 +24,7 @@ class Admin::KitsController < Admin::AdminController
   def create
     @kit = Kit.new(kit_params)
     if @kit.save
+      record_activity(@kit)
       redirect_to admin_kit_path(@kit), notice: 'Комплект был добавлен.'
     else
       render :new
@@ -33,6 +34,7 @@ class Admin::KitsController < Admin::AdminController
 
   def update
     if @kit.update(kit_params)
+      record_activity(@kit)
       redirect_to admin_kit_path(@kit), notice: 'Комплект был обновлен.'
     else
       render :edit
@@ -44,7 +46,9 @@ class Admin::KitsController < Admin::AdminController
       product.kit = nil
       product.save
     end
+    @kit_tmp = @kit.dup
     @kit.destroy
+    record_activity(@kit_tmp)
     redirect_to admin_kits_url, notice: 'Комплект был удален.'
   end
 

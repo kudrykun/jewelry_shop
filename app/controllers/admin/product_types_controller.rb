@@ -29,6 +29,7 @@ class Admin::ProductTypesController < Admin::AdminController
 
     respond_to do |format|
       if @product_type.save
+        record_activity(@product_type)
         format.html { redirect_to admin_product_types_path, notice: 'Вид изделия был успешной создан.' }
         format.json { render :show, status: :created, location: @product_type }
       else
@@ -43,6 +44,7 @@ class Admin::ProductTypesController < Admin::AdminController
   def update
     respond_to do |format|
       if @product_type.update(product_type_params)
+        record_activity(@product_type)
         format.html { redirect_to admin_product_types_path, notice: 'Вид изделия был успешно обновлен.' }
         format.json { render :show, status: :ok, location: @product_type }
       else
@@ -59,7 +61,9 @@ class Admin::ProductTypesController < Admin::AdminController
       product.product_type = nil
       product.save
     end
+    @product_type_tmp = @product_type.dup
     @product_type.destroy
+    record_activity(@product_type_tmp)
     respond_to do |format|
       format.html { redirect_to admin_product_types_url, notice: 'Вид изделия был успешно удален.' }
       format.json { head :no_content }

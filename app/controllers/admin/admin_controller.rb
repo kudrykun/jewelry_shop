@@ -9,14 +9,18 @@ class Admin::AdminController < ApplicationController
 
   def record_activity(obj)
     @activity = ActivityLog.new
+    if obj.id.nil?
+      @activity.loggable = nil
+    else
+      @activity.loggable = obj
+    end
     @activity.user = current_user
     @activity.user_ip = current_user.current_sign_in_ip
     @activity.controller = controller_name
-    @activity.action = action_name
-    @activity.user_name = ''
-    @activity.entity_name = ''
-    name = "#{@activity.user.first_name} #{@activity.user.second_name}"
-    action = case @activity.action
+
+    @activity.user_name = "#{@activity.user.first_name} #{@activity.user.second_name}"
+
+    @activity.action = case action_name
                when 'create'
                  'создал'
                when 'update'
@@ -24,46 +28,62 @@ class Admin::AdminController < ApplicationController
                when 'destroy'
                  'удалил'
                else
-                 @activity.action
+                 action_name
              end
 
-    entity = case obj.class.model_name
-               when 'Category'
-                 'категорию'
-               when 'Collection'
-                 'коллекцию'
-               when 'Incrustation'
-                 'вставку'
-               when 'Kit'
-                 'комплект'
-               when 'Kit'
-                 'производителя'
-               when 'MetalColor'
-                 'цвет металла'
-               when 'MetalType'
-                 'металл'
-               when 'Picture'
-                 'картинку'
-               when 'ProductType'
-                 'тип продукта'
-               when 'Product'
-                 'продукт'
-               when 'Promo'
-                 'акцию'
-               when 'SaleSize'
-                 'скидку'
-               when 'Shop'
-                 'магазин'
-               when 'Size'
-                 'размер'
-               when 'Slide'
-                 'слайд'
-               when 'Slide'
-                 'пользователя'
-               else
-                 @activity.controller
-             end
-    @activity.note = name + ' ' + action + ' ' + entity + ' ' + obj.title
+    @activity.entity_name = case obj.class.model_name
+      when 'Category' #
+        'категорию'
+      when 'ChainType' #
+        'вид плетения'
+      when 'Collection' #
+        'коллекцию'
+      when 'Incrustation' #
+        'вставку'
+      when 'Kit' #
+        'комплект'
+      when 'Manufacturer' #
+        'производителя'
+      when 'MetalColor' #
+        'цвет металла'
+      when 'MetalType' #
+        'тип металла'
+      when 'Picture'
+        'картинку'
+      when 'ProductType' #
+        'вид изделия'
+      when 'Product' #
+        'продукт'
+      when 'Promo' #
+        'акцию'
+      when 'SaleSize' #
+        'скидку'
+      when 'Shop' #
+        'магазин'
+      when 'Size' #
+        'размер'
+      when 'Slide' #
+        'слайд'
+      when 'User'
+        'пользователя'
+      else
+        controller_name
+    end
+    @activity.object_title = case obj.class.model_name
+      when 'Picture'
+        ' "' + obj.id + '"'
+      when 'SaleSize'
+        ' "' + obj.sale_percent + '"'
+      when 'Size'
+        ' "' + obj.size + '"'
+      when 'Slide'
+        ''
+      when 'User'
+        ' "' + obj.first_name + ' ' + obj.second_name + '"'
+      else
+        ' "' + obj.title + '"'
+    end
+    @activity.note = @activity.user_name + ' ' + @activity.action + ' ' + @activity.entity_name + @activity.object_title
 
     @activity.save
   end
