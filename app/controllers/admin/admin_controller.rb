@@ -16,7 +16,6 @@ class Admin::AdminController < ApplicationController
     end
     @activity.user = current_user
     @activity.user_ip = current_user.current_sign_in_ip
-    @activity.controller = controller_name
     @activity.action = action_name
     @activity.user_name = "#{@activity.user.first_name} #{@activity.user.second_name}"
     @activity.entity_name = obj.class.model_name
@@ -73,7 +72,7 @@ class Admin::AdminController < ApplicationController
       when 'Picture'
         ' "' + obj.id + '"'
       when 'SaleSize'
-        ' "' + obj.sale_percent + '"'
+        ' "' + "#{obj.sale_percent}" + '"'
       when 'Size'
         ' "' + obj.size + '"'
       when 'Slide'

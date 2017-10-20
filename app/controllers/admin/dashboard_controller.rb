@@ -3,5 +3,10 @@ class Admin::DashboardController < Admin::AdminController
     @products = Product.all
     @collections = Collection.all
     @kits = Kit.all
+    @logs = []
+    if current_user.admin?
+      @logs = ActivityLog.all
+    end
+
   end
 end
