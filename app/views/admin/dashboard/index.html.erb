@@ -180,7 +180,7 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
           <div class="list-group fixed-panel">
-            <% user.activity_logs.each do |log| %>
+            <% user.activity_logs.order(created_at: :desc).each do |log| %>
                 <a tabindex="0"
                    class="list-group-item"
                    title="Подробная информация"
@@ -192,27 +192,15 @@
                    <ul class='list-group'>
                     <li class='list-group-item'>Таблица <a href='/admin/products'><%= log.entity_name %></a> </li>
                     <li class='list-group-item'>IP: <%= log.user_ip %></li>
-                    <li class='list-group-item'>Время: <%= log.created_at %></li>
+                    <li class='list-group-item'>Время: <%= localize(log.created_at, :format => :short)   %></li>
                     <li class='list-group-item'>Действие: <%= log.action %></li>
                   </ul>">
                   <%= log.note %>
                   <span class="pull-right text-muted small">
-                    <em><%= log.created_at %></em>
+                    <em><%= distance_of_time_in_words_to_now(log.created_at) %></em>
                   </span>
                 </a>
             <% end %>
-
-            <a href="#" class="list-group-item">
-              <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-              <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                      </span>
-            </a>
-            <a href="#" class="list-group-item">
-              <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-              <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                      </span>
-            </a>
-
 
           </div>
           <!-- /.list-group -->

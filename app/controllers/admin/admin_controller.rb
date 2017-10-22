@@ -21,11 +21,11 @@ class Admin::AdminController < ApplicationController
     @activity.entity_name = obj.class.model_name
     action =  case action_name
                when 'create'
-                 'создал'
+                 'Создал'
                when 'update'
-                 'обновил'
+                 'Обновил'
                when 'destroy'
-                 'удалил'
+                 'Удалил'
                else
                  action_name
              end
@@ -52,7 +52,7 @@ class Admin::AdminController < ApplicationController
       when 'ProductType' #
         'вид изделия'
       when 'Product' #
-        'продукт'
+        'изделие'
       when 'Promo' #
         'акцию'
       when 'SaleSize' #
@@ -82,7 +82,7 @@ class Admin::AdminController < ApplicationController
       else
         ' "' + obj.title + '"'
     end
-    @activity.note = @activity.user_name + ' ' + action + ' ' + entity_name + @activity.object_title
+    @activity.note =  action + ' ' + entity_name + @activity.object_title
 
     @activity.save
   end

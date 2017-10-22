@@ -93,7 +93,7 @@ ru:
         few: около %{count} часов
         many: около %{count} часов
         one: около %{count} часа
-        other: около %{count} часа
+        other: около %{count} часов
       about_x_months:
         few: около %{count} месяцев
         many: около %{count} месяцев
@@ -134,7 +134,7 @@ ru:
         few: "%{count} минуты"
         many: "%{count} минут"
         one: "%{count} минуту"
-        other: "%{count} минуты"
+        other: "%{count} минут"
       x_months:
         few: "%{count} месяца"
         many: "%{count} месяцев"
