@@ -35,7 +35,7 @@ class Admin::ProductsController < Admin::AdminController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно создан. Теперь вы можете добавить изображения.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Изделие было успешно создано. Теперь вы можете добавить изображения.'}
         format.json {render :show, status: :created, location: @product}
       else
         format.html {render :new}
@@ -50,7 +50,7 @@ class Admin::ProductsController < Admin::AdminController
         if params[:product][:picture_id]
           @product.pictures << Picture.find(params[:product][:picture_id])
         end
-        format.html {redirect_to edit_admin_product_path(@product), notice: 'Товар был успешно обновлен.'}
+        format.html {redirect_to edit_admin_product_path(@product), notice: 'Изделие было успешно обновлено.'}
         format.json {render :nothing => true}
 =begin
         format.json {render :show, status: :ok, location: @product}
@@ -76,7 +76,7 @@ class Admin::ProductsController < Admin::AdminController
     category = @product.category
     @product.destroy
     respond_to do |format|
-      format.html {redirect_to admin_category_path(category), notice: 'Товар был успешно удален.'}
+      format.html {redirect_to admin_category_path(category), notice: 'Изделие было успешно удалено.'}
       format.json {head :no_content}
     end
   end

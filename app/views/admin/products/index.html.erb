@@ -193,7 +193,7 @@
               <%end%>
             </td>
             <td><%= product.title %></td>
-            <td><%= product.sex %></td>
+            <td><%= I18n.t :"activerecord.attributes.product.sex.#{product.sex}" %></td>
             <td>
               <% if product.metal_types.size%>
                   <% product.metal_types.each do |metal_type|%>

@@ -28,7 +28,7 @@ body {
 .navbar-top-links li a.profile-icon{
     padding: 0;
 }
-.profile-icon img{
+.navbar-top-links .profile-icon img{
     border-radius: 50%;
 }
 .navbar-top-links li {
@@ -80,6 +80,32 @@ body {
 .sidebar .sidebar-search {
   padding: 15px;
 }
+
+.sidebar .profile{
+    padding: 15px 0 15px 10px;
+    position: relative;
+
+}
+.sidebar .profile-icon{
+    display: inline-block;
+    vertical-align: top;
+}
+.sidebar .profile-icon img{
+    width: 70px;
+    border-radius: 50%;
+
+}
+.sidebar .profile-info{
+    display: inline-block;
+    width: 165px;
+    text-align: center;
+}
+.sidebar .profile-info .btn{
+    background-image: none;
+}
+
+
+
 .sidebar ul li {
   border-bottom: 1px solid #e7e7e7;
 }
