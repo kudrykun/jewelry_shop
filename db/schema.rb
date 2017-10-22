@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020223226) do
+ActiveRecord::Schema.define(version: 20171022172523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(version: 20171020223226) do
     t.string   "note"
     t.string   "user_ip"
     t.string   "action"
-    t.datetime "created_at",    null: false
+    t.datetime "created_at",      null: false
     t.string   "user_name"
     t.string   "entity_name"
     t.string   "loggable_type"
     t.integer  "loggable_id"
     t.string   "object_title"
+    t.string   "controller_name"
     t.index ["loggable_type", "loggable_id"], name: "index_activity_logs_on_loggable_type_and_loggable_id", using: :btree
     t.index ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
   end

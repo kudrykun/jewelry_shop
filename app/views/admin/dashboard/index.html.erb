@@ -188,13 +188,18 @@
                    data-toggle="popover"
                    data-placement="top"
                    data-trigger="focus"
-                   data-content="
-                   <ul class='list-group'>
-                    <li class='list-group-item'>Таблица <a href='/admin/products'><%= log.entity_name %></a> </li>
-                    <li class='list-group-item'>IP: <%= log.user_ip %></li>
-                    <li class='list-group-item'>Время: <%= localize(log.created_at, :format => :short)   %></li>
-                    <li class='list-group-item'>Действие: <%= log.action %></li>
-                  </ul>">
+                   data-content='
+                   <ul class="list-group">
+                    <li class="list-group-item">Таблица: <a href="/admin/<%= log.controller_name %>"><%= log.entity_name %></a> </li>
+                    <% if !log.loggable.nil?%>
+                      <li class="list-group-item">Элемент: <%= link_to log.entity_name, [:edit, :admin, log.loggable] %> </li>
+                    <% else %>
+                      <li class="list-group-item">Элемент: <%= log.entity_name %> </li>
+                    <% end %>
+                    <li class="list-group-item">IP: <%= log.user_ip %></li>
+                    <li class="list-group-item">Время: <%= localize(log.created_at, :format => :short)   %></li>
+                    <li class="list-group-item">Действие: <%= log.action %></li>
+                  </ul>'>
                   <%= log.note %>
                   <span class="pull-right text-muted small">
                     <em><%= distance_of_time_in_words_to_now(log.created_at) %></em>
