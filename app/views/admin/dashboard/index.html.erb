@@ -112,7 +112,7 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
           <div class="list-group fixed-panel">
-            <% user.activity_logs.order(created_at: :desc).each do |log| %>
+            <% user.activity_logs.order(created_at: :desc).limit(50).each do |log| %>
                 <a tabindex="0"
                    class="list-group-item"
                    title="Подробная информация"
@@ -141,7 +141,7 @@
 
           </div>
           <!-- /.list-group -->
-          <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+          <%= link_to  'Просмотреть все логи', admin_activity_logs_path, class: 'btn btn-default btn-block' %>
         </div>
         <!-- /.panel-body -->
       </div>

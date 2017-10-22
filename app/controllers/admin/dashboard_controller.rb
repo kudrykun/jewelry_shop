@@ -3,7 +3,6 @@ class Admin::DashboardController < Admin::AdminController
     @products = Product.all
     @collections = Collection.all
     @kits = Kit.all
-    @users = User.includes(:activity_logs).all
-    @logs = ActivityLog.all.order(created_at: :asc)
+    @users = User.includes(:activity_logs).all.order(created_at: :desc)
   end
 end
