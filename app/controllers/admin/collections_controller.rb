@@ -43,6 +43,7 @@ class Admin::CollectionsController < Admin::AdminController
 
     respond_to do |format|
       if @collection.save
+        record_activity(@collection)
         format.html {redirect_to admin_collection_path(@collection), notice: 'Коллекция была успешно добавлена.'}
         format.json {render :show, status: :created, location: @collection}
       else
@@ -57,6 +58,7 @@ class Admin::CollectionsController < Admin::AdminController
   def update
     respond_to do |format|
       if @collection.update(collection_params)
+        record_activity(@collection)
         format.html {redirect_to admin_collection_path(@collection), notice: 'Коллекция была успешно обновлена.'}
         format.json {render :show, status: :ok, location: @collection}
       else
@@ -73,7 +75,9 @@ class Admin::CollectionsController < Admin::AdminController
       product.collection = nil
       product.save
     end
+    @collection_tmp = @collection.dup
     @collection.destroy
+    record_activity(@collection_tmp)
     respond_to do |format|
       format.html {redirect_to admin_collections_url, notice: 'Коллекция была успешно удалена.'}
       format.json {head :no_content}

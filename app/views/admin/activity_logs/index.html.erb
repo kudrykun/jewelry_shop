@@ -1,0 +1,43 @@
+<div class="row">
+  <h1 class="panel-heading">Логи</h1>
+</div>
+
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table  width="100%" class="table table-striped table-bordered table-hover" id="simpleDataTable">
+        <thead>
+        <tr>
+          <th>Запись</th>
+          <th>Таблица</th>
+          <th>Элемент</th>
+          <th>Имя пользователя</th>
+          <th>Почта</th>
+          <th>IP адрес</th>
+          <th>Действие</th>
+          <th>Время</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @logs.each do |log| %>
+            <tr>
+              <td><%= log.note %></td>
+              <td><a href="/admin/<%= log.controller_name %>"><%= log.entity_name %></a></td>
+              <% if !log.loggable.nil?%>
+                <td><%= link_to log.object_title, [:edit, :admin, log.loggable] %></td>
+              <% else %>
+                <td><%= log.object_title %></td>
+              <% end %>
+              <td><%= log.user_name %></td>
+              <td><%= log.user.email %></td>
+              <td><%= log.user_ip %></td>
+              <td><%= log.action %></td>
+              <td> <%= localize(log.created_at, :format => :long)   %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

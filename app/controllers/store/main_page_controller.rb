@@ -4,7 +4,6 @@ class Store::MainPageController < Store::StoreController
   def index
     # Бренды для слайдера брендов
     @brands = Manufacturer.all.where.not(slide: nil)
-
     slides = Slide.all.where(hide: false).order(priority: :desc)
     @slides = []
     slides.each do |slide|
@@ -12,7 +11,6 @@ class Store::MainPageController < Store::StoreController
         @slides << slide
       end
     end
-
     @category = Category.all
     #TODO передавать в слайды только те объекты, кто есть картинки!
     # Продукты на главную страницу с пометкой hit

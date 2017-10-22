@@ -28,6 +28,7 @@ class Admin::MetalColorsController < Admin::AdminController
 
     respond_to do |format|
       if @metal_color.save
+        record_activity(@metal_color)
         format.html { redirect_to admin_metal_colors_path, notice: 'Цвет металла был успешно добавлен.' }
         format.json { render :show, status: :created, location: @metal_color }
       else
@@ -42,6 +43,7 @@ class Admin::MetalColorsController < Admin::AdminController
   def update
     respond_to do |format|
       if @metal_color.update(metal_color_params)
+        record_activity(@metal_color)
         format.html { redirect_to admin_metal_colors_path, notice: 'Цвет металла был успешно обновлен.' }
         format.json { render :show, status: :ok, location: @metal_color }
       else
@@ -58,7 +60,9 @@ class Admin::MetalColorsController < Admin::AdminController
       product.metal_color = nil
       product.save
     end
+    @metal_color_tmp = @metal_color.dup
     @metal_color.destroy
+    record_activity(@metal_color_tmp)
     respond_to do |format|
       format.html { redirect_to admin_metal_colors_url, notice: 'Цвет металла был успешно удален.' }
       format.json { head :no_content }

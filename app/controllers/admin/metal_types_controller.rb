@@ -28,6 +28,7 @@ class Admin::MetalTypesController < Admin::AdminController
 
     respond_to do |format|
       if @metal_type.save
+        record_activity(@metal_type)
         format.html { redirect_to admin_metal_types_path, notice: 'Тип металла был успешно создан.' }
         format.json { render :show, status: :created, location: @metal_type }
       else
@@ -42,6 +43,7 @@ class Admin::MetalTypesController < Admin::AdminController
   def update
     respond_to do |format|
       if @metal_type.update(metal_type_params)
+        record_activity(@metal_type)
         format.html { redirect_to admin_metal_types_path, notice: 'Тип металла был успешно обновлен.' }
         format.json { render :show, status: :ok, location: @metal_type }
       else
@@ -54,7 +56,9 @@ class Admin::MetalTypesController < Admin::AdminController
   # DELETE /metal_types/1
   # DELETE /metal_types/1.json
   def destroy
+    @metal_type_tmp = @metal_type.dup
     @metal_type.destroy
+    record_activity(@metal_type_tmp)
     respond_to do |format|
       format.html { redirect_to admin_metal_types_url, notice: 'Тип металла был успешно удален.' }
       format.json { head :no_content }

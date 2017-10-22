@@ -28,6 +28,7 @@ class Admin::SaleSizesController < Admin::AdminController
 
     respond_to do |format|
       if @sale_size.save
+        record_activity(@sale_size)
         format.html { redirect_to admin_sale_sizes_path, notice: 'Скидка была создана.' }
         format.json { render :show, status: :created, location: @sale_size }
       else
@@ -42,6 +43,7 @@ class Admin::SaleSizesController < Admin::AdminController
   def update
     respond_to do |format|
       if @sale_size.update(sale_size_params)
+        record_activity(@sale_size)
         format.html { redirect_to admin_sale_sizes_path, notice: 'Скидка была обновлена.' }
         format.json { render :show, status: :ok, location: @sale_size }
       else
@@ -59,7 +61,9 @@ class Admin::SaleSizesController < Admin::AdminController
       product.new_price = nil
       product.save
     end
+    @sale_size_tmp = @sale_size.dup
     @sale_size.destroy
+    record_activity(@sale_size_tmp)
     respond_to do |format|
       format.html { redirect_to admin_sale_sizes_url, notice: 'Скидка была удалена.' }
       format.json { head :no_content }

@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable,
          :timeoutable
 
+  has_many :activity_logs, dependent: :delete_all
   belongs_to :picture, optional: true
 
   validates :email, :first_name, :second_name, presence: true

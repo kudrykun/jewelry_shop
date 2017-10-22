@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
     get 'products_light', to: 'products_light#index', as: 'products_light'
+    resources :activity_logs, only: [:index]
     resources :categories
     resources :collections
     resources :products

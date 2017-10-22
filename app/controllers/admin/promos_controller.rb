@@ -27,6 +27,7 @@ class Admin::PromosController < Admin::AdminController
     end
     respond_to do |format|
       if @promo.save
+        record_activity(@promo)
         format.html {redirect_to edit_admin_promo_path(@promo), notice: 'Акция была успешно создана.'}
         format.json {render :show, status: :created, location: @promo}
       else
@@ -49,7 +50,7 @@ class Admin::PromosController < Admin::AdminController
 
     respond_to do |format|
       if @promo.update(promo_params)
-
+        record_activity(@promo)
         format.html {redirect_to edit_admin_promo_path(@promo), notice: 'Акция была успешно обновлена.'}
         format.json {render :nothing => true}
       else
@@ -66,7 +67,9 @@ class Admin::PromosController < Admin::AdminController
     if !@promo.picture.nil?
       @promo.picture.destroy
     end
+    @promo_tmp = @promo.dup
     @promo.destroy
+    record_activity(@promo_tmp)
     respond_to do |format|
       format.html {redirect_to admin_promos_url, notice: 'Акция была успешно удалена.'}
       format.json {head :no_content}
