@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013134109) do
+ActiveRecord::Schema.define(version: 20171022172523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "note"
+    t.string   "user_ip"
+    t.string   "action"
+    t.datetime "created_at",      null: false
+    t.string   "user_name"
+    t.string   "entity_name"
+    t.string   "loggable_type"
+    t.integer  "loggable_id"
+    t.string   "object_title"
+    t.string   "controller_name"
+    t.index ["loggable_type", "loggable_id"], name: "index_activity_logs_on_loggable_type_and_loggable_id", using: :btree
+    t.index ["user_id"], name: "index_activity_logs_on_user_id", using: :btree
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -207,6 +223,31 @@ ActiveRecord::Schema.define(version: 20171013134109) do
     t.index ["picture_id"], name: "index_slides_on_picture_id", using: :btree
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.integer  "failed_attempts",        default: 0,     null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "first_name"
+    t.string   "second_name"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "picture_id"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.boolean  "admin",                  default: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["picture_id"], name: "index_users_on_picture_id", using: :btree
+  end
+
+  add_foreign_key "activity_logs", "users"
   add_foreign_key "incrustation_items", "incrustations"
   add_foreign_key "incrustation_items", "products"
   add_foreign_key "metal_type_products", "metal_types"

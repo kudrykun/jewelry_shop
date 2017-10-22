@@ -29,6 +29,7 @@ class Admin::ManufacturersController < Admin::AdminController
     end
 
     if @manufacturer.save
+      record_activity(@manufacturer)
       redirect_to edit_admin_manufacturer_path(@manufacturer), notice: 'Производитель был успешно добавлен.'
     else
       render :new
@@ -45,6 +46,7 @@ class Admin::ManufacturersController < Admin::AdminController
       @manufacturer.slide = slide
     end
     if @manufacturer.update(manufacturer_params)
+      record_activity(@manufacturer)
       redirect_to edit_admin_manufacturer_path(@manufacturer), notice: 'Производитель был успешно обновлен.'
     else
       render :edit
@@ -62,7 +64,9 @@ class Admin::ManufacturersController < Admin::AdminController
       product.manufacturer = nil
       product.save
     end
+    @manufacturer_tmp = @manufacturer.dup
     @manufacturer.destroy
+    record_activity(@manufacturer_tmp)
     redirect_to admin_manufacturers_url, notice: 'Производитель был успешно удален.'
   end
 

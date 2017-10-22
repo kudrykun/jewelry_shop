@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, :skip => [:registrations,:sessions]
+  devise_scope :user do
+    get 'login', to: 'devise/sessions#new', as: :new_user_session
+    post 'login', to: 'devise/sessions#create', as: :user_session
+    delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
   root 'store/main_page#index'
 
   get 'products/:id', to: 'store/products#show', as: 'product'
@@ -13,6 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
     get 'products_light', to: 'products_light#index', as: 'products_light'
+    resources :activity_logs, only: [:index]
     resources :categories
     resources :collections
     resources :products
@@ -30,6 +37,13 @@ Rails.application.routes.draw do
     resources :chain_types
     resources :promos
     resources :slides
+    resources :users
+    resource :users, only: [:update_password, :edit_password] do
+      collection do
+        patch ':id/update_password', to: 'users#update_password'
+        get ':id/edit_password', to: 'users#edit_password', as: 'edit_password'
+      end
+    end
   end
 
 end

@@ -1,5 +1,6 @@
 Faker::Config.locale = 'ru'
 
+User.delete_all
 ProductsPromo.delete_all
 Promo.delete_all
 Slide.delete_all
@@ -24,14 +25,17 @@ Incrustation.delete_all
 MetalColor.delete_all
 MetalType.delete_all
 Manufacturer.delete_all
-Picture.delete_all
+Picture.all.each do |picture|
+  picture.image.destroy
+  picture.destroy
+end
 
 # база названий для основных таблицЦЕПОЧКИ
 category_titles = ["Кольца","Серьги","Подвески","Кулоны","Часы","Колье","Браслеты","Столовые приборы"]
 collection_titles = ["Геометрия","Золото и бриллианты","Вальс тюльпанов","Цветочный рай","Природные мотивы","Золото и бриллианты","Цветной водопад","Солнечное царство","Antique","Эволюция"]
 incrustation_titles = ["Алмаз","Рубин","Сапфир","Аквамарин","Изумруд","Александрит","Гранаты","Аметист","Опал благородный","Опал огненный","Топаз","Жемчуг","Янтарь","Коралл"]
 kit_titles = ["Альфа","Бета","Гамма","Дельта","Эпсилон","Дзета","Эта","Тета","Йота","Каппа","Лямбда","Омикрон"]
-size_titles = ["14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20","20.5","21","21.5","22","22.5","23","23.5","24","24.5","25","40","45","50","55","60","65","70","75"]
+size_titles = ["В наличии","14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20","20.5","21","21.5","22","22.5","23","23.5","24","24.5","25","40","45","50","55","60","65","70","75"]
 sale_Size_percent = [10,20,30,40,50]
 metal_color_titles = ["Белый","Желтый","Красный","Розовый"]
 metal_type_titles = ["Золото(585)","Серебро(925)"]
@@ -190,4 +194,10 @@ kits.each do |kit|
   (2 + rand(2)).times do
     kit.products << products.delete(products.sample)
   end
+end
+
+User.create!(email: 'kudry@gmail.com', first_name: 'Сергей', second_name: 'Василенко', password: 'qwerty', admin: true)
+User.create!(email: 'king@gmail.com', first_name: 'Илья', second_name: 'Король', password: 'qwerty', admin: true)
+5.times do |i|
+  User.create!(email: "user#{i}@gmail.com", first_name: Faker::Name.first_name, second_name: Faker::Name.last_name, password: 'qwerty')
 end

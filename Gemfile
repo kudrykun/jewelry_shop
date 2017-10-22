@@ -46,6 +46,8 @@ gem 'filterrific'
 gem 'will_paginate'
 gem 'jquery-ui-rails'
 
+gem 'devise'
+gem 'avatarly'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -70,6 +72,7 @@ group :development do
   gem 'rack-mini-profiler'
   # ищет узкие места в структуре приложения и БД
   gem 'bullet'
+  gem "letter_opener"
 end
 
 group :production do

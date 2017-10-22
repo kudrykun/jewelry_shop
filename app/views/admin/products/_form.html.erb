@@ -137,8 +137,11 @@
               </div>
 
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :to_main_page, 'На главную', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на главной странице?'} %>
-                <i class="fa fa-info" aria-hidden="true"></i>
+                <%= f.label :to_main_page, :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на главной странице?'} do %>
+                    На главную
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                <% end %>
+
                 <div class="material-switch pull-right">
                   <%= f.check_box :to_main_page %>
                   <%= f.label :to_main_page, class: 'label-primary' do %>
@@ -147,8 +150,11 @@
               </div>
 
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :recommendation, 'Рекомендовать', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие в "Вам понравится" ?'} %>
-                <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие в 'Вам понравится' ?"></i>
+                <%= f.label :recommendation, :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие в "Вам понравится" ?'} do %>
+                    Вам понравится
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                <% end %>
+
                 <div class="material-switch ml10 pull-right">
                   <%= f.check_box :recommendation %>
                   <%= f.label :recommendation, class: 'label-primary' do %>
@@ -156,8 +162,10 @@
                 </div>
               </div>
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :hit, 'Хит', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на вкладке ХИТ ?'} %>
-                <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на вкладке ХИТ ?"></i>
+                <%= f.label :hit, :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на вкладке ХИТ ?'} do %>
+                  Хит
+                  <i class="fa fa-info" aria-hidden="true"></i>
+                <% end %>
                 <div class="material-switch ml10 pull-right">
                   <%= f.check_box :hit %>
                   <%= f.label :hit, class: 'label-primary' do %>
@@ -165,8 +173,10 @@
                 </div>
               </div>
               <div class="form-group" style="padding-right: 150px">
-                <%= f.label :visible, 'Видимость', :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на сайте ?'} %>
-                <i class="fa fa-info" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-original-title="Отображать изделие на сайте ?"></i>
+                <%= f.label :visible, :data => {:toggle => 'tooltip', :placement => 'top', :'original-title' => 'Отображать изделие на сайте ?'} do %>
+                  Видимость
+                <i class="fa fa-info" aria-hidden="true"></i>
+                <% end  %>
                 <div class="material-switch ml10 pull-right">
                   <%= f.check_box :visible %>
                   <%= f.label :visible, class: 'label-primary' do %>
@@ -174,7 +184,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <%= f.label :priority, 'Приоритет' %>
+                <%= f.label :priority, 'Приоритет на сайте' %>
                 <%= f.number_field :priority, {class: 'form-control', placeholder: 'Введите приоритет отображения от 1 до 9999'} %>
               </div>
 
@@ -349,7 +359,7 @@
                         <%else%>
                             <div class="dz-image" data-picture-id="<%=picture.id%>">
                         <%end%>
-                          <div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать превью">
+                          <div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать обложкой">
                             <i class="fa fa-thumb-tack pin" aria-hidden="true"></i>
                           </div>
                           <div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить" >

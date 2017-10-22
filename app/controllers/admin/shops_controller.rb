@@ -19,6 +19,7 @@ class Admin::ShopsController < Admin::AdminController
     @shop = Shop.new(shop_params)
     respond_to do |format|
       if @shop.save
+        record_activity(@shop)
         format.html {redirect_to admin_shops_path, notice: 'Магазин был успешно создан.'}
         format.json {render :show, status: :created, location: @shop}
       else
@@ -31,6 +32,7 @@ class Admin::ShopsController < Admin::AdminController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
+        record_activity(@shop)
         format.html {redirect_to admin_shops_path, notice: 'Магазин был успешно обновлен.'}
         format.json {render :show, status: :ok, location: @shop}
       else
@@ -41,7 +43,9 @@ class Admin::ShopsController < Admin::AdminController
   end
 
   def destroy
+    @shop_tmp = @shop.dup
     @shop.destroy
+    record_activity(@shop_tmp)
     respond_to do |format|
       format.html {redirect_to admin_shops_url, notice: 'Товар был успешно удален.'}
       format.json {head :no_content}

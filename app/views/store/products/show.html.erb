@@ -14,7 +14,7 @@
 
           <%= link_to 'Главная', root_path, class: 'breadcrumb' %>
           <%= link_to 'Каталог', catalog_path, class: 'breadcrumb' %>
-          <%= link_to @product.category.title, category_path(@product.category) , class: 'breadcrumb' %>
+          <%= link_to @product.category.title, category_path(@product.category), class: 'breadcrumb' %>
           <%= link_to @product.title, product_path(@product), class: 'breadcrumb' %>
         </div>
       </div>
@@ -37,7 +37,7 @@
 
             <% if @product.sale_size != nil && @product.sale_size.sale_percent != '' %>
                 <span class="red z-depth-3">-<%= @product.sale_size.sale_percent %>%</span>
-            <%end%>
+            <% end %>
 
           </div>
           <div class="col l10 offset-l1 m12 sm8 offset-sm2 s10 offset-s1">
@@ -80,12 +80,12 @@
         </div>
 
         <div class="col l12 m12 s12 prices">
-          <% if @product.new_price != nil  %>
+          <% if @product.new_price != nil %>
               <span class="new-price left"><%= number_to_currency(@product.new_price, locale: :ru) %></span>
               <span class="old-price"><s><%= number_to_currency(@product.price, locale: :ru) %></s><br>СТАРАЯ ЦЕНА</span>
           <% else %>
 
-              <% if @product.price != nil  %>
+              <% if @product.price != nil %>
                   <span class="new-price"><%= number_to_currency(@product.price, locale: :ru) %></span>
               <% else %>
                   <span class="old-price" style="font-size: 1rem">Под заказ</span>
@@ -94,49 +94,65 @@
 
 
         </div>
-
+        <% # TODO Сделай чтобы выводило все размеры, если не в наличии, а если в наличи, то сразу кнопку показать %>
         <% if @product.price != nil && @product.get_shop_sizes(@product.shops).size > 0 %>
-            <div class="col s12 btn_sizes-group" style="margin: 0;">
-              <p><b>Выберите размер:</b></p>
-              <% if @product.shops.size  %>
-                  <% @product.shops.each do |shop|%>
-                      <% if @product.get_shop_sizes(shop).size %>
-                          <%=shop.title%>
-                          <ul>
-                            <% @product.get_shop_sizes(shop).each do |size|%>
-                                <label class="btn border-btn">
-                                  <input type="radio" name="size" class="btn_set_size" id="size_"><%=size.size%>
-                                </label>
-                            <%end%>
-                          </ul>
-                      <%end%>
-                  <%end%>
-              <%end%>
-            </div>
+            <% if @product.shops.size %>
+                <% if @product.size_items.where(size_id: Size.find_by(size: 'В наличии')).size == 0 %>
+                    <div class="col s12 btn_sizes-group" style="margin: 0;">
+                      <p><b>Выберите размер:</b></p>
+                      <% @product.shops.each do |shop| %>
+                          <% if @product.get_shop_sizes(shop).size %>
+                              <%= shop.title %>
+                              <ul>
+                                <% @product.get_shop_sizes(shop).each do |size| %>
+                                    <label class="btn border-btn">
+                                      <input type="radio" name="size" class="btn_set_size" id="size_"><%= size.size %>
+                                    </label>
+                                <% end %>
+                              </ul>
+                          <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col l12 m12 sm12 s12 btn_basket-group">
+                      <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
+
+                      <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store"
+                         disabled="">
+                        ЗАБРАТЬ В МАГАЗИНЕ
+                      </a>
+
+                      <div class="card-panel hide">
+                        <div class="input-field inline">
+                          <a id="buy-in-one-click">
+                            <i class="material-icons">phone_forwarded</i></a>
+                          <input id="phone" type="tel" class="validate" placeholder="+7 (___) ___-____" value="">
+                          <label for="phone" class="active"><b class="grey-text text-darken-1">Заказать звонок
+                          </b> <span>( укажите свой телефон )</span></label>
+                        </div>
+                      </div>
+                    </div>
+
+                <% else %>
+
+                    <div class="col l12 m12 sm12 s12 btn_basket-group">
+                      <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store">
+                        ЗАБРАТЬ В МАГАЗИНЕ
+                      </a>
+                    </div>
+
+                <% end %>
+
+            <% end %>
+
+
         <% else %>
             <div class="col s12 btn_sizes-group">
-              <span class="off-sizes">Размеры отсутствуют</span>
+              <span class="off-sizes">Размеры отсутствуют (Под заказ)</span>
             </div>
-        <%end%>
+        <% end %>
 
 
-        <div class="col l12 m12 sm12 s12 btn_basket-group">
-          <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
 
-
-          <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store" disabled="">ЗАБРАТЬ В МАГАЗИНЕ</a>
-
-
-          <div class="card-panel hide">
-            <div class="input-field inline">
-              <a id="buy-in-one-click" >
-                <i class="material-icons">phone_forwarded</i></a>
-              <input id="phone" type="tel" class="validate" placeholder="+7 (___) ___-____" value="">
-              <label for="phone" class="active"><b class="grey-text text-darken-1">Заказать звонок
-              </b> <span>( укажите свой телефон )</span></label>
-            </div>
-          </div>
-        </div>
 
         <div class="col l12 m12 sm6 s12 delivery">
           <ul class="collection">
@@ -145,11 +161,11 @@
               <div>
                 <i class="material-icons">shopping_basket</i>
                 Забрать в магазине
-                <% if !@product.size_items.empty?  %>
-                  <span class="badge">Сегодня</span>
-                <% else  %>
-                  <span class="badge">Под заказ</span>
-                <% end  %>
+                <% if !@product.size_items.empty? %>
+                    <span class="badge">Сегодня</span>
+                <% else %>
+                    <span class="badge">Под заказ</span>
+                <% end %>
               </div>
             </li>
           </ul>
@@ -189,7 +205,7 @@
 
               </div>
               <div class="col s12">
-                <a class="waves-effect waves-light btn border-btn" >ПОКАЗАТЬ КОМПЛЕКТ</a>
+                <a class="waves-effect waves-light btn border-btn">ПОКАЗАТЬ КОМПЛЕКТ</a>
               </div>
             </div>
           </div>
@@ -203,16 +219,16 @@
 
 
             <% @product.kit.products.each do |product| %>
-                <li class="collection-item add-set-to-cart-item" >
+                <li class="collection-item add-set-to-cart-item">
                   <div class="row">
                     <div class="card-image col l2 m2 sm2 s3">
 
                       <%= link_to product_path(product) do %>
-                          <% if product.preview != nil  %>
-                              <%=image_tag product.preview.image(:medium),  width:'100%'  %>
+                          <% if product.preview != nil %>
+                              <%= image_tag product.preview.image(:medium), width: '100%' %>
                           <% else %>
-                              <%=image_tag 'ring2.jpg',  width:'100%' %>
-                          <%end%>
+                              <%= image_tag 'ring2.jpg', width: '100%' %>
+                          <% end %>
                       <% end %>
 
                     </div>
@@ -224,7 +240,7 @@
                     </div>
 
                     <div class="prices-card col sm3 s4 right-align">
-                      <% if product.new_price != nil  %>
+                      <% if product.new_price != nil %>
                           <span class="new-price"><%= number_to_currency(product.new_price, locale: :ru) %></span><br>
                           <span class="old-price"><s><%= number_to_currency(product.price, locale: :ru) %></s></span>
                       <% else %>
@@ -239,7 +255,8 @@
             <li class="collection-item">
               <div class="row">
                 <div class="col sm9 s8">
-                  <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">Цена за комплект:</h6>
+                  <h6 class="grey-text" style="font-weight: 400; margin: 1.25rem 0; text-transform: uppercase;">Цена за
+                    комплект:</h6>
                 </div>
                 <div class="prices-card col sm3 s4 right-align" style="margin: 0;">
                   <% if @product.kit.getKitNewPrice != nil && (@product.kit.getKitNewPrice != @product.kit.getKitPrice) %>
@@ -250,7 +267,7 @@
                   <% end %>
                 </div>
                 <div class="col s12 center" style="margin: 1.5rem 0 0 0;">
-                  <a class="waves-effect waves-light btn border-btn" >ПОКАЗАТЬ КОМПЛЕКТ</a>
+                  <a class="waves-effect waves-light btn border-btn">ПОКАЗАТЬ КОМПЛЕКТ</a>
                 </div>
               </div>
             </li>
@@ -301,28 +318,32 @@
             <h6><b>Общие параметры изделия</b></h6>
             <ul class="collection">
               <% if @product.product_type != nil && @product.product_type.title != '' %>
-                  <li class="collection-item">Вид изделия <span class="secondary-content"><%= @product.product_type.title %></span></li>
-              <%end%>
+                  <li class="collection-item">Вид изделия
+                    <span class="secondary-content"><%= @product.product_type.title %></span></li>
+              <% end %>
 
               <% if @product.metal_types.size > 0 %>
                   <li class="collection-item">Тип металла<span class="secondary-content">
-                    <% @product.metal_types.each do |metal_type|%>
-                        <%=metal_type.title%>
-                    <%end%>
+                    <% @product.metal_types.each do |metal_type| %>
+                        <%= metal_type.title %>
+                    <% end %>
                   </span></li>
-              <%end%>
+              <% end %>
 
               <% if @product.metal_color != nil && @product.metal_color.title != '' %>
-                  <li class="collection-item">Цвет металла<span class="secondary-content"><%= @product.metal_color.title %></span></li>
-              <%end%>
+                  <li class="collection-item">Цвет
+                    металла<span class="secondary-content"><%= @product.metal_color.title %></span></li>
+              <% end %>
 
               <% if @product.weight != nil %>
-                  <li class="collection-item">Минимальный вес<span class="secondary-content"><%= @product.weight %> г.</span></li>
-              <%end%>
+                  <li class="collection-item">Минимальный вес<span class="secondary-content"><%= @product.weight %>
+                    г.</span></li>
+              <% end %>
 
               <% if @product.sex != 'genderless' %>
-                  <li class="collection-item">Принадлежность<span class="secondary-content"><%= I18n.t :"activerecord.attributes.product.sex.#{@product.sex}"%></span></li>
-              <%end%>
+                  <li class="collection-item">Принадлежность<span class="secondary-content"><%= I18n.t :"activerecord.attributes.product.sex.#{@product.sex}" %></span>
+                  </li>
+              <% end %>
 
             </ul>
           </div>
@@ -332,19 +353,23 @@
 
             <% if @product.incrustation_items.size > 0 %>
 
-                <% @product.incrustation_items.each do |incrustation_item|%>
+                <% @product.incrustation_items.each do |incrustation_item| %>
                     <!--ТАКИ ВОТ ТАК ВОТ МОЖНО РАБОТАТЬ СО ВСТАВКАМИ, СЧИТАЮ СВОЮ РАБОТУ ОКОНЧЕННОЙ-->
                     <ul class="collection">
-                      <li class="collection-item">Тип<span class="secondary-content"><%=incrustation_item.incrustation.title%></span></li>
-                      <li class="collection-item">Количество<span class="secondary-content"><%=incrustation_item.quantity%> шт.</span></li>
-                      <li class="collection-item">Каратность<span class="secondary-content"><%=incrustation_item.weight%> крт.
-                        <%if !incrustation_item.purity.blank? %>
-                          <li class="collection-item">Чистота<span class="secondary-content"><%=incrustation_item.purity%></span></li>
-                      <%end%>
+                      <li class="collection-item">Тип<span class="secondary-content"><%= incrustation_item.incrustation.title %></span>
+                      </li>
+                      <li class="collection-item">Количество<span class="secondary-content"><%= incrustation_item.quantity %>
+                        шт.</span></li>
+                      <li class="collection-item">Каратность<span class="secondary-content"><%= incrustation_item.weight %>
+                        крт.
+                        <% if !incrustation_item.purity.blank? %>
+                          <li class="collection-item">Чистота<span class="secondary-content"><%= incrustation_item.purity %></span>
+                          </li>
+                      <% end %>
                     </ul>
-                <%end%>
+                <% end %>
 
-            <%end%>
+            <% end %>
 
           </div>
         </div>
@@ -374,7 +399,6 @@
             <%= render './layouts/renders/product-card', product: product %>
           </div>
       <% end %>
-
 
 
     </div><!-- owl -->

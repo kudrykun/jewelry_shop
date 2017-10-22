@@ -28,6 +28,7 @@ class Admin::SizesController < Admin::AdminController
 
     respond_to do |format|
       if @size.save
+        record_activity(@size)
         format.html { redirect_to admin_sizes_path, notice: 'Размер был добавлен.' }
         format.json { render :show, status: :created, location: @size }
       else
@@ -42,6 +43,7 @@ class Admin::SizesController < Admin::AdminController
   def update
     respond_to do |format|
       if @size.update(size_params)
+        record_activity(@size)
         format.html { redirect_to admin_sizes_path, notice: 'Размер был обновлен.' }
         format.json { render :show, status: :ok, location: @size }
       else
@@ -54,7 +56,9 @@ class Admin::SizesController < Admin::AdminController
   # DELETE /sizes/1
   # DELETE /sizes/1.json
   def destroy
+    @size_tmp = @size.dup
     @size.destroy
+    record_activity(@size_tmp)
     respond_to do |format|
       format.html { redirect_to admin_sizes_url, notice: 'Размер был удален.' }
       format.json { head :no_content }

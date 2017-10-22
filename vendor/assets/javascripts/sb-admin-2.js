@@ -59,15 +59,37 @@ $.extend( $.fn.dataTable.defaults, {
 $(document).ready(function() {
     $('#table').css("visibility", "visible");
     $('i.fa-refresh').remove();
-    $('.category_dataTable').dataTable( {
+    $('#categoryDataTable').dataTable( {
         "order": [[ 2, "asc" ]]
     });
+    $('#simpleDataTable').dataTable();
 });
 
 $(document).ready(function() {
 
-    $('#dataTables-example').DataTable( {
+    $('#productDataTable').DataTable( {
         initComplete: function () {
+                // Setup - add a text input to each footer cell
+                $('#productDataTable tfoot th.filterring').each( function () {
+                    var title = $(this).text();
+                    $(this).html( '<input type="text" class="" placeholder="'+title+'" />' );
+                } );
+            this.api().columns().every( function () {
+                    var that = this;
+
+                    $( 'input', this.footer() ).on( 'keyup change', function () {
+                        if ( that.search() !== this.value ) {
+                            that
+                                .search( this.value )
+                                .draw();
+                        }
+                    } );
+                } );
+
+
+
+
+/*
             this.api().columns([0,1,2,3]).every( function () {
                 var column = this;
                 var select = $('<select class="selectpicker" data-width="fit" title="..."><option value=""></option></select>')
@@ -85,7 +107,10 @@ $(document).ready(function() {
                 column.data().unique().sort().each( function ( d, j ) {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
-            } );
+            } );*/
+
+
+
         }
     } );
 } );

@@ -2,30 +2,34 @@
   <h1 class="panel-heading">Типы металлов</h1>
   <div id="notice" class="alert alert-success"><%= notice %></div>
 </div>
-<%= link_to 'В товары', admin_products_path, class: 'btn btn-default' %>
+<%= link_to 'Все изделия', admin_products_path, class: 'btn btn-default' %>
 <%= link_to  new_admin_metal_type_path, class: 'btn btn-success'  do %>
     Добавить металл
     <i class="fa fa-plus"></i>
 <% end %>
 <br><br>
 <div class="panel panel-default">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Название</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @metal_types.each do |metal_type| %>
+  <div class="panel-body">
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="simpleDataTable">
+      <thead>
         <tr>
-          <td><%= metal_type.title %></td>
-          <td><%= link_to 'Показать', admin_metal_type_path(metal_type) %></td>
-          <td><%= link_to 'Изменить', edit_admin_metal_type_path(metal_type) %></td>
-          <td><%= link_to 'Удалить', admin_metal_type_path(metal_type), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          <th>Название</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @metal_types.each do |metal_type| %>
+          <tr>
+            <td><%= metal_type.title %></td>
+            <td><%= link_to 'Показать', admin_metal_type_path(metal_type) %></td>
+            <td><%= link_to 'Изменить', edit_admin_metal_type_path(metal_type) %></td>
+            <td><%= link_to 'Удалить', admin_metal_type_path(metal_type), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

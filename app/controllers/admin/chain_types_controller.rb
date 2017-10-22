@@ -20,6 +20,7 @@ class Admin::ChainTypesController < Admin::AdminController
     @chain_type = ChainType.new(chain_type_params)
 
     if @chain_type.save
+      record_activity(@chain_type)
       redirect_to admin_chain_types_path, notice: 'Вид плетения был успешно создан.'
     else
       render :new
@@ -28,6 +29,7 @@ class Admin::ChainTypesController < Admin::AdminController
 
   def update
     if @chain_type.update(chain_type_params)
+      record_activity(@chain_type)
       redirect_to admin_chain_types_path, notice: 'Вид плетения был успешно обновлен.'
     else
       render :edit
@@ -39,7 +41,9 @@ class Admin::ChainTypesController < Admin::AdminController
       product.chain_type = nil
       product.save
     end
+    @chain_type_tmp = @chain_type.dup
     @chain_type.destroy
+    record_activity(@chain_type_tmp)
     redirect_to admin_chain_types_url, notice: 'Вид плетения был успешно удален.'
   end
 

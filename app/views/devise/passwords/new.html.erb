@@ -1,0 +1,34 @@
+
+
+
+
+<div class="login-panel panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Восстановление пароля</h3>
+    <!--Информация всякая ИЛЬЯ-->
+    <%flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    <%end %>
+  </div>
+  <div class="panel-body">
+    <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+        <fieldset>
+
+          <div class="form-group">
+            <%= f.label :email, 'Электронная почта' %><br />
+            <%= f.email_field :email, autofocus: true, class:'form-control' %>
+          </div>
+
+          <div class="actions mb10">
+            <%= f.submit "Восстановить пароль", class:'btn btn-lg btn-success btn-block' %>
+          </div>
+
+        </fieldset>
+
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

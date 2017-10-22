@@ -23,6 +23,7 @@ class Admin::SlidesController < Admin::AdminController
     end
     respond_to do |format|
       if @slide.save
+        record_activity(@slide)
         format.html {redirect_to edit_admin_slide_path(@slide), notice: 'Акция была успешно создана.'}
         format.json {render :show, status: :created, location: @slide}
       else
@@ -40,7 +41,7 @@ class Admin::SlidesController < Admin::AdminController
 
     respond_to do |format|
       if @slide.update(slide_params)
-
+        record_activity(@slide)
         format.html {redirect_to edit_admin_slide_path(@slide), notice: 'Акция была успешно обновлена.'}
         format.json {render :nothing => true}
       else
@@ -54,7 +55,9 @@ class Admin::SlidesController < Admin::AdminController
     if !@slide.picture.nil?
       @slide.picture.destroy
     end
+    @slide_tmp = @slide.dup
     @slide.destroy
+    record_activity(@slide_tmp)
     respond_to do |format|
       format.html {redirect_to admin_slides_url, notice: 'Акция была успешно удалена.'}
       format.json {head :no_content}

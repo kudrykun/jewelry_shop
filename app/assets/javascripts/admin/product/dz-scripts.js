@@ -5,7 +5,7 @@ $(document).ready(function () {
     * rails_pictures_path - строка, содержит рельсовский путь до картинок*/
 
     var file_size_restriction = 3; //mb
-    var permitted_file_extensions = ['jpg', 'jpeg', 'png'];
+    var permitted_file_extensions = ['jpg', 'jpeg', 'png', 'gif'];
     var rails_pictures_path = '/admin/pictures/';
 
     /*Инициализация
@@ -231,7 +231,7 @@ $(document).ready(function () {
             $("#droppedImages .row").append(
                 '<div class="col-xs-12 col-sm-6 col-md-3 dz-image-container">' +
                     '<div class="dz-image">' +
-                        '<div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать превью">' +
+                        '<div class="dz-preview-btn" data-toggle="tooltip" data-placement="top" data-original-title="Нажмите, чтобы сделать обложкой">' +
                             '<i class="fa fa-thumb-tack pin" aria-hidden="true"></i>' +
                         '</div>' +
                         '<div class="dz-delete-btn" data-toggle="tooltip" data-placement="top" data-original-title="Удалить">' +
@@ -251,12 +251,16 @@ $(document).ready(function () {
             var restriction_in_bytes = file_size_restriction * 1024 * 1024;
             var extension_permitted = (permitted_file_extensions.indexOf(extension) != -1);
             var size_permitted = (file_size <= restriction_in_bytes);
-            if (extension_permitted && size_permitted) {
-                return true;
+            if (!extension_permitted) {
+                alert("Недопустимый формат!");
+                return false;
             }
-            else {
+            if (!size_permitted) {
                 alert("Ограничение на размер файла: " + file_size_restriction + " Mб");
                 return false;
+            }
+            if (extension_permitted && size_permitted) {
+                return true;
             }
         };
     }

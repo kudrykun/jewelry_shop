@@ -9,27 +9,33 @@
 <br>
 <br>
 <div class="panel panel-default">
-  <table width="100%" class="table table-striped table-bordered table-hover">
-    <thead>
-    <tr>
-      <th>Название</th>
-      <th>Описание</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
+  <div class="panel-body">
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="simpleDataTable">
+      <thead>
+      <tr>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Изделий в акции</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
 
-    <tbody>
-    <% @promos.each do |promo| %>
-        <tr>
-          <td><%= promo.title %></td>
-          <td><%= truncate(promo.text, length: 30) %></td>
-          <td><%= link_to 'Показать', admin_promo_path(promo) %></td>
-          <td><%= link_to 'Изменить', edit_admin_promo_path(promo) %></td>
-          <td><%= link_to 'Удалить', admin_promo_path(promo), method: :delete, data: {confirm: 'Вы уверены?'} %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+      <tbody>
+      <% @promos.each do |promo| %>
+          <tr>
+            <td><%= promo.title %></td>
+            <td><%= truncate(promo.text, length: 30) %></td>
+            <td><%= promo.products.size %></td>
+            <td><%= link_to 'Показать', admin_promo_path(promo) %></td>
+            <td><%= link_to 'Изменить', edit_admin_promo_path(promo) %></td>
+            <td><%= link_to 'Удалить', admin_promo_path(promo), method: :delete, data: {confirm: 'Вы уверены?'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 <br>
 

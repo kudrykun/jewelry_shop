@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Вход в Административную панель</title>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'admin-logo.png', type: 'image/png' %>
+  <%= favicon_link_tag 'admin-logo.png', rel: 'apple-touch-icon', type: 'image/png' %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'admin/admin', media: 'all' %>
+  <%= javascript_include_tag 'admin/admin' %>
+</head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+<%= yield %>
+    </div>
+  </div>
+</div>
+</body>
+</html>
