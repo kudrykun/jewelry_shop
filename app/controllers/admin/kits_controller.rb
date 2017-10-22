@@ -24,6 +24,7 @@ class Admin::KitsController < Admin::AdminController
   def create
     @kit = Kit.new(kit_params)
     if @kit.save
+      Kit.reset_counters(@kit.id, :products)
       redirect_to admin_kit_path(@kit), notice: 'Комплект был добавлен.'
     else
       render :new
