@@ -2,6 +2,9 @@
   <h1 class="panel-heading">Слайд</h1>
   <p id="notice"><%= notice %></p>
 </div>
+<%= link_to 'Изменить', edit_admin_slide_path(@slide),  class: 'btn btn-default mr10' %>
+<%= link_to 'Назад', admin_slides_path,  class: 'btn btn-default' %>
+
 <p>
   <strong>Скрыт:</strong>
   <%= @slide.hide %>
@@ -17,5 +20,3 @@
     </p>
 <% end %>
 
-<%= link_to 'Изменить', edit_admin_slide_path(@slide),  class: 'btn btn-default mr10' %>
-<%= link_to 'Назад', admin_slides_path,  class: 'btn btn-default' %>
