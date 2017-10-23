@@ -210,9 +210,9 @@ ActiveRecord::Schema.define(version: 20171023082825) do
   end
 
   create_table "sizes", force: :cascade do |t|
+    t.string   "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "size"
   end
 
   create_table "slides", force: :cascade do |t|
