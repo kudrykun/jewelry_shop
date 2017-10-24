@@ -77,7 +77,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       address:              'smtp.locum.ru',
       port:                 25,
-      domain:               '',
+      domain:               'locum.ru',
       user_name:            '',
       password:             '',
       openssl_verify_mode:  'none',
