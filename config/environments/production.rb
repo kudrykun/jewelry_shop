@@ -72,6 +72,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # setting up mail server for locum.ru
+  config.action_mailer.default_url_options = { :host => "elit-jeweller.ru" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       address:              'smtp.locum.ru',
