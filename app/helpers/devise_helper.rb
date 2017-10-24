@@ -6,6 +6,7 @@ module DeviseHelper
 
     html = <<-HTML
     <div class="alert alert-danger alert-password" role="alert" id="error_explanation">
+      <button type="button" class="close" data-dismiss="alert">x</button>
       <ul class="list-unstyled">
         #{messages}
       </ul>
