@@ -129,7 +129,8 @@ input[type="search"]::-webkit-search-results-decoration {
     text-align: center;
   }
   .logo {
-    width: 210px;
+    height: 70px;
+    margin-top: -10px;
   }
 }
 @media only screen and (max-width: 992px) {
@@ -143,15 +144,12 @@ input[type="search"]::-webkit-search-results-decoration {
   }
 }
 @media only screen and (max-width: 600px) {
-  .logo {
-    height: 46px;
-  }
   .logo img:first-child {
-    margin-right: 0px;
-    margin-left: 0px;
+      width: 100%;
+    margin-right: 0;
+    margin-left: 0;
     margin-top: 2px;
     padding: 4px 0;
-/*    transform: rotate(-33deg);*/
   }
 }
 
