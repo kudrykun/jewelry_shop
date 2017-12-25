@@ -16,7 +16,14 @@
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= stylesheet_link_tag    'store/store', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111479066-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'UA-111479066-1');
+  </script>
 </head>
 
 <body class="nav-on-left">

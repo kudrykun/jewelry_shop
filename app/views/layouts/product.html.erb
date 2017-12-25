@@ -11,11 +11,19 @@
   <meta name="theme-color" content="#8F1335">
   <title>Купить <%= @product.title %> в Железногорске. Ювелирные салоны Элит</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <meta name="description" content="Вы можете купить <%= @product.title %><% if @product.product_type != nil && @product.product_type.title != '' %><%= @product.product_type.title %> пробы <%end%> артикул <%= @product.artikul %>  на сайте по выгодной цене в Железногорск Курская область">
   <meta name="yandex-verification" content="6c187b6757eb8627" />
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= stylesheet_link_tag    'store/store', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111479066-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'UA-111479066-1');
+  </script>
 </head>
 
 <body class="nav-on-left">
