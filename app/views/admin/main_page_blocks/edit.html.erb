@@ -1,0 +1,8 @@
+<div class="row">
+  <div id="notice" class="alert alert-success"><%= notice %></div>
+  <h1 class="panel-heading">Редактирование блока</h1>
+</div>
+<div class="mb15">
+  <%= link_to 'Назад', admin_main_page_blocks_path, class: 'btn btn-default'  %>
+</div>
+<%= render 'form', main_page_block: @main_page_block %>

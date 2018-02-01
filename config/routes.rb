@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :chain_types
     resources :promos
     resources :slides
+    resources :main_page_blocks
     resources :users
     resource :users, only: [:update_password, :edit_password] do
       collection do

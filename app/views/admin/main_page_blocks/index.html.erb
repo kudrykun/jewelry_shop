@@ -1,0 +1,46 @@
+<div class="row">
+  <h1 class="panel-heading">Слайды главной страницы</h1>
+  <div id="notice" class="alert alert-success"><%= notice %></div>
+</div>
+<%= link_to new_admin_main_page_block_path, class: 'btn btn-success' do %>
+    Добавить блок
+    <i class="fa fa-plus"></i>
+<% end %>
+<br>
+<br>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table  width="100%" class="table table-striped table-bordered table-hover" id="simpleDataTable">
+      <thead>
+      <tr>
+        <th>Изображение</th>
+        <th>Приоритет</th>
+        <th>Скрыт</th>
+        <th>Ссылка</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @main_page_blocks.each do |main_page_block| %>
+          <tr>
+            <td>
+              <% if !main_page_block.picture.nil? %>
+                  <%= image_tag (main_page_block.picture.image(:thumb)) %>
+              <% end %>
+            </td>
+            <td><%= main_page_block.priority %></td>
+            <td><%= main_page_block.hide %></td>
+            <td><%= main_page_block.href %></td>
+            <td><%= link_to 'Изменить', edit_admin_main_page_block_path(main_page_block) %></td>
+            <td><%= link_to 'Удалить', admin_main_page_block_path(main_page_block), method: :delete, data: {confirm: 'Вы уверены?'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+

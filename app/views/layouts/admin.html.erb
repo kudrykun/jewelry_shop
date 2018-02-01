@@ -89,10 +89,13 @@
             <%= link_to admin_dashboard_path do %> <i class="fa fa-dashboard fa-fw"></i> Главная <% end %>
           </li>
           <li>
-            <a href="#"><i class="fa fa-cogs fa-fw"></i> Настройки <span class="fa arrow"></span></a>
+            <a href="#"><i class="fa fa-cogs fa-fw"></i> Настройки главной <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
               <li>
-                <%= link_to 'Слайдер главной страницы', admin_slides_path %>
+                <%= link_to 'Главный слайдер', admin_slides_path %>
+              </li>
+              <li>
+                <%= link_to 'Блоки со ссылками', admin_main_page_blocks_path %>
               </li>
             </ul>
           </li>
