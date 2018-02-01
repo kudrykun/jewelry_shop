@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023082825) do
+ActiveRecord::Schema.define(version: 20180201165637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20171023082825) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "products_count"
+  end
+
+  create_table "main_page_blocks", force: :cascade do |t|
+    t.string  "title"
+    t.string  "href"
+    t.integer "priority"
+    t.boolean "hide"
+    t.string  "class_s",    default: "s6"
+    t.string  "class_sm",   default: "sm4"
+    t.integer "picture_id"
+    t.index ["picture_id"], name: "index_main_page_blocks_on_picture_id", using: :btree
   end
 
   create_table "manufacturers", force: :cascade do |t|

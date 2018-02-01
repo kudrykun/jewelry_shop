@@ -1,4 +1,4 @@
-<%= form_for([:admin,main_page_block], :html => {multipart: true}) do |f| %>
+<%= form_for([:admin, main_page_block], :html => {multipart: true}) do |f| %>
     <% if main_page_block.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(main_page_block.errors.count, "error") %> prohibited this slide from being saved:</h2>
@@ -59,7 +59,7 @@
             <%= f.label :class_s, '1/2 ширины', value:'s6' %>
           </div>
           <div class="md-radio md-radio-inline">
-            <%= f.radio_button :class_ss, 's12' %>
+            <%= f.radio_button :class_s, 's12' %>
             <%= f.label :class_s, 'Во всю ширину',value:'s12' %>
           </div>
         </div>

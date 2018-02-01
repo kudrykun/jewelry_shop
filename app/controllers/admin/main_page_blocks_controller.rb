@@ -1,76 +1,76 @@
 class Admin::MainPageBlocksController < Admin::AdminController
-  # before_action :set_slide, only: [:show, :edit, :update, :destroy]
+  before_action :set_main_page_block, only: [:show, :edit, :update, :destroy]
 
   def index
-    @main_page_blocks = Slide.all
+    @main_page_blocks = MainPageBlock.all
   end
 
   def show
   end
 
   def new
-    @main_page_block = Slide.new
+    @main_page_block = MainPageBlock.new
   end
 
   def edit
   end
 
   def create
-    # @slide = Slide.new(slide_params)
-    # if params[:picture]
-    #   picture = Picture.create(image: params[:picture])
-    #   @slide.picture = picture
-    # end
-    # respond_to do |format|
-    #   if @slide.save
-    #     record_activity(@slide)
-    #     format.html {redirect_to edit_admin_slide_path(@slide), notice: 'Акция была успешно создана.'}
-    #     format.json {render :show, status: :created, location: @slide}
-    #   else
-    #     format.html {render :new}
-    #     format.json {render json: @slide.errors, status: :unprocessable_entity}
-    #   end
-    # end
+    @main_page_block = MainPageBlock.new(main_page_block_params)
+    if params[:picture]
+      picture = Picture.create(image: params[:picture])
+      @main_page_block.picture = picture
+    end
+    respond_to do |format|
+      if @main_page_block.save
+        record_activity(@main_page_block)
+        format.html {redirect_to edit_admin_main_page_block_path(@main_page_block), notice: 'Блок был успешно создан.'}
+        format.json {render :show, status: :created, location: @main_page_block}
+      else
+        format.html {render :new}
+        format.json {render json: @main_page_block.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def update
-    # if params[:picture]
-    #   picture = Picture.create(image: params[:picture])
-    #   @slide.picture = picture
-    # end
-    #
-    # respond_to do |format|
-    #   if @slide.update(slide_params)
-    #     record_activity(@slide)
-    #     format.html {redirect_to edit_admin_slide_path(@slide), notice: 'Акция была успешно обновлена.'}
-    #     format.json {render :nothing => true}
-    #   else
-    #     format.html {render :edit}
-    #     format.json {render json: @slide.errors, status: :unprocessable_entity}
-    #   end
-    # end
+    if params[:picture]
+      picture = Picture.create(image: params[:picture])
+      @main_page_block.picture = picture
+    end
+
+    respond_to do |format|
+      if @main_page_block.update(main_page_block_params)
+        record_activity(@main_page_block)
+        format.html {redirect_to edit_admin_main_page_block_path(@main_page_block), notice: 'Блок был успешно обновлен.'}
+        format.json {render :nothing => true}
+      else
+        format.html {render :edit}
+        format.json {render json: @main_page_block.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def destroy
-    # if !@slide.picture.nil?
-    #   @slide.picture.destroy
-    # end
-    # @slide_tmp = @slide.dup
-    # @slide.destroy
-    # record_activity(@slide_tmp)
-    # respond_to do |format|
-    #   format.html {redirect_to admin_slides_url, notice: 'Акция была успешно удалена.'}
-    #   format.json {head :no_content}
-    # end
+    if !@main_page_block.picture.nil?
+      @main_page_block.picture.destroy
+    end
+    @main_page_block_tmp = @main_page_block.dup
+    @main_page_block.destroy
+    record_activity(@main_page_block_tmp)
+    respond_to do |format|
+      format.html {redirect_to admin_main_page_blocks_url, notice: 'Блок был успешно удален.'}
+      format.json {head :no_content}
+    end
   end
   private
 
-  def set_slide
-    # @slide = Slide.find(params[:id])
+  def set_main_page_block
+    @main_page_block = MainPageBlock.find(params[:id])
   end
 
-  def slide_params
-    # params.require(:slide).permit(:href, :hide, :picture_id, :priority)
+  def main_page_block_params
+    params.require(:main_page_block).permit(:title, :href, :hide, :picture_id, :priority, :class_s, :class_sm)
   end
 
 end
