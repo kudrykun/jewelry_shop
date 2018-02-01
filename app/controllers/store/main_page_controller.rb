@@ -11,6 +11,15 @@ class Store::MainPageController < Store::StoreController
         @slides << slide
       end
     end
+
+    main_page_blocks = MainPageBlock.all.where(hide: false).order(priority: :desc)
+    @main_page_blocks = []
+    main_page_blocks.each do |main_page_block|
+      if !main_page_block.picture.nil?
+        @main_page_blocks << main_page_block
+      end
+    end
+
     @category = Category.all
     #TODO передавать в слайды только те объекты, кто есть картинки!
     # Продукты на главную страницу с пометкой hit

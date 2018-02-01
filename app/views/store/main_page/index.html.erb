@@ -66,14 +66,6 @@
   </div><!-- row -->
 </div><!-- container -->
 
-
-<!--< % @products.pictures.each do |picture| %>-->
-    <!--< %= picture.image %>-->
-<!--< % end%>-->
-
-
-
-
 <div class="logo-slider">
   <div class="container">
     <div class="row">
@@ -95,6 +87,20 @@
 
 <div class="container">
   <div class="row">
+
+    <% @main_page_blocks.each do |block| %>
+        <div class="col <%= block.class_sm %> <%= block.class_s %> card">
+          <figure class="effect-steve elit-reveal">
+            <%= image_tag(block.picture.image) %>
+            <figcaption>
+              <a href="<%= block.href %>"></a>
+            </figcaption>
+            <h5 class="center-align"><%= block.title %></h5>
+          </figure>
+        </div>
+    <% end %>
+
+
     <div class="col sm4 s6 card waves-effect">
       <figure class="effect-steve elit-reveal">
         <%= image_tag('content-img/image-1.jpg') %>
