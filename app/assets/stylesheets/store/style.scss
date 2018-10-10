@@ -2011,10 +2011,8 @@ nav .nav-wrapper .col {
 
 
 .ordering {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
-
-
 .ordering .tabs {
     height: 40px;
     margin-bottom: 1rem;
@@ -2406,6 +2404,16 @@ a.btn {
     margin-top: 0;
 }
 
+.shop-address{
+    padding-left: 28px;
+    position: relative;
+}
+
+.shop-address i{
+    left: 0;
+    position: absolute;
+}
+
 .flow-text {
     font-weight: lighter;
 }
@@ -2686,4 +2694,40 @@ footer.page-footer ul li {
 [type=checkbox]:not(:checked) {
     left: inherit;
     margin-top: 8px;
+}
+
+// loader category
+
+.filterrific_spinner {
+  position: absolute;
+  top: 10px;
+  right: 50%;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+.filterrific_spinner img{
+  visibility: hidden;
+}
+.filterrific_spinner:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 3px solid #fdd;
+  border-color: #e53935 transparent #e53935 transparent;
+  animation: filterrific_spinner 1.2s linear infinite;
+}
+@keyframes filterrific_spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

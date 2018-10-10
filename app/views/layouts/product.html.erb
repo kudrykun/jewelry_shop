@@ -40,14 +40,14 @@
 
 <%= render './layouts/renders/basket' %>
 
-<div id="modal-store" class="modal" style="max-width: 850px; z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 4%;">
+<div id="modal-store" class="modal">
 
-  <div id="one-store" data-current-city-id="6" class="modal-content shop-location">
+  <div class="modal-content shop-location">
     <h4 class="flow-text">
       <a href="#!" class="modal-close right">
         <i class="material-icons">close</i>
       </a>
-      Железногорск, Курская область
+      Наличие изделий в салонах "Элит"
     </h4>
     <div class="row ordering">
       <div class="col l4 m4 sm5 s9 inner_tabs">
@@ -71,11 +71,40 @@
             <li class="collection-item">
               <div class="row">
                 <div class="col l3 m5 sm5 s12">
-                  <p>ТЦ «Универмаг»<br>Ювелирный салон «Элит»</p>
+                  <p>ТРЦ «Европа»</p>
                 </div>
                 <div class="col l5 m7 sm7 s12">
-                  <p class="grey-text text-darken-1"><i class="material-icons left">place</i>ул. Ленина, 37. Левое крыло</p>
-                  <p class="grey-text text-darken-1"><i class="material-icons left">access_time</i>Пн. - Вс.: 10:00 - 19:00</p>
+                  <p class="grey-text text-darken-1">
+                    <i class="material-icons left">place</i>
+                    г. Железногорск, ул. Ленина, 57
+                  </p>
+                  <p class="grey-text text-darken-1">
+                    <i class="material-icons left">access_time</i>Пн. - Вс.: 10:00 - 21:00
+                  </p>
+                </div>
+                <div class="col l4 m12 sm12 s12">
+                  <p class="grey-text  text-darken-1">Размеры в наличии:
+                    <% @product.get_shop_sizes(Shop.find_by(title:'Европа')).each do |size|%>
+                        <%=size.size%>
+                    <% end %>
+                  </p>
+                  <a href="tel:+79611960783" class="waves-effect waves-light btn border-btn pickup-btn">Позвонить в салон: +7 961 196-0783</a>
+                </div>
+              </div>
+            </li>
+            <li class="collection-item">
+              <div class="row">
+                <div class="col l3 m5 sm5 s12">
+                  <p>ТЦ «Универмаг»</p>
+                </div>
+                <div class="col l5 m7 sm7 s12">
+                  <p class="grey-text text-darken-1">
+                    <i class="material-icons left">place</i>
+                    г. Железногорск, ул. Ленина, 37, левое "крыло"
+                  </p>
+                  <p class="grey-text text-darken-1">
+                    <i class="material-icons left">access_time</i>Пн. - Вс.: 10:00 - 19:00
+                  </p>
                 </div>
                 <div class="col l4 m12 sm12 s12">
                   <p class="grey-text  text-darken-1">Размеры в наличии:
@@ -90,11 +119,17 @@
             <li class="collection-item">
               <div class="row">
                 <div class="col l3 m5 sm5 s12">
-                  <p>ТЦ «Линия»<br>Ювелирный салон «Элит»</p>
+                  <p>ГМ «Линия»</p>
                 </div>
                 <div class="col l5 m7 sm7 s12">
-                  <p class="grey-text text-darken-1"><i class="material-icons left">place</i>ул. Воинов-Интернационалистов, 18.</p>
-                  <p class="grey-text text-darken-1"><i class="material-icons left">access_time</i>Пн. - Вс.: 10:00 - 20:00</p>
+                  <p class="grey-text text-darken-1">
+                    <i class="material-icons left">place</i>
+                    г. Железногорск, ул. Воинов-Интернационалистов, 18.
+                  </p>
+                  <p class="grey-text text-darken-1">
+                    <i class="material-icons left">access_time</i>
+                    Пн. - Вс.: 10:00 - 20:00
+                  </p>
                 </div>
                 <div class="col l4 m12 sm12 s12">
                   <p class="grey-text  text-darken-1">Размеры в наличии:
@@ -121,28 +156,11 @@
 <%= javascript_include_tag 'store/store' %>
 <%= javascript_include_tag 'store/product/product.js' %>
 
-<!--<script type="text/javascript">
-    jQuery(function($){
-        $("#phone").mask("+7 (999) 999-9999");
-    });
-</script>-->
-
 <script>
     // Change size
     $(function () {
-        var $btn = $('#add-to-cart');
-        var $btn2 = $('#add-to-cart-one-click');
         $(document).on('change', 'input[name=size].btn_set_size', function () {
-            var size = String($(this).val());
-            $btn.attr('data-size', size);
-            $btn.removeAttr('disabled');
-            $btn2.removeAttr('disabled');
-            if (typeof appOneShop !== 'undefined') {
-                appOneShop.size_filter = size;
-            }
-            if (typeof appOneOrder !== 'undefined') {
-                appOneOrder.size = size;
-            }
+            $('#take-at-shop').removeAttr('disabled');
         });
     });
 </script>
@@ -195,19 +213,6 @@
 
 </script>
 
-<script>
-    window.sr = ScrollReveal({
-        duration: 3000,
-
-        origin: 'bottom',
-        reset: false
-    });
-    sr.reveal('.elit-reveal', {
-        viewFactor: 0.1,
-        duration: 1000,
-        reset: false
-    });
-</script>
 <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47079312 = new Ya.Metrika({ id:47079312, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/47079312" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 </body>
 </html>

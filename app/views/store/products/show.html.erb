@@ -102,11 +102,11 @@
                       <p><b>Выберите размер:</b></p>
                       <% @product.shops.each do |shop| %>
                           <% if @product.get_shop_sizes(shop).size %>
-                              <%= shop.title %>
+                              <span><%= shop.title %></span>
                               <ul>
                                 <% @product.get_shop_sizes(shop).each do |size| %>
                                     <label class="btn border-btn">
-                                      <input type="radio" name="size" class="btn_set_size" id="size_"><%= size.size %>
+                                      <input type="radio" name="size" class="btn_set_size"><%= size.size %>
                                     </label>
                                 <% end %>
                               </ul>
@@ -114,9 +114,8 @@
                       <% end %>
                     </div>
                     <div class="col l12 m12 sm12 s12 btn_basket-group">
-                      <!--<a id="add-to-cart" class="waves-effect waves-light btn" onclick="appBasket.addToCart(this);" data-art="94041" data-size="" data-price="13990" disabled="">КУПИТЬ</a>-->
 
-                      <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store"
+                      <a id="take-at-shop" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store"
                          disabled="">
                         ЗАБРАТЬ В МАГАЗИНЕ
                       </a>
@@ -135,7 +134,7 @@
                 <% else %>
 
                     <div class="col l12 m12 sm12 s12 btn_basket-group">
-                      <a id="add-to-cart-one-click" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store">
+                      <a id="take-at-shop" class="waves-effect waves-light btn border-btn modal-trigger" href="#modal-store">
                         ЗАБРАТЬ В МАГАЗИНЕ
                       </a>
                     </div>
